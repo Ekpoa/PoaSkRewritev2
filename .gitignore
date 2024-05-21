@@ -1,0 +1,7 @@
+# Project exclude paths
+/Main/target/
+/NMS/target/
+/nms1202/target/
+/nms1204/target/
+/nms1206/target/
+/target/

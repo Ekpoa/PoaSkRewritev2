@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="nms1204" />
+        <module name="PoaSK" />
+        <module name="nms1206" />
+        <module name="mns1202" />
+        <module name="Main" />
+        <module name="NMS" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Build" target="17" />
+      <module name="Main" target="17" />
+      <module name="nms" target="17" />
+      <module name="Shade" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
