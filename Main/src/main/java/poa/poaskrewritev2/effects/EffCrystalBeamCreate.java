@@ -10,7 +10,8 @@ import org.bukkit.Location;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import poa.poask.PoaSK;
+import poa.poaskrewritev2.PoaSkRewritev2;
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -57,7 +58,7 @@ public class EffCrystalBeamCreate extends Effect {
         } catch (ReflectiveOperationException ex) {
             throw new RuntimeException(ex);
         }
-        laser.start(PoaSK.getInstance());
+        laser.start(PoaSkRewritev2.getINSTANCE());
     }
 
     @SuppressWarnings("DataFlowIssue")

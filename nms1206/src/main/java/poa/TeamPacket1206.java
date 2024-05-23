@@ -6,6 +6,7 @@ import net.minecraft.network.protocol.game.ClientboundSetPlayerTeamPacket;
 import net.minecraft.world.scores.PlayerTeam;
 import net.minecraft.world.scores.Scoreboard;
 import net.minecraft.world.scores.Team;
+import org.checkerframework.checker.units.qual.N;
 import poa.util.Components1206;
 
 import java.lang.reflect.Constructor;
@@ -32,6 +33,8 @@ public class TeamPacket1206 {
             playerTeam.setCollisionRule(Team.CollisionRule.valueOf(collision.toUpperCase()));
 
             playerTeam.setNameTagVisibility(Team.Visibility.valueOf(nameTagVisibility.toUpperCase()));
+
+
 
             playerTeam.setDisplayName(Components1206.nmsComponentActual(MiniMessage.miniMessage().deserialize(displayName)));
 

@@ -11,18 +11,22 @@ import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import poa.FakePlayer;
+import poa.SendPacket;
+import poa.TeamPacket;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class EffSpawnFakePlayer extends Effect {
 
     static {
         Skript.registerEffect(EffSpawnFakePlayer.class,
-                "spawn fake player named %string% [with skin named %string%] [on tablist %-boolean%] [with latency %-number%] at %location% for %players%");
+                "spawn fake player named %string% [with skin named %string%] [with name hidden %boolean%] [on tablist %-boolean%] [with latency %-number%] at %location% for %players%");
     }
 
     private Expression<String> name;
     private Expression<String> skinName;
+    private Expression<Boolean> nameHidden;
     private Expression<Boolean> listed;
     private Expression<Number> latency;
     private Expression<Location> location;
@@ -33,10 +37,11 @@ public class EffSpawnFakePlayer extends Effect {
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
         name = (Expression<String>) exprs[0];
         skinName = (Expression<String>) exprs[1];
-        listed = (Expression<Boolean>) exprs[2];
-        latency = (Expression<Number>) exprs[3];
-        location = (Expression<Location>) exprs[4];
-        players = (Expression<Player>) exprs[5];
+        nameHidden = (Expression<Boolean>) exprs[2];
+        listed = (Expression<Boolean>) exprs[3];
+        latency = (Expression<Number>) exprs[4];
+        location = (Expression<Location>) exprs[5];
+        players = (Expression<Player>) exprs[6];
         return true;
     }
 
@@ -45,6 +50,11 @@ public class EffSpawnFakePlayer extends Effect {
     protected void execute(Event event) {
         String name = this.name.getSingle(event);
         boolean listed = false;
+
+        boolean nameHidden = false;
+
+        if (this.nameHidden != null)
+            nameHidden = this.nameHidden.getSingle(event).booleanValue();
 
         if (this.listed != null)
             listed = this.listed.getSingle(event).booleanValue();
@@ -56,6 +66,13 @@ public class EffSpawnFakePlayer extends Effect {
         Location location = this.location.getSingle(event);
 
         FakePlayer.spawnFakePlayer(Arrays.stream(players.getArray(event)).toList(), name, skinName.getSingle(event), location, listed, latency);
+
+        if(nameHidden){
+            for (Player p : players.getArray(event)) {
+                SendPacket.sendPacket(p, TeamPacket.teamPacket("nameHidden", "nameHidden", "never", "always", "white", "", "", List.of(name)));
+            }
+        }
+
     }
 
     @SuppressWarnings("DataFlowIssue")

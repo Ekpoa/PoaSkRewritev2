@@ -9,9 +9,9 @@
         <module name="nms1204" />
         <module name="PoaSK" />
         <module name="nms1206" />
-        <module name="mns1202" />
         <module name="Main" />
         <module name="NMS" />
+        <module name="nms1202" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

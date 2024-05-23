@@ -1,4 +1,4 @@
-package poa.util;
+package poa;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
@@ -19,8 +19,7 @@ import org.bukkit.World;
 import org.bukkit.craftbukkit.CraftWorld;
 import org.bukkit.craftbukkit.entity.CraftPlayer;
 import org.bukkit.entity.Player;
-import poa.FakeEntity1206;
-import poa.SendPacket1206;
+import poa.util.FetchSkin1206;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
@@ -31,23 +30,23 @@ public class FakePlayer1206 {
     public static Map<UUID, Integer> uuidToId = new HashMap<>();
 
     @SneakyThrows
-    public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency) {
+    public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id, UUID uuid) {
         World world = Bukkit.getWorlds().get(0);
         MinecraftServer server = MinecraftServer.getServer();
         ServerLevel level = ((CraftWorld) world).getHandle();
 
 
-        UUID uuid = UUID.randomUUID();
-        if(nameToUuid.containsKey(name))
+
+        if (nameToUuid.containsKey(name))
             uuid = nameToUuid.get(name);
         else
             nameToUuid.put(name, uuid);
 
-        int id;
-        if(uuidToId.containsKey(uuid))
+
+        if (uuidToId.containsKey(uuid))
             id = uuidToId.get(uuid);
-        else{
-            id = ThreadLocalRandom.current().nextInt(99999, Integer.MAX_VALUE -1);
+        else {
+
             uuidToId.put(uuid, id);
         }
 
@@ -58,7 +57,7 @@ public class FakePlayer1206 {
 
         GameProfile gameProfile = fakePlayer.getGameProfile();
 
-        if(skinName != null && !skinName.isEmpty()) {
+        if (skinName != null && !skinName.isEmpty()) {
             UUID string = Bukkit.getOfflinePlayer(skinName).getUniqueId();
 
             gameProfile.getProperties().removeAll("textures");
@@ -74,9 +73,9 @@ public class FakePlayer1206 {
             ClientboundPlayerInfoUpdatePacket.Action addPlayer = ClientboundPlayerInfoUpdatePacket.Action.ADD_PLAYER;
             connection.send(new ClientboundPlayerInfoUpdatePacket(EnumSet.of(addPlayer), entry));
 
-            if(listed)
+            if (listed)
                 connection.send(new ClientboundPlayerInfoUpdatePacket(EnumSet.of(ClientboundPlayerInfoUpdatePacket.Action.UPDATE_LISTED), entry));
-            if(latency > 0)
+            if (latency > 0)
                 connection.send(new ClientboundPlayerInfoUpdatePacket(EnumSet.of(ClientboundPlayerInfoUpdatePacket.Action.UPDATE_LATENCY), entry));
 
             fakePlayer.setId(id);
@@ -87,6 +86,15 @@ public class FakePlayer1206 {
             connection.send(packet);
         }
 
+    }
+
+
+    public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id) {
+        spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, id, UUID.randomUUID());
+    }
+
+    public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency) {
+        spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, ThreadLocalRandom.current().nextInt(99999, Integer.MAX_VALUE - 1));
     }
 
     @SneakyThrows

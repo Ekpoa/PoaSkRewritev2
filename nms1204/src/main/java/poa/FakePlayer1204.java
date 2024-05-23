@@ -1,4 +1,4 @@
-package poa.util;
+package poa;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
@@ -22,6 +22,7 @@ import org.bukkit.craftbukkit.v1_20_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import poa.FakeEntity1204;
 import poa.SendPacket1204;
+import poa.util.FetchSkin1204;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
@@ -32,23 +33,20 @@ public class FakePlayer1204 {
     public static Map<UUID, Integer> uuidToId = new HashMap<>();
 
     @SneakyThrows
-    public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency) {
+    public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id, UUID uuid) {
         World world = Bukkit.getWorlds().get(0);
         MinecraftServer server = MinecraftServer.getServer();
         ServerLevel level = ((CraftWorld) world).getHandle();
 
 
-        UUID uuid = UUID.randomUUID();
         if(nameToUuid.containsKey(name))
             uuid = nameToUuid.get(name);
         else
             nameToUuid.put(name, uuid);
 
-        int id;
         if(uuidToId.containsKey(uuid))
             id = uuidToId.get(uuid);
         else{
-            id = ThreadLocalRandom.current().nextInt(99999, Integer.MAX_VALUE -1);
             uuidToId.put(uuid, id);
         }
 
@@ -89,6 +87,16 @@ public class FakePlayer1204 {
         }
 
     }
+
+    public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id) {
+        spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, id, UUID.randomUUID());
+    }
+
+    public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency){
+        spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, ThreadLocalRandom.current().nextInt(99999, Integer.MAX_VALUE -1));
+    }
+
+
 
     @SneakyThrows
     public static void removeFakePlayerPacket(List<Player> sendTo, List<UUID> uuids) {
