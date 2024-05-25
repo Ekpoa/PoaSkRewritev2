@@ -22,17 +22,17 @@ import java.util.concurrent.ThreadLocalRandom;
 public class BaeFell extends Effect {
 
     static {
-        Skript.registerEffect(BaeFell.class, "baefell[-]ify [the] %entity% for %players%");
+        Skript.registerEffect(BaeFell.class, "baefell[-]ify [the] %entities% for %players%");
     }
 
-    private Expression<Entity> entity;
+    private Expression<Entity> entities;
     private Expression<Player> players;
 
 
     @SuppressWarnings({"unchecked", "NullableProblems"})
     @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
-        entity = (Expression<Entity>) exprs[0];
+        entities = (Expression<Entity>) exprs[0];
         players = (Expression<Player>) exprs[1];
         return true;
     }
@@ -40,14 +40,15 @@ public class BaeFell extends Effect {
     @SuppressWarnings("NullableProblems")
     @Override
     protected void execute(Event event) {
-        if(this.entity == null)
+        if(this.entities == null)
             return;
 
-        Entity entity = this.entity.getSingle(event);
-        String name = "BaeFell" + ThreadLocalRandom.current().nextInt(0, 9999);
-        FakePlayer.spawnFakePlayer(Arrays.stream(players.getArray(event)).toList(), name, "BaeFell", entity.getLocation(), false, 0, entity.getEntityId(), UUID.randomUUID());
-        for (Player p : players.getArray(event)) {
-            SendPacket.sendPacket(p, TeamPacket.teamPacket("nameHidden", "nameHidden", "never", "always", "white", "", "", List.of(name)));
+        for (Entity entity : this.entities.getArray(event)) {
+            String name = "BF" + ThreadLocalRandom.current().nextInt(0, 99999999);
+            FakePlayer.spawnFakePlayer(Arrays.stream(players.getArray(event)).toList(), name, "BaeFell", entity.getLocation(), false, 0, entity.getEntityId(), UUID.randomUUID());
+            for (Player p : players.getArray(event)) {
+                SendPacket.sendPacket(p, TeamPacket.teamPacket("nameHidden", "nameHidden", "never", "always", "white", "", "", List.of(name)));
+            }
         }
     }
 
@@ -55,8 +56,8 @@ public class BaeFell extends Effect {
     @Override
     public @NotNull String toString(@Nullable Event event, boolean debug) {
         String player = this.players.toString(event, debug);
-        Entity ent = this.entity.getSingle(event);
-        return "baefellify " + ent + " for " + player;
+        Entity[] ent = this.entities.getArray(event);
+        return "baefellify " + Arrays.toString(ent) + " for " + player;
     }
 
 }
