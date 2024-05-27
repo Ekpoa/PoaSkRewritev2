@@ -9,7 +9,7 @@ import ch.njol.util.Kleenean;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import poa.Metadata;
+import poa.packets.Metadata;
 
 public class ExprMetadataVar extends SimpleExpression<Object> {
 

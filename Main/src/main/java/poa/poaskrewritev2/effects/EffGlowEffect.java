@@ -16,19 +16,15 @@ import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import poa.GetPose;
-import poa.Metadata;
-import poa.SendPacket;
-import poa.TeamPacket;
+import poa.util.GetPose;
+import poa.packets.Metadata;
+import poa.packets.SendPacket;
+import poa.packets.TeamPacket;
 import poa.poaskrewritev2.PoaSkRewritev2;
-import poa.util.BukkitVersion;
 import poa.util.GlowMap;
 
-import javax.xml.stream.events.StartDocument;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class EffGlowEffect extends Effect implements Listener {
 

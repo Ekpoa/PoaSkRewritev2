@@ -11,7 +11,7 @@ import org.bukkit.block.data.BlockData;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import poa.Metadata;
+import poa.packets.Metadata;
 
 import java.util.ArrayList;
 import java.util.Arrays;

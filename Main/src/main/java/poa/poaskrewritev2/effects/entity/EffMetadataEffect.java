@@ -15,8 +15,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
 import org.jetbrains.annotations.NotNull;
-import poa.Metadata;
-import poa.SendPacket;
+import poa.packets.Metadata;
+import poa.packets.SendPacket;
 import poa.poaskrewritev2.PoaSkRewritev2;
 
 import javax.annotation.Nullable;

@@ -6,7 +6,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import poa.listener.PacketInjector;
+import poa.packets.listener.PacketInjector;
 import poa.util.BukkitVersion;
 import poa.util.GlowMap;
 

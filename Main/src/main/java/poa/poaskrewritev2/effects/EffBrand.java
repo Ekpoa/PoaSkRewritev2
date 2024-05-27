@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import poa.SendPayloadPacket;
+import poa.packets.SendPayloadPacket;
 
 public class EffBrand extends Effect {
 

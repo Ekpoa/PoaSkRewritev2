@@ -9,7 +9,7 @@ import ch.njol.util.Kleenean;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import poa.FakePlayer;
+import poa.packets.FakePlayer;
 import poa.poaskrewritev2.PoaSkRewritev2;
 
 import java.util.UUID;

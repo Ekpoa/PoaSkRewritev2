@@ -12,9 +12,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import poa.FakeEntity;
-import poa.GetBlockId;
-import poa.SendPacket;
+import poa.packets.FakeEntity;
+import poa.util.GetBlockId;
+import poa.packets.SendPacket;
 
 public class EffSpawnFakeFallingBlock extends Effect {
 

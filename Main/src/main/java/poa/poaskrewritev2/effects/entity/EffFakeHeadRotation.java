@@ -11,8 +11,8 @@ import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import poa.HeadRotPacket;
-import poa.SendPacket;
+import poa.packets.HeadRotPacket;
+import poa.packets.SendPacket;
 
 public class EffFakeHeadRotation extends Effect implements Listener {
 

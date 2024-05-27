@@ -13,9 +13,9 @@ import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import poa.FakeEntity;
-import poa.Metadata;
-import poa.SendPacket;
+import poa.packets.FakeEntity;
+import poa.packets.Metadata;
+import poa.packets.SendPacket;
 
 public class EffSpawnFakeDroppedItem extends Effect {
 

@@ -13,8 +13,8 @@ import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import poa.Metadata;
-import poa.SendPacket;
+import poa.packets.Metadata;
+import poa.packets.SendPacket;
 
 public class EffFakeEntityName extends Effect implements Listener {
 

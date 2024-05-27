@@ -1,9 +1,9 @@
 package poa.util;
 
 import org.bukkit.entity.Player;
-import poa.packetListener.GlowMap1202;
-import poa.packetListener.GlowMap1204;
-import poa.packetListener.GlowMap1206;
+import poa.packets.packetListener.GlowMap1202;
+import poa.packets.packetListener.GlowMap1204;
+import poa.packets.packetListener.GlowMap1206;
 
 import java.util.List;
 import java.util.Map;

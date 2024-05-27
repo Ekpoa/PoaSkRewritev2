@@ -11,8 +11,8 @@ import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import poa.SendPacket;
-import poa.SetPassengerPacket;
+import poa.packets.SendPacket;
+import poa.packets.SetPassengerPacket;
 
 import java.util.Arrays;
 

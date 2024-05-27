@@ -11,8 +11,8 @@ import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import poa.CameraPacket;
-import poa.SendPacket;
+import poa.packets.CameraPacket;
+import poa.packets.SendPacket;
 
 public class EffSetCamera extends Effect implements Listener {
 

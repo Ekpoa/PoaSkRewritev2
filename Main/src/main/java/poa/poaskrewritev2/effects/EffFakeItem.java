@@ -13,8 +13,8 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import poa.SendPacket;
-import poa.SetEquipmentPacket;
+import poa.packets.SendPacket;
+import poa.packets.SetEquipmentPacket;
 
 public class EffFakeItem extends Effect {
 

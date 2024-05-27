@@ -10,9 +10,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import poa.FakePlayer;
-import poa.SendPacket;
-import poa.TeamPacket;
+import poa.packets.FakePlayer;
+import poa.packets.SendPacket;
+import poa.packets.TeamPacket;
 
 import java.util.Arrays;
 import java.util.List;

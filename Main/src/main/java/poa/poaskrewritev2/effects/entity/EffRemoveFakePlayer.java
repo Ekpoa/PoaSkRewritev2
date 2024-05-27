@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import poa.FakePlayer;
+import poa.packets.FakePlayer;
 
 import java.util.ArrayList;
 import java.util.Arrays;

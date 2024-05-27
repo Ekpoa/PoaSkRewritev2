@@ -11,8 +11,8 @@ import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import poa.PosRotPacket;
-import poa.SendPacket;
+import poa.packets.PosRotPacket;
+import poa.packets.SendPacket;
 
 public class EffMoveEntity extends Effect implements Listener {
 
