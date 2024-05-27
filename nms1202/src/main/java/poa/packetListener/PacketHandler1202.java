@@ -50,6 +50,11 @@ public class PacketHandler1202 extends ChannelDuplexHandler {
             int entityId = metadata.id();
             Entity entity = level.getEntityLookup().get(entityId);
 
+            if(entity == null){
+                super.write(ctx, msg, promise);
+                return;
+            }
+
             if (!(entity.getBukkitEntity() instanceof Player target)) {
                 super.write(ctx, msg, promise);
                 return;
