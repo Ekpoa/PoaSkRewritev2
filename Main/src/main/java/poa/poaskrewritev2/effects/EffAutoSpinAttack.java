@@ -17,7 +17,7 @@ public class EffAutoSpinAttack extends Effect {
 
 
     static {
-        Skript.registerEffect(EffAutoSpinAttack.class, "make %players% spin [attack] for %timespan% ");
+        Skript.registerEffect(EffAutoSpinAttack.class, "make %players% spin [attack] for %timespan%");
 
     }
 
