@@ -21,7 +21,7 @@ public class EffSpawnFakePlayer extends Effect {
 
     static {
         Skript.registerEffect(EffSpawnFakePlayer.class,
-                "spawn fake player named %string% [with skin named %string%] [with name hidden %boolean%] [on tablist %-boolean%] [with latency %-number%] at %location% for %players%");
+                "spawn fake player named %string% [with skin named %string%] [with name hidden %-boolean%] [on tablist %-boolean%] [with latency %-number%] at %location% for %players%");
     }
 
     private Expression<String> name;
