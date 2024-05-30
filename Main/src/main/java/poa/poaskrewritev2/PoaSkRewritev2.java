@@ -31,7 +31,7 @@ public final class PoaSkRewritev2 extends JavaPlugin {
         pm.registerEvents(new ExprHostname(), this);
 
         try {
-            skriptAddon.loadClasses("poa.poaskrewritev2", "expressions", "effects", "effects.entity", "effects.packets", "effects.fun"); //todo add events back
+            skriptAddon.loadClasses("poa.poaskrewritev2", "expressions", "effects", "effects.entity", "effects.packets", "effects.fun", "events");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -9,11 +9,12 @@ import java.util.List;
 
 public class SetEquipmentPacket1206 {
 
-    public static Object packet(int id, String slot, ItemStack item){
-        slot = slot.replace("off_hand", "offhand")
-                .replace("off hand", "offhand");
+    public static Object packet(int id, String nmsSlot, ItemStack item){
 
-        EquipmentSlot equipmentSlot = EquipmentSlot.valueOf(slot.toUpperCase());
+        EquipmentSlot equipmentSlot = EquipmentSlot.valueOf(nmsSlot.toUpperCase());
+
+
+
 
         List<Pair<EquipmentSlot, net.minecraft.world.item.ItemStack>> pairs = List.of(new Pair<>(equipmentSlot, net.minecraft.world.item.ItemStack.fromBukkitCopy(item)));
 

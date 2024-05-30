@@ -15,6 +15,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import poa.packets.SendPacket;
 import poa.packets.SetEquipmentPacket;
+import poa.poaskrewritev2.PoaSkRewritev2;
+
+import java.util.logging.Level;
 
 public class EffFakeItem extends Effect {
 
@@ -46,14 +49,38 @@ public class EffFakeItem extends Effect {
 
         ItemStack itemStack = itemType.getRandom();
 
-        EquipmentSlot equipmentSlot = EquipmentSlot.valueOf(slot.toUpperCase());
+        EquipmentSlot equipmentSlot = null;
 
-        for (Player player : this.players.getArray(event))
-            for (Object object : this.entities.getArray(event))
-                if(object instanceof LivingEntity livingEntity)
+        Object[] array = this.entities.getArray(event);
+
+        if(array[0] == null)
+            return;
+
+        if(array[0] instanceof Long){
+            slot = slot.replace("off_hand", "offhand")
+                    .replace("off hand", "offhand");
+
+            if(slot.equalsIgnoreCase("hand"))
+                slot = "mainhand";
+            
+        }
+
+        else {
+            equipmentSlot = EquipmentSlot.valueOf(slot.toUpperCase());
+        }
+
+        for (Player player : this.players.getArray(event)) {
+
+            for (Object object : array)
+                if(object instanceof LivingEntity livingEntity) {
+                    if(equipmentSlot == null){
+                        PoaSkRewritev2.getINSTANCE().getLogger().log(Level.WARNING, "slot: " + slot + " is not valid for Bukkit enum");
+                        return;
+                    }
                     player.sendEquipmentChange(livingEntity, equipmentSlot, itemStack);
-                else if (object instanceof Long)
+                } else if (object instanceof Long)
                   SendPacket.sendPacket(player, SetEquipmentPacket.packet(((Long) object).intValue(), slot, itemStack));
+        }
 
 
     }
