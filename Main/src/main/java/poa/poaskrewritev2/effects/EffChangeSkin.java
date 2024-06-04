@@ -22,7 +22,7 @@ public class EffChangeSkin extends Effect {
 
 
     static {
-        Skript.registerEffect(EffChangeSkin.class, "set skin of %player% to skin of %string%");
+        Skript.registerEffect(EffChangeSkin.class, "set skin of %players% to skin of %string%");
     }
 
     private Expression<Player> playerExpression;
@@ -39,20 +39,21 @@ public class EffChangeSkin extends Effect {
     @SuppressWarnings("NullableProblems")
     @Override
     protected void execute(Event event) {
-        Player player = playerExpression.getSingle(event);
+
         String skinName = stringExpression.getSingle(event);
 
         OfflinePlayer skinPlayer = Bukkit.getOfflinePlayer(skinName);
         UUID uuid = skinPlayer.getUniqueId();
 
-        PlayerProfile profile = player.getPlayerProfile();
+        for (Player player : playerExpression.getArray(event)) {
+            PlayerProfile profile = player.getPlayerProfile();
 
-        Set<ProfileProperty> properties = profile.getProperties();
+            Set<ProfileProperty> properties = profile.getProperties();
 
-        properties.add(new ProfileProperty("textures", FetchSkin.fetchSkinURL(uuid), FetchSkin.fetchSkinSignature(uuid)));
+            properties.add(new ProfileProperty("textures", FetchSkin.fetchSkinURL(uuid), FetchSkin.fetchSkinSignature(uuid)));
 
-        player.setPlayerProfile(profile);
-
+            player.setPlayerProfile(profile);
+        }
     }
 
     @SuppressWarnings("DataFlowIssue")

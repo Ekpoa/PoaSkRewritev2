@@ -60,6 +60,7 @@ public class FakePlayer1204 {
 
             gameProfile.getProperties().removeAll("textures");
             gameProfile.getProperties().put("textures", new Property("textures", FetchSkin1204.fetchSkinURL(string), FetchSkin1204.fetchSkinSignature(string)));
+
         }
 
 

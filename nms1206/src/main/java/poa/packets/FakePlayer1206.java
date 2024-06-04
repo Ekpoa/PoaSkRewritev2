@@ -7,11 +7,14 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.network.protocol.game.ClientboundPlayerInfoRemovePacket;
 import net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket;
+import net.minecraft.network.protocol.game.ClientboundSetEntityDataPacket;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ClientInformation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.network.ServerGamePacketListenerImpl;
+import net.minecraft.world.entity.HumanoidArm;
+import net.minecraft.world.entity.player.ChatVisiblity;
 import net.minecraft.world.level.GameType;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -30,7 +33,7 @@ public class FakePlayer1206 {
     public static Map<UUID, Integer> uuidToId = new HashMap<>();
 
     @SneakyThrows
-    public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id, UUID uuid) {
+    public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id, UUID uuid, int skinModel) {
         World world = Bukkit.getWorlds().get(0);
         MinecraftServer server = MinecraftServer.getServer();
         ServerLevel level = ((CraftWorld) world).getHandle();
@@ -50,8 +53,8 @@ public class FakePlayer1206 {
             uuidToId.put(uuid, id);
         }
 
-
-        ServerPlayer fakePlayer = new ServerPlayer(server, level, new GameProfile(uuid, name), ClientInformation.createDefault());
+        ClientInformation clientInformation = new ClientInformation("en_us", 2, ChatVisiblity.FULL, false, skinModel, HumanoidArm.RIGHT, true, listed);
+        ServerPlayer fakePlayer = new ServerPlayer(server, level, new GameProfile(uuid, name), clientInformation);
         fakePlayer.setPos(loc.getX(), loc.getY(), loc.getZ());
 
 
@@ -62,12 +65,12 @@ public class FakePlayer1206 {
 
             gameProfile.getProperties().removeAll("textures");
             gameProfile.getProperties().put("textures", new Property("textures", FetchSkin1206.fetchSkinURL(string), FetchSkin1206.fetchSkinSignature(string)));
+
         }
 
 
+
         for (Player player : sendTo) {
-
-
             ServerGamePacketListenerImpl connection = ((CraftPlayer) player).getHandle().connection;
             ClientboundPlayerInfoUpdatePacket.Entry entry = new ClientboundPlayerInfoUpdatePacket.Entry(fakePlayer.getUUID(), gameProfile, listed, latency, GameType.DEFAULT_MODE, Component.empty(), null);
             ClientboundPlayerInfoUpdatePacket.Action addPlayer = ClientboundPlayerInfoUpdatePacket.Action.ADD_PLAYER;
@@ -82,13 +85,20 @@ public class FakePlayer1206 {
 
             ClientboundAddEntityPacket packet = new ClientboundAddEntityPacket(fakePlayer);
 
-
             connection.send(packet);
+
+            if (skinName != null && !skinName.isEmpty()) {
+                connection.send(new ClientboundSetEntityDataPacket(id, fakePlayer.getEntityData().packAll()));
+            }
+
+
         }
 
     }
 
-
+    public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id, UUID uuid) {
+        spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, id, uuid, 127);
+    }
     public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id) {
         spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, id, UUID.randomUUID());
     }

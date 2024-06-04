@@ -15,7 +15,7 @@ public class Metadata {
             case "1204" ->
                     Metadata1204.basePacketForEntity(id, fire, invisible, glow, name, nameVisible, silent, gravity, pose);
             case "1206" ->
-                    Metadata.basePacketForEntity(id, fire, invisible, glow, name, nameVisible, silent, gravity, pose);
+                    Metadata1206.basePacketForEntity(id, fire, invisible, glow, name, nameVisible, silent, gravity, pose);
             default -> null;
         };
     }

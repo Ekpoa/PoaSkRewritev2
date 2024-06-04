@@ -32,13 +32,16 @@ public class PacketHandler1202 extends ChannelDuplexHandler {
 
     @Override
     public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) throws Exception {
+        if(!(msg instanceof Packet<?> packet)){
+            super.write(ctx, msg, promise);
+            return;
+        }
+
         String name = ctx.name().replace("-PoaSK-", "");
 
 
         Player player = Bukkit.getPlayer(name);
 
-
-        Packet<?> packet = (Packet<?>) msg;
 
 
         if (packet instanceof ClientboundSetEntityDataPacket metadata) {

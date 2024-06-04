@@ -71,7 +71,7 @@ public class EffRawMetadata extends Effect {
                     if (args.length == 1)
                         return;
                     if (args[1].equalsIgnoreCase("visible"))
-                        metadata.setNameVisible(getBoolean(Arrays.copyOfRange(args, 1, 2)));
+                        metadata.setNameVisible(Boolean.parseBoolean(args[2]));
                     else {
                         String name = String.join(" ", Arrays.copyOfRange(args, 1, args.length));
                         metadata.setName(name);

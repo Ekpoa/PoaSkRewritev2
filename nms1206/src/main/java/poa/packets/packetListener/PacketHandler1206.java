@@ -35,8 +35,6 @@ public class PacketHandler1206 extends ChannelDuplexHandler {
     @Override
     public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) throws Exception {
 
-
-
             if(!(msg instanceof Packet<?> packet)){
                 super.write(ctx, msg, promise);
                 return;
@@ -126,6 +124,9 @@ public class PacketHandler1206 extends ChannelDuplexHandler {
                 return;
 
         }
+
+
+
         super.write(ctx, msg, promise);
 
     }
