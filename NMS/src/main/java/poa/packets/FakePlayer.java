@@ -30,31 +30,14 @@ public class FakePlayer {
         spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, ThreadLocalRandom.current().nextInt(99999, Integer.MAX_VALUE -1));
     }
 
-    public static void removeFakePlayerPacket(List<Player> sendTo, List<UUID> uuids) {
+    public static void removeFakePlayerPacket(List<Player> sendTo, List<UUID> uuids, List<Integer> ids) {
         switch (BukkitVersion.getBukkitVersion()) {
-            case "1202" -> FakePlayer1202.removeFakePlayerPacket(sendTo, uuids);
-            case "1204" -> FakePlayer1204.removeFakePlayerPacket(sendTo, uuids);
-            case "1206" -> FakePlayer1206.removeFakePlayerPacket(sendTo, uuids);
+            case "1202" -> FakePlayer1202.removeFakePlayerPacket(sendTo, uuids, ids);
+            case "1204" -> FakePlayer1204.removeFakePlayerPacket(sendTo, uuids, ids);
+            case "1206" -> FakePlayer1206.removeFakePlayerPacket(sendTo, uuids, ids);
 
         }
     }
 
-    public static Map<String, UUID> getNameToUuidMap(){
-        return switch (BukkitVersion.getBukkitVersion()) {
-            case "1202" -> FakePlayer1202.nameToUuid;
-            case "1204" -> FakePlayer1204.nameToUuid;
-            case "1206" -> FakePlayer1206.nameToUuid;
-            default -> null;
-        };
-    }
-
-    public static Map<UUID, Integer> getUuidToIdMap(){
-        return switch (BukkitVersion.getBukkitVersion()) {
-            case "1202" -> FakePlayer1202.uuidToId;
-            case "1204" -> FakePlayer1204.uuidToId;
-            case "1206" -> FakePlayer1206.uuidToId;
-            default -> null;
-        };
-    }
 
 }

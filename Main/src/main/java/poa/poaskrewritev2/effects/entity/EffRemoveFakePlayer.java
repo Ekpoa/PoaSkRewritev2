@@ -20,37 +20,39 @@ public class EffRemoveFakePlayer extends Effect {
 
     static {
         Skript.registerEffect(EffRemoveFakePlayer.class,
-                "remove fake player named %strings% for %players%");
+                "remove fake player[s] with id[s] %numbers% and uuid[s] %strings% for %players%");
     }
 
-    private Expression<String> name;
+    private Expression<Number> ids;
+    private Expression<String> uuids;
     private Expression<Player> players;
+
+
 
     @SuppressWarnings({"unchecked", "NullableProblems"})
     @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
-        name = (Expression<String>) exprs[0];
-        players = (Expression<Player>) exprs[1];
+        ids = (Expression<Number>) exprs[0];
+        uuids = (Expression<String>) exprs[1];
+        players = (Expression<Player>) exprs[2];
         return true;
     }
 
     @SuppressWarnings("NullableProblems")
     @Override
     protected void execute(Event event) {
-        String[] name = this.name.getArray(event);
+        List<Integer> ids = Arrays.stream(this.ids.getArray(event)).map(Number::intValue).toList();
         List<UUID> uuids = new ArrayList<>();
+        for (String s : this.uuids.getArray(event)) {
+            uuids.add(UUID.fromString(s));
+        }
 
-        for (String s : name)
-            uuids.add(FakePlayer.getNameToUuidMap().get(s));
-
-        FakePlayer.removeFakePlayerPacket(Arrays.stream(players.getArray(event)).toList(), uuids);
-
+        FakePlayer.removeFakePlayerPacket(Arrays.stream(players.getArray(event)).toList(), uuids, ids);
     }
 
-    @SuppressWarnings("DataFlowIssue")
     @Override
     public @NotNull String toString(@Nullable Event event, boolean debug) {
-        return "spawn fake player";
+        return "remove fake player";
     }
 
 }

@@ -6,6 +6,7 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -78,8 +79,9 @@ public class EffFakeItem extends Effect {
                         return;
                     }
                     player.sendEquipmentChange(livingEntity, equipmentSlot, itemStack);
-                } else if (object instanceof Long)
-                  SendPacket.sendPacket(player, SetEquipmentPacket.packet(((Long) object).intValue(), slot, itemStack));
+                } else if (object instanceof Long) {
+                    SendPacket.sendPacket(player, SetEquipmentPacket.packet(((Long) object).intValue(), slot, itemStack));
+                }
         }
 
 

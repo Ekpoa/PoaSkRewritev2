@@ -7,11 +7,14 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.network.protocol.game.ClientboundPlayerInfoRemovePacket;
 import net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket;
+import net.minecraft.network.protocol.game.ClientboundSetEntityDataPacket;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ClientInformation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.network.ServerGamePacketListenerImpl;
+import net.minecraft.world.entity.HumanoidArm;
+import net.minecraft.world.entity.player.ChatVisiblity;
 import net.minecraft.world.level.GameType;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -27,29 +30,16 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class FakePlayer1204 {
 
-    public static Map<String, UUID> nameToUuid = new HashMap<>();
-    public static Map<UUID, Integer> uuidToId = new HashMap<>();
-
     @SneakyThrows
-    public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id, UUID uuid) {
+    public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id, UUID uuid, int skinModel) {
         World world = Bukkit.getWorlds().get(0);
         MinecraftServer server = MinecraftServer.getServer();
         ServerLevel level = ((CraftWorld) world).getHandle();
 
 
-        if(nameToUuid.containsKey(name))
-            uuid = nameToUuid.get(name);
-        else
-            nameToUuid.put(name, uuid);
 
-        if(uuidToId.containsKey(uuid))
-            id = uuidToId.get(uuid);
-        else{
-            uuidToId.put(uuid, id);
-        }
-
-
-        ServerPlayer fakePlayer = new ServerPlayer(server, level, new GameProfile(uuid, name), ClientInformation.createDefault());
+        ClientInformation clientInformation = new ClientInformation("en_us", 2, ChatVisiblity.FULL, false, skinModel, HumanoidArm.RIGHT, true, listed);
+        ServerPlayer fakePlayer = new ServerPlayer(server, level, new GameProfile(uuid, name), clientInformation);
         fakePlayer.setPos(loc.getX(), loc.getY(), loc.getZ());
 
 
@@ -83,31 +73,32 @@ public class FakePlayer1204 {
 
 
             connection.send(packet);
+
+            if (skinName != null && !skinName.isEmpty()) {
+                connection.send(new ClientboundSetEntityDataPacket(id, fakePlayer.getEntityData().packDirty()));
+            }
         }
 
     }
 
+    public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id, UUID uuid) {
+        spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, id, uuid, 127);
+    }
     public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id) {
         spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, id, UUID.randomUUID());
     }
 
-    public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency){
-        spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, ThreadLocalRandom.current().nextInt(99999, Integer.MAX_VALUE -1));
+    public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency) {
+        spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, ThreadLocalRandom.current().nextInt(99999, Integer.MAX_VALUE - 1));
     }
 
 
 
     @SneakyThrows
-    public static void removeFakePlayerPacket(List<Player> sendTo, List<UUID> uuids) {
+    public static void removeFakePlayerPacket(List<Player> sendTo, List<UUID> uuids, List<Integer> ids) {
         for (Player p : sendTo) {
-            List<Integer> list = new ArrayList<>();
-            for (UUID uuid : uuids) {
-                list.add(uuidToId.get(uuid));
-            }
-
             SendPacket1204.sendPacket(p, new ClientboundPlayerInfoRemovePacket(uuids));
-            SendPacket1204.sendPacket(p, FakeEntity1204.removeFakeEntityPacket(list));
-
+            SendPacket1204.sendPacket(p, FakeEntity1204.removeFakeEntityPacket(ids));
 
         }
     }

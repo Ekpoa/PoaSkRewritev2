@@ -21,7 +21,7 @@ public class SendPayloadPacket1206 {
     }
 
     public static void sendBrandPayload(Player player, String brand){
-        SendPacket1206.sendPacket(player, new BrandPayload(brand));
+        SendPacket1206.sendPacket(player, new ClientboundCustomPayloadPacket(new BrandPayload(brand)));
     }
 
 }

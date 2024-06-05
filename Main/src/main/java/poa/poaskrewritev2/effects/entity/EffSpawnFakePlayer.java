@@ -16,12 +16,13 @@ import poa.packets.TeamPacket;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 public class EffSpawnFakePlayer extends Effect {
 
     static {
         Skript.registerEffect(EffSpawnFakePlayer.class,
-                "spawn fake player named %string% [with skin named %-string%] [with name hidden %-boolean%] [on tablist %-boolean%] [with latency %-number%] at %location% for %players%");
+                "spawn fake player named %string% [with skin named %-string%] [with name hidden %-boolean%] [on tablist %-boolean%] [with latency %-number%] at %location% for %players% with id %number% [and] uuid %string%");
     }
 
     private Expression<String> name;
@@ -31,6 +32,8 @@ public class EffSpawnFakePlayer extends Effect {
     private Expression<Number> latency;
     private Expression<Location> location;
     private Expression<Player> players;
+    private Expression<Number> id;
+    private Expression<String> uuid;
 
     @SuppressWarnings({"unchecked", "NullableProblems"})
     @Override
@@ -42,6 +45,8 @@ public class EffSpawnFakePlayer extends Effect {
         latency = (Expression<Number>) exprs[4];
         location = (Expression<Location>) exprs[5];
         players = (Expression<Player>) exprs[6];
+        id = (Expression<Number>) exprs[7];
+        uuid = (Expression<String>) exprs[8];
         return true;
     }
 
@@ -52,6 +57,10 @@ public class EffSpawnFakePlayer extends Effect {
         boolean listed = false;
 
         boolean nameHidden = false;
+
+        int id = this.id.getSingle(event).intValue();
+
+        UUID uuid = UUID.fromString(this.uuid.getSingle(event));
 
         if (this.nameHidden != null)
             nameHidden = this.nameHidden.getSingle(event).booleanValue();
@@ -65,7 +74,7 @@ public class EffSpawnFakePlayer extends Effect {
 
         Location location = this.location.getSingle(event);
 
-        FakePlayer.spawnFakePlayer(Arrays.stream(players.getArray(event)).toList(), name, skinName.getSingle(event), location, listed, latency);
+        FakePlayer.spawnFakePlayer(Arrays.stream(players.getArray(event)).toList(), name, skinName.getSingle(event), location, listed, latency, id, uuid);
 
         if(nameHidden){
             for (Player p : players.getArray(event)) {
@@ -75,7 +84,6 @@ public class EffSpawnFakePlayer extends Effect {
 
     }
 
-    @SuppressWarnings("DataFlowIssue")
     @Override
     public @NotNull String toString(@Nullable Event event, boolean debug) {
         return "spawn fake player";

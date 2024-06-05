@@ -29,29 +29,12 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class FakePlayer1206 {
 
-    public static Map<String, UUID> nameToUuid = new HashMap<>();
-    public static Map<UUID, Integer> uuidToId = new HashMap<>();
-
     @SneakyThrows
     public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id, UUID uuid, int skinModel) {
         World world = Bukkit.getWorlds().get(0);
         MinecraftServer server = MinecraftServer.getServer();
         ServerLevel level = ((CraftWorld) world).getHandle();
 
-
-
-        if (nameToUuid.containsKey(name))
-            uuid = nameToUuid.get(name);
-        else
-            nameToUuid.put(name, uuid);
-
-
-        if (uuidToId.containsKey(uuid))
-            id = uuidToId.get(uuid);
-        else {
-
-            uuidToId.put(uuid, id);
-        }
 
         ClientInformation clientInformation = new ClientInformation("en_us", 2, ChatVisiblity.FULL, false, skinModel, HumanoidArm.RIGHT, true, listed);
         ServerPlayer fakePlayer = new ServerPlayer(server, level, new GameProfile(uuid, name), clientInformation);
@@ -108,16 +91,10 @@ public class FakePlayer1206 {
     }
 
     @SneakyThrows
-    public static void removeFakePlayerPacket(List<Player> sendTo, List<UUID> uuids) {
+    public static void removeFakePlayerPacket(List<Player> sendTo, List<UUID> uuids, List<Integer> ids) {
         for (Player p : sendTo) {
-            List<Integer> list = new ArrayList<>();
-            for (UUID uuid : uuids) {
-                list.add(uuidToId.get(uuid));
-            }
-
             SendPacket1206.sendPacket(p, new ClientboundPlayerInfoRemovePacket(uuids));
-            SendPacket1206.sendPacket(p, FakeEntity1206.removeFakeEntityPacket(list));
-
+            SendPacket1206.sendPacket(p, FakeEntity1206.removeFakeEntityPacket(ids));
 
         }
     }

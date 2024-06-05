@@ -14,8 +14,6 @@ public class SetEquipmentPacket1206 {
         EquipmentSlot equipmentSlot = EquipmentSlot.valueOf(nmsSlot.toUpperCase());
 
 
-
-
         List<Pair<EquipmentSlot, net.minecraft.world.item.ItemStack>> pairs = List.of(new Pair<>(equipmentSlot, net.minecraft.world.item.ItemStack.fromBukkitCopy(item)));
 
         return new ClientboundSetEquipmentPacket(id, pairs);
