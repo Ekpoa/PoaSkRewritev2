@@ -30,6 +30,7 @@ public class FakeEntity1206 {
                 new Vec3(0, 0, 0),
                 0
         );
+
     }
     public static Object fakeEntityPacket(int id, Location location, String type){
         return fakeEntityPacket(id, location, type, 0);
