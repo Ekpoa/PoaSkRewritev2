@@ -28,16 +28,14 @@ import java.util.concurrent.ConcurrentMap;
 
 public class EffSetPlayerNameAndSkin extends Effect implements Listener {
 
+
     static {
         Skript.registerEffect(EffSetPlayerNameAndSkin.class,
                 "fake name of %player% to %string% with skin named %string% for %players%");
     }
 
-
-
     private static final ConcurrentMap<Player, Map<Player, String>> playerSkinMap = new ConcurrentHashMap<>();
     private static final ConcurrentMap<Player, Map<Player, String>> playerNameMap = new ConcurrentHashMap<>();
-
 
 
     private Expression<Player> target;

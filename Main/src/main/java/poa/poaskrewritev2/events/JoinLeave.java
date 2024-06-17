@@ -32,14 +32,11 @@ public class JoinLeave implements Listener {
 
     @EventHandler
     public void onQuit(PlayerQuitEvent e){
-
         Player player = e.getPlayer();
 
         GlowMap.getGlowMap().remove(player);
 
         GlowMap.getGlowMap().entrySet().removeIf(entry -> entry.getValue().contains(player.getEntityId()));
-
-
 
         if (!List.of("1202", "1203", "1204").contains(BukkitVersion.getBukkitVersion()))
             return;
