@@ -122,7 +122,9 @@ public class EffRawMetadata extends Effect {
                 case "display" -> {
                     switch (args[1].toLowerCase()) {
                         case "item" -> metadata.setDisplayItem(((ItemType) object.getSingle(event)).getRandom());
-                        case "block" -> metadata.setDisplayBlock((BlockData) object.getSingle(event));
+                        case "block" -> {
+                            metadata.setDisplayBlock((BlockData) object.getSingle(event));
+                        }
                     }
                     if(args.length < 3)
                         return;

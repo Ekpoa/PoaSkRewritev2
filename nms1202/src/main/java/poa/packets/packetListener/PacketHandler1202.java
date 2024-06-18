@@ -3,7 +3,9 @@ package poa.packets.packetListener;
 import io.netty.channel.ChannelDuplexHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelPromise;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientboundLevelParticlesPacket;
 import net.minecraft.network.protocol.game.ClientboundSetEntityDataPacket;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -12,9 +14,14 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import org.bukkit.Bukkit;
 
+import org.bukkit.Particle;
+import org.bukkit.craftbukkit.v1_20_R2.CraftParticle;
 import org.bukkit.craftbukkit.v1_20_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.PluginManager;
+import poa.packets.packetListener.events.ParticleEvent1202;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
 
@@ -22,13 +29,31 @@ public class PacketHandler1202 extends ChannelDuplexHandler {
 
     //private List<ClientboundSystemChatPacket> list = new ArrayList<>();
 
-    public PacketHandler1202() {
+    Player player;
+
+    public PacketHandler1202(Player player) {
+        this.player = player;
     }
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         super.channelRead(ctx, msg);
     }
+
+    private static Class<?> particleOptionsClass; //Some reason its not mapping correctly :D
+    private static Method getTypeMethod;
+    private static final Class<?> craftParticleClass;
+    private static Method minecraftToBukkitMethod;
+
+    static {
+        try {
+            craftParticleClass = Class.forName("org.bukkit.craftbukkit.v1_20_R3.CraftParticle");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static final PluginManager pluginManager = Bukkit.getPluginManager();
 
     @Override
     public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) throws Exception {
@@ -37,10 +62,6 @@ public class PacketHandler1202 extends ChannelDuplexHandler {
             return;
         }
 
-        String name = ctx.name().replace("-PoaSK-", "");
-
-
-        Player player = Bukkit.getPlayer(name);
 
 
 
@@ -139,6 +160,61 @@ public class PacketHandler1202 extends ChannelDuplexHandler {
             }
 
         }
+
+
+        if (packet instanceof ClientboundLevelParticlesPacket particlesPacket) {
+            ParticleOptions particle = particlesPacket.getParticle();
+            if (particleOptionsClass == null) {
+                particleOptionsClass = particle.getClass();
+                getTypeMethod = particleOptionsClass.getDeclaredMethod("b");
+            }
+
+            Object type = getTypeMethod.invoke(particle);
+
+
+            if (minecraftToBukkitMethod == null) {
+                for (Method m : CraftParticle.class.getMethods()) {
+                    if (m.getName().contains("minecraftToBukkit"))
+                        minecraftToBukkitMethod = m;
+                }
+
+                if (minecraftToBukkitMethod == null) {
+                    super.write(ctx, msg, promise);
+                    System.out.println("ERROR, no method found. Report this :D");
+                    return;
+                }
+            }
+
+
+            Object bukkitParticle = minecraftToBukkitMethod.invoke(craftParticleClass, type);
+
+            // Particle bukkitParticle = CraftParticle.minecraftToBukkit((ParticleType<?>) type); //DOESN'T WORK :D
+
+
+            ParticleEvent1202 particleEvent = new ParticleEvent1202(player, true);
+            particleEvent.setParticle((Particle) bukkitParticle);
+
+            particleEvent.setCount(particlesPacket.getCount());
+
+            particleEvent.setWorld(player.getWorld());
+            particleEvent.setX(particlesPacket.getX());
+            particleEvent.setY(particlesPacket.getY());
+            particleEvent.setY(particlesPacket.getY());
+
+            particleEvent.setXOffset(particlesPacket.getXDist());
+            particleEvent.setYOffset(particlesPacket.getYDist());
+            particleEvent.setYOffset(particlesPacket.getYDist());
+
+            particleEvent.setMaxSpeed(particlesPacket.getMaxSpeed());
+
+
+            pluginManager.callEvent(particleEvent);
+
+
+            if(particleEvent.isCancelled())
+                return;
+        }
+
 
 
         super.write(ctx, msg, promise);

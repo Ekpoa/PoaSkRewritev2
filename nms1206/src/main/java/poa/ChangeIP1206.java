@@ -1,5 +1,6 @@
 package poa;
 
+import net.minecraft.world.entity.EntityType;
 import org.bukkit.craftbukkit.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 

@@ -50,7 +50,7 @@ public class EffSpawnFakeDroppedItem extends Effect {
         int id = idNum.intValue();
         ItemStack itemStack = itemType.getRandom();
 
-        Object packet = FakeEntity.fakeEntityPacket(id, location, EntityType.DROPPED_ITEM.toString());
+        Object packet = FakeEntity.fakeEntityPacket(id, location, "ITEM");
         Metadata entityMetadata = new Metadata(id);
         entityMetadata.setItem(itemStack);
         Object metadataPacket = entityMetadata.build();

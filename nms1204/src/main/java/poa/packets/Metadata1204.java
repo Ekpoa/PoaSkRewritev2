@@ -114,64 +114,64 @@ public class Metadata1204 {
     boolean hasNoBase = false;
     boolean isMarker = false;
 
-    @SneakyThrows
+    
     public void setIsSmall(boolean isSmall) {
         this.isSmall = isSmall;
         dataList.add(new SynchedEntityData.DataValue<>(15, EntityDataSerializers.BYTE, (byte) index15(isSmall, hasArms, hasNoBase, isMarker))); //byte
     }
 
-    @SneakyThrows
+    
     public void setHasArms(boolean hasArms) {
         this.hasArms = hasArms;
         dataList.add(new SynchedEntityData.DataValue<>(15, EntityDataSerializers.BYTE, (byte) index15(isSmall, hasArms, hasNoBase, isMarker))); //byte
     }
 
-    @SneakyThrows
+    
     public void setNoBase(boolean hasNoBase) {
         this.hasNoBase = hasNoBase;
         dataList.add(new SynchedEntityData.DataValue<>(15, EntityDataSerializers.BYTE, (byte) index15(isSmall, hasArms, hasNoBase, isMarker))); //byte
     }
 
-    @SneakyThrows
+    
     public void setIsMarker(boolean isMarker) {
         this.isMarker = isMarker;
         dataList.add(new SynchedEntityData.DataValue<>(15, EntityDataSerializers.BYTE, (byte) index15(isSmall, hasArms, hasNoBase, isMarker))); //byte
     }
 
 
-    @SneakyThrows
+    
     public void setHeadRotation(float x, float y, float z) {
 
         dataList.add(new SynchedEntityData.DataValue<>(16, EntityDataSerializers.ROTATIONS, rotation(x, y, z)));
     }
 
-    @SneakyThrows
+    
     public void setBodyRotation(float x, float y, float z) {
         dataList.add(new SynchedEntityData.DataValue<>(17, EntityDataSerializers.ROTATIONS, rotation(x, y, z)));
     }
 
-    @SneakyThrows
+    
     public void setLeftArmRotation(float x, float y, float z) {
         dataList.add(new SynchedEntityData.DataValue<>(18, EntityDataSerializers.ROTATIONS, rotation(x, y, z)));
     }
 
-    @SneakyThrows
+    
     public void setRightArmRotation(float x, float y, float z) {
         dataList.add(new SynchedEntityData.DataValue<>(19, EntityDataSerializers.ROTATIONS, rotation(x, y, z)));
     }
 
-    @SneakyThrows
+    
     public void setLeftLegRotation(float x, float y, float z) {
         dataList.add(new SynchedEntityData.DataValue<>(20, EntityDataSerializers.ROTATIONS, rotation(x, y, z)));
     }
 
-    @SneakyThrows
+    
     public void setRightLegRotation(float x, float y, float z) {
         dataList.add(new SynchedEntityData.DataValue<>(21, EntityDataSerializers.ROTATIONS, rotation(x, y, z)));
     }
 
 
-    @SneakyThrows
+    
     private static Rotations rotation(float x, float y, float z) {
         return new Rotations(x, y, z);
     }
@@ -194,54 +194,54 @@ public class Metadata1204 {
 
 
 
-    @SneakyThrows
+    
     public void setDisplayItem(org.bukkit.inventory.ItemStack item) {
         dataList.add(new SynchedEntityData.DataValue<>(23, EntityDataSerializers.ITEM_STACK, ItemStack.fromBukkitCopy(item)));
     }
 
 
 
-    @SneakyThrows
+    
     public void setDisplayBlock(BlockData blockData) {
         CraftBlockData data = (CraftBlockData) blockData;
         BlockState state = data.getState();
         dataList.add(new SynchedEntityData.DataValue<>(23, EntityDataSerializers.BLOCK_STATE, state));
     }
 
-    @SneakyThrows
+    
     public void setInterpolationDelay(int delay){
         dataList.add(new SynchedEntityData.DataValue<>(8, EntityDataSerializers.INT, delay));
     }
 
-    @SneakyThrows
+    
     public void setTransformationDuration(int duration){
         dataList.add(new SynchedEntityData.DataValue<>(9, EntityDataSerializers.INT, duration));
     }
 
-    @SneakyThrows
+    
     public void setPosRotDuration(int duration){
         dataList.add(new SynchedEntityData.DataValue<>(10, EntityDataSerializers.INT, duration));
     }
 
-    @SneakyThrows
+    
     public void setTranslation(float x, float y, float z){
         dataList.add(new SynchedEntityData.DataValue<>(11, EntityDataSerializers.VECTOR3, new Vector3f(x,y,z)));
     }
-    @SneakyThrows
+    
     public void setScale(float x, float y, float z){
         dataList.add(new SynchedEntityData.DataValue<>(12, EntityDataSerializers.VECTOR3, new Vector3f(x,y,z)));
     }
-    @SneakyThrows
+    
     public void setRotationLeft(double x, double y, double z, double w){
         dataList.add(new SynchedEntityData.DataValue<>(13, EntityDataSerializers.QUATERNION, new Quaternionf(x,y,z,w)));
     }
 
-    @SneakyThrows
+    
     public void setRotationRight(double x, double y, double z, double w){
         dataList.add(new SynchedEntityData.DataValue<>(14, EntityDataSerializers.QUATERNION, new Quaternionf(x,y,z,w)));
     }
 
-    @SneakyThrows
+    
     public void setBillboard(String string){
         byte b = 0;
         switch (string.toLowerCase()){
@@ -255,43 +255,43 @@ public class Metadata1204 {
 
 
 
-    @SneakyThrows
+    
     public void setBrightness(int brightness){
         dataList.add(new SynchedEntityData.DataValue<>(16, EntityDataSerializers.INT, brightness));
     }
 
 
-    @SneakyThrows
+    
     public void setViewRange(float viewRange){
         dataList.add(new SynchedEntityData.DataValue<>(17, EntityDataSerializers.FLOAT, viewRange));
     }
 
-    @SneakyThrows
+    
     public void setShadowRadius(float shadowRadius){
         dataList.add(new SynchedEntityData.DataValue<>(18, EntityDataSerializers.FLOAT, shadowRadius));
     }
 
-    @SneakyThrows
+    
     public void setShadowStrength(float shadowStrength){
         dataList.add(new SynchedEntityData.DataValue<>(19, EntityDataSerializers.FLOAT, shadowStrength));
     }
 
-    @SneakyThrows
+    
     public void setWidth(float width){
         dataList.add(new SynchedEntityData.DataValue<>(20, EntityDataSerializers.FLOAT, width));
     }
 
-    @SneakyThrows
+    
     public void setHeight(float height){
         dataList.add(new SynchedEntityData.DataValue<>(21, EntityDataSerializers.FLOAT, height));
     }
 
-    @SneakyThrows
+    
     public void setGlowOverride(int glowOverride){
         dataList.add(new SynchedEntityData.DataValue<>(22, EntityDataSerializers.INT, glowOverride));
     }
 
-    @SneakyThrows
+
     public void setText(Component component){
         dataList.add(new SynchedEntityData.DataValue<>(23, EntityDataSerializers.COMPONENT, Components1204.nmsComponentActual(component)));
     }
@@ -304,19 +304,19 @@ public class Metadata1204 {
 
 
 
-    @SneakyThrows
+    
     public void setInteractionWidth(Float width){
         dataList.add(new SynchedEntityData.DataValue<>(8,EntityDataSerializers.FLOAT, width));
     }
 
-    @SneakyThrows
+    
     public void setInteractionHeight(Float height){
         dataList.add(new SynchedEntityData.DataValue<>(9, EntityDataSerializers.FLOAT, height));
     }
 
 
 
-    @SneakyThrows
+    
     public Object build(){
         return new ClientboundSetEntityDataPacket(id, dataList);
     }

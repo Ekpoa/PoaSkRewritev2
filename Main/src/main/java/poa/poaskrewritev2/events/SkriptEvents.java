@@ -6,7 +6,11 @@ import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
 import io.papermc.paper.event.player.PlayerTrackEntityEvent;
 import io.papermc.paper.event.player.PlayerUntrackEntityEvent;
+import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.entity.Entity;
+import org.bukkit.util.Vector;
+import poa.packets.packetListener.events.ParticleEvent1204;
 
 public class SkriptEvents extends SimpleEvent {
 
@@ -34,6 +38,12 @@ public class SkriptEvents extends SimpleEvent {
                 return event.getEntity();
             }
         }, EventValues.TIME_NOW);
+
+
+
+        //Particle
+        RegisterParticle.register();
+
     }
 
 }

@@ -37,7 +37,7 @@ public class PacketInjector1202 {
                 .filter(connection -> ((InetSocketAddress) connection.getRemoteAddress()).getAddress() == address)
                 .findAny().orElseThrow(IllegalArgumentException::new);
         playerConnection.channel.pipeline().addBefore(
-                "packet_handler", id, new PacketHandler1202());
+                "packet_handler", id, new PacketHandler1202(player));
 
         System.out.println("Injected packet listener into " + this.player.getName());
 
