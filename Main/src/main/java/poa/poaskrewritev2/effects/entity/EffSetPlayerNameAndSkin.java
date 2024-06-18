@@ -100,14 +100,14 @@ public class EffSetPlayerNameAndSkin extends Effect implements Listener {
         Player player = e.getPlayer();
 
         if(!playerNameMap.containsKey(player)) {
-            Bukkit.broadcastMessage("a");
+            //Bukkit.broadcastMessage("a");
             return;
         }
 
         String name = playerNameMap.get(player).get(target);
         String skinName = playerSkinMap.get(player).get(target);
 
-        Bukkit.broadcastMessage("Name: " + name + "    Skin: " + skinName);
+        //Bukkit.broadcastMessage("Name: " + name + "    Skin: " + skinName);
 
         Bukkit.getScheduler().runTaskLaterAsynchronously(PoaSkRewritev2.getINSTANCE(),
                 () -> FakePlayer.spawnFakePlayer(List.of(player), name, skinName, target.getLocation(), true, target.getPing(), target.getEntityId(), UUID.randomUUID()),
