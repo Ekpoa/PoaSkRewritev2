@@ -1,0 +1,32 @@
+name: Java CI with Maven
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 21
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'adopt'
+        cache: maven
+    - name: paper nms stuff 1.20.2
+      run: mvn paper-nms:init -f pom.xml
+      working-directory: ./nms1202
+    - name: paper nms stuff 1.20.4
+      run: mvn paper-nms:init -f pom.xml
+      working-directory: ./nms1204
+    - name: paper nms stuff 1.20.6
+      run: mvn paper-nms:init -f pom.xml
+      working-directory: ./nms1206
+    - name: Build with Maven
+      run: mvn clean package
+    - name: Upload nightly build
+      uses: actions/upload-artifact@v4
+      with:
+        name: PoaSK
+        path: Main/target/Poa*
