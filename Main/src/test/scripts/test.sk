@@ -1,2 +1,2 @@
 test "test":
-  make player glow for all players
+  make player glow red for all players
