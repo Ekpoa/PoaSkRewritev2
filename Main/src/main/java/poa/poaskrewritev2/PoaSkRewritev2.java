@@ -2,6 +2,8 @@ package poa.poaskrewritev2;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
+import ch.njol.skript.bstats.bukkit.Metrics;
+import ch.njol.skript.bstats.charts.SimplePie;
 import lombok.Getter;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -37,6 +39,9 @@ public final class PoaSkRewritev2 extends JavaPlugin {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Metrics metrics = new Metrics(this, 22275);
+
+        metrics.addCustomChart(new SimplePie("skript_version", () -> Skript.getVersion().toString()));
     }
 
     @Override
