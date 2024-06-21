@@ -7,7 +7,9 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.VariableString;
 import ch.njol.util.Kleenean;
+import org.bukkit.Bukkit;
 import org.bukkit.block.data.BlockData;
+import org.bukkit.entity.TextDisplay;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -128,23 +130,39 @@ public class EffRawMetadata extends Effect {
                     }
                     if(args.length < 3)
                         return;
+
                     switch (args[1].toLowerCase()){
-                        case "interpolation delay" -> metadata.setInterpolationDelay(Integer.parseInt(args[3]));
-                        case "transformation duration" -> metadata.setTransformationDuration(Integer.parseInt(args[3]));
+                        case "interpolation" -> metadata.setInterpolationDelay(Integer.parseInt(args[3])); //args[2] = delay
+                        case "transformation" -> metadata.setTransformationDuration(Integer.parseInt(args[3])); //args[2] = duration
                         case "posrot" -> metadata.setPosRotDuration(Integer.parseInt(args[2]));
                         case "translation" -> metadata.setTranslation(Float.parseFloat(args[2]), Float.parseFloat(args[3]), Float.parseFloat(args[4]));
                         case "scale" -> metadata.setScale(Float.parseFloat(args[2]), Float.parseFloat(args[3]), Float.parseFloat(args[4]));
-                        case "left rotation" -> metadata.setRotationLeft(Float.parseFloat(args[3]), Float.parseFloat(args[4]), Float.parseFloat(args[5]), Float.parseFloat(args[6]));
-                        case "right rotation" -> metadata.setRotationRight(Float.parseFloat(args[3]), Float.parseFloat(args[4]), Float.parseFloat(args[5]), Float.parseFloat(args[6]));
+                        case "left" -> metadata.setRotationLeft(Float.parseFloat(args[3]), Float.parseFloat(args[4]), Float.parseFloat(args[5]), Float.parseFloat(args[6])); //args[2] = rotation
+                        case "right" -> metadata.setRotationRight(Float.parseFloat(args[3]), Float.parseFloat(args[4]), Float.parseFloat(args[5]), Float.parseFloat(args[6])); //args[2] = rotation
                         case "billboard" -> metadata.setBillboard(args[2]);
                         case "brightness" -> metadata.setBrightness(Integer.parseInt(args[2]));
-                        case "view range" -> metadata.setViewRange(Float.parseFloat(args[3]));
-                        case "shadow radius" -> metadata.setShadowRadius(Float.parseFloat(args[3]));
-                        case "shadow strength" -> metadata.setShadowStrength(Float.parseFloat(args[3]));
+                        case "view" -> metadata.setViewRange(Float.parseFloat(args[3])); //args[2] = range
+                        case "shadow" -> {
+                            switch (args[2].toLowerCase()){
+                                case "radius" -> metadata.setShadowRadius(Float.parseFloat(args[3]));
+                                case "strength" -> metadata.setShadowStrength(Float.parseFloat(args[3]));
+                            }
+                        }
                         case "width" -> metadata.setWidth(Float.parseFloat(args[2]));
                         case "height" -> metadata.setHeight(Float.parseFloat(args[2]));
-                        case "glow override" -> metadata.setGlowOverride(Integer.parseInt(args[3]));
-                        case "text" -> metadata.setText(String.join(" ", Arrays.copyOfRange(args, 2, args.length)));
+                        case "line" -> metadata.setLineWidth(Integer.parseInt(args[3])); //args[2] = width
+                        case "background" -> metadata.setBackground(Integer.parseInt(args[3]), Integer.parseInt(args[4]), Integer.parseInt(args[5]), Integer.parseInt(args[6])); //args[2] = color
+
+                        case "text" -> {
+                            if (args[2].toLowerCase().equals("opacity"))
+                                metadata.setTextOpacity(Integer.parseInt(args[3]));
+                             else
+                                metadata.setText(String.join(" ", Arrays.copyOfRange(args, 2, args.length)));
+
+                        }
+                        case "index27" -> metadata.index27(Boolean.parseBoolean(args[2]), Boolean.parseBoolean(args[3]), Boolean.parseBoolean(args[4]));
+                        case "glow" -> metadata.setGlowOverride(Integer.parseInt(args[3])); //args[2] = override
+
                     }
                 }
                 case "interaction" -> {

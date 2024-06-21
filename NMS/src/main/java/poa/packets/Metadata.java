@@ -2,6 +2,7 @@ package poa.packets;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import org.bukkit.Color;
 import org.bukkit.block.data.BlockData;
 import poa.util.BukkitVersion;
 
@@ -359,6 +360,38 @@ public class Metadata {
 
     public void setText(String miniMessageText) {
         setText(MiniMessage.miniMessage().deserialize(miniMessageText));
+    }
+
+    public void setLineWidth(int lineWidth) {
+        switch (BukkitVersion.getBukkitVersion()) {
+            case "1202" -> metadata1202.setLineWidth(lineWidth);
+            case "1204" -> metadata1204.setLineWidth(lineWidth);
+            case "1206" -> metadata1206.setLineWidth(lineWidth);
+        }
+    }
+
+    public void setBackground(int a, int r, int g, int b) {
+        switch (BukkitVersion.getBukkitVersion()) {
+            case "1202" -> metadata1202.setBackground(a, r, g, b);
+            case "1204" -> metadata1204.setBackground(a, r, g, b);
+            case "1206" -> metadata1206.setBackground(a, r, g, b);
+        }
+    }
+
+    public void setTextOpacity(int opacityByte) {
+        switch (BukkitVersion.getBukkitVersion()) {
+            case "1202" -> metadata1202.setTextOpacity(opacityByte);
+            case "1204" -> metadata1204.setTextOpacity(opacityByte);
+            case "1206" -> metadata1206.setTextOpacity(opacityByte);
+        }
+    }
+
+    public void index27(boolean hasShadow, boolean seeThru, boolean defaultBackgroundColor) {
+        switch (BukkitVersion.getBukkitVersion()) {
+            case "1202" -> metadata1202.index27(hasShadow, seeThru, defaultBackgroundColor);
+            case "1204" -> metadata1204.index27(hasShadow, seeThru, defaultBackgroundColor);
+            case "1206" -> metadata1206.index27(hasShadow, seeThru, defaultBackgroundColor);
+        }
     }
 
 

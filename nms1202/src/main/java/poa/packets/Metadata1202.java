@@ -10,6 +10,8 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
+import org.bukkit.Bukkit;
+import org.bukkit.Color;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.craftbukkit.v1_20_R2.block.data.CraftBlockData;
 import org.joml.Quaternionf;
@@ -242,6 +244,11 @@ public class Metadata1202 {
     }
 
     @SneakyThrows
+    public void setBackground(double x, double y, double z, double w){
+        dataList.add(new SynchedEntityData.DataValue<>(14, EntityDataSerializers.QUATERNION, new Quaternionf(x,y,z,w)));
+    }
+
+    @SneakyThrows
     public void setBillboard(String string){
         byte b = 0;
         switch (string.toLowerCase()){
@@ -301,7 +308,34 @@ public class Metadata1202 {
     }
 
 
+    public void setLineWidth(int lineWidth){
+        dataList.add(new SynchedEntityData.DataValue<>(24, EntityDataSerializers.INT, lineWidth));
+    }
 
+    public void setBackground(int a, int r, int g, int b){
+        dataList.add(new SynchedEntityData.DataValue<>(25, EntityDataSerializers.INT, Color.fromARGB(a, r, g, b).asARGB()));
+    }
+
+    public void setTextOpacity(int opacity){
+        dataList.add(new SynchedEntityData.DataValue<>(26, EntityDataSerializers.BYTE, (byte) opacity));
+    }
+    public void index27(boolean hasShadow, boolean seeThru, boolean defaultBackgroundColor){
+        dataList.add(new SynchedEntityData.DataValue<>(27, EntityDataSerializers.BYTE, index27asByte(hasShadow, seeThru, defaultBackgroundColor)));
+    }
+
+    private static byte index27asByte(boolean hasShadow, boolean seeThru, boolean defaultBackgroundColor) {
+        byte b = 0;
+        if (hasShadow)
+            b = 0x01;
+        if (seeThru)
+            b = (byte) (b + 0x02);
+        if (defaultBackgroundColor)
+            b = (byte) (b + 0x04);
+//        if (alignment)
+//            b = (byte) (b + 0x08);
+
+        return b;
+    }
 
 
     @SneakyThrows

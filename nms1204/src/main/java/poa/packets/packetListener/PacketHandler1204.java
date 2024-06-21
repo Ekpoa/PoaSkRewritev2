@@ -56,69 +56,70 @@ public class PacketHandler1204 extends ChannelDuplexHandler {
 
     @Override
     public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) throws Exception {
+        try {
 
-        if(!(msg instanceof Packet<?> packet)){
-            super.write(ctx, msg, promise);
-            return;
-        }
-
-
-        if (packet instanceof ClientboundSetEntityDataPacket metadata) {
-            ServerPlayer serverPlayer = ((CraftPlayer) player).getHandle();
-
-            ServerLevel level = serverPlayer.level().getMinecraftWorld();
-
-            int entityId = metadata.id();
-            Entity entity = level.getEntityLookup().get(entityId);
-
-            if(entity == null){
+            if (!(msg instanceof Packet<?> packet)) {
                 super.write(ctx, msg, promise);
                 return;
             }
 
-            if (!(entity instanceof Player target)) {
-                super.write(ctx, msg, promise);
-                return;
-            }
+
+            if (packet instanceof ClientboundSetEntityDataPacket metadata) {
+                ServerPlayer serverPlayer = ((CraftPlayer) player).getHandle();
+
+                ServerLevel level = serverPlayer.level().getMinecraftWorld();
+
+                int entityId = metadata.id();
+                Entity entity = level.getEntityLookup().get(entityId);
+
+                if (entity == null) {
+                    super.write(ctx, msg, promise);
+                    return;
+                }
+
+                if (!(entity instanceof Player target)) {
+                    super.write(ctx, msg, promise);
+                    return;
+                }
 
 //            if (player.getName().equalsIgnoreCase("EllieeUwU")) {
 //                Bukkit.broadcastMessage("is player");
 //            }
 
-            if (target.isGlowing()) {
-                super.write(ctx, msg, promise);
-                return;
+                if (target.isGlowing()) {
+                    super.write(ctx, msg, promise);
+                    return;
 
-            }
+                }
 
 
 //            if (player.getName().equalsIgnoreCase("EllieeUwU")) {
 //                Bukkit.broadcastMessage("is not glowing already");
 //            }
 
-            boolean glow = true;
+                boolean glow = true;
 
-            List<Integer> ids = GlowMap1204.glowMap.get(player);
+                List<Integer> ids = GlowMap1204.glowMap.get(player);
 
 //            if (player.getName().equalsIgnoreCase("EllieeUwU")) {
 //                Bukkit.broadcastMessage(ids + "");
 //            }
 
-            if (entityId != target.getEntityId()) {
-                super.write(ctx, msg, promise);
-                return;
-            }
+                if (entityId != target.getEntityId()) {
+                    super.write(ctx, msg, promise);
+                    return;
+                }
 
 //            if (player.getName().equalsIgnoreCase("EllieeUwU")) {
 //                Bukkit.broadcastMessage("not target");
 //            }
 
-            if (ids == null)
-                glow = false;
-            else if (ids.isEmpty())
-                glow = false;
-            else if (!ids.contains(entityId))
-                glow = false;
+                if (ids == null)
+                    glow = false;
+                else if (ids.isEmpty())
+                    glow = false;
+                else if (!ids.contains(entityId))
+                    glow = false;
 
 
 //            if (player.getName().equalsIgnoreCase("EllieeUwU")) {
@@ -126,92 +127,103 @@ public class PacketHandler1204 extends ChannelDuplexHandler {
 //            }
 
 
-            List<SynchedEntityData.DataValue<?>> packedItems = metadata.packedItems();
+                List<SynchedEntityData.DataValue<?>> packedItems = metadata.packedItems();
 
-            for (int i = 0; i < packedItems.size(); i++) {
-                SynchedEntityData.DataValue<?> dataValue = packedItems.get(i);
+                for (int i = 0; i < packedItems.size(); i++) {
+                    SynchedEntityData.DataValue<?> dataValue = packedItems.get(i);
 
-                if (dataValue.id() != 0)
-                    continue;
+                    if (dataValue.id() != 0)
+                        continue;
 
-                byte value = (byte) dataValue.value();
+                    byte value = (byte) dataValue.value();
 
-                if (glow) {
-                    if (((value & 0x40) == 0)) {
-                        value |= 0x40;
+                    if (glow) {
+                        if (((value & 0x40) == 0)) {
+                            value |= 0x40;
+                        }
+                    } else {
+                        if (((value & 0x40) != 0)) {
+                            value &= ~0x40;
+                        }
                     }
-                } else {
-                    if (((value & 0x40) != 0)) {
-                        value &= ~0x40;
-                    }
-                }
 
-                packedItems.set(i, new SynchedEntityData.DataValue<>(0, EntityDataSerializers.BYTE, value));
+                    packedItems.set(i, new SynchedEntityData.DataValue<>(0, EntityDataSerializers.BYTE, value));
 
-                msg = new ClientboundSetEntityDataPacket(entityId, packedItems);
+                    msg = new ClientboundSetEntityDataPacket(entityId, packedItems);
 
 //                if (player.getName().equalsIgnoreCase("EllieeUwU")) {
 //                    Bukkit.broadcastMessage("updated packet");
 //                }
-                break;
+                    break;
+                }
+
             }
 
-        }
+            if (packet instanceof ClientboundLevelParticlesPacket particlesPacket) {
+                ParticleOptions particle = particlesPacket.getParticle();
+                if (particleOptionsClass == null) {
+                    particleOptionsClass = particle.getClass();
+                    getTypeMethod = particleOptionsClass.getDeclaredMethod("b");
+                }
 
-        if (packet instanceof ClientboundLevelParticlesPacket particlesPacket) {
-            ParticleOptions particle = particlesPacket.getParticle();
-            if (particleOptionsClass == null) {
-                particleOptionsClass = particle.getClass();
-                getTypeMethod = particleOptionsClass.getDeclaredMethod("b");
-            }
+                Object type;
 
-            Object type = getTypeMethod.invoke(particle);
-
-
-            if (minecraftToBukkitMethod == null) {
-                for (Method m : CraftParticle.class.getMethods()) {
-                    if (m.getName().contains("minecraftToBukkit"))
-                        minecraftToBukkitMethod = m;
+                try {
+                    type = getTypeMethod.invoke(particle);
+                }
+                catch (Exception ignored){
+                    super.write(ctx, msg, promise);
+                    return;
                 }
 
                 if (minecraftToBukkitMethod == null) {
-                    super.write(ctx, msg, promise);
-                    System.out.println("ERROR, no method found. Report this :D");
-                    return;
+                    for (Method m : CraftParticle.class.getMethods()) {
+                        if (m.getName().contains("minecraftToBukkit"))
+                            minecraftToBukkitMethod = m;
+                    }
+
+                    if (minecraftToBukkitMethod == null) {
+                        super.write(ctx, msg, promise);
+                        System.out.println("ERROR, no method found. Report this :D");
+                        return;
+                    }
                 }
+
+
+                Object bukkitParticle = minecraftToBukkitMethod.invoke(craftParticleClass, type);
+
+                // Particle bukkitParticle = CraftParticle.minecraftToBukkit((ParticleType<?>) type); //DOESN'T WORK :D
+
+
+                ParticleEvent1204 particleEvent = new ParticleEvent1204(player, true);
+                particleEvent.setParticle((Particle) bukkitParticle);
+
+                particleEvent.setCount(particlesPacket.getCount());
+
+                particleEvent.setWorld(player.getWorld());
+                particleEvent.setX(particlesPacket.getX());
+                particleEvent.setY(particlesPacket.getY());
+                particleEvent.setY(particlesPacket.getY());
+
+                particleEvent.setXOffset(particlesPacket.getXDist());
+                particleEvent.setYOffset(particlesPacket.getYDist());
+                particleEvent.setYOffset(particlesPacket.getYDist());
+
+                particleEvent.setMaxSpeed(particlesPacket.getMaxSpeed());
+
+
+                pluginManager.callEvent(particleEvent);
+
+
+                if (particleEvent.isCancelled())
+                    return;
             }
 
 
-            Object bukkitParticle = minecraftToBukkitMethod.invoke(craftParticleClass, type);
-
-            // Particle bukkitParticle = CraftParticle.minecraftToBukkit((ParticleType<?>) type); //DOESN'T WORK :D
-
-
-            ParticleEvent1204 particleEvent = new ParticleEvent1204(player, true);
-            particleEvent.setParticle((Particle) bukkitParticle);
-
-            particleEvent.setCount(particlesPacket.getCount());
-
-            particleEvent.setWorld(player.getWorld());
-            particleEvent.setX(particlesPacket.getX());
-            particleEvent.setY(particlesPacket.getY());
-            particleEvent.setY(particlesPacket.getY());
-
-            particleEvent.setXOffset(particlesPacket.getXDist());
-            particleEvent.setYOffset(particlesPacket.getYDist());
-            particleEvent.setYOffset(particlesPacket.getYDist());
-
-            particleEvent.setMaxSpeed(particlesPacket.getMaxSpeed());
-
-
-            pluginManager.callEvent(particleEvent);
-
-
-            if(particleEvent.isCancelled())
-                return;
+            super.write(ctx, msg, promise);
+        }catch (Exception e){
+            e.printStackTrace();
+            super.write(ctx, msg, promise);
         }
-
-
-        super.write(ctx, msg, promise);
     }
 }
