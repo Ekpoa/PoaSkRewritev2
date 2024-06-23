@@ -287,11 +287,11 @@ public class Metadata {
     }
 
 
-    public void setBrightness(int brightness) {
+    public void setBrightness(int blockLight, int skyLight) {
         switch (BukkitVersion.getBukkitVersion()) {
-            case "1202" -> metadata1202.setBrightness(brightness);
-            case "1204" -> metadata1204.setBrightness(brightness);
-            case "1206" -> metadata1206.setBrightness(brightness);
+            case "1202" -> metadata1202.setBrightness(blockLight, skyLight);
+            case "1204" -> metadata1204.setBrightness(blockLight, skyLight);
+            case "1206" -> metadata1206.setBrightness(blockLight, skyLight);
         }
     }
 
@@ -307,7 +307,7 @@ public class Metadata {
 
     public void setShadowRadius(float shadowRadius) {
         switch (BukkitVersion.getBukkitVersion()) {
-            case "1202" -> metadata1204.setShadowRadius(shadowRadius);
+            case "1202" -> metadata1202.setShadowRadius(shadowRadius);
             case "1204" -> metadata1204.setShadowRadius(shadowRadius);
             case "1206" -> metadata1206.setShadowRadius(shadowRadius);
         }

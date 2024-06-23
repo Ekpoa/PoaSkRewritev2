@@ -9,6 +9,7 @@ import ch.njol.skript.lang.VariableString;
 import ch.njol.util.Kleenean;
 import org.bukkit.Bukkit;
 import org.bukkit.block.data.BlockData;
+import org.bukkit.entity.Display;
 import org.bukkit.entity.TextDisplay;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
@@ -140,7 +141,7 @@ public class EffRawMetadata extends Effect {
                         case "left" -> metadata.setRotationLeft(Float.parseFloat(args[3]), Float.parseFloat(args[4]), Float.parseFloat(args[5]), Float.parseFloat(args[6])); //args[2] = rotation
                         case "right" -> metadata.setRotationRight(Float.parseFloat(args[3]), Float.parseFloat(args[4]), Float.parseFloat(args[5]), Float.parseFloat(args[6])); //args[2] = rotation
                         case "billboard" -> metadata.setBillboard(args[2]);
-                        case "brightness" -> metadata.setBrightness(Integer.parseInt(args[2]));
+                        case "brightness" -> metadata.setBrightness(Integer.parseInt(args[2]), Integer.parseInt(args[3]));
                         case "view" -> metadata.setViewRange(Float.parseFloat(args[3])); //args[2] = range
                         case "shadow" -> {
                             switch (args[2].toLowerCase()){
@@ -170,6 +171,7 @@ public class EffRawMetadata extends Effect {
                         case "width" -> metadata.setInteractionWidth(Float.parseFloat(args[2]));
                         case "height" -> metadata.setInteractionHeight(Float.parseFloat(args[2]));
                     }
+
                 }
             }
         }

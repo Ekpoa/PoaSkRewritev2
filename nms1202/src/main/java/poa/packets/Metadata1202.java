@@ -262,8 +262,8 @@ public class Metadata1202 {
 
 
 
-    @SneakyThrows
-    public void setBrightness(int brightness){
+    public void setBrightness(int blockLight, int skyLight){
+        int brightness = (blockLight << 4 | skyLight << 20);
         dataList.add(new SynchedEntityData.DataValue<>(16, EntityDataSerializers.INT, brightness));
     }
 
