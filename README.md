@@ -14,4 +14,4 @@ When using coloured glow syntax, ensure that `anti-overide` for teams is set to 
 
 #
 #
-Older verions -> https://github.com/Ekpoa/PoaSK
+Older versions -> https://github.com/Ekpoa/PoaSK

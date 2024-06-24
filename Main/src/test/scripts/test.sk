@@ -1,0 +1,2 @@
+test "test":
+  make player glow red for all players
