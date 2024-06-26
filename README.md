@@ -11,7 +11,7 @@ When using coloured glow syntax, ensure that `anti-overide` for teams is set to 
 
 If editing:
 If Intellij says it cannot find artifacts for the NMS:
-
+(You may need to delete the .paper-nms folder)
 On the maven tab (on the right), click each NMS module -> plugins -> paper-nms -> run the init
 
 #
