@@ -1,22 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/Build/Main/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Build/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Main/Main/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Main/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Main/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/NMS/Main/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/NMS/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Shade/Main/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Shade/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Shade/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/nms1202/Main/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nms1202/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/nms1204/Main/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nms1204/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/nms1206/Main/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nms1206/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
   </component>
 </project>
