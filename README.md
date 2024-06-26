@@ -9,9 +9,11 @@
 When using coloured glow syntax, ensure that `anti-overide` for teams is set to `false` in the TAB plugin config if you have it
 
 
+If editing:
+If Intellij says it cannot find artifacts for the NMS:
 
-
+On the maven tab (on the right), click each NMS module -> plugins -> paper-nms -> run the init
 
 #
 #
-Older verions -> https://github.com/Ekpoa/PoaSK
+Older versions -> https://github.com/Ekpoa/PoaSK
