@@ -3,10 +3,14 @@ package poa.packets.packetListener;
 import io.netty.channel.ChannelDuplexHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelPromise;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientboundLevelParticlesPacket;
+import net.minecraft.network.protocol.game.ClientboundPlayerChatPacket;
 import net.minecraft.network.protocol.game.ClientboundSetEntityDataPacket;
+import net.minecraft.network.protocol.game.ClientboundSystemChatPacket;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
@@ -20,6 +24,9 @@ import org.bukkit.craftbukkit.v1_20_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import poa.packets.packetListener.events.ParticleEvent1202;
+import poa.packets.packetListener.events.PlayerChatPacketEvent1202;
+import poa.packets.packetListener.events.SystemChatPacketEvent1202;
+import poa.util.Components1202;
 
 import java.lang.reflect.Method;
 import java.util.List;
@@ -220,6 +227,48 @@ public class PacketHandler1202 extends ChannelDuplexHandler {
 
                 if (particleEvent.isCancelled())
                     return;
+            }
+
+            else if (packet instanceof ClientboundSystemChatPacket chatPacket) {
+                final Component component = chatPacket.adventure$content();
+
+
+
+
+                final SystemChatPacketEvent1202 chatPacketEvent1206 = new SystemChatPacketEvent1202(player, true);
+
+                chatPacketEvent1206.setOverlay(chatPacket.overlay());
+
+                if(component == null){
+                    super.write(ctx, msg, promise);
+                    return;
+                }
+
+                chatPacketEvent1206.setString(MiniMessage.miniMessage().serialize(component));
+
+                pluginManager.callEvent(chatPacketEvent1206);
+
+                if (chatPacketEvent1206.isCancelled())
+                    return;
+            } else if (packet instanceof ClientboundPlayerChatPacket chatPacket) {
+                String message;
+                if (chatPacket.unsignedContent() != null)
+                    message = MiniMessage.miniMessage().serialize(Components1202.componentActual(chatPacket.unsignedContent()));
+                else
+                    message = chatPacket.body().content();
+
+
+                final PlayerChatPacketEvent1202 playerChatPacketEvent1206 = new PlayerChatPacketEvent1202(player, true);
+
+                playerChatPacketEvent1206.setString(message);
+
+                playerChatPacketEvent1206.setSender(chatPacket.sender());
+
+                pluginManager.callEvent(playerChatPacketEvent1206);
+
+                if (playerChatPacketEvent1206.isCancelled())
+                    return;
+
             }
 
 

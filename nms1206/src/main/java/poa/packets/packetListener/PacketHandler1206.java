@@ -1,32 +1,31 @@
 package poa.packets.packetListener;
 
-import com.google.common.base.Preconditions;
 import io.netty.channel.ChannelDuplexHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelPromise;
-import lombok.SneakyThrows;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.core.particles.ParticleType;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientboundLevelParticlesPacket;
+import net.minecraft.network.protocol.game.ClientboundPlayerChatPacket;
 import net.minecraft.network.protocol.game.ClientboundSetEntityDataPacket;
+import net.minecraft.network.protocol.game.ClientboundSystemChatPacket;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import org.bukkit.Bukkit;
 import org.bukkit.Particle;
-import org.bukkit.Registry;
 import org.bukkit.craftbukkit.CraftParticle;
-import org.bukkit.craftbukkit.CraftRegistry;
 import org.bukkit.craftbukkit.entity.CraftPlayer;
-import org.bukkit.craftbukkit.util.CraftNamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
+import poa.packets.packetListener.events.PlayerChatPacketEvent1206;
+import poa.packets.packetListener.events.SystemChatPacketEvent1206;
 import poa.packets.packetListener.events.ParticleEvent1206;
+import poa.util.Components1206;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -158,9 +157,7 @@ public class PacketHandler1206 extends ChannelDuplexHandler {
                 super.write(ctx, newPacket, promise);
                 return;
 
-            }
-
-            if (packet instanceof ClientboundLevelParticlesPacket particlesPacket) {
+            } else if (packet instanceof ClientboundLevelParticlesPacket particlesPacket) {
                 ParticleOptions particle = particlesPacket.getParticle();
                 if (particleOptionsClass == null) {
                     particleOptionsClass = particle.getClass();
@@ -171,8 +168,7 @@ public class PacketHandler1206 extends ChannelDuplexHandler {
 
                 try {
                     type = getTypeMethod.invoke(particle);
-                }
-                catch (Exception ignored){
+                } catch (Exception ignored) {
                     super.write(ctx, msg, promise);
                     return;
                 }
@@ -219,11 +215,44 @@ public class PacketHandler1206 extends ChannelDuplexHandler {
 
                 if (particleEvent.isCancelled())
                     return;
+            } else if (packet instanceof ClientboundSystemChatPacket chatPacket) {
+                final Component component = Components1206.componentActual(chatPacket.content());
+
+
+                final SystemChatPacketEvent1206 chatPacketEvent1206 = new SystemChatPacketEvent1206(player, true);
+
+                chatPacketEvent1206.setOverlay(chatPacket.overlay());
+
+                chatPacketEvent1206.setString(MiniMessage.miniMessage().serialize(component));
+
+                pluginManager.callEvent(chatPacketEvent1206);
+
+                if (chatPacketEvent1206.isCancelled())
+                    return;
+            } else if (packet instanceof ClientboundPlayerChatPacket chatPacket) {
+                String message;
+                if (chatPacket.unsignedContent() != null)
+                    message = MiniMessage.miniMessage().serialize(Components1206.componentActual(chatPacket.unsignedContent()));
+                else
+                    message = chatPacket.body().content();
+
+
+                final PlayerChatPacketEvent1206 playerChatPacketEvent1206 = new PlayerChatPacketEvent1206(player, true);
+
+                playerChatPacketEvent1206.setString(message);
+
+                playerChatPacketEvent1206.setSender(chatPacket.sender());
+
+                pluginManager.callEvent(playerChatPacketEvent1206);
+
+                if (playerChatPacketEvent1206.isCancelled())
+                    return;
+
             }
 
 
             super.write(ctx, msg, promise);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             super.write(ctx, msg, promise);
         }

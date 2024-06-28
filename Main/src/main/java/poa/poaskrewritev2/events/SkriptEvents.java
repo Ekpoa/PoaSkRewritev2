@@ -6,16 +6,13 @@ import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
 import io.papermc.paper.event.player.PlayerTrackEntityEvent;
 import io.papermc.paper.event.player.PlayerUntrackEntityEvent;
-import org.bukkit.Location;
-import org.bukkit.Particle;
 import org.bukkit.entity.Entity;
-import org.bukkit.util.Vector;
-import poa.packets.packetListener.events.ParticleEvent1204;
+import poa.poaskrewritev2.util.types.UUIDType;
 
 public class SkriptEvents extends SimpleEvent {
 
     static {
-
+        UUIDType.register();
 
         // Player load entity event
         Skript.registerEvent("Player Load Entity", SimpleEvent.class, PlayerTrackEntityEvent.class,
@@ -43,6 +40,9 @@ public class SkriptEvents extends SimpleEvent {
 
         //Particle
         RegisterParticle.register();
+
+        //System Chat
+        RegisterChat.register();
 
     }
 
