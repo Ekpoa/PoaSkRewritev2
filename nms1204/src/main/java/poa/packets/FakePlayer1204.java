@@ -41,6 +41,8 @@ public class FakePlayer1204 {
         ClientInformation clientInformation = new ClientInformation("en_us", 2, ChatVisiblity.FULL, false, skinModel, HumanoidArm.RIGHT, true, listed);
         ServerPlayer fakePlayer = new ServerPlayer(server, level, new GameProfile(uuid, name), clientInformation);
         fakePlayer.setPos(loc.getX(), loc.getY(), loc.getZ());
+        fakePlayer.setRot(loc.getYaw(), loc.getPitch());
+        fakePlayer.setYHeadRot(loc.getYaw());
 
 
         GameProfile gameProfile = fakePlayer.getGameProfile();
@@ -55,8 +57,6 @@ public class FakePlayer1204 {
 
 
         for (Player player : sendTo) {
-
-
             ServerGamePacketListenerImpl connection = ((CraftPlayer) player).getHandle().connection;
             ClientboundPlayerInfoUpdatePacket.Entry entry = new ClientboundPlayerInfoUpdatePacket.Entry(fakePlayer.getUUID(), gameProfile, listed, latency, GameType.DEFAULT_MODE, Component.empty(), null);
             ClientboundPlayerInfoUpdatePacket.Action addPlayer = ClientboundPlayerInfoUpdatePacket.Action.ADD_PLAYER;
@@ -69,14 +69,16 @@ public class FakePlayer1204 {
 
             fakePlayer.setId(id);
 
-            ClientboundAddEntityPacket packet = new ClientboundAddEntityPacket(fakePlayer);
 
+            ClientboundSetEntityDataPacket skinPacket = new ClientboundSetEntityDataPacket(id, fakePlayer.getEntityData().packDirty());
+            if (skinName != null && !skinName.isEmpty()) {
+                connection.send(skinPacket);
+            }
+
+            ClientboundAddEntityPacket packet = new ClientboundAddEntityPacket(fakePlayer);
 
             connection.send(packet);
 
-            if (skinName != null && !skinName.isEmpty()) {
-                connection.send(new ClientboundSetEntityDataPacket(id, fakePlayer.getEntityData().packDirty()));
-            }
         }
 
     }

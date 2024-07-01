@@ -47,7 +47,8 @@ public class FakePlayer1206 {
         ClientInformation clientInformation = new ClientInformation("en_us", 2, ChatVisiblity.FULL, false, skinModel, HumanoidArm.RIGHT, true, listed);
         ServerPlayer fakePlayer = new ServerPlayer(server, level, new GameProfile(uuid, name), clientInformation);
         fakePlayer.setPos(loc.getX(), loc.getY(), loc.getZ());
-
+        fakePlayer.setRot(loc.getYaw(), loc.getPitch());
+        fakePlayer.setYHeadRot(loc.getYaw());
 
         GameProfile gameProfile = fakePlayer.getGameProfile();
 
@@ -74,13 +75,17 @@ public class FakePlayer1206 {
 
             fakePlayer.setId(id);
 
+
+            ClientboundSetEntityDataPacket skinUpdatePacket = new ClientboundSetEntityDataPacket(id, fakePlayer.getEntityData().packAll());
+            if (skinName != null && !skinName.isEmpty()) {
+                connection.send(skinUpdatePacket);
+            }
+
             ClientboundAddEntityPacket packet = new ClientboundAddEntityPacket(fakePlayer);
 
             connection.send(packet);
 
-            if (skinName != null && !skinName.isEmpty()) {
-                connection.send(new ClientboundSetEntityDataPacket(id, fakePlayer.getEntityData().packAll()));
-            }
+
         }
         Player tr;
         try {
