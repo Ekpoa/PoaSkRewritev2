@@ -103,6 +103,11 @@ public class Metadata1202 {
         dataList.add(new SynchedEntityData.DataValue<>(6, EntityDataSerializers.POSE, nmsPose));
     }
 
+    public void setHealth(int health){
+        float h = health/10F;
+        dataList.add(new SynchedEntityData.DataValue<>(9, EntityDataSerializers.FLOAT, h));
+    }
+
 
     public void setItem(org.bukkit.inventory.ItemStack itemStack) {
         ItemStack item = ItemStack.fromBukkitCopy(itemStack);

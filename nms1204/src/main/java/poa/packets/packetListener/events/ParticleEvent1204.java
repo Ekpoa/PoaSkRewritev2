@@ -2,6 +2,7 @@ package poa.packets.packetListener.events;
 
 import lombok.Getter;
 import lombok.Setter;
+import net.minecraft.network.protocol.game.ClientboundEntityEventPacket;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.World;
@@ -60,6 +61,8 @@ public class ParticleEvent1204 extends PlayerEvent implements Cancellable {
 
 
     public Location getLocation(){
+
+
         return new Location(world, x,y,z);
     }
 

@@ -3,7 +3,9 @@ package poa.packets;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import lombok.SneakyThrows;
+import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.PacketFlow;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.network.protocol.game.ClientboundPlayerInfoRemovePacket;
 import net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket;
@@ -12,6 +14,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ClientInformation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.network.CommonListenerCookie;
 import net.minecraft.server.network.ServerGamePacketListenerImpl;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.player.ChatVisiblity;
@@ -22,6 +25,7 @@ import org.bukkit.World;
 import org.bukkit.craftbukkit.CraftWorld;
 import org.bukkit.craftbukkit.entity.CraftPlayer;
 import org.bukkit.entity.Player;
+import org.checkerframework.framework.qual.PostconditionAnnotation;
 import poa.util.FetchSkin1206;
 
 import java.util.*;
@@ -29,8 +33,12 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class FakePlayer1206 {
 
+
+
+
+
     @SneakyThrows
-    public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id, UUID uuid, int skinModel) {
+    public static Player spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id, UUID uuid, int skinModel) {
         World world = Bukkit.getWorlds().get(0);
         MinecraftServer server = MinecraftServer.getServer();
         ServerLevel level = ((CraftWorld) world).getHandle();
@@ -51,7 +59,7 @@ public class FakePlayer1206 {
 
         }
 
-
+        fakePlayer.connection = new ServerGamePacketListenerImpl(server, new Connection(PacketFlow.CLIENTBOUND), fakePlayer, new CommonListenerCookie(gameProfile, 0, clientInformation, false));
 
         for (Player player : sendTo) {
             ServerGamePacketListenerImpl connection = ((CraftPlayer) player).getHandle().connection;
@@ -73,10 +81,16 @@ public class FakePlayer1206 {
             if (skinName != null && !skinName.isEmpty()) {
                 connection.send(new ClientboundSetEntityDataPacket(id, fakePlayer.getEntityData().packAll()));
             }
-
-
         }
-
+        Player tr;
+        try {
+            tr = fakePlayer.getBukkitEntity().getPlayer();
+        }
+        catch (Exception e){
+            System.out.println("Failed to create bukkit entity for fake player");
+            tr = null;
+        }
+        return tr;
     }
 
     public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id, UUID uuid) {

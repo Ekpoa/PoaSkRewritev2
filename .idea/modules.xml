@@ -3,6 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Main.iml" filepath="$PROJECT_DIR$/Main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/NMS.iml" filepath="$PROJECT_DIR$/NMS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Main/PoaSK.iml" filepath="$PROJECT_DIR$/Main/PoaSK.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nms1202.iml" filepath="$PROJECT_DIR$/nms1202.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nms1204.iml" filepath="$PROJECT_DIR$/nms1204.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nms1206.iml" filepath="$PROJECT_DIR$/nms1206.iml" />
     </modules>
   </component>
 </project>

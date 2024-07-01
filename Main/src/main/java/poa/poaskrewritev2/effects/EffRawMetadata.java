@@ -87,6 +87,12 @@ public class EffRawMetadata extends Effect {
                     metadata.setPose(args[1].toUpperCase());
                 }
 
+                case "health" -> {
+                    if (args.length == 1)
+                        return;
+                    metadata.setHealth(Integer.parseInt(args[1]));
+                }
+
                 case "stand" -> {
                     if (args.length < 2)
                         return;

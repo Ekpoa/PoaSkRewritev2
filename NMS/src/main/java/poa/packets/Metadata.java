@@ -100,6 +100,14 @@ public class Metadata {
         }
     }
 
+    public void setHealth(int health) {
+        switch (BukkitVersion.getBukkitVersion()) {
+            case "1202" -> metadata1202.setHealth(health);
+            case "1204" -> metadata1204.setHealth(health);
+            case "1206" -> metadata1206.setHealth(health);
+        }
+    }
+
 
     public void setItem(org.bukkit.inventory.ItemStack itemStack) {
         switch (BukkitVersion.getBukkitVersion()) {
