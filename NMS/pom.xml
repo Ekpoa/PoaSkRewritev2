@@ -45,6 +45,10 @@
             <artifactId>nms1206</artifactId>
         </dependency>
         <dependency>
+            <groupId>poa</groupId>
+            <artifactId>nms121</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.28</version>

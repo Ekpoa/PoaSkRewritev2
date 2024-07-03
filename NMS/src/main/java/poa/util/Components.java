@@ -17,6 +17,7 @@ public class Components {
             case "1202" -> Components1202.component(nmsComponent);
             case "1204" -> Components1204.component(nmsComponent);
             case "1206" -> Components1206.component(nmsComponent);
+            case "121" -> Components121.component(nmsComponent);
             default -> null;
         };
     }
@@ -26,6 +27,7 @@ public class Components {
             case "1202" -> Components1202.nmsComponent(component);
             case "1204" -> Components1204.nmsComponent(component);
             case "1206" -> Components1206.nmsComponent(component);
+            case "121" -> Components121.nmsComponent(component);
             default -> null;
         };
     }

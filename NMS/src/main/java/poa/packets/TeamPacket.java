@@ -15,6 +15,7 @@ public class TeamPacket {
             case "1202" -> TeamPacket1202.teamPacket(teamName, displayName, nameTagVisibility, collision, color, prefix, suffix, players);
             case "1204" -> TeamPacket1204.teamPacket(teamName, displayName, nameTagVisibility, collision, color, prefix, suffix, players);
             case "1206" -> TeamPacket1206.teamPacket(teamName, displayName, nameTagVisibility, collision, color, prefix, suffix, players);
+            case "121" -> TeamPacket121.teamPacket(teamName, displayName, nameTagVisibility, collision, color, prefix, suffix, players);
             default -> null;
         };
     }

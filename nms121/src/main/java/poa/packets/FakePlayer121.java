@@ -3,6 +3,7 @@ package poa.packets;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import lombok.SneakyThrows;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.PacketFlow;
@@ -12,11 +13,13 @@ import net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket;
 import net.minecraft.network.protocol.game.ClientboundSetEntityDataPacket;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ClientInformation;
+import net.minecraft.server.level.ServerEntity;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.network.CommonListenerCookie;
 import net.minecraft.server.network.ServerGamePacketListenerImpl;
 import net.minecraft.world.entity.HumanoidArm;
+import net.minecraft.world.entity.ai.behavior.EntityTracker;
 import net.minecraft.world.entity.player.ChatVisiblity;
 import net.minecraft.world.level.GameType;
 import org.bukkit.Bukkit;
@@ -25,13 +28,13 @@ import org.bukkit.World;
 import org.bukkit.craftbukkit.CraftWorld;
 import org.bukkit.craftbukkit.entity.CraftPlayer;
 import org.bukkit.entity.Player;
-import org.checkerframework.framework.qual.PostconditionAnnotation;
-import poa.util.FetchSkin1206;
+
+import poa.util.FetchSkin121;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class FakePlayer1206 {
+public class FakePlayer121 {
 
 
 
@@ -50,19 +53,17 @@ public class FakePlayer1206 {
         fakePlayer.setRot(loc.getYaw(), loc.getPitch());
         fakePlayer.setYHeadRot(loc.getYaw());
 
-
-
         GameProfile gameProfile = fakePlayer.getGameProfile();
 
         if (skinName != null && !skinName.isEmpty()) {
             UUID string = Bukkit.getOfflinePlayer(skinName).getUniqueId();
 
             gameProfile.getProperties().removeAll("textures");
-            gameProfile.getProperties().put("textures", new Property("textures", FetchSkin1206.fetchSkinURL(string), FetchSkin1206.fetchSkinSignature(string)));
+            gameProfile.getProperties().put("textures", new Property("textures", FetchSkin121.fetchSkinURL(string), FetchSkin121.fetchSkinSignature(string)));
 
         }
 
-        fakePlayer.connection = new ServerGamePacketListenerImpl(server, new Connection(PacketFlow.CLIENTBOUND), fakePlayer, new CommonListenerCookie(gameProfile, 0, clientInformation, false));
+        //fakePlayer.connection = new ServerGamePacketListenerImpl(server, new Connection(PacketFlow.CLIENTBOUND), fakePlayer, new CommonListenerCookie(gameProfile, 0, clientInformation, false));
 
         for (Player player : sendTo) {
             ServerGamePacketListenerImpl connection = ((CraftPlayer) player).getHandle().connection;
@@ -77,13 +78,15 @@ public class FakePlayer1206 {
 
             fakePlayer.setId(id);
 
-            ClientboundAddEntityPacket packet = new ClientboundAddEntityPacket(fakePlayer);
+            ClientboundAddEntityPacket packet = new ClientboundAddEntityPacket(fakePlayer, 0, new BlockPos(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ()));
 
             connection.send(packet);
 
             if (skinName != null && !skinName.isEmpty()) {
                 connection.send(new ClientboundSetEntityDataPacket(id, fakePlayer.getEntityData().packAll()));
             }
+
+
         }
         Player tr;
         try {
@@ -110,8 +113,8 @@ public class FakePlayer1206 {
     @SneakyThrows
     public static void removeFakePlayerPacket(List<Player> sendTo, List<UUID> uuids, List<Integer> ids) {
         for (Player p : sendTo) {
-            SendPacket1206.sendPacket(p, new ClientboundPlayerInfoRemovePacket(uuids));
-            SendPacket1206.sendPacket(p, FakeEntity1206.removeFakeEntityPacket(ids));
+            SendPacket121.sendPacket(p, new ClientboundPlayerInfoRemovePacket(uuids));
+            SendPacket121.sendPacket(p, FakeEntity121.removeFakeEntityPacket(ids));
 
         }
     }

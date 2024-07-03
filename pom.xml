@@ -16,6 +16,8 @@
         <module>nms1204</module>
         <module>NMS</module>
         <module>nms1202</module>
+        <module>nms121</module>
+
     </modules>
 
     <properties>
@@ -60,6 +62,11 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>poa</groupId>
+                <artifactId>nms121</artifactId>
+                <version>1</version>
+            </dependency>
             <dependency>
                 <groupId>poa</groupId>
                 <artifactId>nms1206</artifactId>

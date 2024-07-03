@@ -9,6 +9,7 @@ public class TeleportPacket {
             case "1202" -> TeleportPacket1202.teleportPacket(id, x, y, z, yaw, pitch, onGround);
             case "1204" -> TeleportPacket1204.teleportPacket(id, x, y, z, yaw, pitch, onGround);
             case "1206" -> TeleportPacket1206.teleportPacket(id, x, y, z, yaw, pitch, onGround);
+            case "121" -> TeleportPacket121.teleportPacket(id, x, y, z, yaw, pitch, onGround);
             default -> null;
         };
     }
