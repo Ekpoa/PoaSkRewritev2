@@ -24,7 +24,7 @@ public class Metadata {
 
     Metadata1202 metadata1202;
     Metadata1204 metadata1204;
-    Metadata121 metadata1206;
+    Metadata1206 metadata1206;
     Metadata121 metadata121;
 
 
@@ -32,7 +32,7 @@ public class Metadata {
         switch (BukkitVersion.getBukkitVersion()) {
             case "1202" -> metadata1202 = new Metadata1202(id);
             case "1204" -> metadata1204 = new Metadata1204(id);
-            case "1206" -> metadata1206 = new Metadata121(id);
+            case "1206" -> metadata1206 = new Metadata1206(id);
             case "121" -> metadata121 = new Metadata121(id);
         }
     }

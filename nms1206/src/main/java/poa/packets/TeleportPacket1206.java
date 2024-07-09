@@ -3,9 +3,15 @@ package poa.packets;
 import io.netty.buffer.Unpooled;
 import lombok.SneakyThrows;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.protocol.game.ClientboundSetEntityDataPacket;
 import net.minecraft.network.protocol.game.ClientboundTeleportEntityPacket;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import org.bukkit.craftbukkit.entity.CraftPlayer;
 
 import java.lang.reflect.Constructor;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TeleportPacket1206 {
 
