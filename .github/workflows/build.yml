@@ -23,6 +23,9 @@ jobs:
     - name: paper nms stuff 1.20.6
       run: mvn paper-nms:init -f pom.xml
       working-directory: ./nms1206
+    - name: paper nms stuff 1.21
+      run: mvn paper-nms:init -f pom.xml
+      working-directory: ./nms121
     - name: Build with Maven
       run: mvn clean package
     - name: Upload nightly build
