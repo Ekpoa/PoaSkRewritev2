@@ -17,9 +17,9 @@ import java.util.UUID;
 
 public class FakeEntity1206 {
 
-    public static Object fakeEntityPacket(int id, Location location, String type, int data) {
+    public static Object fakeEntityPacket(int id, Location location, String type, UUID uuid, int data) {
         return new ClientboundAddEntityPacket(id,
-                UUID.randomUUID(),
+                uuid,
                 location.getX(),
                 location.getY(),
                 location.z(),
@@ -32,6 +32,15 @@ public class FakeEntity1206 {
         );
 
     }
+
+    public static Object fakeEntityPacket(int id, Location location, String type, int data){
+        return fakeEntityPacket(id, location, type, UUID.randomUUID(), data);
+    }
+
+    public static Object fakeEntityPacket(int id, Location location, String type, UUID uuid){
+        return fakeEntityPacket(id, location, type, uuid, 0);
+    }
+
     public static Object fakeEntityPacket(int id, Location location, String type){
         return fakeEntityPacket(id, location, type, 0);
     }

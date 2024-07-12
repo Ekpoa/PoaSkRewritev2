@@ -14,6 +14,7 @@ poa/packets/packetListener/PacketInjector121.class
 poa/packets/FakeEntity121.class
 poa/packets/packetListener/events/SystemChatPacketEvent121.class
 poa/packets/CameraPacket121.class
+poa/guardian/GuardianBeam121.class
 poa/packets/SendPayloadPacket121.class
 poa/packets/FakePlayer121.class
 poa/packets/SetPassengerPacket121.class

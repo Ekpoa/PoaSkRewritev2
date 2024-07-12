@@ -51,5 +51,9 @@ public class TeamPacket1202 {
         return teamPacket(teamName, "", "always", "always", color, "", "", players);
     }
 
+    public static Object teamPacketForBeam(Collection<String> entities, String color) {
+        return teamPacket("noclipG", "", "never", "never", color, "", "", entities);
+    }
+
 
 }

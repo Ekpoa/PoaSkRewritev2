@@ -18,6 +18,7 @@
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms121/src/main/java/poa/util/GetPose121.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms121/src/main/java/poa/packets/packetListener/events/ParticleEvent121.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms121/src/main/java/poa/packets/SetPassengerPacket121.java
+/Users/alex/Documents/Plugins/PoaSkRewrite/nms121/src/main/java/poa/guardian/GuardianBeam121.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms121/src/main/java/poa/packets/FakeEntity121.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms121/src/main/java/poa/packets/packetListener/PacketInjector121.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms121/src/main/java/poa/packets/packetListener/events/PlayerChatPacketEvent121.java

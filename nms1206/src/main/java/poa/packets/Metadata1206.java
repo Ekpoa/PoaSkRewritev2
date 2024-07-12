@@ -353,8 +353,14 @@ public class Metadata1206 {
 
 
 
-
-
+    @SneakyThrows
+    public void setGuardianSpikes(boolean spikesShown){
+        dataList.add(new SynchedEntityData.DataValue<>(16, EntityDataSerializers.BOOLEAN, !spikesShown));
+    }
+    @SneakyThrows
+    public void setGuardianTarget(int entityId){
+        dataList.add(new SynchedEntityData.DataValue<>(17, EntityDataSerializers.INT, entityId));
+    }
 
 
 

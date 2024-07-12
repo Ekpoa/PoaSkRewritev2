@@ -5,10 +5,10 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
-import fr.skytasul.guardianbeam.Laser;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import poa.guardian.GuardianBeam;
 
 public class EffGuardianLaserRemove extends Effect {
 
@@ -28,12 +28,8 @@ public class EffGuardianLaserRemove extends Effect {
     @Override
     protected void execute(Event e) {
         String laserID = id.getSingle(e);
-        if (!EffGuardianLaserCreate.laserIDMap.containsKey(laserID))
-            return;
-        Laser laser = EffGuardianLaserCreate.laserIDMap.get(laserID);
-        laser.stop();
-        EffGuardianLaserCreate.laserIDMap.remove(laserID);
 
+        GuardianBeam.getBeam(laserID).destroy();
     }
 
     @SuppressWarnings("DataFlowIssue")
