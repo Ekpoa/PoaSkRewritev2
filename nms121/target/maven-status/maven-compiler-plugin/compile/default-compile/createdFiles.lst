@@ -1,3 +1,4 @@
+poa/packets/AttributePacket121.class
 poa/packets/HeadRotPacket121.class
 poa/packets/TeleportPacket121.class
 poa/packets/PosRotPacket121.class

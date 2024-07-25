@@ -15,6 +15,7 @@
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms121/src/main/java/poa/ChangeIP121.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms121/src/main/java/poa/packets/FakePlayer121.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms121/src/main/java/poa/StartAutoSpinAttack121.java
+/Users/alex/Documents/Plugins/PoaSkRewrite/nms121/src/main/java/poa/packets/AttributePacket121.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms121/src/main/java/poa/util/GetPose121.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms121/src/main/java/poa/packets/packetListener/events/ParticleEvent121.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms121/src/main/java/poa/packets/SetPassengerPacket121.java
