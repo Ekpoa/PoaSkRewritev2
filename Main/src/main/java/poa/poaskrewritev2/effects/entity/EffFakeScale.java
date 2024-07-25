@@ -45,8 +45,8 @@ public class EffFakeScale extends Effect implements Listener {
     @SneakyThrows
     @Override
     protected void execute(Event event) {
-        if(List.of("1202", "1204", "1206").contains(BukkitVersion.getBukkitVersion())){
-            PoaSkRewritev2.getINSTANCE().getLogger().log(Level.SEVERE, "The scale effect cannot be used on version below 1.21");
+        if(List.of("1202", "1204").contains(BukkitVersion.getBukkitVersion())){
+            PoaSkRewritev2.getINSTANCE().getLogger().log(Level.SEVERE, "The scale effect cannot be used on version below 1.20.6");
             return;
         }
 
