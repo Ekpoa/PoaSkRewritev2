@@ -237,15 +237,15 @@ public class PacketHandler121 extends ChannelDuplexHandler {
                     message = chatPacket.body().content();
 
 
-                final PlayerChatPacketEvent121 playerChatPacketEvent1206 = new PlayerChatPacketEvent121(player, true);
+                final PlayerChatPacketEvent121 playerChatPacketEvent121 = new PlayerChatPacketEvent121(player, true);
 
-                playerChatPacketEvent1206.setString(message);
+                playerChatPacketEvent121.setString(message);
 
-                playerChatPacketEvent1206.setSender(chatPacket.sender());
+                playerChatPacketEvent121.setSender(chatPacket.sender());
 
-                pluginManager.callEvent(playerChatPacketEvent1206);
+                pluginManager.callEvent(playerChatPacketEvent121);
 
-                if (playerChatPacketEvent1206.isCancelled())
+                if (playerChatPacketEvent121.isCancelled())
                     return;
 
             }

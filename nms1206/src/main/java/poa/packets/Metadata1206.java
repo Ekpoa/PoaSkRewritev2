@@ -94,7 +94,7 @@ public class Metadata1206 {
     }
 
     public void setGravity(boolean hasGravity) {
-        dataList.add(new SynchedEntityData.DataValue<>(5, EntityDataSerializers.BOOLEAN, hasGravity));
+        dataList.add(new SynchedEntityData.DataValue<>(5, EntityDataSerializers.BOOLEAN, !hasGravity));
     }
 
     public void setPose(String pose) {

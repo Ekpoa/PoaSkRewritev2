@@ -13,10 +13,6 @@ public class TestCommand implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
         if(sender instanceof Player player){
 
-            final Object packet = AttributePacket121.packet(player.getTargetEntity(10).getEntityId(), "generic_scale", Double.parseDouble(args[0]));
-
-            SendPacket.sendPacket(player, packet);
-
 
         }
         return false;

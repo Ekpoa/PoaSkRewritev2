@@ -1,4 +1,4 @@
-package poa.poaskrewritev2.effects;
+package poa.poaskrewritev2.effects.entity;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.Effect;
