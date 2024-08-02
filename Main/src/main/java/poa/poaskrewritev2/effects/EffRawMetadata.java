@@ -15,10 +15,12 @@ import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import poa.packets.Metadata;
+import poa.poaskrewritev2.PoaSkRewritev2;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
 
 public class EffRawMetadata extends Effect {
 
@@ -130,9 +132,24 @@ public class EffRawMetadata extends Effect {
 
                 case "display" -> {
                     switch (args[1].toLowerCase()) {
-                        case "item" -> metadata.setDisplayItem(((ItemType) object.getSingle(event)).getRandom());
+                        case "item" -> {
+                            metadata.setDisplayItem(((ItemType) object.getSingle(event)).getRandom());
+                        }
                         case "block" -> {
-                            metadata.setDisplayBlock((BlockData) object.getSingle(event));
+                            Object o = object.getSingle(event);
+                            BlockData data = null;
+                            if(o instanceof ItemType itemType)
+                                data = itemType.getRandom().getType().createBlockData();
+
+                            else if(o instanceof BlockData bd)
+                                data = bd;
+
+                            if(data == null){
+                                PoaSkRewritev2.getINSTANCE().getLogger().log(Level.WARNING, "Trying to parse null as block data");
+                                return;
+                            }
+
+                            metadata.setDisplayBlock(data);
                         }
                     }
                     if(args.length < 3)
