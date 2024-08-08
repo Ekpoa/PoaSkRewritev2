@@ -1,5 +1,6 @@
 package poa.packets.packetListener;
 
+import io.netty.channel.ChannelPipeline;
 import net.minecraft.network.Connection;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerConnectionListener;
@@ -14,33 +15,22 @@ public class PacketInjector1204 {
 
 
     CraftPlayer craftPlayer;
-    InetAddress address;
     Player player;
     String id;
 
-    public PacketInjector1204(Player player, InetAddress address){
+    public PacketInjector1204(Player player){
         this.craftPlayer = (CraftPlayer) player;
-        this.address = address;
         this.player = player;
         this.id = player.getName() + "-PoaSK-";
     }
 
 
-    public void injectPlayer() {
-        final ServerConnectionListener serverConnection = MinecraftServer.getServer().getConnection();
-
-        List<Connection> connections = serverConnection.getConnections();
-
-
-        final Connection playerConnection = connections.stream()
-                .filter(connection -> connection.getRemoteAddress() instanceof InetSocketAddress)
-                .filter(connection -> ((InetSocketAddress) connection.getRemoteAddress()).getAddress() == address)
-                .findAny().orElseThrow(IllegalArgumentException::new);
-        playerConnection.channel.pipeline().addBefore(
-                "packet_handler", id, new PacketHandler1204(player));
-
-        System.out.println("Injected packet listener into " + this.player.getName());
-
+    public void inject(Player player) {
+        ChannelPipeline pipeline = getChannelPipeline((CraftPlayer) player);
+        pipeline.addBefore("packet_handler", id, new PacketHandler1204(player));
+    }
+    private static ChannelPipeline getChannelPipeline(CraftPlayer player) {
+        return player.getHandle().connection.connection.channel.pipeline();
     }
 
     public void uninjectPlayer() {
