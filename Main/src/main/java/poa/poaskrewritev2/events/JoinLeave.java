@@ -19,14 +19,14 @@ public class JoinLeave implements Listener {
     @EventHandler
     public void connect(PlayerLoginEvent e){
         switch (BukkitVersion.getBukkitVersion()) {
-            case "1202", "1204" -> PacketInjector.inject(e);
+            case "1202" -> PacketInjector.inject(e);
         }
     }
 
     @EventHandler
     public void join(PlayerJoinEvent e){
         switch (BukkitVersion.getBukkitVersion()) {
-            case "1206" -> PacketInjector.inject(e);
+            case "1204", "1206", "121" -> PacketInjector.inject(e);
         }
     }
 
@@ -34,12 +34,9 @@ public class JoinLeave implements Listener {
     public void onQuit(PlayerQuitEvent e){
         Player player = e.getPlayer();
 
-        GlowMap.getGlowMap().remove(player);
-
         GlowMap.getGlowMap().entrySet().removeIf(entry -> entry.getValue().contains(player.getEntityId()));
 
-        if (!List.of("1202", "1203", "1204").contains(BukkitVersion.getBukkitVersion()))
-            return;
+        GlowMap.getGlowMap().remove(player);
 
         PacketInjector.unInject(player);
     }
