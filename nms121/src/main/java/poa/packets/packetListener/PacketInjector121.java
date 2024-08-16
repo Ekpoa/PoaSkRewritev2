@@ -1,8 +1,11 @@
 package poa.packets.packetListener;
 
 import io.netty.channel.ChannelPipeline;
+import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.entity.CraftPlayer;
 import org.bukkit.entity.Player;
+
+import java.util.logging.Level;
 
 public class PacketInjector121 {
 
@@ -18,11 +21,13 @@ public class PacketInjector121 {
     }
 
     public void inject(Player player) {
+        Bukkit.getLogger().log(Level.INFO, "Injected " + player.getName());
         ChannelPipeline pipeline = getChannelPipeline((CraftPlayer) player);
         pipeline.addBefore("packet_handler", id, new PacketHandler121(player));
     }
 
     private static ChannelPipeline getChannelPipeline(CraftPlayer player) {
+        Bukkit.getLogger().log(Level.INFO, "Uninjected " + player.getName());
         return player.getHandle().connection.connection.channel.pipeline();
     }
 
