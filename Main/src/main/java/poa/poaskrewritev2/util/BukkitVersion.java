@@ -9,6 +9,10 @@ public class BukkitVersion {
     public static String getBukkitVersion() {
         if (version == null)
             version = Bukkit.getMinecraftVersion().replaceAll("[.]", "");
+
+        if(version.equals("1211"))
+            version = "121";
+
         return version;
     }
 }
