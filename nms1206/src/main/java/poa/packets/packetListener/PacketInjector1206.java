@@ -27,7 +27,7 @@ public class PacketInjector1206 {
     }
 
     private static ChannelPipeline getChannelPipeline(CraftPlayer player) {
-        Bukkit.getLogger().log(Level.INFO, "Uninjected " + player.getName());
+        Bukkit.getLogger().log(Level.INFO, "Got pipeline " + player.getName());
         return player.getHandle().connection.connection.channel.pipeline();
     }
 
