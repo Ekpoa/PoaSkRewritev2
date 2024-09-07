@@ -16,6 +16,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import poa.packets.Metadata;
 import poa.poaskrewritev2.PoaSkRewritev2;
+import poa.util.Messages;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,12 +48,15 @@ public class EffRawMetadata extends Effect {
 
         String input = this.input.getSingle(event);
 
+
         if (this.input instanceof VariableString vs)
             input = vs.toUnformattedString(event);
+
 
         Object packet = this.packet.getSingle(event);
 
         if (input == null || packet == null) return;
+
 
         List<String> list = new ArrayList<>(List.of(input.split(" ")));
 
@@ -138,13 +142,13 @@ public class EffRawMetadata extends Effect {
                         case "block" -> {
                             Object o = object.getSingle(event);
                             BlockData data = null;
-                            if(o instanceof ItemType itemType)
+                            if (o instanceof ItemType itemType)
                                 data = itemType.getRandom().getType().createBlockData();
 
-                            else if(o instanceof BlockData bd)
+                            else if (o instanceof BlockData bd)
                                 data = bd;
 
-                            if(data == null){
+                            if (data == null) {
                                 PoaSkRewritev2.getINSTANCE().getLogger().log(Level.WARNING, "Trying to parse null as block data");
                                 return;
                             }
@@ -152,22 +156,29 @@ public class EffRawMetadata extends Effect {
                             metadata.setDisplayBlock(data);
                         }
                     }
-                    if(args.length < 3)
+                    if (args.length < 3)
                         return;
 
-                    switch (args[1].toLowerCase()){
-                        case "interpolation" -> metadata.setInterpolationDelay(Integer.parseInt(args[3])); //args[2] = delay
-                        case "transformation" -> metadata.setTransformationDuration(Integer.parseInt(args[3])); //args[2] = duration
+                    switch (args[1].toLowerCase()) {
+                        case "interpolation" ->
+                                metadata.setInterpolationDelay(Integer.parseInt(args[3])); //args[2] = delay
+                        case "transformation" ->
+                                metadata.setTransformationDuration(Integer.parseInt(args[3])); //args[2] = duration
                         case "posrot" -> metadata.setPosRotDuration(Integer.parseInt(args[2]));
-                        case "translation" -> metadata.setTranslation(Float.parseFloat(args[2]), Float.parseFloat(args[3]), Float.parseFloat(args[4]));
-                        case "scale" -> metadata.setScale(Float.parseFloat(args[2]), Float.parseFloat(args[3]), Float.parseFloat(args[4]));
-                        case "left" -> metadata.setRotationLeft(Float.parseFloat(args[3]), Float.parseFloat(args[4]), Float.parseFloat(args[5]), Float.parseFloat(args[6])); //args[2] = rotation
-                        case "right" -> metadata.setRotationRight(Float.parseFloat(args[3]), Float.parseFloat(args[4]), Float.parseFloat(args[5]), Float.parseFloat(args[6])); //args[2] = rotation
+                        case "translation" ->
+                                metadata.setTranslation(Float.parseFloat(args[2]), Float.parseFloat(args[3]), Float.parseFloat(args[4]));
+                        case "scale" ->
+                                metadata.setScale(Float.parseFloat(args[2]), Float.parseFloat(args[3]), Float.parseFloat(args[4]));
+                        case "left" ->
+                                metadata.setRotationLeft(Float.parseFloat(args[3]), Float.parseFloat(args[4]), Float.parseFloat(args[5]), Float.parseFloat(args[6])); //args[2] = rotation
+                        case "right" ->
+                                metadata.setRotationRight(Float.parseFloat(args[3]), Float.parseFloat(args[4]), Float.parseFloat(args[5]), Float.parseFloat(args[6])); //args[2] = rotation
                         case "billboard" -> metadata.setBillboard(args[2]);
-                        case "brightness" -> metadata.setBrightness(Integer.parseInt(args[2]), Integer.parseInt(args[3]));
+                        case "brightness" ->
+                                metadata.setBrightness(Integer.parseInt(args[2]), Integer.parseInt(args[3]));
                         case "view" -> metadata.setViewRange(Float.parseFloat(args[3])); //args[2] = range
                         case "shadow" -> {
-                            switch (args[2].toLowerCase()){
+                            switch (args[2].toLowerCase()) {
                                 case "radius" -> metadata.setShadowRadius(Float.parseFloat(args[3]));
                                 case "strength" -> metadata.setShadowStrength(Float.parseFloat(args[3]));
                             }
@@ -175,16 +186,21 @@ public class EffRawMetadata extends Effect {
                         case "width" -> metadata.setWidth(Float.parseFloat(args[2]));
                         case "height" -> metadata.setHeight(Float.parseFloat(args[2]));
                         case "line" -> metadata.setLineWidth(Integer.parseInt(args[3])); //args[2] = width
-                        case "background" -> metadata.setBackground(Integer.parseInt(args[3]), Integer.parseInt(args[4]), Integer.parseInt(args[5]), Integer.parseInt(args[6])); //args[2] = color
+                        case "background" ->
+                                metadata.setBackground(Integer.parseInt(args[3]), Integer.parseInt(args[4]), Integer.parseInt(args[5]), Integer.parseInt(args[6])); //args[2] = color
 
                         case "text" -> {
                             if (args[2].toLowerCase().equals("opacity"))
                                 metadata.setTextOpacity(Integer.parseInt(args[3]));
-                             else
-                                metadata.setText(String.join(" ", Arrays.copyOfRange(args, 2, args.length)));
+                            else {
+                                String join = String.join(" ", Arrays.copyOfRange(args, 2, args.length));
+                                join = Messages.essentialsToMinimessage(join);
+                                metadata.setText(join);
+                            }
 
                         }
-                        case "index27" -> metadata.index27(Boolean.parseBoolean(args[2]), Boolean.parseBoolean(args[3]), Boolean.parseBoolean(args[4]));
+                        case "index27" ->
+                                metadata.index27(Boolean.parseBoolean(args[2]), Boolean.parseBoolean(args[3]), Boolean.parseBoolean(args[4]));
                         case "glow" -> metadata.setGlowOverride(Integer.parseInt(args[3])); //args[2] = override
 
                     }

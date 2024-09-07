@@ -304,7 +304,7 @@ public class Metadata121 {
     }
 
     public void setText(String miniMessageText){
-        setText(MiniMessage.miniMessage().deserialize(miniMessageText));
+        setText(MiniMessage.miniMessage().deserialize(miniMessageText)); //todo & support
     }
 
 

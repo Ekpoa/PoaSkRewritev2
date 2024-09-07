@@ -11,7 +11,7 @@ public class TestCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
         if(sender instanceof Player player){
-            ChangeVision121.changeVision(player, args[0]);
+
 
         }
         return false;
