@@ -10,6 +10,7 @@ import org.bukkit.util.Vector;
 import poa.packets.packetListener.events.ParticleEvent1202;
 import poa.packets.packetListener.events.ParticleEvent1204;
 import poa.packets.packetListener.events.ParticleEvent1206;
+import poa.packets.packetListener.events.ParticleEvent121;
 import poa.util.BukkitVersion;
 
 public class RegisterParticle {
@@ -125,6 +126,42 @@ public class RegisterParticle {
                 EventValues.registerEventValue(ParticleEvent1206.class, Location.class, new Getter<>() {
                     @Override
                     public Location get(ParticleEvent1206 event) {
+                        return event.getLocation();
+                    }
+                }, EventValues.TIME_NOW);
+            }
+            case "121" -> {
+                Skript.registerEvent("Particle Send", SimpleEvent.class, ParticleEvent121.class,
+                        "particle send");
+                EventValues.registerEventValue(ParticleEvent121.class, Particle.class, new Getter<>() {
+                    @Override
+                    public Particle get(ParticleEvent121 event) {
+                        return event.getParticle();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(ParticleEvent121.class, Integer.class, new Getter<>() {
+                    @Override
+                    public Integer get(ParticleEvent121 event) {
+                        return event.getCount();
+                    }
+                }, EventValues.TIME_NOW);
+
+                EventValues.registerEventValue(ParticleEvent121.class, Float.class, new Getter<>() {
+                    @Override
+                    public Float get(ParticleEvent121 event) {
+                        return event.getMaxSpeed();
+                    }
+                }, EventValues.TIME_NOW);
+
+                EventValues.registerEventValue(ParticleEvent121.class, Vector.class, new Getter<>() {
+                    @Override
+                    public Vector get(ParticleEvent121 event) {
+                        return event.getOffset();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(ParticleEvent121.class, Location.class, new Getter<>() {
+                    @Override
+                    public Location get(ParticleEvent121 event) {
                         return event.getLocation();
                     }
                 }, EventValues.TIME_NOW);

@@ -2,16 +2,12 @@ package poa.packets;
 
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
-import lombok.SneakyThrows;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.network.protocol.game.ClientboundRemoveEntitiesPacket;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.phys.Vec3;
 import org.bukkit.Location;
+import poa.util.EntityTypeFromString121;
 
-import java.lang.reflect.Field;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,7 +21,7 @@ public class FakeEntity121 {
                 location.z(),
                 location.getPitch(),
                 location.getYaw(),
-                entityTypeFromString(type),
+                EntityTypeFromString121.entityTypeFromString(type),
                 data,
                 new Vec3(0, 0, 0),
                 0
@@ -44,10 +40,7 @@ public class FakeEntity121 {
         return fakeEntityPacket(id, location, type, 0);
     }
 
-    @SneakyThrows
-    private static EntityType<?> entityTypeFromString(String string) {
-        return BuiltInRegistries.ENTITY_TYPE.get(ResourceLocation.tryParse("minecraft:" + string.toLowerCase()));
-    }
+
 
 //    @SneakyThrows
 //    private static EntityType<?> entityTypeFromString(String string) {
