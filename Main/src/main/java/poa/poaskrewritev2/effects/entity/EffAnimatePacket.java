@@ -30,8 +30,8 @@ public class EffAnimatePacket extends Effect implements Listener {
     @SuppressWarnings({"NullableProblems", "unchecked"})
     @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
-        id = (Expression<Number>) exprs[0];
-        animation = (Expression<Number>) exprs[1];
+        id = (Expression<Number>) exprs[1];
+        animation = (Expression<Number>) exprs[0];
         players = (Expression<Player>) exprs[2];
         return true;
     }
