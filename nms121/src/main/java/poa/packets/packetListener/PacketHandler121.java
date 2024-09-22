@@ -7,10 +7,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientboundLevelParticlesPacket;
-import net.minecraft.network.protocol.game.ClientboundPlayerChatPacket;
-import net.minecraft.network.protocol.game.ClientboundSetEntityDataPacket;
-import net.minecraft.network.protocol.game.ClientboundSystemChatPacket;
+import net.minecraft.network.protocol.game.*;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
@@ -24,6 +21,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import poa.packets.packetListener.events.ParticleEvent121;
 import poa.packets.packetListener.events.PlayerChatPacketEvent121;
+import poa.packets.packetListener.events.PlayerInputEvent121;
 import poa.packets.packetListener.events.SystemChatPacketEvent121;
 import poa.util.Components121;
 
@@ -45,11 +43,38 @@ public class PacketHandler121 extends ChannelDuplexHandler {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        try {
+            if (!(msg instanceof Packet<?> packet)) {
+                super.channelRead(ctx, msg);
+                return;
+            }
+
+            if(packet instanceof ServerboundPlayerInputPacket inputPacket){
+                final PlayerInputEvent121 event = new PlayerInputEvent121(player, true);
+                event.setXxa(inputPacket.getXxa());
+                event.setZza(inputPacket.getZza());
+                event.setJumping(inputPacket.isJumping());
+
+                pluginManager.callEvent(event);
+                if(event.isCancelled())
+                    return;
+
+            }
+
+
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            super.channelRead(ctx,msg);
+        }
+
+
         super.channelRead(ctx, msg);
     }
 
 
-    private static Class<?> particleOptionsClass; //Some reason its not mapping correctly :D
+    private static Class<?> particleOptionsClass; //Some reason it's not mapping correctly :D
     private static Method getTypeMethod;
     private static final Class<?> craftParticleClass;
     private static Method minecraftToBukkitMethod;
@@ -249,6 +274,7 @@ public class PacketHandler121 extends ChannelDuplexHandler {
                     return;
 
             }
+            
 
 
             super.write(ctx, msg, promise);

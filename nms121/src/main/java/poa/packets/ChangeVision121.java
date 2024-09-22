@@ -17,22 +17,23 @@ import poa.util.RefreshPlayer121;
 
 public class ChangeVision121 {
 
-    public static void changeVision(Player player, String entityType){
+    public static void changeVision(Player player, String entityType) {
         CraftPlayer craftPlayer = (CraftPlayer) player;
         final ServerPlayer serverPlayer = craftPlayer.getHandle();
 
         LivingEntity entity = null;
 
-        switch (entityType.toLowerCase()){
+        switch (entityType.toLowerCase()) {
             case "creeper" -> entity = new Creeper(EntityType.CREEPER, ((CraftWorld) player.getWorld()).getHandle());
             case "spider" -> entity = new Spider(EntityType.SPIDER, ((CraftWorld) player.getWorld()).getHandle());
             case "enderman" -> entity = new EnderMan(EntityType.ENDERMAN, ((CraftWorld) player.getWorld()).getHandle());
-            case "cave_spider" -> entity = new CaveSpider(EntityType.CAVE_SPIDER, ((CraftWorld) player.getWorld()).getHandle());
+            case "cave_spider" ->
+                    entity = new CaveSpider(EntityType.CAVE_SPIDER, ((CraftWorld) player.getWorld()).getHandle());
             case "player" -> serverPlayer.connection.send(new ClientboundSetCameraPacket(serverPlayer));
-            }
+        }
 
 
-        if(entity == null){
+        if (entity == null) {
             System.out.println("Entity must be a creeper, enderman, spider, cavespider or player for setting vision");
             return;
         }

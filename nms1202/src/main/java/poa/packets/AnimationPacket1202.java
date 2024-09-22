@@ -15,5 +15,7 @@ public class AnimationPacket1202 {
         buf.writeVarInt(id);
         buf.writeByte(animation);
         return new ClientboundAnimatePacket(buf);
+
+
     }
 }

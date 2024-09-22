@@ -7,6 +7,7 @@ import ch.njol.skript.util.Getter;
 import io.papermc.paper.event.player.PlayerTrackEntityEvent;
 import io.papermc.paper.event.player.PlayerUntrackEntityEvent;
 import org.bukkit.entity.Entity;
+import poa.packets.packetListener.events.PlayerInputEvent121;
 import poa.poaskrewritev2.util.types.UUIDType;
 
 public class SkriptEvents extends SimpleEvent {
@@ -26,7 +27,7 @@ public class SkriptEvents extends SimpleEvent {
         }, EventValues.TIME_NOW);
 
         //Unload
-        Skript.registerEvent("Player unLoad Entity", SimpleEvent.class, PlayerUntrackEntityEvent.class,
+        Skript.registerEvent("Player unload Entity", SimpleEvent.class, PlayerUntrackEntityEvent.class,
                 "player unload entity");
 
         EventValues.registerEventValue(PlayerUntrackEntityEvent.class, Entity.class, new Getter<>() {
@@ -43,6 +44,10 @@ public class SkriptEvents extends SimpleEvent {
 
         //System Chat
         RegisterChat.register();
+
+        //Player Input
+        RegisterInput.register();
+
 
     }
 

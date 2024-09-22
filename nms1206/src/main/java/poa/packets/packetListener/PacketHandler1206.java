@@ -7,10 +7,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientboundLevelParticlesPacket;
-import net.minecraft.network.protocol.game.ClientboundPlayerChatPacket;
-import net.minecraft.network.protocol.game.ClientboundSetEntityDataPacket;
-import net.minecraft.network.protocol.game.ClientboundSystemChatPacket;
+import net.minecraft.network.protocol.game.*;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
@@ -23,6 +20,7 @@ import org.bukkit.craftbukkit.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import poa.packets.packetListener.events.PlayerChatPacketEvent1206;
+import poa.packets.packetListener.events.PlayerInputEvent1206;
 import poa.packets.packetListener.events.SystemChatPacketEvent1206;
 import poa.packets.packetListener.events.ParticleEvent1206;
 import poa.util.Components1206;
@@ -45,6 +43,33 @@ public class PacketHandler1206 extends ChannelDuplexHandler {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        try {
+            if (!(msg instanceof Packet<?> packet)) {
+                super.channelRead(ctx, msg);
+                return;
+            }
+
+            if(packet instanceof ServerboundPlayerInputPacket inputPacket){
+                final PlayerInputEvent1206 event = new PlayerInputEvent1206(player, true);
+                event.setXxa(inputPacket.getXxa());
+                event.setZza(inputPacket.getZza());
+                event.setJumping(inputPacket.isJumping());
+
+                pluginManager.callEvent(event);
+                if(event.isCancelled())
+                    return;
+
+            }
+
+
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            super.channelRead(ctx,msg);
+        }
+
+
         super.channelRead(ctx, msg);
     }
 
