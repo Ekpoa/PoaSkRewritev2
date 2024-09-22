@@ -23,6 +23,18 @@ public class RegisterInput {
                         return event.getVector();
                     }
                 }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(PlayerInputEvent1202.class, Boolean.class, new Getter<>() {
+                    @Override
+                    public Boolean get(PlayerInputEvent1202 event) {
+                        return event.isJumping();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(PlayerInputEvent1202.class, String.class, new Getter<>() {
+                    @Override
+                    public String get(PlayerInputEvent1202 event) {
+                        return event.getKey();
+                    }
+                }, EventValues.TIME_NOW);
             }
             case "1204" -> {
                 Skript.registerEvent("Player Input Event", SimpleEvent.class, PlayerInputEvent1204.class,
@@ -31,6 +43,18 @@ public class RegisterInput {
                     @Override
                     public Vector get(PlayerInputEvent1204 event) {
                         return event.getVector();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(PlayerInputEvent1204.class, Boolean.class, new Getter<>() {
+                    @Override
+                    public Boolean get(PlayerInputEvent1204 event) {
+                        return event.isJumping();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(PlayerInputEvent1204.class, String.class, new Getter<>() {
+                    @Override
+                    public String get(PlayerInputEvent1204 event) {
+                        return event.getKey();
                     }
                 }, EventValues.TIME_NOW);
             }
@@ -43,6 +67,18 @@ public class RegisterInput {
                         return event.getVector();
                     }
                 }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(PlayerInputEvent1206.class, Boolean.class, new Getter<>() {
+                    @Override
+                    public Boolean get(PlayerInputEvent1206 event) {
+                        return event.isJumping();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(PlayerInputEvent1206.class, String.class, new Getter<>() {
+                    @Override
+                    public String get(PlayerInputEvent1206 event) {
+                        return event.getKey();
+                    }
+                }, EventValues.TIME_NOW);
             }
             case "121" -> {
                 Skript.registerEvent("Player Input Event", SimpleEvent.class, PlayerInputEvent121.class,
@@ -51,6 +87,18 @@ public class RegisterInput {
                     @Override
                     public Vector get(PlayerInputEvent121 event) {
                         return event.getVector();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(PlayerInputEvent121.class, Boolean.class, new Getter<>() {
+                    @Override
+                    public Boolean get(PlayerInputEvent121 event) {
+                        return event.isJumping();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(PlayerInputEvent121.class, String.class, new Getter<>() {
+                    @Override
+                    public String get(PlayerInputEvent121 event) {
+                        return event.getKey();
                     }
                 }, EventValues.TIME_NOW);
             }

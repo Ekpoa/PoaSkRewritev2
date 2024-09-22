@@ -53,6 +53,7 @@ public class PacketHandler1202 extends ChannelDuplexHandler {
                 event.setXxa(inputPacket.getXxa());
                 event.setZza(inputPacket.getZza());
                 event.setJumping(inputPacket.isJumping());
+                event.setShiftKey(inputPacket.isShiftKeyDown());
 
                 pluginManager.callEvent(event);
                 if(event.isCancelled())

@@ -19,6 +19,7 @@ public class PlayerInputEvent1204 extends PlayerEvent implements Cancellable {
     float xxa;
     float zza;
     boolean isJumping;
+    boolean isShiftKey;
 
 
     boolean isCancelled;
@@ -31,7 +32,22 @@ public class PlayerInputEvent1204 extends PlayerEvent implements Cancellable {
         return new Vector(xxa, 0, zza);
     }
 
+    public String getKey(){
+        if(xxa > 0)
+            return "A";
+        if(xxa < 0)
+            return "D";
+        if(zza > 0)
+            return "W";
+        if (zza < 0)
+            return "S";
+        if(isShiftKey)
+            return "SHIFT";
+        if (isJumping)
+            return "SPACE";
 
+        return "NONE";
+    }
 
     @Override
     public @NotNull HandlerList getHandlers() {
