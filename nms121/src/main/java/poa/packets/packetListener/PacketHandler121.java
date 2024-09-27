@@ -5,6 +5,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelPromise;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.*;
@@ -13,16 +14,16 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.block.state.BlockState;
 import org.bukkit.Bukkit;
 import org.bukkit.Particle;
 import org.bukkit.craftbukkit.CraftParticle;
+import org.bukkit.craftbukkit.block.CraftBlock;
+import org.bukkit.craftbukkit.block.data.CraftBlockData;
 import org.bukkit.craftbukkit.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
-import poa.packets.packetListener.events.ParticleEvent121;
-import poa.packets.packetListener.events.PlayerChatPacketEvent121;
-import poa.packets.packetListener.events.PlayerInputEvent121;
-import poa.packets.packetListener.events.SystemChatPacketEvent121;
+import poa.packets.packetListener.events.*;
 import poa.util.Components121;
 
 import java.lang.reflect.Method;
@@ -273,6 +274,23 @@ public class PacketHandler121 extends ChannelDuplexHandler {
                 pluginManager.callEvent(playerChatPacketEvent121);
 
                 if (playerChatPacketEvent121.isCancelled())
+                    return;
+
+            }
+
+            else if (packet instanceof ClientboundBlockUpdatePacket blockUpdatePacket){
+                final BlockUpdateEvent121 blockUpdateEvent121 = new BlockUpdateEvent121(player, true);
+                final BlockState blockState = blockUpdatePacket.getBlockState();
+                final CraftBlockData blockData = CraftBlockData.fromData(blockState);
+                blockUpdateEvent121.setBlockData(blockData);
+                final BlockPos pos = blockUpdatePacket.getPos();
+                blockUpdateEvent121.setX(pos.getX());
+                blockUpdateEvent121.setY(pos.getY());
+                blockUpdateEvent121.setZ(pos.getZ());
+                blockUpdateEvent121.setOriginalBlock(blockUpdateEvent121.getLocation().getBlock());
+
+                pluginManager.callEvent(blockUpdateEvent121);
+                if(blockUpdateEvent121.isCancelled())
                     return;
 
             }

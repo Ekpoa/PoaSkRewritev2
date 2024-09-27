@@ -48,7 +48,8 @@ public class SkriptEvents extends SimpleEvent {
         //Player Input
         RegisterInput.register();
 
-
+        //Block Send
+        RegisterBlockUpdate.register();
     }
 
 }

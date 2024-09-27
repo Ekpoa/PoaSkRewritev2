@@ -5,6 +5,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelPromise;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.*;
@@ -13,16 +14,15 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.block.state.BlockState;
 import org.bukkit.Bukkit;
 import org.bukkit.Particle;
 import org.bukkit.craftbukkit.CraftParticle;
+import org.bukkit.craftbukkit.block.data.CraftBlockData;
 import org.bukkit.craftbukkit.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
-import poa.packets.packetListener.events.PlayerChatPacketEvent1206;
-import poa.packets.packetListener.events.PlayerInputEvent1206;
-import poa.packets.packetListener.events.SystemChatPacketEvent1206;
-import poa.packets.packetListener.events.ParticleEvent1206;
+import poa.packets.packetListener.events.*;
 import poa.util.Components1206;
 
 import java.lang.reflect.Method;
@@ -275,7 +275,22 @@ public class PacketHandler1206 extends ChannelDuplexHandler {
                     return;
 
             }
+            else if (packet instanceof ClientboundBlockUpdatePacket blockUpdatePacket){
+                final BlockUpdateEvent1206 blockUpdateEvent1206 = new BlockUpdateEvent1206(player, true);
+                final BlockState blockState = blockUpdatePacket.getBlockState();
+                final CraftBlockData blockData = CraftBlockData.fromData(blockState);
+                blockUpdateEvent1206.setBlockData(blockData);
+                final BlockPos pos = blockUpdatePacket.getPos();
+                blockUpdateEvent1206.setX(pos.getX());
+                blockUpdateEvent1206.setY(pos.getY());
+                blockUpdateEvent1206.setZ(pos.getZ());
+                blockUpdateEvent1206.setOriginalBlock(blockUpdateEvent1206.getLocation().getBlock());
 
+                pluginManager.callEvent(blockUpdateEvent1206);
+                if(blockUpdateEvent1206.isCancelled())
+                    return;
+
+            }
 
             super.write(ctx, msg, promise);
         } catch (Exception e) {
