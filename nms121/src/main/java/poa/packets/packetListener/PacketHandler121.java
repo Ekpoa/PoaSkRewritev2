@@ -42,6 +42,7 @@ public class PacketHandler121 extends ChannelDuplexHandler {
         this.player = player;
     }
 
+
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         try {
@@ -61,11 +62,10 @@ public class PacketHandler121 extends ChannelDuplexHandler {
                 pluginManager.callEvent(event);
                 if(event.isCancelled())
                     return;
-
             }
 
 
-
+            super.channelRead(ctx, msg);
         }
         catch (Exception e){
             e.printStackTrace();

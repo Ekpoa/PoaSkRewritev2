@@ -39,6 +39,8 @@ public class PacketHandler1204 extends ChannelDuplexHandler {
 
     }
 
+
+
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         try {
@@ -59,22 +61,7 @@ public class PacketHandler1204 extends ChannelDuplexHandler {
                     return;
 
             }
-            else if (packet instanceof ClientboundBlockUpdatePacket blockUpdatePacket){
-                final BlockUpdateEvent1204 blockUpdateEvent1204 = new BlockUpdateEvent1204(player, true);
-                final BlockState blockState = blockUpdatePacket.getBlockState();
-                final CraftBlockData blockData = CraftBlockData.fromData(blockState);
-                blockUpdateEvent1204.setBlockData(blockData);
-                final BlockPos pos = blockUpdatePacket.getPos();
-                blockUpdateEvent1204.setX(pos.getX());
-                blockUpdateEvent1204.setY(pos.getY());
-                blockUpdateEvent1204.setZ(pos.getZ());
-                blockUpdateEvent1204.setOriginalBlock(blockUpdateEvent1204.getLocation().getBlock());
 
-                pluginManager.callEvent(blockUpdateEvent1204);
-                if(blockUpdateEvent1204.isCancelled())
-                    return;
-
-            }
 
 
         }
@@ -298,6 +285,22 @@ public class PacketHandler1204 extends ChannelDuplexHandler {
                 pluginManager.callEvent(playerChatPacketEvent1206);
 
                 if (playerChatPacketEvent1206.isCancelled())
+                    return;
+
+            }
+            else if (packet instanceof ClientboundBlockUpdatePacket blockUpdatePacket){
+                final BlockUpdateEvent1204 blockUpdateEvent1204 = new BlockUpdateEvent1204(player, true);
+                final BlockState blockState = blockUpdatePacket.getBlockState();
+                final CraftBlockData blockData = CraftBlockData.fromData(blockState);
+                blockUpdateEvent1204.setBlockData(blockData);
+                final BlockPos pos = blockUpdatePacket.getPos();
+                blockUpdateEvent1204.setX(pos.getX());
+                blockUpdateEvent1204.setY(pos.getY());
+                blockUpdateEvent1204.setZ(pos.getZ());
+                blockUpdateEvent1204.setOriginalBlock(blockUpdateEvent1204.getLocation().getBlock());
+
+                pluginManager.callEvent(blockUpdateEvent1204);
+                if(blockUpdateEvent1204.isCancelled())
                     return;
 
             }
