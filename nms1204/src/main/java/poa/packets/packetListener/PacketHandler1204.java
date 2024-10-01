@@ -258,15 +258,15 @@ public class PacketHandler1204 extends ChannelDuplexHandler {
                 final Component component = Components1204.componentActual(chatPacket.content());
 
 
-                final SystemChatPacketEvent1204 chatPacketEvent1206 = new SystemChatPacketEvent1204(player, true);
+                final SystemChatPacketEvent1204 systemChatPacketEvent1204 = new SystemChatPacketEvent1204(player, true);
 
-                chatPacketEvent1206.setOverlay(chatPacket.overlay());
+                systemChatPacketEvent1204.setOverlay(chatPacket.overlay());
 
-                chatPacketEvent1206.setString(MiniMessage.miniMessage().serialize(component));
+                systemChatPacketEvent1204.setString(MiniMessage.miniMessage().serialize(component));
 
-                pluginManager.callEvent(chatPacketEvent1206);
+                pluginManager.callEvent(systemChatPacketEvent1204);
 
-                if (chatPacketEvent1206.isCancelled())
+                if (systemChatPacketEvent1204.isCancelled())
                     return;
             } else if (packet instanceof ClientboundPlayerChatPacket chatPacket) {
                 String message;
