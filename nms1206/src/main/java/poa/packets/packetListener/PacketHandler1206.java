@@ -290,6 +290,13 @@ public class PacketHandler1206 extends ChannelDuplexHandler {
                 if(blockUpdateEvent1206.isCancelled())
                     return;
 
+                if (blockUpdateEvent1206.getBlockData() != blockData) {
+                    ClientboundBlockUpdatePacket newPacket = new ClientboundBlockUpdatePacket(pos, ((CraftBlockData) blockUpdateEvent1206.getBlockData()).getState());
+
+                    super.write(ctx, newPacket, promise);
+                    return;
+                }
+
             }
 
             super.write(ctx, msg, promise);

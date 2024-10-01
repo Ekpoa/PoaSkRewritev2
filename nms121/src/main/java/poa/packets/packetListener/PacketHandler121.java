@@ -19,6 +19,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.Particle;
 import org.bukkit.craftbukkit.CraftParticle;
 import org.bukkit.craftbukkit.block.CraftBlock;
+import org.bukkit.craftbukkit.block.CraftBlockState;
+import org.bukkit.craftbukkit.block.CraftBlockStates;
 import org.bukkit.craftbukkit.block.data.CraftBlockData;
 import org.bukkit.craftbukkit.entity.CraftPlayer;
 import org.bukkit.entity.Player;
@@ -65,7 +67,6 @@ public class PacketHandler121 extends ChannelDuplexHandler {
             }
 
 
-            super.channelRead(ctx, msg);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -293,6 +294,12 @@ public class PacketHandler121 extends ChannelDuplexHandler {
                 if(blockUpdateEvent121.isCancelled())
                     return;
 
+                if (blockUpdateEvent121.getBlockData() != blockData) {
+                    ClientboundBlockUpdatePacket newPacket = new ClientboundBlockUpdatePacket(pos, ((CraftBlockData) blockUpdateEvent121.getBlockData()).getState());
+
+                    super.write(ctx, newPacket, promise);
+                    return;
+                }
             }
             
 
