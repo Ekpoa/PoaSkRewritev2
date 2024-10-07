@@ -3,6 +3,7 @@ package poa.packets;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import lombok.SneakyThrows;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.network.protocol.game.ClientboundPlayerInfoRemovePacket;
@@ -31,11 +32,10 @@ import java.util.concurrent.ThreadLocalRandom;
 public class FakePlayer1204 {
 
     @SneakyThrows
-    public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id, UUID uuid, int skinModel) {
+    public static Player spawnFakePlayer(List<Player> sendTo, String name, String skinTexture, String skinSignature, Location loc, boolean listed, int latency, int id, UUID uuid, int skinModel) {
         World world = Bukkit.getWorlds().get(0);
         MinecraftServer server = MinecraftServer.getServer();
         ServerLevel level = ((CraftWorld) world).getHandle();
-
 
 
         ClientInformation clientInformation = new ClientInformation("en_us", 2, ChatVisiblity.FULL, false, skinModel, HumanoidArm.RIGHT, true, listed);
@@ -44,17 +44,15 @@ public class FakePlayer1204 {
         fakePlayer.setRot(loc.getYaw(), loc.getPitch());
         fakePlayer.setYHeadRot(loc.getYaw());
 
-
         GameProfile gameProfile = fakePlayer.getGameProfile();
 
-        if(skinName != null && !skinName.isEmpty()) {
-            UUID string = Bukkit.getOfflinePlayer(skinName).getUniqueId();
-
+        if (skinTexture != null || skinSignature == null) {
             gameProfile.getProperties().removeAll("textures");
-            gameProfile.getProperties().put("textures", new Property("textures", FetchSkin1204.fetchSkinURL(string), FetchSkin1204.fetchSkinSignature(string)));
+            gameProfile.getProperties().put("textures", new Property("textures", skinTexture, skinSignature));
 
         }
 
+        //fakePlayer.connection = new ServerGamePacketListenerImpl(server, new Connection(PacketFlow.CLIENTBOUND), fakePlayer, new CommonListenerCookie(gameProfile, 0, clientInformation, false));
 
         for (Player player : sendTo) {
             ServerGamePacketListenerImpl connection = ((CraftPlayer) player).getHandle().connection;
@@ -62,25 +60,38 @@ public class FakePlayer1204 {
             ClientboundPlayerInfoUpdatePacket.Action addPlayer = ClientboundPlayerInfoUpdatePacket.Action.ADD_PLAYER;
             connection.send(new ClientboundPlayerInfoUpdatePacket(EnumSet.of(addPlayer), entry));
 
-            if(listed)
+            if (listed)
                 connection.send(new ClientboundPlayerInfoUpdatePacket(EnumSet.of(ClientboundPlayerInfoUpdatePacket.Action.UPDATE_LISTED), entry));
-            if(latency > 0)
+            if (latency > 0)
                 connection.send(new ClientboundPlayerInfoUpdatePacket(EnumSet.of(ClientboundPlayerInfoUpdatePacket.Action.UPDATE_LATENCY), entry));
 
             fakePlayer.setId(id);
 
-
-            ClientboundSetEntityDataPacket skinPacket = new ClientboundSetEntityDataPacket(id, fakePlayer.getEntityData().packDirty());
-            if (skinName != null && !skinName.isEmpty()) {
-                connection.send(skinPacket);
-            }
-
-            ClientboundAddEntityPacket packet = new ClientboundAddEntityPacket(fakePlayer);
+            ClientboundAddEntityPacket packet = new ClientboundAddEntityPacket(fakePlayer, 0, new BlockPos(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ()));
 
             connection.send(packet);
 
+            if (skinTexture != null || skinSignature == null) {
+                connection.send(new ClientboundSetEntityDataPacket(id, fakePlayer.getEntityData().packDirty()));
+            }
         }
+        Player tr;
+        try {
+            tr = fakePlayer.getBukkitEntity().getPlayer();
+        }
+        catch (Exception e){
+            System.out.println("Failed to create bukkit entity for fake player");
+            tr = null;
+        }
+        return tr;
+    }
 
+    public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id, UUID uuid, int skinModel) {
+        UUID string = Bukkit.getOfflinePlayer(skinName).getUniqueId();
+        String texture = FetchSkin1204.fetchSkinURL(string);
+        String signature = FetchSkin1204.fetchSkinSignature(string);
+
+        spawnFakePlayer(sendTo, name, texture, signature, loc, listed, latency, id, uuid, skinModel);
     }
 
     public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id, UUID uuid) {
@@ -93,7 +104,6 @@ public class FakePlayer1204 {
     public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency) {
         spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, ThreadLocalRandom.current().nextInt(99999, Integer.MAX_VALUE - 1));
     }
-
 
 
     @SneakyThrows

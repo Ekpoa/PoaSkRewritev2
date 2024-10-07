@@ -31,6 +31,16 @@ public class FakePlayer {
         spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, ThreadLocalRandom.current().nextInt(99999, Integer.MAX_VALUE -1));
     }
 
+    public static void spawnFakePlayer(List<Player> sendTo, String name, String texture, String signature, Location loc, boolean listed, int latency, int id, UUID uuid, int skinModel) {
+        switch (BukkitVersion.getBukkitVersion()) {
+            case "1202" -> FakePlayer1202.spawnFakePlayer(sendTo, name, texture, signature, loc, listed, latency, id, uuid, skinModel);
+            case "1204" -> FakePlayer1204.spawnFakePlayer(sendTo, name, texture, signature, loc, listed, latency, id, uuid, skinModel);
+            case "1206" -> FakePlayer1206.spawnFakePlayer(sendTo, name, texture, signature, loc, listed, latency, id, uuid, skinModel);
+            case "121" -> FakePlayer121.spawnFakePlayer(sendTo, name, texture, signature, loc, listed, latency, id, uuid, skinModel);
+        }
+    }
+
+
     public static void removeFakePlayerPacket(List<Player> sendTo, List<UUID> uuids, List<Integer> ids) {
         switch (BukkitVersion.getBukkitVersion()) {
             case "1202" -> FakePlayer1202.removeFakePlayerPacket(sendTo, uuids, ids);

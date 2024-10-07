@@ -37,11 +37,8 @@ import java.util.concurrent.ThreadLocalRandom;
 public class FakePlayer121 {
 
 
-
-
-
     @SneakyThrows
-    public static Player spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id, UUID uuid, int skinModel) {
+    public static Player spawnFakePlayer(List<Player> sendTo, String name, String skinTexture, String skinSignature, Location loc, boolean listed, int latency, int id, UUID uuid, int skinModel) {
         World world = Bukkit.getWorlds().get(0);
         MinecraftServer server = MinecraftServer.getServer();
         ServerLevel level = ((CraftWorld) world).getHandle();
@@ -55,11 +52,9 @@ public class FakePlayer121 {
 
         GameProfile gameProfile = fakePlayer.getGameProfile();
 
-        if (skinName != null && !skinName.isEmpty()) {
-            UUID string = Bukkit.getOfflinePlayer(skinName).getUniqueId();
-
+        if (skinTexture != null || skinSignature == null) {
             gameProfile.getProperties().removeAll("textures");
-            gameProfile.getProperties().put("textures", new Property("textures", FetchSkin121.fetchSkinURL(string), FetchSkin121.fetchSkinSignature(string)));
+            gameProfile.getProperties().put("textures", new Property("textures", skinTexture, skinSignature));
 
         }
 
@@ -82,11 +77,9 @@ public class FakePlayer121 {
 
             connection.send(packet);
 
-            if (skinName != null && !skinName.isEmpty()) {
+            if (skinTexture != null || skinSignature == null) {
                 connection.send(new ClientboundSetEntityDataPacket(id, fakePlayer.getEntityData().packAll()));
             }
-
-
         }
         Player tr;
         try {
@@ -97,6 +90,14 @@ public class FakePlayer121 {
             tr = null;
         }
         return tr;
+    }
+
+    public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id, UUID uuid, int skinModel) {
+        UUID string = Bukkit.getOfflinePlayer(skinName).getUniqueId();
+        String texture = FetchSkin121.fetchSkinURL(string);
+        String signature = FetchSkin121.fetchSkinSignature(string);
+
+        spawnFakePlayer(sendTo, name, texture, signature, loc, listed, latency, id, uuid, skinModel);
     }
 
     public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id, UUID uuid) {

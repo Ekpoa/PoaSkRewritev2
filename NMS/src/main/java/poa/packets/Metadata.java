@@ -120,6 +120,15 @@ public class Metadata {
         }
     }
 
+    public void setRemainingAir(int air) {
+        switch (BukkitVersion.getBukkitVersion()) {
+            case "1202" -> metadata1202.setRemainingAir(air);
+            case "1204" -> metadata1204.setRemainingAir(air);
+            case "1206" -> metadata1206.setRemainingAir(air);
+            case "121" -> metadata121.setRemainingAir(air);
+        }
+    }
+
 
     public void setItem(org.bukkit.inventory.ItemStack itemStack) {
         switch (BukkitVersion.getBukkitVersion()) {

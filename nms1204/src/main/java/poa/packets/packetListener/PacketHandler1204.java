@@ -34,11 +34,11 @@ public class PacketHandler1204 extends ChannelDuplexHandler {
     //private List<ClientboundSystemChatPacket> list = new ArrayList<>();
 
     Player player;
+
     public PacketHandler1204(Player player) {
         this.player = player;
 
     }
-
 
 
     @Override
@@ -49,7 +49,7 @@ public class PacketHandler1204 extends ChannelDuplexHandler {
                 return;
             }
 
-            if(packet instanceof ServerboundPlayerInputPacket inputPacket){
+            if (packet instanceof ServerboundPlayerInputPacket inputPacket) {
                 final PlayerInputEvent1204 event = new PlayerInputEvent1204(player, true);
                 event.setXxa(inputPacket.getXxa());
                 event.setZza(inputPacket.getZza());
@@ -57,17 +57,15 @@ public class PacketHandler1204 extends ChannelDuplexHandler {
                 event.setShiftKey(inputPacket.isShiftKeyDown());
 
                 pluginManager.callEvent(event);
-                if(event.isCancelled())
+                if (event.isCancelled())
                     return;
 
             }
 
 
-
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-            super.channelRead(ctx,msg);
+            super.channelRead(ctx, msg);
         }
 
 
@@ -192,9 +190,7 @@ public class PacketHandler1204 extends ChannelDuplexHandler {
                     break;
                 }
 
-            }
-
-            else if (packet instanceof ClientboundLevelParticlesPacket particlesPacket) {
+            } else if (packet instanceof ClientboundLevelParticlesPacket particlesPacket) {
                 ParticleOptions particle = particlesPacket.getParticle();
                 if (particleOptionsClass == null) {
                     particleOptionsClass = particle.getClass();
@@ -205,8 +201,7 @@ public class PacketHandler1204 extends ChannelDuplexHandler {
 
                 try {
                     type = getTypeMethod.invoke(particle);
-                }
-                catch (Exception ignored){
+                } catch (Exception ignored) {
                     super.write(ctx, msg, promise);
                     return;
                 }
@@ -252,9 +247,7 @@ public class PacketHandler1204 extends ChannelDuplexHandler {
 
                 if (particleEvent.isCancelled())
                     return;
-            }
-
-            else if (packet instanceof ClientboundSystemChatPacket chatPacket) {
+            } else if (packet instanceof ClientboundSystemChatPacket chatPacket) {
                 final Component component = Components1204.componentActual(chatPacket.content());
 
 
@@ -287,8 +280,7 @@ public class PacketHandler1204 extends ChannelDuplexHandler {
                 if (playerChatPacketEvent1206.isCancelled())
                     return;
 
-            }
-            else if (packet instanceof ClientboundBlockUpdatePacket blockUpdatePacket){
+            } else if (packet instanceof ClientboundBlockUpdatePacket blockUpdatePacket) {
                 final BlockUpdateEvent1204 blockUpdateEvent1204 = new BlockUpdateEvent1204(player, true);
                 final BlockState blockState = blockUpdatePacket.getBlockState();
                 final CraftBlockData blockData = CraftBlockData.fromData(blockState);
@@ -296,11 +288,10 @@ public class PacketHandler1204 extends ChannelDuplexHandler {
                 final BlockPos pos = blockUpdatePacket.getPos();
                 blockUpdateEvent1204.setX(pos.getX());
                 blockUpdateEvent1204.setY(pos.getY());
-                blockUpdateEvent1204.setZ(pos.getZ());
-                blockUpdateEvent1204.setOriginalBlock(blockUpdateEvent1204.getLocation().getBlock());
+                blockUpdateEvent1204.setZ(pos.getZ());blockUpdateEvent1204.setOriginalBlock(blockUpdateEvent1204.getLocation().getBlock());
 
                 pluginManager.callEvent(blockUpdateEvent1204);
-                if(blockUpdateEvent1204.isCancelled())
+                if (blockUpdateEvent1204.isCancelled())
                     return;
 
                 if (blockUpdateEvent1204.getBlockData() != blockData) {
@@ -314,7 +305,7 @@ public class PacketHandler1204 extends ChannelDuplexHandler {
 
 
             super.write(ctx, msg, promise);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             super.write(ctx, msg, promise);
         }

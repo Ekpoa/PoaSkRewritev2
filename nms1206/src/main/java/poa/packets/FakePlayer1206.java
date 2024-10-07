@@ -3,6 +3,7 @@ package poa.packets;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import lombok.SneakyThrows;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.PacketFlow;
@@ -38,7 +39,7 @@ public class FakePlayer1206 {
 
 
     @SneakyThrows
-    public static Player spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id, UUID uuid, int skinModel) {
+    public static Player spawnFakePlayer(List<Player> sendTo, String name, String skinTexture, String skinSignature, Location loc, boolean listed, int latency, int id, UUID uuid, int skinModel) {
         World world = Bukkit.getWorlds().get(0);
         MinecraftServer server = MinecraftServer.getServer();
         ServerLevel level = ((CraftWorld) world).getHandle();
@@ -50,19 +51,15 @@ public class FakePlayer1206 {
         fakePlayer.setRot(loc.getYaw(), loc.getPitch());
         fakePlayer.setYHeadRot(loc.getYaw());
 
-
-
         GameProfile gameProfile = fakePlayer.getGameProfile();
 
-        if (skinName != null && !skinName.isEmpty()) {
-            UUID string = Bukkit.getOfflinePlayer(skinName).getUniqueId();
-
+        if (skinTexture != null || skinSignature == null) {
             gameProfile.getProperties().removeAll("textures");
-            gameProfile.getProperties().put("textures", new Property("textures", FetchSkin1206.fetchSkinURL(string), FetchSkin1206.fetchSkinSignature(string)));
+            gameProfile.getProperties().put("textures", new Property("textures", skinTexture, skinSignature));
 
         }
 
-        fakePlayer.connection = new ServerGamePacketListenerImpl(server, new Connection(PacketFlow.CLIENTBOUND), fakePlayer, new CommonListenerCookie(gameProfile, 0, clientInformation, false));
+        //fakePlayer.connection = new ServerGamePacketListenerImpl(server, new Connection(PacketFlow.CLIENTBOUND), fakePlayer, new CommonListenerCookie(gameProfile, 0, clientInformation, false));
 
         for (Player player : sendTo) {
             ServerGamePacketListenerImpl connection = ((CraftPlayer) player).getHandle().connection;
@@ -77,11 +74,11 @@ public class FakePlayer1206 {
 
             fakePlayer.setId(id);
 
-            ClientboundAddEntityPacket packet = new ClientboundAddEntityPacket(fakePlayer);
+            ClientboundAddEntityPacket packet = new ClientboundAddEntityPacket(fakePlayer, 0, new BlockPos(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ()));
 
             connection.send(packet);
 
-            if (skinName != null && !skinName.isEmpty()) {
+            if (skinTexture != null || skinSignature == null) {
                 connection.send(new ClientboundSetEntityDataPacket(id, fakePlayer.getEntityData().packAll()));
             }
         }
@@ -94,6 +91,14 @@ public class FakePlayer1206 {
             tr = null;
         }
         return tr;
+    }
+
+    public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id, UUID uuid, int skinModel) {
+        UUID string = Bukkit.getOfflinePlayer(skinName).getUniqueId();
+        String texture = FetchSkin1206.fetchSkinURL(string);
+        String signature = FetchSkin1206.fetchSkinSignature(string);
+
+        spawnFakePlayer(sendTo, name, texture, signature, loc, listed, latency, id, uuid, skinModel);
     }
 
     public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id, UUID uuid) {

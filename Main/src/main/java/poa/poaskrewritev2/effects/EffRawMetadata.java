@@ -98,6 +98,11 @@ public class EffRawMetadata extends Effect {
                         return;
                     metadata.setHealth(Integer.parseInt(args[1]));
                 }
+                case "air" -> {
+                    if (args.length == 1)
+                        return;
+                    metadata.setRemainingAir(Integer.parseInt(args[1]));
+                }
 
                 case "stand" -> {
                     if (args.length < 2)

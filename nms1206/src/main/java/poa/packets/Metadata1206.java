@@ -106,7 +106,9 @@ public class Metadata1206 {
         float h = health/10F;
         dataList.add(new SynchedEntityData.DataValue<>(9, EntityDataSerializers.FLOAT, h));
     }
-
+    public void setRemainingAir(int air){
+        dataList.add(new SynchedEntityData.DataValue<>(1, EntityDataSerializers.INT, air));
+    }
 
 
 

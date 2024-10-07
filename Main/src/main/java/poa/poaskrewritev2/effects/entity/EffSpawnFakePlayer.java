@@ -54,6 +54,20 @@ public class EffSpawnFakePlayer extends Effect {
     @Override
     protected void execute(Event event) {
         String name = this.name.getSingle(event);
+
+        String skinName = this.skinName.getSingle(event);
+
+        String texture = null;
+        String signature = null;
+
+        if(skinName != null && skinName.length() > 16){
+            skinName = skinName.replaceAll(" ", "");
+            List<String> split = Arrays.stream(skinName.split(",")).toList();
+
+            texture = split.get(0);
+            signature = split.get(1);
+        }
+
         boolean listed = false;
 
         boolean nameHidden = false;
@@ -74,7 +88,14 @@ public class EffSpawnFakePlayer extends Effect {
 
         Location location = this.location.getSingle(event);
 
-        FakePlayer.spawnFakePlayer(Arrays.stream(players.getArray(event)).toList(), name, skinName.getSingle(event), location, listed, latency, id, uuid);
+
+
+
+        final List<Player> playerList = Arrays.stream(players.getArray(event)).toList();
+        if(texture == null) {
+            FakePlayer.spawnFakePlayer(playerList, name, skinName, location, listed, latency, id, uuid);
+        } else
+            FakePlayer.spawnFakePlayer(playerList, name, texture, signature, location, listed, latency, id, uuid, 127);
 
         if(nameHidden){
             for (Player p : players.getArray(event)) {
