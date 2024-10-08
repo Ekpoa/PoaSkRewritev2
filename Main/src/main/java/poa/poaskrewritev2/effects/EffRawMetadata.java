@@ -8,6 +8,7 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.VariableString;
 import ch.njol.util.Kleenean;
 import org.bukkit.Bukkit;
+import org.bukkit.Color;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.Display;
 import org.bukkit.entity.TextDisplay;
@@ -206,7 +207,12 @@ public class EffRawMetadata extends Effect {
                         }
                         case "index27" ->
                                 metadata.index27(Boolean.parseBoolean(args[2]), Boolean.parseBoolean(args[3]), Boolean.parseBoolean(args[4]));
-                        case "glow" -> metadata.setGlowOverride(Integer.parseInt(args[3])); //args[2] = override
+                        case "glow" -> {
+                            final int r = Integer.parseInt(args[3]);
+                            final int g = Integer.parseInt(args[4]);
+                            final int b = Integer.parseInt(args[5]);
+                            metadata.setGlowOverride(Color.fromRGB(r, g, b).asRGB()); //args[2] = override
+                        }
 
                     }
                 }
