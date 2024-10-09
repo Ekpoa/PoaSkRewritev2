@@ -35,20 +35,21 @@ public class PlayerInputEvent121 extends PlayerEvent implements Cancellable {
     }
 
     public String getKey(){
+        String s = "";
         if(xxa > 0)
-            return "A";
+            s = s + "A ";
         if(xxa < 0)
-            return "D";
+            s = s +  "D ";
         if(zza > 0)
-            return "W";
+            s = s +  "W ";
         if (zza < 0)
-            return "S";
+            s = s +  "S ";
         if(isShiftKey)
-            return "SHIFT";
+            s = s +  "SHIFT ";
         if (isJumping)
-            return "SPACE";
+            s = s +  "SPACE ";
 
-        return "NONE";
+        return s.strip();
     }
 
 

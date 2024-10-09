@@ -58,7 +58,6 @@ public class EffRawMetadata extends Effect {
 
         if (input == null || packet == null) return;
 
-
         List<String> list = new ArrayList<>(List.of(input.split(" ")));
 
         if (list.get(0).equalsIgnoreCase("on"))
