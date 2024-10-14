@@ -197,7 +197,8 @@ public class PacketHandler121 extends ChannelDuplexHandler {
 
                 try {
                     type = getTypeMethod.invoke(particle);
-                } catch (Exception ignored) {
+                } catch (Exception e) {
+                    e.printStackTrace();
                     super.write(ctx, msg, promise);
                     return;
                 }
