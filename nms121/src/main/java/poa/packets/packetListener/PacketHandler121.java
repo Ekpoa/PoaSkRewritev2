@@ -122,9 +122,6 @@ public class PacketHandler121 extends ChannelDuplexHandler {
                     return;
                 }
 
-//            if (player.getName().equalsIgnoreCase("EllieeUwU")) {
-//                Bukkit.broadcastMessage("is player");
-//            }
 
                 if (target.isGlowing()) {
                     super.write(ctx, msg, promise);
@@ -133,26 +130,18 @@ public class PacketHandler121 extends ChannelDuplexHandler {
                 }
 
 
-//            if (player.getName().equalsIgnoreCase("EllieeUwU")) {
-//                Bukkit.broadcastMessage("is not glowing already");
-//            }
-
                 boolean glow = true;
 
                 List<Integer> ids = GlowMap121.glowMap.get(player);
 
-//            if (player.getName().equalsIgnoreCase("EllieeUwU")) {
-//                Bukkit.broadcastMessage(ids + "");
-//            }
+
 
                 if (entityId != target.getEntityId()) {
                     super.write(ctx, msg, promise);
                     return;
                 }
 
-//            if (player.getName().equalsIgnoreCase("EllieeUwU")) {
-//                Bukkit.broadcastMessage("not target");
-//            }
+
 
                 if (ids == null)
                     glow = false;
@@ -160,11 +149,6 @@ public class PacketHandler121 extends ChannelDuplexHandler {
                     glow = false;
                 else if (!ids.contains(entityId))
                     glow = false;
-
-
-//            if (player.getName().equalsIgnoreCase("EllieeUwU")) {
-//                Bukkit.broadcastMessage(glow + "");
-//            }
 
 
                 var dataValues = new ArrayList<>(metadata.packedItems());
