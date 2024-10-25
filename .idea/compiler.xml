@@ -9,9 +9,9 @@
         <module name="nms1204" />
         <module name="PoaSK" />
         <module name="nms1206" />
-        <module name="nms121 (1)" />
         <module name="NMS" />
         <module name="nms121" />
+        <module name="nms1211" />
         <module name="Main" />
         <module name="nms1202" />
       </profile>
@@ -20,6 +20,7 @@
       <module name="Build" target="17" />
       <module name="Main" target="17" />
       <module name="nms" target="17" />
+      <module name="nms1212" target="17" />
       <module name="Shade" target="17" />
     </bytecodeTargetLevel>
   </component>

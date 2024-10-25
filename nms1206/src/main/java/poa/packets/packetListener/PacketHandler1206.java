@@ -9,6 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.*;
+import net.minecraft.network.protocol.status.ServerStatus;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
@@ -279,6 +280,8 @@ public class PacketHandler1206 extends ChannelDuplexHandler {
 
                 if (blockUpdateEvent1206.getBlockData() != blockData) {
                     ClientboundBlockUpdatePacket newPacket = new ClientboundBlockUpdatePacket(pos, ((CraftBlockData) blockUpdateEvent1206.getBlockData()).getState());
+
+
 
                     super.write(ctx, newPacket, promise);
                     return;

@@ -20,6 +20,7 @@ public class FakePlayer {
             case "1204" -> FakePlayer1204.spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, id, uuid);
             case "1206" -> FakePlayer1206.spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, id, uuid);
             case "121" -> FakePlayer121.spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, id, uuid);
+            case "1211" -> FakePlayer1211.spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, id, uuid);
         }
     }
 
@@ -37,6 +38,7 @@ public class FakePlayer {
             case "1204" -> FakePlayer1204.spawnFakePlayer(sendTo, name, texture, signature, loc, listed, latency, id, uuid, skinModel);
             case "1206" -> FakePlayer1206.spawnFakePlayer(sendTo, name, texture, signature, loc, listed, latency, id, uuid, skinModel);
             case "121" -> FakePlayer121.spawnFakePlayer(sendTo, name, texture, signature, loc, listed, latency, id, uuid, skinModel);
+            case "1211" -> FakePlayer1211.spawnFakePlayer(sendTo, name, texture, signature, loc, listed, latency, id, uuid, skinModel);
         }
     }
 
@@ -47,6 +49,7 @@ public class FakePlayer {
             case "1204" -> FakePlayer1204.removeFakePlayerPacket(sendTo, uuids, ids);
             case "1206" -> FakePlayer1206.removeFakePlayerPacket(sendTo, uuids, ids);
             case "121" -> FakePlayer121.removeFakePlayerPacket(sendTo, uuids, ids);
+            case "1211" -> FakePlayer121.removeFakePlayerPacket(sendTo, uuids, ids);
         }
     }
 

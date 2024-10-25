@@ -14,6 +14,7 @@ public class GetPose {
             case "1204" -> GetPose1204.getPose(entity);
             case "1206" -> GetPose1206.getPose(entity);
             case "121" -> GetPose121.getPose(entity);
+            case "1211" -> GetPose121.getPose(entity);
             default -> null;
         };
     }
@@ -24,6 +25,7 @@ public class GetPose {
             case "1204" -> GetPose1204.getPoseString(entity);
             case "1206" -> GetPose1206.getPoseString(entity);
             case "121" -> GetPose121.getPoseString(entity);
+            case "1211" -> GetPose121.getPoseString(entity);
             default -> null;
         };
     }
