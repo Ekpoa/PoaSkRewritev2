@@ -30,7 +30,7 @@ public class JoinLeave implements Listener {
     @EventHandler
     public void join(PlayerJoinEvent e){
         switch (BukkitVersion.getBukkitVersion()) {
-            case "1204","1206", "121" -> PacketInjector.inject(e);
+            case "1204","1206", "121", "1211" -> PacketInjector.inject(e);
         }
     }
 
@@ -39,7 +39,7 @@ public class JoinLeave implements Listener {
         Player player = e.getPlayer();
 
         Map<Player, List<Integer>> glowMap = GlowMap.getGlowMap();
-        if (glowMap == null) {
+        if (glowMap == null || !glowMap.containsKey(player)) {
             PoaSkRewritev2.getINSTANCE().getLogger().log(Level.WARNING, "could not find glow map, was player injected?: " + BukkitVersion.getBukkitVersion());
             return;
         }
