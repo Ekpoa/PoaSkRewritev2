@@ -102,6 +102,28 @@ public class RegisterInput {
                     }
                 }, EventValues.TIME_NOW);
             }
+            case "1211" -> {
+                Skript.registerEvent("Player Input Event", SimpleEvent.class, PlayerInputEvent1211.class,
+                        "player input packet");
+                EventValues.registerEventValue(PlayerInputEvent1211.class, Vector.class, new Getter<>() {
+                    @Override
+                    public Vector get(PlayerInputEvent1211 event) {
+                        return event.getVector();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(PlayerInputEvent1211.class, Boolean.class, new Getter<>() {
+                    @Override
+                    public Boolean get(PlayerInputEvent1211 event) {
+                        return event.isJumping();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(PlayerInputEvent1211.class, String.class, new Getter<>() {
+                    @Override
+                    public String get(PlayerInputEvent1211 event) {
+                        return event.getKey();
+                    }
+                }, EventValues.TIME_NOW);
+            }
 
         }
     }
