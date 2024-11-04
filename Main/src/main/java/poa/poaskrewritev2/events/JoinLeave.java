@@ -18,34 +18,32 @@ import java.util.logging.Level;
 
 public class JoinLeave implements Listener {
 
-
-
     @EventHandler
-    public void connect(PlayerLoginEvent e){
+    public void connect(PlayerLoginEvent e) {
         switch (BukkitVersion.getBukkitVersion()) {
             case "1202" -> PacketInjector.inject(e);
         }
     }
 
     @EventHandler
-    public void join(PlayerJoinEvent e){
+    public void join(PlayerJoinEvent e) {
         switch (BukkitVersion.getBukkitVersion()) {
-            case "1204","1206", "121", "1211" -> PacketInjector.inject(e);
+            case "1204", "1206", "121", "1211" -> PacketInjector.inject(e);
         }
     }
 
     @EventHandler
-    public void onQuit(PlayerQuitEvent e){
+    public void onQuit(PlayerQuitEvent e) {
         Player player = e.getPlayer();
 
         Map<Player, List<Integer>> glowMap = GlowMap.getGlowMap();
-        if (glowMap == null || !glowMap.containsKey(player)) {
-            PoaSkRewritev2.getINSTANCE().getLogger().log(Level.WARNING, "could not find glow map, was player injected?: " + BukkitVersion.getBukkitVersion());
+        if (glowMap == null) {
+            PoaSkRewritev2.getINSTANCE().getLogger().log(Level.WARNING, "could not find glow map, its null: " + BukkitVersion.getBukkitVersion());
             return;
         }
         glowMap.remove(player);
 
-        GlowMap.getGlowMap().entrySet().removeIf(entry -> entry.getValue().contains(player.getEntityId()));
+        glowMap.entrySet().removeIf(entry -> entry.getValue().contains(player.getEntityId()));
 
         PacketInjector.unInject(player);
     }

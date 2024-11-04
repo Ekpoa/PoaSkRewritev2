@@ -20,6 +20,7 @@
       <module name="Build" target="17" />
       <module name="Main" target="17" />
       <module name="nms" target="17" />
+      <module name="nms121 (1)" target="17" />
       <module name="nms1212" target="17" />
       <module name="Shade" target="17" />
     </bytecodeTargetLevel>
