@@ -74,7 +74,7 @@ public class FakePlayer1206 {
 
             fakePlayer.setId(id);
 
-            ClientboundAddEntityPacket packet = new ClientboundAddEntityPacket(fakePlayer, 0, new BlockPos(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ()));
+            ClientboundAddEntityPacket packet = new ClientboundAddEntityPacket(fakePlayer.getId(), fakePlayer.getUUID(), loc.getX(), loc.getY(), loc.getZ(), loc.getPitch(), loc.getYaw(), fakePlayer.getType(), 0, fakePlayer.getDeltaMovement(), fakePlayer.getYHeadRot());
 
             connection.send(packet);
 

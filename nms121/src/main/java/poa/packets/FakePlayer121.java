@@ -73,8 +73,7 @@ public class FakePlayer121 {
 
             fakePlayer.setId(id);
 
-            ClientboundAddEntityPacket packet = new ClientboundAddEntityPacket(fakePlayer, 0, new BlockPos(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ()));
-
+            ClientboundAddEntityPacket packet = new ClientboundAddEntityPacket(fakePlayer.getId(), fakePlayer.getUUID(), loc.getX(), loc.getY(), loc.getZ(), loc.getPitch(), loc.getYaw(), fakePlayer.getType(), 0, fakePlayer.getDeltaMovement(), fakePlayer.getYHeadRot());
             connection.send(packet);
 
             if (skinTexture != null || skinSignature == null) {
@@ -84,8 +83,7 @@ public class FakePlayer121 {
         Player tr;
         try {
             tr = fakePlayer.getBukkitEntity().getPlayer();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Failed to create bukkit entity for fake player");
             tr = null;
         }
@@ -103,6 +101,7 @@ public class FakePlayer121 {
     public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id, UUID uuid) {
         spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, id, uuid, 127);
     }
+
     public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id) {
         spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, id, UUID.randomUUID());
     }

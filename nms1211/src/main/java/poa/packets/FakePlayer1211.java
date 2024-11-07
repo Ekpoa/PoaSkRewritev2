@@ -17,6 +17,7 @@ import net.minecraft.server.network.ServerGamePacketListenerImpl;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.player.ChatVisiblity;
 import net.minecraft.world.level.GameType;
+import net.minecraft.world.phys.Vec3;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -41,9 +42,11 @@ public class FakePlayer1211 {
 
         ClientInformation clientInformation = new ClientInformation("en_us", 2, ChatVisiblity.FULL, false, skinModel, HumanoidArm.RIGHT, true, listed);
         ServerPlayer fakePlayer = new ServerPlayer(server, level, new GameProfile(uuid, name), clientInformation);
-        fakePlayer.setPos(loc.getX(), loc.getY(), loc.getZ());
+        fakePlayer.setPos(new Vec3(loc.getX(), loc.getY(), loc.getZ()));
         fakePlayer.setRot(loc.getYaw(), loc.getPitch());
         fakePlayer.setYHeadRot(loc.getYaw());
+
+
 
         GameProfile gameProfile = fakePlayer.getGameProfile();
 
@@ -68,14 +71,21 @@ public class FakePlayer1211 {
 
             fakePlayer.setId(id);
 
-            ClientboundAddEntityPacket packet = new ClientboundAddEntityPacket(fakePlayer, 0, new BlockPos(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ()));
+            ClientboundAddEntityPacket packet = new ClientboundAddEntityPacket(fakePlayer.getId(), fakePlayer.getUUID(), loc.getX(), loc.getY(), loc.getZ(), loc.getPitch(), loc.getYaw(), fakePlayer.getType(), 0, fakePlayer.getDeltaMovement(), fakePlayer.getYHeadRot());
+
+           // new ClientboundAddEntityPacket(fakePlayer, 0, new BlockPos(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ()));
 
             connection.send(packet);
 
             if (skinTexture != null || skinSignature == null) {
                 connection.send(new ClientboundSetEntityDataPacket(id, fakePlayer.getEntityData().packAll()));
             }
+
+
+
+
         }
+
         Player tr;
         try {
             tr = fakePlayer.getBukkitEntity().getPlayer();
