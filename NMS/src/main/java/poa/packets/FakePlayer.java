@@ -49,7 +49,7 @@ public class FakePlayer {
             case "1204" -> FakePlayer1204.removeFakePlayerPacket(sendTo, uuids, ids);
             case "1206" -> FakePlayer1206.removeFakePlayerPacket(sendTo, uuids, ids);
             case "121" -> FakePlayer121.removeFakePlayerPacket(sendTo, uuids, ids);
-            case "1211" -> FakePlayer121.removeFakePlayerPacket(sendTo, uuids, ids);
+            case "1211" -> FakePlayer1211.removeFakePlayerPacket(sendTo, uuids, ids);
         }
     }
 
