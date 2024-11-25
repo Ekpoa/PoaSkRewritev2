@@ -20,6 +20,8 @@ public class Metadata {
                     Metadata121.basePacketForEntity(id, fire, invisible, glow, name, nameVisible, silent, gravity, pose);
             case "1211" ->
                     Metadata1211.basePacketForEntity(id, fire, invisible, glow, name, nameVisible, silent, gravity, pose);
+            case "1213" ->
+                    Metadata1213.basePacketForEntity(id, fire, invisible, glow, name, nameVisible, silent, gravity, pose);
             default -> null;
         };
     }
@@ -29,6 +31,7 @@ public class Metadata {
     Metadata1206 metadata1206;
     Metadata121 metadata121;
     Metadata1211 metadata1211;
+    Metadata1213 metadata1213;
 
 
     public Metadata(int id) {
@@ -38,6 +41,7 @@ public class Metadata {
             case "1206" -> metadata1206 = new Metadata1206(id);
             case "121" -> metadata121 = new Metadata121(id);
             case "1211" -> metadata1211 = new Metadata1211(id);
+            case "1213" -> metadata1213 = new Metadata1213(id);
         }
     }
 
@@ -49,6 +53,7 @@ public class Metadata {
             case "1206" -> metadata1206.setOnFire(onFire);
             case "121" -> metadata121.setOnFire(onFire);
             case "1211" -> metadata1211.setOnFire(onFire);
+            case "1213" -> metadata1213.setOnFire(onFire);
         }
     }
 
@@ -59,6 +64,7 @@ public class Metadata {
             case "1206" -> metadata1206.setInvisible(invisible);
             case "121" -> metadata121.setInvisible(invisible);
             case "1211" -> metadata1211.setInvisible(invisible);
+            case "1213" -> metadata1213.setInvisible(invisible);
         }
     }
 
@@ -69,6 +75,7 @@ public class Metadata {
             case "1206" -> metadata1206.setGlow(glow);
             case "121" -> metadata121.setGlow(glow);
             case "1211" -> metadata1211.setGlow(glow);
+            case "1213" -> metadata1213.setGlow(glow);
         }
     }
 
@@ -80,6 +87,7 @@ public class Metadata {
             case "1206" -> metadata1206.setName(name);
             case "121" -> metadata121.setName(name);
             case "1211" -> metadata1211.setName(name);
+            case "1213" -> metadata1213.setName(name);
         }
     }
 
@@ -90,6 +98,7 @@ public class Metadata {
             case "1206" -> metadata1206.setNameVisible(nameVisible);
             case "121" -> metadata121.setNameVisible(nameVisible);
             case "1211" -> metadata1211.setNameVisible(nameVisible);
+            case "1213" -> metadata1213.setNameVisible(nameVisible);
         }
     }
 
@@ -100,6 +109,7 @@ public class Metadata {
             case "1206" -> metadata1206.setSilent(silent);
             case "121" -> metadata121.setSilent(silent);
             case "1211" -> metadata1211.setSilent(silent);
+            case "1213" -> metadata1213.setSilent(silent);
         }
     }
 
@@ -110,6 +120,7 @@ public class Metadata {
             case "1206" -> metadata1206.setGravity(hasGravity);
             case "121" -> metadata121.setGravity(hasGravity);
             case "1211" -> metadata1211.setGravity(hasGravity);
+            case "1213" -> metadata1213.setGravity(hasGravity);
         }
     }
 
@@ -120,6 +131,7 @@ public class Metadata {
             case "1206" -> metadata1206.setPose(pose);
             case "121" -> metadata121.setPose(pose);
             case "1211" -> metadata1211.setPose(pose);
+            case "1213" -> metadata1213.setPose(pose);
         }
     }
 
@@ -130,6 +142,7 @@ public class Metadata {
             case "1206" -> metadata1206.setHealth(health);
             case "121" -> metadata121.setHealth(health);
             case "1211" -> metadata1211.setHealth(health);
+            case "1213" -> metadata1213.setHealth(health);
         }
     }
 
@@ -140,6 +153,7 @@ public class Metadata {
             case "1206" -> metadata1206.setRemainingAir(air);
             case "121" -> metadata121.setRemainingAir(air);
             case "1211" -> metadata1211.setRemainingAir(air);
+            case "1213" -> metadata1213.setRemainingAir(air);
         }
     }
 
@@ -151,6 +165,7 @@ public class Metadata {
             case "1206" -> metadata1206.setItem(itemStack);
             case "121" -> metadata121.setItem(itemStack);
             case "1211" -> metadata1211.setItem(itemStack);
+            case "1213" -> metadata1213.setItem(itemStack);
         }
     }
 
@@ -161,6 +176,7 @@ public class Metadata {
             case "1206" -> metadata1206.setIsSmall(isSmall);
             case "121" -> metadata121.setIsSmall(isSmall);
             case "1211" -> metadata1211.setIsSmall(isSmall);
+            case "1213" -> metadata1213.setIsSmall(isSmall);
         }
     }
 
@@ -172,6 +188,7 @@ public class Metadata {
             case "1206" -> metadata1206.setHasArms(hasArms);
             case "121" -> metadata121.setHasArms(hasArms);
             case "1211" -> metadata1211.setHasArms(hasArms);
+            case "1213" -> metadata1213.setHasArms(hasArms);
         }
     }
 
@@ -183,6 +200,7 @@ public class Metadata {
             case "1206" -> metadata1206.setNoBase(hasNoBase);
             case "121" -> metadata121.setNoBase(hasNoBase);
             case "1211" -> metadata1211.setNoBase(hasNoBase);
+            case "1213" -> metadata1213.setNoBase(hasNoBase);
         }
     }
 
@@ -194,6 +212,7 @@ public class Metadata {
             case "1206" -> metadata1206.setIsMarker(isMarker);
             case "121" -> metadata121.setIsMarker(isMarker);
             case "1211" -> metadata1211.setIsMarker(isMarker);
+            case "1213" -> metadata1213.setIsMarker(isMarker);
         }
     }
 
@@ -205,6 +224,7 @@ public class Metadata {
             case "1206" -> metadata1206.setHeadRotation(x, y, z);
             case "121" -> metadata121.setHeadRotation(x, y, z);
             case "1211" -> metadata1211.setHeadRotation(x, y, z);
+            case "1213" -> metadata1213.setHeadRotation(x, y, z);
         }
     }
 
@@ -216,6 +236,7 @@ public class Metadata {
             case "1206" -> metadata1206.setBodyRotation(x, y, z);
             case "121" -> metadata121.setHeadRotation(x, y, z);
             case "1211" -> metadata1211.setHeadRotation(x, y, z);
+            case "1213" -> metadata1213.setHeadRotation(x, y, z);
         }
     }
 
@@ -227,6 +248,7 @@ public class Metadata {
             case "1206" -> metadata1206.setLeftArmRotation(x, y, z);
             case "121" -> metadata121.setLeftArmRotation(x, y, z);
             case "1211" -> metadata1211.setLeftArmRotation(x, y, z);
+            case "1213" -> metadata1213.setLeftArmRotation(x, y, z);
         }
     }
 
@@ -238,6 +260,7 @@ public class Metadata {
             case "1206" -> metadata1206.setRightArmRotation(x, y, z);
             case "121" -> metadata121.setRightArmRotation(x, y, z);
             case "1211" -> metadata1211.setRightArmRotation(x, y, z);
+            case "1213" -> metadata1213.setRightArmRotation(x, y, z);
         }
     }
 
@@ -249,6 +272,7 @@ public class Metadata {
             case "1206" -> metadata1206.setLeftLegRotation(x, y, z);
             case "121" -> metadata121.setLeftLegRotation(x, y, z);
             case "1211" -> metadata1211.setLeftLegRotation(x, y, z);
+            case "1213" -> metadata1213.setLeftLegRotation(x, y, z);
         }
     }
 
@@ -260,6 +284,7 @@ public class Metadata {
             case "1206" -> metadata1206.setRightLegRotation(x, y, z);
             case "121" -> metadata121.setRightLegRotation(x, y, z);
             case "1211" -> metadata1211.setRightLegRotation(x, y, z);
+            case "1213" -> metadata1213.setRightLegRotation(x, y, z);
         }
     }
 
@@ -271,6 +296,7 @@ public class Metadata {
             case "1206" -> metadata1206.setDisplayItem(item);
             case "121" -> metadata121.setDisplayItem(item);
             case "1211" -> metadata1211.setDisplayItem(item);
+            case "1213" -> metadata1213.setDisplayItem(item);
         }
     }
 
@@ -282,6 +308,7 @@ public class Metadata {
             case "1206" -> metadata1206.setDisplayBlock(blockData);
             case "121" -> metadata121.setDisplayBlock(blockData);
             case "1211" -> metadata1211.setDisplayBlock(blockData);
+            case "1213" -> metadata1213.setDisplayBlock(blockData);
         }
     }
 
@@ -293,6 +320,7 @@ public class Metadata {
             case "1206" -> metadata1206.setInterpolationDelay(delay);
             case "121" -> metadata121.setInterpolationDelay(delay);
             case "1211" -> metadata1211.setInterpolationDelay(delay);
+            case "1213" -> metadata1213.setInterpolationDelay(delay);
         }
     }
 
@@ -304,6 +332,7 @@ public class Metadata {
             case "1206" -> metadata1206.setTransformationDuration(duration);
             case "121" -> metadata121.setTransformationDuration(duration);
             case "1211" -> metadata1211.setTransformationDuration(duration);
+            case "1213" -> metadata1213.setTransformationDuration(duration);
         }
     }
 
@@ -315,6 +344,7 @@ public class Metadata {
             case "1206" -> metadata1206.setPosRotDuration(duration);
             case "121" -> metadata121.setPosRotDuration(duration);
             case "1211" -> metadata1211.setPosRotDuration(duration);
+            case "1213" -> metadata1213.setPosRotDuration(duration);
         }
     }
 
@@ -326,6 +356,7 @@ public class Metadata {
             case "1206" -> metadata1206.setTranslation(x, y, z);
             case "121" -> metadata121.setTranslation(x, y, z);
             case "1211" -> metadata1211.setTranslation(x, y, z);
+            case "1213" -> metadata1213.setTranslation(x, y, z);
         }
     }
 
@@ -336,6 +367,7 @@ public class Metadata {
             case "1206" -> metadata1206.setScale(x, y, z);
             case "121" -> metadata121.setScale(x, y, z);
             case "1211" -> metadata1211.setScale(x, y, z);
+            case "1213" -> metadata1213.setScale(x, y, z);
         }
     }
 
@@ -346,6 +378,7 @@ public class Metadata {
             case "1206" -> metadata1206.setRotationLeft(x, y, z, w);
             case "121" -> metadata121.setRotationLeft(x, y, z, w);
             case "1211" -> metadata1211.setRotationLeft(x, y, z, w);
+            case "1213" -> metadata1213.setRotationLeft(x, y, z, w);
         }
     }
 
@@ -357,6 +390,7 @@ public class Metadata {
             case "1206" -> metadata1206.setRotationRight(x, y, z, w);
             case "121" -> metadata121.setRotationRight(x, y, z, w);
             case "1211" -> metadata1211.setRotationRight(x, y, z, w);
+            case "1213" -> metadata1213.setRotationRight(x, y, z, w);
         }
     }
 
@@ -368,6 +402,7 @@ public class Metadata {
             case "1206" -> metadata1206.setBillboard(string);
             case "121" -> metadata121.setBillboard(string);
             case "1211" -> metadata1211.setBillboard(string);
+            case "1213" -> metadata1213.setBillboard(string);
         }
     }
 
@@ -379,6 +414,7 @@ public class Metadata {
             case "1206" -> metadata1206.setBrightness(blockLight, skyLight);
             case "121" -> metadata121.setBrightness(blockLight, skyLight);
             case "1211" -> metadata1211.setBrightness(blockLight, skyLight);
+            case "1213" -> metadata1213.setBrightness(blockLight, skyLight);
         }
     }
 
@@ -390,6 +426,7 @@ public class Metadata {
             case "1206" -> metadata1206.setViewRange(viewRange);
             case "121" -> metadata121.setViewRange(viewRange);
             case "1211" -> metadata1211.setViewRange(viewRange);
+            case "1213" -> metadata1213.setViewRange(viewRange);
         }
     }
 
@@ -401,6 +438,7 @@ public class Metadata {
             case "1206" -> metadata1206.setShadowRadius(shadowRadius);
             case "121" -> metadata121.setShadowRadius(shadowRadius);
             case "1211" -> metadata1211.setShadowRadius(shadowRadius);
+            case "1213" -> metadata1213.setShadowRadius(shadowRadius);
         }
     }
 
@@ -412,6 +450,7 @@ public class Metadata {
             case "1206" -> metadata1206.setShadowStrength(shadowStrength);
             case "121" -> metadata121.setShadowStrength(shadowStrength);
             case "1211" -> metadata1211.setShadowStrength(shadowStrength);
+            case "1213" -> metadata1213.setShadowStrength(shadowStrength);
         }
     }
 
@@ -423,6 +462,7 @@ public class Metadata {
             case "1206" -> metadata1206.setWidth(width);
             case "121" -> metadata121.setWidth(width);
             case "1211" -> metadata1211.setWidth(width);
+            case "1213" -> metadata1213.setWidth(width);
         }
     }
 
@@ -434,6 +474,7 @@ public class Metadata {
             case "1206" -> metadata1206.setHeight(height);
             case "121" -> metadata121.setHeight(height);
             case "1211" -> metadata1211.setHeight(height);
+            case "1213" -> metadata1213.setHeight(height);
         }
     }
 
@@ -445,6 +486,7 @@ public class Metadata {
             case "1206" -> metadata1206.setGlowOverride(glowOverride);
             case "121" -> metadata121.setGlowOverride(glowOverride);
             case "1211" -> metadata1211.setGlowOverride(glowOverride);
+            case "1213" -> metadata1213.setGlowOverride(glowOverride);
         }
     }
 
@@ -456,6 +498,7 @@ public class Metadata {
             case "1206" -> metadata1206.setText(component);
             case "121" -> metadata121.setText(component);
             case "1211" -> metadata1211.setText(component);
+            case "1213" -> metadata1213.setText(component);
         }
     }
 
@@ -470,6 +513,7 @@ public class Metadata {
             case "1206" -> metadata1206.setLineWidth(lineWidth);
             case "121" -> metadata121.setLineWidth(lineWidth);
             case "1211" -> metadata1211.setLineWidth(lineWidth);
+            case "1213" -> metadata1213.setLineWidth(lineWidth);
         }
     }
 
@@ -480,6 +524,7 @@ public class Metadata {
             case "1206" -> metadata1206.setBackground(a, r, g, b);
             case "121" -> metadata121.setBackground(a, r, g, b);
             case "1211" -> metadata1211.setBackground(a, r, g, b);
+            case "1213" -> metadata1213.setBackground(a, r, g, b);
         }
     }
 
@@ -490,6 +535,7 @@ public class Metadata {
             case "1206" -> metadata1206.setTextOpacity(opacityByte);
             case "121" -> metadata121.setTextOpacity(opacityByte);
             case "1211" -> metadata1211.setTextOpacity(opacityByte);
+            case "1213" -> metadata1213.setTextOpacity(opacityByte);
         }
     }
 
@@ -500,6 +546,7 @@ public class Metadata {
             case "1206" -> metadata1206.index27(hasShadow, seeThru, defaultBackgroundColor);
             case "121" -> metadata121.index27(hasShadow, seeThru, defaultBackgroundColor);
             case "1211" -> metadata1211.index27(hasShadow, seeThru, defaultBackgroundColor);
+            case "1213" -> metadata1213.index27(hasShadow, seeThru, defaultBackgroundColor);
         }
     }
 
@@ -511,6 +558,7 @@ public class Metadata {
             case "1206" -> metadata1206.setInteractionWidth(width);
             case "121" -> metadata121.setInteractionWidth(width);
             case "1211" -> metadata1211.setInteractionWidth(width);
+            case "1213" -> metadata1213.setInteractionWidth(width);
         }
     }
 
@@ -522,6 +570,7 @@ public class Metadata {
             case "1206" -> metadata1206.setInteractionHeight(height);
             case "121" -> metadata121.setInteractionHeight(height);
             case "1211" -> metadata1211.setInteractionHeight(height);
+            case "1213" -> metadata1213.setInteractionHeight(height);
         }
     }
 
@@ -533,6 +582,7 @@ public class Metadata {
             case "1206" -> metadata1206.build();
             case "121" -> metadata121.build();
             case "1211" -> metadata1211.build();
+            case "1213" -> metadata1213.build();
             default -> null;
         };
     }

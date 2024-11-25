@@ -15,6 +15,7 @@ public class SetPassengerPacket {
             case "1206" -> SetPassengerPacket1206.packet(id, ids);
             case "121" -> SetPassengerPacket121.packet(id, ids);
             case "1211" -> SetPassengerPacket1211.packet(id, ids);
+            case "1213" -> SetPassengerPacket1213.packet(id, ids);
             default -> null;
         };
     }

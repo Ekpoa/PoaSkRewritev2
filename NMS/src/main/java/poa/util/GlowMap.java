@@ -12,6 +12,7 @@ public class GlowMap {
 
     public static Map<Player, List<Integer>> getGlowMap(){
         return switch (BukkitVersion.getBukkitVersion()){
+            case "1213" -> GlowMap1213.getGlowMap();
             case "1211" -> GlowMap1211.getGlowMap();
             case "121" -> GlowMap121.getGlowMap();
             case "1206" -> GlowMap1206.getGlowMap();
