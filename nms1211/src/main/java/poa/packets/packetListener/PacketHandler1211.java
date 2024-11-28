@@ -180,8 +180,6 @@ public class PacketHandler1211 extends ChannelDuplexHandler {
                 try {
                     type = getTypeMethod.invoke(particle);
                 } catch (Exception e) {
-                    e.printStackTrace();
-                    System.out.println("Get Type Method not found");
                     super.write(ctx, msg, promise);
                     return;
                 }
