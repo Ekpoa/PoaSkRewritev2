@@ -290,7 +290,6 @@ public class PacketHandler1204 extends ChannelDuplexHandler {
 
             }
 
-
             super.write(ctx, msg, promise);
         } catch (Exception e) {
             e.printStackTrace();

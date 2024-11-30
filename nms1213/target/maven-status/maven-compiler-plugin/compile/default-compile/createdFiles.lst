@@ -8,6 +8,7 @@ poa/packets/packetListener/GlowMap1213.class
 poa/util/RefreshPlayer1213.class
 poa/packets/CameraPacket1213.class
 poa/packets/FakeEntity1213.class
+poa/packets/packetListener/events/SoundEvent1213.class
 poa/util/GetPose1213.class
 poa/packets/packetListener/events/PlayerChatPacketEvent1213.class
 poa/packets/AttributePacket1213.class

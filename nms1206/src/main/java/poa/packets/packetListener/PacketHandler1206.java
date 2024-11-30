@@ -288,6 +288,37 @@ public class PacketHandler1206 extends ChannelDuplexHandler {
                 }
 
             }
+            else if(packet instanceof ClientboundSoundPacket soundPacket){
+                final SoundEvent1206 soundEvent1211 = new SoundEvent1206(player, true);
+                soundEvent1211.setX(soundPacket.getX());
+                soundEvent1211.setY(soundPacket.getY());
+                soundEvent1211.setZ(soundPacket.getZ());
+                soundEvent1211.setVolume(soundPacket.getVolume());
+                soundEvent1211.setPitch(soundPacket.getPitch());
+                soundEvent1211.setSeed(soundPacket.getSeed());
+                soundEvent1211.setId(soundPacket.getSound().value().getLocation().toString());;
+                soundEvent1211.setSource(soundPacket.getSource().getName());
+                pluginManager.callEvent(soundEvent1211);
+
+                if(soundEvent1211.isCancelled())
+                    return;
+
+            }
+            else if(packet instanceof ClientboundSoundEntityPacket soundPacket){
+                final SoundEvent1206 soundEvent1211 = new SoundEvent1206(player, true);
+                soundEvent1211.setEntity(true);
+                soundEvent1211.setVolume(soundPacket.getVolume());
+                soundEvent1211.setPitch(soundPacket.getPitch());
+                soundEvent1211.setSeed(soundPacket.getSeed());
+                soundEvent1211.setId(soundPacket.getSound().value().getLocation().toString());;
+                soundEvent1211.setSource(soundPacket.getSource().getName());
+                pluginManager.callEvent(soundEvent1211);
+
+                if(soundEvent1211.isCancelled())
+                    return;
+            }
+
+
 
             super.write(ctx, msg, promise);
         } catch (Exception e) {

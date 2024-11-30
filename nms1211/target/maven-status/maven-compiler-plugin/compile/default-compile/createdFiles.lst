@@ -6,6 +6,7 @@ poa/packets/SetPassengerPacket1211.class
 poa/guardian/GuardianBeam1211.class
 poa/packets/SetEquipmentPacket1211.class
 poa/packets/FakePlayer1211.class
+poa/packets/packetListener/events/SoundEvent1211.class
 poa/packets/TeleportPacket1211.class
 poa/packets/FakeDeathAnimation1211.class
 poa/packets/SendPacket1211.class
