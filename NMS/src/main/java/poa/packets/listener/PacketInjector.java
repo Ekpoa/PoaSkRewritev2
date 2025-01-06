@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PacketInjector {
+    private static final Map<Player, PacketInjector1214> playerPacketStuffMap1214 = new HashMap<>();
     private static final Map<Player, PacketInjector1213> playerPacketStuffMap1213 = new HashMap<>();
     private static final Map<Player, PacketInjector1211> playerPacketStuffMap1211 = new HashMap<>();
     private static final Map<Player, PacketInjector121> playerPacketStuffMap121 = new HashMap<>();
@@ -18,7 +19,7 @@ public class PacketInjector {
     private static final Map<Player, PacketInjector1202> playerPacketStuffMap1202 = new HashMap<>();
 
 
-    public static void inject(PlayerJoinEvent e){
+    public static void inject(PlayerJoinEvent e) {
         switch (BukkitVersion.getBukkitVersion()) {
             case "1204" -> {
                 Player player = e.getPlayer();
@@ -39,24 +40,28 @@ public class PacketInjector {
                 playerPacketStuffMap121.put(player, packetInjector);
             }
             case "1211" -> {
-
                 Player player = e.getPlayer();
                 PacketInjector1211 packetInjector = new PacketInjector1211(player);
                 packetInjector.inject(player);
                 playerPacketStuffMap1211.put(player, packetInjector);
             }
             case "1213" -> {
-
                 Player player = e.getPlayer();
                 PacketInjector1213 packetInjector = new PacketInjector1213(player);
                 packetInjector.inject(player);
                 playerPacketStuffMap1213.put(player, packetInjector);
             }
+            case "1214" -> {
+                Player player = e.getPlayer();
+                PacketInjector1214 packetInjector = new PacketInjector1214(player);
+                packetInjector.inject(player);
+                playerPacketStuffMap1214.put(player, packetInjector);
+            }
         }
     }
 
-    public static void inject(PlayerLoginEvent e){
-        switch (BukkitVersion.getBukkitVersion()){
+    public static void inject(PlayerLoginEvent e) {
+        switch (BukkitVersion.getBukkitVersion()) {
             case "1202" -> {
                 Player player = e.getPlayer();
                 PacketInjector1202 packetInjector = new PacketInjector1202(player, e.getAddress());
@@ -66,8 +71,8 @@ public class PacketInjector {
         }
     }
 
-    public static void unInject(Player player){
-        switch (BukkitVersion.getBukkitVersion()){
+    public static void unInject(Player player) {
+        switch (BukkitVersion.getBukkitVersion()) {
             case "1213" -> {
                 playerPacketStuffMap1213.get(player).uninjectPlayer();
                 playerPacketStuffMap1213.remove(player);
@@ -92,7 +97,12 @@ public class PacketInjector {
                 playerPacketStuffMap1202.get(player).uninjectPlayer();
                 playerPacketStuffMap1202.remove(player);
             }
+            case "1214" -> {
+                playerPacketStuffMap1214.get(player).uninjectPlayer();
+                playerPacketStuffMap1214.remove(player);
+            }
         }
     }
+
 
 }

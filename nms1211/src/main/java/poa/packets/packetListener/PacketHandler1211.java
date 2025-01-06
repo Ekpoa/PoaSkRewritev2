@@ -272,6 +272,7 @@ public class PacketHandler1211 extends ChannelDuplexHandler {
                 blockUpdateEvent1211.setX(pos.getX());
                 blockUpdateEvent1211.setY(pos.getY());
                 blockUpdateEvent1211.setZ(pos.getZ());
+                blockUpdateEvent1211.setMaterial(blockUpdatePacket.getBlockState().getBukkitMaterial());
                 blockUpdateEvent1211.setOriginalBlock(blockUpdateEvent1211.getLocation().getBlock());
 
                 pluginManager.callEvent(blockUpdateEvent1211);

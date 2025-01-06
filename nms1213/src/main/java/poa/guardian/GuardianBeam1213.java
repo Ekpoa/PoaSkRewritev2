@@ -18,13 +18,12 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class GuardianBeam1213 {
 
-   // public static Map<String, GuardianBeam121> dataMap = new HashMap<>();
 
 
     @Getter
     List<UUID> uuids = new ArrayList<>();
     List<UUID> currentlySeeing = new ArrayList<>();
-    int guardianID;
+    int guardiansID;
     int squidID;
     UUID guardianUUID;
     UUID squidUUID;
@@ -55,7 +54,7 @@ public class GuardianBeam1213 {
 
         final ThreadLocalRandom current = ThreadLocalRandom.current();
         final int maxValue = Integer.MAX_VALUE - 1;
-        this.guardianID = current.nextInt(99999, maxValue);
+        this.guardiansID = current.nextInt(99999, maxValue);
         this.squidID = current.nextInt(99999, maxValue);
 
 
@@ -94,12 +93,12 @@ public class GuardianBeam1213 {
 
     public void show(CraftPlayer player) {
         try {
-            final Object guardianPacket = FakeEntity1213.fakeEntityPacket(this.guardianID, this.guardianLoc, "guardian", this.guardianUUID);
+            final Object guardianPacket = FakeEntity1213.fakeEntityPacket(this.guardiansID, this.guardianLoc, "guardian", this.guardianUUID);
             final Object squidPacket = FakeEntity1213.fakeEntityPacket(this.squidID, this.batLoc, "bat", this.squidUUID);
 
             final Object teamPacket = TeamPacket1213.teamPacketForBeam(List.of(this.guardianUUID.toString(), this.squidUUID.toString()), this.color);
 
-            final Metadata1213 guardianMeta = new Metadata1213(this.guardianID);
+            final Metadata1213 guardianMeta = new Metadata1213(this.guardiansID);
             guardianMeta.setInvisible(true);
             guardianMeta.setGuardianTarget(this.squidID);
             guardianMeta.setGuardianSpikes(false);
@@ -160,7 +159,7 @@ public class GuardianBeam1213 {
     }
 
     public void destroy() {
-        final Object removePacket = FakeEntity1213.removeFakeEntityPacket(List.of(this.guardianID, this.squidID));
+        final Object removePacket = FakeEntity1213.removeFakeEntityPacket(List.of(this.guardiansID, this.squidID));
         for (UUID uuid : this.uuids) {
             final Player player = Bukkit.getPlayer(uuid);
             if (player == null)

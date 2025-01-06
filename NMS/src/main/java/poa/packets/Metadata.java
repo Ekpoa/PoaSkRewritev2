@@ -22,6 +22,8 @@ public class Metadata {
                     Metadata1211.basePacketForEntity(id, fire, invisible, glow, name, nameVisible, silent, gravity, pose);
             case "1213" ->
                     Metadata1213.basePacketForEntity(id, fire, invisible, glow, name, nameVisible, silent, gravity, pose);
+            case "1214" ->
+                    Metadata1214.basePacketForEntity(id, fire, invisible, glow, name, nameVisible, silent, gravity, pose);
             default -> null;
         };
     }
@@ -32,6 +34,7 @@ public class Metadata {
     Metadata121 metadata121;
     Metadata1211 metadata1211;
     Metadata1213 metadata1213;
+    Metadata1214 metadata1214;
 
 
     public Metadata(int id) {
@@ -42,9 +45,9 @@ public class Metadata {
             case "121" -> metadata121 = new Metadata121(id);
             case "1211" -> metadata1211 = new Metadata1211(id);
             case "1213" -> metadata1213 = new Metadata1213(id);
+            case "1214" -> metadata1214 = new Metadata1214(id);
         }
     }
-
 
     public void setOnFire(boolean onFire) {
         switch (BukkitVersion.getBukkitVersion()) {
@@ -54,6 +57,7 @@ public class Metadata {
             case "121" -> metadata121.setOnFire(onFire);
             case "1211" -> metadata1211.setOnFire(onFire);
             case "1213" -> metadata1213.setOnFire(onFire);
+            case "1214" -> metadata1214.setOnFire(onFire);
         }
     }
 
@@ -65,6 +69,7 @@ public class Metadata {
             case "121" -> metadata121.setInvisible(invisible);
             case "1211" -> metadata1211.setInvisible(invisible);
             case "1213" -> metadata1213.setInvisible(invisible);
+            case "1214" -> metadata1214.setInvisible(invisible);
         }
     }
 
@@ -76,9 +81,9 @@ public class Metadata {
             case "121" -> metadata121.setGlow(glow);
             case "1211" -> metadata1211.setGlow(glow);
             case "1213" -> metadata1213.setGlow(glow);
+            case "1214" -> metadata1214.setGlow(glow);
         }
     }
-
 
     public void setName(String name) {
         switch (BukkitVersion.getBukkitVersion()) {
@@ -88,6 +93,7 @@ public class Metadata {
             case "121" -> metadata121.setName(name);
             case "1211" -> metadata1211.setName(name);
             case "1213" -> metadata1213.setName(name);
+            case "1214" -> metadata1214.setName(name);
         }
     }
 
@@ -99,8 +105,10 @@ public class Metadata {
             case "121" -> metadata121.setNameVisible(nameVisible);
             case "1211" -> metadata1211.setNameVisible(nameVisible);
             case "1213" -> metadata1213.setNameVisible(nameVisible);
+            case "1214" -> metadata1214.setNameVisible(nameVisible);
         }
     }
+
 
     public void setSilent(boolean silent) {
         switch (BukkitVersion.getBukkitVersion()) {
@@ -110,6 +118,7 @@ public class Metadata {
             case "121" -> metadata121.setSilent(silent);
             case "1211" -> metadata1211.setSilent(silent);
             case "1213" -> metadata1213.setSilent(silent);
+            case "1214" -> metadata1214.setSilent(silent);
         }
     }
 
@@ -121,6 +130,7 @@ public class Metadata {
             case "121" -> metadata121.setGravity(hasGravity);
             case "1211" -> metadata1211.setGravity(hasGravity);
             case "1213" -> metadata1213.setGravity(hasGravity);
+            case "1214" -> metadata1214.setGravity(hasGravity);
         }
     }
 
@@ -132,6 +142,7 @@ public class Metadata {
             case "121" -> metadata121.setPose(pose);
             case "1211" -> metadata1211.setPose(pose);
             case "1213" -> metadata1213.setPose(pose);
+            case "1214" -> metadata1214.setPose(pose);
         }
     }
 
@@ -143,6 +154,7 @@ public class Metadata {
             case "121" -> metadata121.setHealth(health);
             case "1211" -> metadata1211.setHealth(health);
             case "1213" -> metadata1213.setHealth(health);
+            case "1214" -> metadata1214.setHealth(health);
         }
     }
 
@@ -154,9 +166,9 @@ public class Metadata {
             case "121" -> metadata121.setRemainingAir(air);
             case "1211" -> metadata1211.setRemainingAir(air);
             case "1213" -> metadata1213.setRemainingAir(air);
+            case "1214" -> metadata1214.setRemainingAir(air);
         }
     }
-
 
     public void setItem(org.bukkit.inventory.ItemStack itemStack) {
         switch (BukkitVersion.getBukkitVersion()) {
@@ -166,6 +178,7 @@ public class Metadata {
             case "121" -> metadata121.setItem(itemStack);
             case "1211" -> metadata1211.setItem(itemStack);
             case "1213" -> metadata1213.setItem(itemStack);
+            case "1214" -> metadata1214.setItem(itemStack);
         }
     }
 
@@ -177,9 +190,9 @@ public class Metadata {
             case "121" -> metadata121.setIsSmall(isSmall);
             case "1211" -> metadata1211.setIsSmall(isSmall);
             case "1213" -> metadata1213.setIsSmall(isSmall);
+            case "1214" -> metadata1214.setIsSmall(isSmall);
         }
     }
-
 
     public void setHasArms(boolean hasArms) {
         switch (BukkitVersion.getBukkitVersion()) {
@@ -189,9 +202,9 @@ public class Metadata {
             case "121" -> metadata121.setHasArms(hasArms);
             case "1211" -> metadata1211.setHasArms(hasArms);
             case "1213" -> metadata1213.setHasArms(hasArms);
+            case "1214" -> metadata1214.setHasArms(hasArms);
         }
     }
-
 
     public void setNoBase(boolean hasNoBase) {
         switch (BukkitVersion.getBukkitVersion()) {
@@ -201,9 +214,9 @@ public class Metadata {
             case "121" -> metadata121.setNoBase(hasNoBase);
             case "1211" -> metadata1211.setNoBase(hasNoBase);
             case "1213" -> metadata1213.setNoBase(hasNoBase);
+            case "1214" -> metadata1214.setNoBase(hasNoBase);
         }
     }
-
 
     public void setIsMarker(boolean isMarker) {
         switch (BukkitVersion.getBukkitVersion()) {
@@ -213,8 +226,10 @@ public class Metadata {
             case "121" -> metadata121.setIsMarker(isMarker);
             case "1211" -> metadata1211.setIsMarker(isMarker);
             case "1213" -> metadata1213.setIsMarker(isMarker);
+            case "1214" -> metadata1214.setIsMarker(isMarker);
         }
     }
+
 
 
     public void setHeadRotation(float x, float y, float z) {
@@ -225,9 +240,9 @@ public class Metadata {
             case "121" -> metadata121.setHeadRotation(x, y, z);
             case "1211" -> metadata1211.setHeadRotation(x, y, z);
             case "1213" -> metadata1213.setHeadRotation(x, y, z);
+            case "1214" -> metadata1214.setHeadRotation(x, y, z);
         }
     }
-
 
     public void setBodyRotation(float x, float y, float z) {
         switch (BukkitVersion.getBukkitVersion()) {
@@ -237,9 +252,9 @@ public class Metadata {
             case "121" -> metadata121.setHeadRotation(x, y, z);
             case "1211" -> metadata1211.setHeadRotation(x, y, z);
             case "1213" -> metadata1213.setHeadRotation(x, y, z);
+            case "1214" -> metadata1214.setHeadRotation(x, y, z);
         }
     }
-
 
     public void setLeftArmRotation(float x, float y, float z) {
         switch (BukkitVersion.getBukkitVersion()) {
@@ -249,9 +264,9 @@ public class Metadata {
             case "121" -> metadata121.setLeftArmRotation(x, y, z);
             case "1211" -> metadata1211.setLeftArmRotation(x, y, z);
             case "1213" -> metadata1213.setLeftArmRotation(x, y, z);
+            case "1214" -> metadata1214.setLeftArmRotation(x, y, z);
         }
     }
-
 
     public void setRightArmRotation(float x, float y, float z) {
         switch (BukkitVersion.getBukkitVersion()) {
@@ -261,9 +276,9 @@ public class Metadata {
             case "121" -> metadata121.setRightArmRotation(x, y, z);
             case "1211" -> metadata1211.setRightArmRotation(x, y, z);
             case "1213" -> metadata1213.setRightArmRotation(x, y, z);
+            case "1214" -> metadata1214.setRightArmRotation(x, y, z);
         }
     }
-
 
     public void setLeftLegRotation(float x, float y, float z) {
         switch (BukkitVersion.getBukkitVersion()) {
@@ -273,9 +288,9 @@ public class Metadata {
             case "121" -> metadata121.setLeftLegRotation(x, y, z);
             case "1211" -> metadata1211.setLeftLegRotation(x, y, z);
             case "1213" -> metadata1213.setLeftLegRotation(x, y, z);
+            case "1214" -> metadata1214.setLeftLegRotation(x, y, z);
         }
     }
-
 
     public void setRightLegRotation(float x, float y, float z) {
         switch (BukkitVersion.getBukkitVersion()) {
@@ -285,9 +300,9 @@ public class Metadata {
             case "121" -> metadata121.setRightLegRotation(x, y, z);
             case "1211" -> metadata1211.setRightLegRotation(x, y, z);
             case "1213" -> metadata1213.setRightLegRotation(x, y, z);
+            case "1214" -> metadata1214.setRightLegRotation(x, y, z);
         }
     }
-
 
     public void setDisplayItem(org.bukkit.inventory.ItemStack item) {
         switch (BukkitVersion.getBukkitVersion()) {
@@ -297,9 +312,9 @@ public class Metadata {
             case "121" -> metadata121.setDisplayItem(item);
             case "1211" -> metadata1211.setDisplayItem(item);
             case "1213" -> metadata1213.setDisplayItem(item);
+            case "1214" -> metadata1214.setDisplayItem(item);
         }
     }
-
 
     public void setDisplayBlock(BlockData blockData) {
         switch (BukkitVersion.getBukkitVersion()) {
@@ -309,9 +324,9 @@ public class Metadata {
             case "121" -> metadata121.setDisplayBlock(blockData);
             case "1211" -> metadata1211.setDisplayBlock(blockData);
             case "1213" -> metadata1213.setDisplayBlock(blockData);
+            case "1214" -> metadata1214.setDisplayBlock(blockData);
         }
     }
-
 
     public void setInterpolationDelay(int delay) {
         switch (BukkitVersion.getBukkitVersion()) {
@@ -321,9 +336,9 @@ public class Metadata {
             case "121" -> metadata121.setInterpolationDelay(delay);
             case "1211" -> metadata1211.setInterpolationDelay(delay);
             case "1213" -> metadata1213.setInterpolationDelay(delay);
+            case "1214" -> metadata1214.setInterpolationDelay(delay);
         }
     }
-
 
     public void setTransformationDuration(int duration) {
         switch (BukkitVersion.getBukkitVersion()) {
@@ -333,9 +348,9 @@ public class Metadata {
             case "121" -> metadata121.setTransformationDuration(duration);
             case "1211" -> metadata1211.setTransformationDuration(duration);
             case "1213" -> metadata1213.setTransformationDuration(duration);
+            case "1214" -> metadata1214.setTransformationDuration(duration);
         }
     }
-
 
     public void setPosRotDuration(int duration) {
         switch (BukkitVersion.getBukkitVersion()) {
@@ -345,9 +360,9 @@ public class Metadata {
             case "121" -> metadata121.setPosRotDuration(duration);
             case "1211" -> metadata1211.setPosRotDuration(duration);
             case "1213" -> metadata1213.setPosRotDuration(duration);
+            case "1214" -> metadata1214.setPosRotDuration(duration);
         }
     }
-
 
     public void setTranslation(float x, float y, float z) {
         switch (BukkitVersion.getBukkitVersion()) {
@@ -357,6 +372,7 @@ public class Metadata {
             case "121" -> metadata121.setTranslation(x, y, z);
             case "1211" -> metadata1211.setTranslation(x, y, z);
             case "1213" -> metadata1213.setTranslation(x, y, z);
+            case "1214" -> metadata1214.setTranslation(x, y, z);
         }
     }
 
@@ -368,6 +384,7 @@ public class Metadata {
             case "121" -> metadata121.setScale(x, y, z);
             case "1211" -> metadata1211.setScale(x, y, z);
             case "1213" -> metadata1213.setScale(x, y, z);
+            case "1214" -> metadata1214.setScale(x, y, z);
         }
     }
 
@@ -379,9 +396,9 @@ public class Metadata {
             case "121" -> metadata121.setRotationLeft(x, y, z, w);
             case "1211" -> metadata1211.setRotationLeft(x, y, z, w);
             case "1213" -> metadata1213.setRotationLeft(x, y, z, w);
+            case "1214" -> metadata1214.setRotationLeft(x, y, z, w);
         }
     }
-
 
     public void setRotationRight(double x, double y, double z, double w) {
         switch (BukkitVersion.getBukkitVersion()) {
@@ -391,6 +408,7 @@ public class Metadata {
             case "121" -> metadata121.setRotationRight(x, y, z, w);
             case "1211" -> metadata1211.setRotationRight(x, y, z, w);
             case "1213" -> metadata1213.setRotationRight(x, y, z, w);
+            case "1214" -> metadata1214.setRotationRight(x, y, z, w);
         }
     }
 
@@ -403,9 +421,9 @@ public class Metadata {
             case "121" -> metadata121.setBillboard(string);
             case "1211" -> metadata1211.setBillboard(string);
             case "1213" -> metadata1213.setBillboard(string);
+            case "1214" -> metadata1214.setBillboard(string);
         }
     }
-
 
     public void setBrightness(int blockLight, int skyLight) {
         switch (BukkitVersion.getBukkitVersion()) {
@@ -415,9 +433,9 @@ public class Metadata {
             case "121" -> metadata121.setBrightness(blockLight, skyLight);
             case "1211" -> metadata1211.setBrightness(blockLight, skyLight);
             case "1213" -> metadata1213.setBrightness(blockLight, skyLight);
+            case "1214" -> metadata1214.setBrightness(blockLight, skyLight);
         }
     }
-
 
     public void setViewRange(float viewRange) {
         switch (BukkitVersion.getBukkitVersion()) {
@@ -427,9 +445,9 @@ public class Metadata {
             case "121" -> metadata121.setViewRange(viewRange);
             case "1211" -> metadata1211.setViewRange(viewRange);
             case "1213" -> metadata1213.setViewRange(viewRange);
+            case "1214" -> metadata1214.setViewRange(viewRange);
         }
     }
-
 
     public void setShadowRadius(float shadowRadius) {
         switch (BukkitVersion.getBukkitVersion()) {
@@ -439,9 +457,9 @@ public class Metadata {
             case "121" -> metadata121.setShadowRadius(shadowRadius);
             case "1211" -> metadata1211.setShadowRadius(shadowRadius);
             case "1213" -> metadata1213.setShadowRadius(shadowRadius);
+            case "1214" -> metadata1214.setShadowRadius(shadowRadius);
         }
     }
-
 
     public void setShadowStrength(float shadowStrength) {
         switch (BukkitVersion.getBukkitVersion()) {
@@ -451,9 +469,9 @@ public class Metadata {
             case "121" -> metadata121.setShadowStrength(shadowStrength);
             case "1211" -> metadata1211.setShadowStrength(shadowStrength);
             case "1213" -> metadata1213.setShadowStrength(shadowStrength);
+            case "1214" -> metadata1214.setShadowStrength(shadowStrength);
         }
     }
-
 
     public void setWidth(float width) {
         switch (BukkitVersion.getBukkitVersion()) {
@@ -463,9 +481,9 @@ public class Metadata {
             case "121" -> metadata121.setWidth(width);
             case "1211" -> metadata1211.setWidth(width);
             case "1213" -> metadata1213.setWidth(width);
+            case "1214" -> metadata1214.setWidth(width);
         }
     }
-
 
     public void setHeight(float height) {
         switch (BukkitVersion.getBukkitVersion()) {
@@ -475,9 +493,9 @@ public class Metadata {
             case "121" -> metadata121.setHeight(height);
             case "1211" -> metadata1211.setHeight(height);
             case "1213" -> metadata1213.setHeight(height);
+            case "1214" -> metadata1214.setHeight(height);
         }
     }
-
 
     public void setGlowOverride(int glowOverride) {
         switch (BukkitVersion.getBukkitVersion()) {
@@ -487,9 +505,9 @@ public class Metadata {
             case "121" -> metadata121.setGlowOverride(glowOverride);
             case "1211" -> metadata1211.setGlowOverride(glowOverride);
             case "1213" -> metadata1213.setGlowOverride(glowOverride);
+            case "1214" -> metadata1214.setGlowOverride(glowOverride);
         }
     }
-
 
     public void setText(Component component) {
         switch (BukkitVersion.getBukkitVersion()) {
@@ -499,6 +517,7 @@ public class Metadata {
             case "121" -> metadata121.setText(component);
             case "1211" -> metadata1211.setText(component);
             case "1213" -> metadata1213.setText(component);
+            case "1214" -> metadata1214.setText(component);
         }
     }
 
@@ -514,6 +533,7 @@ public class Metadata {
             case "121" -> metadata121.setLineWidth(lineWidth);
             case "1211" -> metadata1211.setLineWidth(lineWidth);
             case "1213" -> metadata1213.setLineWidth(lineWidth);
+            case "1214" -> metadata1214.setLineWidth(lineWidth);
         }
     }
 
@@ -525,6 +545,7 @@ public class Metadata {
             case "121" -> metadata121.setBackground(a, r, g, b);
             case "1211" -> metadata1211.setBackground(a, r, g, b);
             case "1213" -> metadata1213.setBackground(a, r, g, b);
+            case "1214" -> metadata1214.setBackground(a, r, g, b);
         }
     }
 
@@ -536,6 +557,7 @@ public class Metadata {
             case "121" -> metadata121.setTextOpacity(opacityByte);
             case "1211" -> metadata1211.setTextOpacity(opacityByte);
             case "1213" -> metadata1213.setTextOpacity(opacityByte);
+            case "1214" -> metadata1214.setTextOpacity(opacityByte);
         }
     }
 
@@ -547,9 +569,9 @@ public class Metadata {
             case "121" -> metadata121.index27(hasShadow, seeThru, defaultBackgroundColor);
             case "1211" -> metadata1211.index27(hasShadow, seeThru, defaultBackgroundColor);
             case "1213" -> metadata1213.index27(hasShadow, seeThru, defaultBackgroundColor);
+            case "1214" -> metadata1214.index27(hasShadow, seeThru, defaultBackgroundColor);
         }
     }
-
 
     public void setInteractionWidth(Float width) {
         switch (BukkitVersion.getBukkitVersion()) {
@@ -559,9 +581,9 @@ public class Metadata {
             case "121" -> metadata121.setInteractionWidth(width);
             case "1211" -> metadata1211.setInteractionWidth(width);
             case "1213" -> metadata1213.setInteractionWidth(width);
+            case "1214" -> metadata1214.setInteractionWidth(width);
         }
     }
-
 
     public void setInteractionHeight(Float height) {
         switch (BukkitVersion.getBukkitVersion()) {
@@ -571,9 +593,9 @@ public class Metadata {
             case "121" -> metadata121.setInteractionHeight(height);
             case "1211" -> metadata1211.setInteractionHeight(height);
             case "1213" -> metadata1213.setInteractionHeight(height);
+            case "1214" -> metadata1214.setInteractionHeight(height);
         }
     }
-
 
     public Object build() {
         return switch (BukkitVersion.getBukkitVersion()) {
@@ -583,10 +605,10 @@ public class Metadata {
             case "121" -> metadata121.build();
             case "1211" -> metadata1211.build();
             case "1213" -> metadata1213.build();
+            case "1214" -> metadata1214.build();
             default -> null;
         };
     }
-
 
 }
 

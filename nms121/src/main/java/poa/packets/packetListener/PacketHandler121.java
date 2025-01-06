@@ -273,6 +273,7 @@ public class PacketHandler121 extends ChannelDuplexHandler {
                 blockUpdateEvent121.setY(pos.getY());
                 blockUpdateEvent121.setZ(pos.getZ());
                 blockUpdateEvent121.setOriginalBlock(blockUpdateEvent121.getLocation().getBlock());
+                blockUpdateEvent121.setMaterial(blockUpdatePacket.getBlockState().getBukkitMaterial());
 
                 pluginManager.callEvent(blockUpdateEvent121);
                 if(blockUpdateEvent121.isCancelled())

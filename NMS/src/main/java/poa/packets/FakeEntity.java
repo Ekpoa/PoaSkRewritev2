@@ -11,29 +11,31 @@ import java.util.List;
 public class FakeEntity {
 
     public static Object fakeEntityPacket(int id, Location location, String type, int data) {
-        return switch (BukkitVersion.getBukkitVersion()){
+        return switch (BukkitVersion.getBukkitVersion()) {
             case "1202" -> FakeEntity1202.fakeEntityPacket(id, location, type, data);
             case "1204" -> FakeEntity1204.fakeEntityPacket(id, location, type, data);
             case "1206" -> FakeEntity1206.fakeEntityPacket(id, location, type, data);
             case "121" -> FakeEntity121.fakeEntityPacket(id, location, type, data);
             case "1211" -> FakeEntity1211.fakeEntityPacket(id, location, type, data);
             case "1213" -> FakeEntity1213.fakeEntityPacket(id, location, type, data);
+            case "1214" -> FakeEntity1214.fakeEntityPacket(id, location, type, data);
             default -> null;
         };
     }
-    public static Object fakeEntityPacket(int id, Location location, String type){
+
+    public static Object fakeEntityPacket(int id, Location location, String type) {
         return fakeEntityPacket(id, location, type, 0);
     }
 
-
-    public static Object removeFakeEntityPacket(List<Integer> idList){
-        return switch (BukkitVersion.getBukkitVersion()){
+    public static Object removeFakeEntityPacket(List<Integer> idList) {
+        return switch (BukkitVersion.getBukkitVersion()) {
             case "1202" -> FakeEntity1202.removeFakeEntityPacket(idList);
             case "1204" -> FakeEntity1204.removeFakeEntityPacket(idList);
             case "1206" -> FakeEntity1206.removeFakeEntityPacket(idList);
             case "121" -> FakeEntity121.removeFakeEntityPacket(idList);
             case "1211" -> FakeEntity1211.removeFakeEntityPacket(idList);
             case "1213" -> FakeEntity1213.removeFakeEntityPacket(idList);
+            case "1214" -> FakeEntity1214.removeFakeEntityPacket(idList);
             default -> null;
         };
     }

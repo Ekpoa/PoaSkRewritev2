@@ -128,12 +128,10 @@ public class PacketHandler1204 extends ChannelDuplexHandler {
                 List<Integer> ids = GlowMap1204.glowMap.get(player);
 
 
-
                 if (entityId != target.getEntityId()) {
                     super.write(ctx, msg, promise);
                     return;
                 }
-
 
 
                 if (ids == null)
@@ -142,9 +140,6 @@ public class PacketHandler1204 extends ChannelDuplexHandler {
                     glow = false;
                 else if (!ids.contains(entityId))
                     glow = false;
-
-
-
 
 
                 List<SynchedEntityData.DataValue<?>> packedItems = metadata.packedItems();
@@ -275,8 +270,9 @@ public class PacketHandler1204 extends ChannelDuplexHandler {
                 final BlockPos pos = blockUpdatePacket.getPos();
                 blockUpdateEvent1204.setX(pos.getX());
                 blockUpdateEvent1204.setY(pos.getY());
-                blockUpdateEvent1204.setZ(pos.getZ());blockUpdateEvent1204.setOriginalBlock(blockUpdateEvent1204.getLocation().getBlock());
-
+                blockUpdateEvent1204.setZ(pos.getZ());
+                blockUpdateEvent1204.setOriginalBlock(blockUpdateEvent1204.getLocation().getBlock());
+                blockUpdateEvent1204.setMaterial(blockUpdatePacket.getBlockState().getBukkitMaterial());
                 pluginManager.callEvent(blockUpdateEvent1204);
                 if (blockUpdateEvent1204.isCancelled())
                     return;

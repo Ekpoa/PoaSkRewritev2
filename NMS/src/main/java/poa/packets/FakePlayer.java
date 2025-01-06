@@ -22,6 +22,7 @@ public class FakePlayer {
             case "121" -> FakePlayer121.spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, id, uuid);
             case "1211" -> FakePlayer1211.spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, id, uuid);
             case "1213" -> FakePlayer1213.spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, id, uuid);
+            case "1214" -> FakePlayer1214.spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, id, uuid);
         }
     }
 
@@ -30,7 +31,7 @@ public class FakePlayer {
     }
 
     public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency) {
-        spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, ThreadLocalRandom.current().nextInt(99999, Integer.MAX_VALUE -1));
+        spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, ThreadLocalRandom.current().nextInt(99999, Integer.MAX_VALUE - 1));
     }
 
     public static void spawnFakePlayer(List<Player> sendTo, String name, String texture, String signature, Location loc, boolean listed, int latency, int id, UUID uuid, int skinModel) {
@@ -41,9 +42,9 @@ public class FakePlayer {
             case "121" -> FakePlayer121.spawnFakePlayer(sendTo, name, texture, signature, loc, listed, latency, id, uuid, skinModel);
             case "1211" -> FakePlayer1211.spawnFakePlayer(sendTo, name, texture, signature, loc, listed, latency, id, uuid, skinModel);
             case "1213" -> FakePlayer1213.spawnFakePlayer(sendTo, name, texture, signature, loc, listed, latency, id, uuid, skinModel);
+            case "1214" -> FakePlayer1214.spawnFakePlayer(sendTo, name, texture, signature, loc, listed, latency, id, uuid, skinModel);
         }
     }
-
 
     public static void removeFakePlayerPacket(List<Player> sendTo, List<UUID> uuids, List<Integer> ids) {
         switch (BukkitVersion.getBukkitVersion()) {
@@ -53,6 +54,7 @@ public class FakePlayer {
             case "121" -> FakePlayer121.removeFakePlayerPacket(sendTo, uuids, ids);
             case "1211" -> FakePlayer1211.removeFakePlayerPacket(sendTo, uuids, ids);
             case "1213" -> FakePlayer1213.removeFakePlayerPacket(sendTo, uuids, ids);
+            case "1214" -> FakePlayer1214.removeFakePlayerPacket(sendTo, uuids, ids);
         }
     }
 
