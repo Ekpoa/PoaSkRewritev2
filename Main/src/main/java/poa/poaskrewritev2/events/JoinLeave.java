@@ -28,7 +28,7 @@ public class JoinLeave implements Listener {
     @EventHandler
     public void join(PlayerJoinEvent e) {
         switch (BukkitVersion.getBukkitVersion()) {
-            case "1204", "1206", "121", "1211", "1213" -> PacketInjector.inject(e);
+            case "1204", "1206", "121", "1211", "1213", "1214" -> PacketInjector.inject(e);
         }
     }
 
