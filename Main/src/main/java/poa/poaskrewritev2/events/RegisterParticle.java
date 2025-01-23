@@ -235,7 +235,42 @@ public class RegisterParticle {
                     }
                 }, EventValues.TIME_NOW);
             }
+            case "1214" -> {
+                Skript.registerEvent("Particle Send", SimpleEvent.class, ParticleEvent1214.class,
+                        "particle send");
+                EventValues.registerEventValue(ParticleEvent1214.class, Particle.class, new Getter<>() {
+                    @Override
+                    public Particle get(ParticleEvent1214 event) {
+                        return event.getParticle();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(ParticleEvent1214.class, Integer.class, new Getter<>() {
+                    @Override
+                    public Integer get(ParticleEvent1214 event) {
+                        return event.getCount();
+                    }
+                }, EventValues.TIME_NOW);
 
+                EventValues.registerEventValue(ParticleEvent1214.class, Float.class, new Getter<>() {
+                    @Override
+                    public Float get(ParticleEvent1214 event) {
+                        return event.getMaxSpeed();
+                    }
+                }, EventValues.TIME_NOW);
+
+                EventValues.registerEventValue(ParticleEvent1214.class, Vector.class, new Getter<>() {
+                    @Override
+                    public Vector get(ParticleEvent1214 event) {
+                        return event.getOffset();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(ParticleEvent1214.class, Location.class, new Getter<>() {
+                    @Override
+                    public Location get(ParticleEvent1214 event) {
+                        return event.getLocation();
+                    }
+                }, EventValues.TIME_NOW);
+            }
         }
     }
 }

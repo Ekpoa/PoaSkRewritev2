@@ -127,7 +127,7 @@ public class RegisterInput {
                     }
                 }, EventValues.TIME_NOW);
             }
-            case "1213" -> {
+            case "1213", "1214" -> {
                 Skript.registerEvent("Player Input Event", SimpleEvent.class, PlayerInputEvent.class, "player input packet");
                 EventValues.registerEventValue(PlayerInputEvent.class, String.class, new Getter<>() {
                     @Override

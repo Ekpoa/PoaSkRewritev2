@@ -15,8 +15,8 @@ public class GetBlockId {
             case "1206" -> GetBlockId1206.blockId(blockData);
             case "121" -> GetBlockId121.blockId(blockData);
             case "1211" -> GetBlockId1211.blockId(blockData);
-            case "1213" -> GetBlockId1211.blockId(blockData);
-            case "1214" -> GetBlockId1211.blockId(blockData);
+            case "1213" -> GetBlockId1213.blockId(blockData);
+            case "1214" -> GetBlockId1214.blockId(blockData);
             default -> 0;
         };
     }
