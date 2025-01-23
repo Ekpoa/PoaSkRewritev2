@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 import poa.packets.HeadRotPacket;
 import poa.packets.SendPacket;
 
-public class EffFakeHeadRotation extends Effect implements Listener {
+public class EffFakeHeadRotation extends Effect {
 
     static {
         Skript.registerEffect(EffFakeHeadRotation.class,

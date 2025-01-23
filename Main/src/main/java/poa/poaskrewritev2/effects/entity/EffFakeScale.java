@@ -21,7 +21,7 @@ import poa.util.BukkitVersion;
 import java.util.List;
 import java.util.logging.Level;
 
-public class EffFakeScale extends Effect implements Listener {
+public class EffFakeScale extends Effect {
 
     static {
         Skript.registerEffect(EffFakeScale.class,

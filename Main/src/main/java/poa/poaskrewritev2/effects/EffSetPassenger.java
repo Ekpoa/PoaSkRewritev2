@@ -16,7 +16,7 @@ import poa.packets.SetPassengerPacket;
 
 import java.util.Arrays;
 
-public class EffSetPassenger extends Effect implements Listener {
+public class EffSetPassenger extends Effect  {
 
     static {
         Skript.registerEffect(EffSetPassenger.class, "make entit(ies|y) with id[s] %numbers% ride entity with id %number% for %players%");

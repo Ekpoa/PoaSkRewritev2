@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import poa.packets.*;
 
-public class EffFakeDeath extends Effect implements Listener {
+public class EffFakeDeath extends Effect{
 
     static {
         Skript.registerEffect(EffFakeDeath.class,

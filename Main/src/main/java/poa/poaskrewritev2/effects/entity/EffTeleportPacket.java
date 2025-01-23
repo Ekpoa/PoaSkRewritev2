@@ -16,7 +16,7 @@ import poa.packets.HeadRotPacket;
 import poa.packets.SendPacket;
 import poa.packets.TeleportPacket;
 
-public class EffTeleportPacket extends Effect implements Listener {
+public class EffTeleportPacket extends Effect {
 
     static {
         Skript.registerEffect(EffTeleportPacket.class,

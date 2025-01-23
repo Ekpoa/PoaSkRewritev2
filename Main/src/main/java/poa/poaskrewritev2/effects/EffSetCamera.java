@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 import poa.packets.CameraPacket;
 import poa.packets.SendPacket;
 
-public class EffSetCamera extends Effect implements Listener {
+public class EffSetCamera extends Effect {
 
     static {
         Skript.registerEffect(EffSetCamera.class, "[set] camera [packet] of %players% to entity [with] id %number%");

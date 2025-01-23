@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
 import poa.packets.Metadata;
 import poa.packets.SendPacket;
 
-public class EffSendPacket extends Effect implements Listener {
+public class EffSendPacket extends Effect {
 
     static {
         Skript.registerEffect(EffSendPacket.class, "send packet %object% to %players%");

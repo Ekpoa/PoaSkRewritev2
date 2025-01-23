@@ -16,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 import poa.packets.Metadata;
 import poa.packets.SendPacket;
 
-public class EffFakeEntityName extends Effect implements Listener {
+public class EffFakeEntityName extends Effect {
 
     static {
         Skript.registerEffect(EffFakeEntityName.class, "fake %entity%'s name to %string% for %players%");

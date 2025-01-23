@@ -16,7 +16,7 @@ import poa.packets.AnimatePacket;
 import poa.packets.SendPacket;
 import poa.packets.TeleportPacket;
 
-public class EffAnimatePacket extends Effect implements Listener {
+public class EffAnimatePacket extends Effect {
 
     static {
         Skript.registerEffect(EffAnimatePacket.class,

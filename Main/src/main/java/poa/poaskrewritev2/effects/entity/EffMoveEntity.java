@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 import poa.packets.PosRotPacket;
 import poa.packets.SendPacket;
 
-public class EffMoveEntity extends Effect implements Listener {
+public class EffMoveEntity extends Effect {
 
     static {
         Skript.registerEffect(EffMoveEntity.class,

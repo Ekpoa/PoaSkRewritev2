@@ -15,7 +15,7 @@ import poa.packets.HeadRotPacket;
 import poa.packets.PosRotPacket;
 import poa.packets.SendPacket;
 
-public class EffRotateEntity extends Effect implements Listener {
+public class EffRotateEntity extends Effect {
 
     static {
         Skript.registerEffect(EffRotateEntity.class,

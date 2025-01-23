@@ -26,7 +26,7 @@ import poa.util.GlowMap;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EffGlowEffect extends Effect implements Listener {
+public class EffGlowEffect extends Effect{
 
     static {
         Skript.registerEffect(EffGlowEffect.class,

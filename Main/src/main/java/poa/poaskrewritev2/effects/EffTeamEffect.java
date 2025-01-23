@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class EffTeamEffect extends Effect implements Listener {
+public class EffTeamEffect extends Effect {
 
     static {
         Skript.registerEffect(EffTeamEffect.class,

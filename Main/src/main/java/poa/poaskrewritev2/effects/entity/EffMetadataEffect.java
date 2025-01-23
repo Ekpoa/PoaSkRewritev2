@@ -24,7 +24,7 @@ import java.util.UUID;
 import java.util.logging.Level;
 
 
-public class EffMetadataEffect extends Effect implements Listener {
+public class EffMetadataEffect extends Effect {
 
     static {
         if (Skript.isRunningMinecraft(1, 19, 3)) {
