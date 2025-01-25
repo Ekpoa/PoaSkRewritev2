@@ -44,14 +44,14 @@ public class PacketInjector1211 {
 //        playerConnection.channel.pipeline().addBefore(
 //                "packet_handler", id, new PacketHandler1206(this.player));
 //
-//        System.out.println("Injected packet listener into " + this.player.getName());
+//        Bukkit.getLogger().log(Level.INFO, "Injected packet listener into " + this.player.getName());
 //
 //    }
 //
     public void uninjectPlayer() {
         if (this.craftPlayer.getHandle().connection.connection.channel.pipeline().get(id) != null) {
             this.craftPlayer.getHandle().connection.connection.channel.pipeline().remove(id);
-            System.out.println("Uninjected packet listener into " + this.player.getName());
+            Bukkit.getLogger().log(Level.INFO, "Uninjected packet listener into " + this.player.getName());
         }
     }
 }

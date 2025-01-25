@@ -28,6 +28,7 @@ import poa.util.FetchSkin1204;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.logging.Level;
 
 public class FakePlayer1204 {
 
@@ -72,7 +73,7 @@ public class FakePlayer1204 {
             tr = fakePlayer.getBukkitEntity().getPlayer();
         }
         catch (Exception e){
-            System.out.println("Failed to create bukkit entity for fake player");
+            Bukkit.getLogger().log(Level.WARNING, "Failed to create bukkit entity for fake player");
             tr = null;
         }
         return tr;

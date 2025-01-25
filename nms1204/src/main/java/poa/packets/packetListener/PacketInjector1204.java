@@ -40,7 +40,7 @@ public class PacketInjector1204 {
         if (this.craftPlayer.getHandle().connection.connection.channel.pipeline().get(id) != null) {
             Bukkit.getLogger().log(Level.INFO, "Uninjected " + player.getName());
             this.craftPlayer.getHandle().connection.connection.channel.pipeline().remove(id);
-            System.out.println("Uninjected packet listener into " + this.player.getName());
+            Bukkit.getLogger().log(Level.INFO, "Uninjected packet listener into " + this.player.getName());
         }
     }
 }

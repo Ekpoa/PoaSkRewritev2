@@ -3,12 +3,14 @@ package poa.packets.packetListener;
 import net.minecraft.network.Connection;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerConnectionListener;
+import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.v1_20_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.util.List;
+import java.util.logging.Level;
 
 public class PacketInjector1202 {
 
@@ -39,14 +41,14 @@ public class PacketInjector1202 {
         playerConnection.channel.pipeline().addBefore(
                 "packet_handler", id, new PacketHandler1202(player));
 
-        System.out.println("Injected packet listener into " + this.player.getName());
+        Bukkit.getLogger().log(Level.INFO, "Injected packet listener into " + this.player.getName());
 
     }
 
     public void uninjectPlayer() {
         if (this.craftPlayer.getHandle().connection.connection.channel.pipeline().get(id) != null) {
             this.craftPlayer.getHandle().connection.connection.channel.pipeline().remove(id);
-            System.out.println("Uninjected packet listener into " + this.player.getName());
+            Bukkit.getLogger().log(Level.INFO, "Uninjected packet listener into " + this.player.getName());
         }
     }
 }

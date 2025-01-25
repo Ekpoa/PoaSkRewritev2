@@ -2,6 +2,8 @@ package poa.util;
 
 import org.bukkit.Bukkit;
 
+import java.util.logging.Level;
+
 public class BukkitVersion {
 
     private static String version;
@@ -11,7 +13,7 @@ public class BukkitVersion {
             return version;
 
         version = Bukkit.getMinecraftVersion().replaceAll("[.]", "");
-        System.out.println("Raw version: " + Bukkit.getMinecraftVersion());
+        Bukkit.getLogger().log(Level.INFO, "Raw version: " + Bukkit.getMinecraftVersion());
         return version;
     }
 }

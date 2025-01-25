@@ -28,6 +28,7 @@ import poa.util.Components1202;
 
 import java.lang.reflect.Method;
 import java.util.List;
+import java.util.logging.Level;
 
 
 public class PacketHandler1202 extends ChannelDuplexHandler {
@@ -207,7 +208,7 @@ public class PacketHandler1202 extends ChannelDuplexHandler {
 
                     if (minecraftToBukkitMethod == null) {
                         super.write(ctx, msg, promise);
-                        System.out.println("ERROR, no method found. Report this :D");
+                        Bukkit.getLogger().log(Level.WARNING, "ERROR, no method found. Report this :D");
                         return;
                     }
                 }

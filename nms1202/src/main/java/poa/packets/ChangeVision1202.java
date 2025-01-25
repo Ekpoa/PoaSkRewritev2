@@ -10,10 +10,13 @@ import net.minecraft.world.entity.monster.CaveSpider;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.entity.monster.Spider;
+import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.v1_20_R2.CraftWorld;
 import org.bukkit.craftbukkit.v1_20_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import poa.util.RefreshPlayer1202;
+
+import java.util.logging.Level;
 
 public class ChangeVision1202 {
 
@@ -34,7 +37,7 @@ public class ChangeVision1202 {
 
 
         if (entity == null) {
-            System.out.println("Entity must be a creeper, enderman, spider, cavespider or player, for setting vision");
+            Bukkit.getLogger().log(Level.WARNING, "Entity must be a creeper, enderman, spider, cavespider or player, for setting vision");
             return;
         }
 

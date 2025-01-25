@@ -18,9 +18,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.bukkit.Bukkit;
 import org.bukkit.Particle;
 import org.bukkit.craftbukkit.CraftParticle;
-import org.bukkit.craftbukkit.block.CraftBlock;
-import org.bukkit.craftbukkit.block.CraftBlockState;
-import org.bukkit.craftbukkit.block.CraftBlockStates;
 import org.bukkit.craftbukkit.block.data.CraftBlockData;
 import org.bukkit.craftbukkit.entity.CraftPlayer;
 import org.bukkit.entity.Player;
@@ -31,6 +28,7 @@ import poa.util.Components121;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 
 public class PacketHandler121 extends ChannelDuplexHandler {
@@ -195,7 +193,7 @@ public class PacketHandler121 extends ChannelDuplexHandler {
 
                     if (minecraftToBukkitMethod == null) {
                         super.write(ctx, msg, promise);
-                        System.out.println("ERROR, no method found. Report this :D");
+                        Bukkit.getLogger().log(Level.WARNING, "ERROR, no method found. Report this :D");
                         return;
                     }
                 }
