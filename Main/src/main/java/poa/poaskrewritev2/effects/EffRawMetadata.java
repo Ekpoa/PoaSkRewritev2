@@ -27,7 +27,7 @@ import java.util.logging.Level;
 public class EffRawMetadata extends Effect {
 
     static {
-        Skript.registerEffect(EffRawMetadata.class, "add [data] [from|of] %string% [(with %-itemtype/blockdata%)] to [packet] %object%");
+        Skript.registerEffect(EffRawMetadata.class, "add data from %string% [(with %-itemtype/blockdata%)] to [packet] %object%");
     }
 
     private Expression<String> input;
