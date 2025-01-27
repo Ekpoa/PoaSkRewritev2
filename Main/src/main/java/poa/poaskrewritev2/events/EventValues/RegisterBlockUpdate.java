@@ -1,25 +1,19 @@
-package poa.poaskrewritev2.events;
+package poa.poaskrewritev2.events.EventValues;
 
-import ch.njol.skript.Skript;
-import ch.njol.skript.lang.util.SimpleEvent;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockState;
 import org.bukkit.block.data.BlockData;
-import org.bukkit.util.Vector;
 import poa.packets.packetListener.events.*;
 import poa.util.BukkitVersion;
 
 public class RegisterBlockUpdate {
 
-    public static void register(){
+    public static void registerValues(){
         switch (BukkitVersion.getBukkitVersion()){
             case "1202" -> {
-                Skript.registerEvent("Block Update Event", SimpleEvent.class, BlockUpdateEvent1202.class,
-                        "block change packet");
                 EventValues.registerEventValue(BlockUpdateEvent1202.class, Location.class, new Getter<>() {
                     @Override
                     public Location get(BlockUpdateEvent1202 event) {
@@ -46,8 +40,6 @@ public class RegisterBlockUpdate {
                 }, EventValues.TIME_NOW);
             }
             case "1204" -> {
-                Skript.registerEvent("Block Update Event", SimpleEvent.class, BlockUpdateEvent1204.class,
-                        "block change packet");
                 EventValues.registerEventValue(BlockUpdateEvent1204.class, Location.class, new Getter<>() {
                     @Override
                     public Location get(BlockUpdateEvent1204 event) {
@@ -74,8 +66,6 @@ public class RegisterBlockUpdate {
                 }, EventValues.TIME_NOW);
             }
             case "1206" -> {
-                Skript.registerEvent("Block Update Event", SimpleEvent.class, BlockUpdateEvent1206.class,
-                        "block change packet");
                 EventValues.registerEventValue(BlockUpdateEvent1206.class, Location.class, new Getter<>() {
                     @Override
                     public Location get(BlockUpdateEvent1206 event) {
@@ -102,8 +92,6 @@ public class RegisterBlockUpdate {
                 }, EventValues.TIME_NOW);
             }
             case "121" -> {
-                Skript.registerEvent("Block Update Event", SimpleEvent.class, BlockUpdateEvent121.class,
-                        "block change packet");
                 EventValues.registerEventValue(BlockUpdateEvent121.class, Location.class, new Getter<>() {
                     @Override
                     public Location get(BlockUpdateEvent121 event) {
@@ -130,8 +118,6 @@ public class RegisterBlockUpdate {
                 }, EventValues.TIME_NOW);
             }
             case "1211" -> {
-                Skript.registerEvent("Block Update Event", SimpleEvent.class, BlockUpdateEvent1211.class,
-                        "block change packet");
                 EventValues.registerEventValue(BlockUpdateEvent1211.class, Location.class, new Getter<>() {
                     @Override
                     public Location get(BlockUpdateEvent1211 event) {
@@ -158,8 +144,6 @@ public class RegisterBlockUpdate {
                 }, EventValues.TIME_NOW);
             }
             case "1213" -> {
-                Skript.registerEvent("Block Update Event", SimpleEvent.class, BlockUpdateEvent1213.class,
-                        "block change packet");
                 EventValues.registerEventValue(BlockUpdateEvent1213.class, Location.class, new Getter<>() {
                     @Override
                     public Location get(BlockUpdateEvent1213 event) {
@@ -186,8 +170,6 @@ public class RegisterBlockUpdate {
                 }, EventValues.TIME_NOW);
             }
             case "1214" -> {
-                Skript.registerEvent("Block Update Event", SimpleEvent.class, BlockUpdateEvent1214.class,
-                        "block change packet");
                 EventValues.registerEventValue(BlockUpdateEvent1214.class, Location.class, new Getter<>() {
                     @Override
                     public Location get(BlockUpdateEvent1214 event) {

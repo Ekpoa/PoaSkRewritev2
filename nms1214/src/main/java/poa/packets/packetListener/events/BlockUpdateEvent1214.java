@@ -32,6 +32,7 @@ public class BlockUpdateEvent1214 extends PlayerEvent implements Cancellable {
 
     public BlockUpdateEvent1214(@NotNull Player who, boolean async) {
         super(who, async);
+
     }
 
     public Location getLocation(){

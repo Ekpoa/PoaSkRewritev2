@@ -1,4 +1,4 @@
-package poa.poaskrewritev2.events;
+package poa.poaskrewritev2.events.EventValues;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.util.SimpleEvent;
@@ -12,11 +12,9 @@ import poa.util.BukkitVersion;
 
 public class RegisterParticle {
 
-    public static void register(){
+    public static void registerValues(){
         switch (BukkitVersion.getBukkitVersion()){
             case "1202" -> {
-                Skript.registerEvent("Particle Send", SimpleEvent.class, ParticleEvent1202.class,
-                        "particle send");
                 EventValues.registerEventValue(ParticleEvent1202.class, Particle.class, new Getter<>() {
                     @Override
                     public Particle get(ParticleEvent1202 event) {
@@ -53,8 +51,6 @@ public class RegisterParticle {
 
 
             case "1204" -> {
-                Skript.registerEvent("Particle Send", SimpleEvent.class, ParticleEvent1204.class,
-                        "particle send");
                 EventValues.registerEventValue(ParticleEvent1204.class, Particle.class, new Getter<>() {
                     @Override
                     public Particle get(ParticleEvent1204 event) {
@@ -92,8 +88,6 @@ public class RegisterParticle {
 
 
             case "1206" -> {
-                Skript.registerEvent("Particle Send", SimpleEvent.class, ParticleEvent1206.class,
-                        "particle send");
                 EventValues.registerEventValue(ParticleEvent1206.class, Particle.class, new Getter<>() {
                     @Override
                     public Particle get(ParticleEvent1206 event) {
@@ -128,8 +122,6 @@ public class RegisterParticle {
                 }, EventValues.TIME_NOW);
             }
             case "121" -> {
-                Skript.registerEvent("Particle Send", SimpleEvent.class, ParticleEvent121.class,
-                        "particle send");
                 EventValues.registerEventValue(ParticleEvent121.class, Particle.class, new Getter<>() {
                     @Override
                     public Particle get(ParticleEvent121 event) {
@@ -164,8 +156,6 @@ public class RegisterParticle {
                 }, EventValues.TIME_NOW);
             }
             case "1211" -> {
-                Skript.registerEvent("Particle Send", SimpleEvent.class, ParticleEvent1211.class,
-                        "particle send");
                 EventValues.registerEventValue(ParticleEvent1211.class, Particle.class, new Getter<>() {
                     @Override
                     public Particle get(ParticleEvent1211 event) {
@@ -200,8 +190,6 @@ public class RegisterParticle {
                 }, EventValues.TIME_NOW);
             }
             case "1213" -> {
-                Skript.registerEvent("Particle Send", SimpleEvent.class, ParticleEvent1213.class,
-                        "particle send");
                 EventValues.registerEventValue(ParticleEvent1213.class, Particle.class, new Getter<>() {
                     @Override
                     public Particle get(ParticleEvent1213 event) {
@@ -236,8 +224,6 @@ public class RegisterParticle {
                 }, EventValues.TIME_NOW);
             }
             case "1214" -> {
-                Skript.registerEvent("Particle Send", SimpleEvent.class, ParticleEvent1214.class,
-                        "particle send");
                 EventValues.registerEventValue(ParticleEvent1214.class, Particle.class, new Getter<>() {
                     @Override
                     public Particle get(ParticleEvent1214 event) {

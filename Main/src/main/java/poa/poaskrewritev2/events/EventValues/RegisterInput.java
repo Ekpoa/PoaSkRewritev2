@@ -1,12 +1,10 @@
-package poa.poaskrewritev2.events;
+package poa.poaskrewritev2.events.EventValues;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.util.SimpleEvent;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
 import org.bukkit.Input;
-import org.bukkit.Location;
-import org.bukkit.Particle;
 import org.bukkit.event.player.PlayerInputEvent;
 import org.bukkit.util.Vector;
 import org.jetbrains.annotations.Nullable;
@@ -15,11 +13,9 @@ import poa.util.BukkitVersion;
 
 public class RegisterInput {
 
-    public static void register(){
+    public static void registerValues(){
         switch (BukkitVersion.getBukkitVersion()){
             case "1202" -> {
-                Skript.registerEvent("Player Input Event", SimpleEvent.class, PlayerInputEvent1202.class,
-                        "player input packet");
                 EventValues.registerEventValue(PlayerInputEvent1202.class, Vector.class, new Getter<>() {
                     @Override
                     public Vector get(PlayerInputEvent1202 event) {
@@ -40,8 +36,6 @@ public class RegisterInput {
                 }, EventValues.TIME_NOW);
             }
             case "1204" -> {
-                Skript.registerEvent("Player Input Event", SimpleEvent.class, PlayerInputEvent1204.class,
-                        "player input packet");
                 EventValues.registerEventValue(PlayerInputEvent1204.class, Vector.class, new Getter<>() {
                     @Override
                     public Vector get(PlayerInputEvent1204 event) {
@@ -62,8 +56,6 @@ public class RegisterInput {
                 }, EventValues.TIME_NOW);
             }
             case "1206" -> {
-                Skript.registerEvent("Player Input Event", SimpleEvent.class, PlayerInputEvent1206.class,
-                        "player input packet");
                 EventValues.registerEventValue(PlayerInputEvent1206.class, Vector.class, new Getter<>() {
                     @Override
                     public Vector get(PlayerInputEvent1206 event) {
@@ -84,8 +76,6 @@ public class RegisterInput {
                 }, EventValues.TIME_NOW);
             }
             case "121" -> {
-                Skript.registerEvent("Player Input Event", SimpleEvent.class, PlayerInputEvent121.class,
-                        "player input packet");
                 EventValues.registerEventValue(PlayerInputEvent121.class, Vector.class, new Getter<>() {
                     @Override
                     public Vector get(PlayerInputEvent121 event) {
@@ -106,8 +96,6 @@ public class RegisterInput {
                 }, EventValues.TIME_NOW);
             }
             case "1211" -> {
-                Skript.registerEvent("Player Input Event", SimpleEvent.class, PlayerInputEvent1211.class,
-                        "player input packet");
                 EventValues.registerEventValue(PlayerInputEvent1211.class, Vector.class, new Getter<>() {
                     @Override
                     public Vector get(PlayerInputEvent1211 event) {
@@ -127,8 +115,7 @@ public class RegisterInput {
                     }
                 }, EventValues.TIME_NOW);
             }
-            case "1213", "1214" -> {
-                Skript.registerEvent("Player Input Event", SimpleEvent.class, PlayerInputEvent.class, "player input packet");
+            default -> {
                 EventValues.registerEventValue(PlayerInputEvent.class, String.class, new Getter<>() {
                     @Override
                     public @Nullable String get(PlayerInputEvent event) {
