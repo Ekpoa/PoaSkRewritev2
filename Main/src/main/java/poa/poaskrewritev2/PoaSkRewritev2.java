@@ -5,8 +5,9 @@ import ch.njol.skript.SkriptAddon;
 import lombok.Getter;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import poa.poaskrewritev2.events.bukkitevents.KickEvent;
 import poa.poaskrewritev2.effects.entity.EffSetPlayerNameAndSkin;
-import poa.poaskrewritev2.events.JoinLeave;
+import poa.poaskrewritev2.events.bukkitevents.JoinLeave;
 import poa.poaskrewritev2.expressions.ExprHostname;
 
 import java.io.IOException;
@@ -20,6 +21,8 @@ public final class PoaSkRewritev2 extends JavaPlugin {
     public void onEnable() {
         INSTANCE = this;
 
+        saveDefaultConfig();
+
         getCommand("poasktest").setExecutor(new TestCommand());
 
 
@@ -31,6 +34,10 @@ public final class PoaSkRewritev2 extends JavaPlugin {
         pm.registerEvents(new JoinLeave(), this);
         pm.registerEvents(new ExprHostname(), this);
         pm.registerEvents(new EffSetPlayerNameAndSkin(), this);
+
+        if(getConfig().getBoolean("PreventSelfInteractionKick"))
+            pm.registerEvents(new KickEvent(), this);
+
 
         try {
             skriptAddon.loadClasses("poa.poaskrewritev2", "expressions", "effects", "effects.entity", "effects.packets", "effects.fun", "events");

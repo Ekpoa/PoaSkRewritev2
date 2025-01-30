@@ -1,7 +1,5 @@
-package poa.poaskrewritev2.events.EventValues;
+package poa.poaskrewritev2.events.eventvalues;
 
-import ch.njol.skript.Skript;
-import ch.njol.skript.lang.util.SimpleEvent;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
 import org.bukkit.Input;

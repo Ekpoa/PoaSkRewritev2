@@ -7,8 +7,7 @@ import ch.njol.skript.lang.SkriptParser;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 import poa.packets.packetListener.events.*;
-import poa.poaskrewritev2.events.EventValues.RegisterBlockUpdate;
-import poa.poaskrewritev2.events.EventValues.RegisterParticle;
+import poa.poaskrewritev2.events.eventvalues.RegisterParticle;
 import poa.util.BukkitVersion;
 
 public class SkParticleEvent extends SkriptEvent {

@@ -9,11 +9,8 @@ import org.bukkit.event.Event;
 import org.bukkit.event.player.PlayerInputEvent;
 import org.jetbrains.annotations.Nullable;
 import poa.packets.packetListener.events.*;
-import poa.poaskrewritev2.events.EventValues.RegisterInput;
-import poa.poaskrewritev2.events.EventValues.RegisterParticle;
+import poa.poaskrewritev2.events.eventvalues.RegisterInput;
 import poa.util.BukkitVersion;
-
-import java.util.List;
 
 public class SkPlayerInputEvent extends SkriptEvent {
 

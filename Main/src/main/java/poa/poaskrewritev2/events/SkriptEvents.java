@@ -6,18 +6,9 @@ import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
 import io.papermc.paper.event.player.PlayerTrackEntityEvent;
 import io.papermc.paper.event.player.PlayerUntrackEntityEvent;
-import org.bukkit.Input;
 import org.bukkit.entity.Entity;
-import org.bukkit.event.player.PlayerInputEvent;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import poa.poaskrewritev2.events.EventValues.RegisterChat;
-import poa.poaskrewritev2.events.EventValues.RegisterInput;
-import poa.poaskrewritev2.events.EventValues.RegisterParticle;
+import poa.poaskrewritev2.events.eventvalues.RegisterChat;
 import poa.poaskrewritev2.util.types.UUIDType;
-import poa.util.BukkitVersion;
-
-import java.util.List;
 
 @SuppressWarnings("UnstableApiUsage")
 public class SkriptEvents extends SimpleEvent {

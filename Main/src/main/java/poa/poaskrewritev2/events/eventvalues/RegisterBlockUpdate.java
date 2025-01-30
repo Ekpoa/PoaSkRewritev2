@@ -1,4 +1,4 @@
-package poa.poaskrewritev2.events.EventValues;
+package poa.poaskrewritev2.events.eventvalues;
 
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;

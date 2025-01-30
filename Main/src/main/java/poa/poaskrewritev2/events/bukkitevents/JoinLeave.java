@@ -1,6 +1,5 @@
-package poa.poaskrewritev2.events;
+package poa.poaskrewritev2.events.bukkitevents;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
