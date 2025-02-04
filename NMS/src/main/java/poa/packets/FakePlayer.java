@@ -1,5 +1,6 @@
 package poa.packets;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import poa.packets.FakePlayer1202;
@@ -66,27 +67,27 @@ public class FakePlayer {
     }
 
 
-    public static void spawnTablistOnly(List<Player> sendTo, String name, UUID uuid, String skinTexture, String skinSignature, int latency) {
+    public static void spawnTablistOnly(List<Player> sendTo, String name, Component tablistName, UUID uuid, String skinTexture, String skinSignature, int latency) {
         switch (BukkitVersion.getBukkitVersion()) {
-            case "1202" -> FakePlayer1202.spawnTablistOnly(sendTo, name, uuid, skinTexture, skinSignature, latency);
-            case "1204" -> FakePlayer1204.spawnTablistOnly(sendTo, name, uuid, skinTexture, skinSignature, latency);
-            case "1206" -> FakePlayer1206.spawnTablistOnly(sendTo, name, uuid, skinTexture, skinSignature, latency);
-            case "121" -> FakePlayer121.spawnTablistOnly(sendTo, name, uuid, skinTexture, skinSignature, latency);
-            case "1211" -> FakePlayer1211.spawnTablistOnly(sendTo, name, uuid, skinTexture, skinSignature, latency);
-            case "1213" -> FakePlayer1213.spawnTablistOnly(sendTo, name, uuid, skinTexture, skinSignature, latency);
-            case "1214" -> FakePlayer1214.spawnTablistOnly(sendTo, name, uuid, skinTexture, skinSignature, latency);
+            case "1202" -> FakePlayer1202.spawnTablistOnly(sendTo, name, tablistName, uuid, skinTexture, skinSignature, latency);
+            case "1204" -> FakePlayer1204.spawnTablistOnly(sendTo, name, tablistName, uuid, skinTexture, skinSignature, latency);
+            case "1206" -> FakePlayer1206.spawnTablistOnly(sendTo, name, tablistName, uuid, skinTexture, skinSignature, latency);
+            case "121" -> FakePlayer121.spawnTablistOnly(sendTo, name, tablistName, uuid, skinTexture, skinSignature, latency);
+            case "1211" -> FakePlayer1211.spawnTablistOnly(sendTo, name, tablistName, uuid, skinTexture, skinSignature, latency);
+            case "1213" -> FakePlayer1213.spawnTablistOnly(sendTo, name, tablistName, uuid, skinTexture, skinSignature, latency);
+            case "1214" -> FakePlayer1214.spawnTablistOnly(sendTo, name, tablistName, uuid, skinTexture, skinSignature, latency);
         }
     }
 
-    public static void spawnTablistOnly(List<Player> sendTo, String name, String skinName, UUID uuid, int latency) {
+    public static void spawnTablistOnly(List<Player> sendTo, String name, Component tablistName, String skinName, UUID uuid, int latency) {
         switch (BukkitVersion.getBukkitVersion()) {
-            case "1202" -> FakePlayer1202.spawnTablistOnly(sendTo, name, skinName, uuid, latency);
-            case "1204" -> FakePlayer1204.spawnTablistOnly(sendTo, name, skinName, uuid, latency);
-            case "1206" -> FakePlayer1206.spawnTablistOnly(sendTo, name, skinName, uuid, latency);
-            case "121" -> FakePlayer121.spawnTablistOnly(sendTo, name, skinName, uuid, latency);
-            case "1211" -> FakePlayer1211.spawnTablistOnly(sendTo, name, skinName, uuid, latency);
-            case "1213" -> FakePlayer1213.spawnTablistOnly(sendTo, name, skinName, uuid, latency);
-            case "1214" -> FakePlayer1214.spawnTablistOnly(sendTo, name, skinName, uuid, latency);
+            case "1202" -> FakePlayer1202.spawnTablistOnly(sendTo, name, tablistName, skinName, uuid, latency);
+            case "1204" -> FakePlayer1204.spawnTablistOnly(sendTo, name, tablistName, skinName, uuid, latency);
+            case "1206" -> FakePlayer1206.spawnTablistOnly(sendTo, name, tablistName, skinName, uuid, latency);
+            case "121" -> FakePlayer121.spawnTablistOnly(sendTo, name, tablistName, skinName, uuid, latency);
+            case "1211" -> FakePlayer1211.spawnTablistOnly(sendTo, name, tablistName, skinName, uuid, latency);
+            case "1213" -> FakePlayer1213.spawnTablistOnly(sendTo, name, tablistName, skinName, uuid, latency);
+            case "1214" -> FakePlayer1214.spawnTablistOnly(sendTo, name, tablistName, skinName, uuid, latency);
         }
     }
 

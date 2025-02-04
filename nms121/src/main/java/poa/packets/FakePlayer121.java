@@ -97,6 +97,7 @@ public class FakePlayer121 {
         fakePlayer.setRot(loc.getYaw(), loc.getPitch());
         fakePlayer.setYHeadRot(loc.getYaw());
 
+        fakePlayer.connection = new ServerGamePacketListenerImpl(MinecraftServer.getServer(), new Connection(PacketFlow.CLIENTBOUND), fakePlayer, new CommonListenerCookie(fakePlayer.getGameProfile(), 1, fakePlayer.clientInformation(), true));
 
         GameProfile gameProfile = fakePlayer.getGameProfile();
 
@@ -108,7 +109,7 @@ public class FakePlayer121 {
         return fakePlayer;
     }
 
-    public static void spawnTablistOnly(List<Player> sendTo, String name, UUID uuid, String skinTexture, String skinSignature, int latency) {
+    public static void spawnTablistOnly(List<Player> sendTo, String name, net.kyori.adventure.text.Component tablistName,UUID uuid, String skinTexture, String skinSignature, int latency) {
         final Location loc = new Location(Bukkit.getWorlds().get(0), 0, 0, 0);
         final ServerPlayer fakePlayer = createServerPlayer(loc, name, uuid, 127, true, skinTexture, skinSignature);
 
@@ -133,15 +134,15 @@ public class FakePlayer121 {
 
             if (latency > 0)
                 connection.send(latencyPacket);
-
         }
+        fakePlayer.getBukkitEntity().getPlayer().playerListName(tablistName);
     }
 
-    public static void spawnTablistOnly(List<Player> sendTo, String name, String skinName, UUID uuid, int latency){
+    public static void spawnTablistOnly(List<Player> sendTo, String name, net.kyori.adventure.text.Component tablistName, String skinName, UUID uuid, int latency){
         UUID string = Bukkit.getOfflinePlayer(skinName).getUniqueId();
         String texture = FetchSkin121.fetchSkinURL(string);
         String signature = FetchSkin121.fetchSkinSignature(string);
-        spawnTablistOnly(sendTo, name, uuid, texture, signature, latency);
+        spawnTablistOnly(sendTo, name, tablistName, uuid, texture, signature, latency);
     }
 
     public static void removeTablistPacket(List<Player> sendTo, List<UUID> uuids) {

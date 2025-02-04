@@ -5,6 +5,8 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -13,13 +15,14 @@ import org.jetbrains.annotations.Nullable;
 import poa.packets.FakePlayer;
 import poa.packets.SendPacket;
 import poa.packets.TeamPacket;
+import poa.util.Messages;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
 public class EffFakeTablistPlayer extends Effect {
-
+   // !add player named "&bHello there you sexy thing" to tablist with skin named "Ekpoa" for me with uuid (random uuid)
     static {
         Skript.registerEffect(EffFakeTablistPlayer.class,
                 "add [player] [named] %string% to tablist [with skin named %-string%] [with latency %-number%] for %players% [with] uuid %string%");
@@ -60,6 +63,11 @@ public class EffFakeTablistPlayer extends Effect {
             signature = split.get(1);
         }
 
+        Component tablistName = MiniMessage.miniMessage().deserialize(Messages.essentialsToMinimessage(name));
+
+        name = "a";
+
+
 
         UUID uuid = UUID.fromString(this.uuid.getSingle(event));
 
@@ -71,9 +79,9 @@ public class EffFakeTablistPlayer extends Effect {
 
         final List<Player> playerList = Arrays.stream(players.getArray(event)).toList();
         if (texture == null)
-            FakePlayer.spawnTablistOnly(playerList, name, skinName, uuid, latency);
+            FakePlayer.spawnTablistOnly(playerList, name, tablistName, skinName, uuid, latency);
         else
-            FakePlayer.spawnTablistOnly(playerList, name, uuid, texture, signature, latency);
+            FakePlayer.spawnTablistOnly(playerList, name, tablistName,  uuid, texture, signature, latency);
 
     }
 

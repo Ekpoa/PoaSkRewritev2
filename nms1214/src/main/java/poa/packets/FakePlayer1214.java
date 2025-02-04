@@ -3,7 +3,10 @@ package poa.packets;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import lombok.SneakyThrows;
+import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.PacketFlow;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.network.protocol.game.ClientboundPlayerInfoRemovePacket;
 import net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket;
@@ -13,6 +16,7 @@ import net.minecraft.server.level.ClientInformation;
 import net.minecraft.server.level.ParticleStatus;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.network.CommonListenerCookie;
 import net.minecraft.server.network.ServerGamePacketListenerImpl;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.player.ChatVisiblity;
@@ -25,6 +29,7 @@ import org.bukkit.craftbukkit.CraftWorld;
 import org.bukkit.craftbukkit.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
+import poa.util.Components1214;
 import poa.util.FetchSkin1214;
 
 import java.util.*;
@@ -55,9 +60,12 @@ public class FakePlayer1214 {
 
         final ClientboundPlayerInfoUpdatePacket latencyPacket = new ClientboundPlayerInfoUpdatePacket(EnumSet.of(ClientboundPlayerInfoUpdatePacket.Action.UPDATE_LATENCY), entry);
 
+
+
         for (Player player : sendTo) {
             ServerGamePacketListenerImpl connection = ((CraftPlayer) player).getHandle().connection;
             connection.send(updatePacket);
+
 
             if (listed)
                 connection.send(listPacket);
@@ -92,6 +100,8 @@ public class FakePlayer1214 {
         fakePlayer.setRot(loc.getYaw(), loc.getPitch());
         fakePlayer.setYHeadRot(loc.getYaw());
 
+        fakePlayer.connection = new ServerGamePacketListenerImpl(MinecraftServer.getServer(), new Connection(PacketFlow.CLIENTBOUND), fakePlayer, new CommonListenerCookie(fakePlayer.getGameProfile(), 1, fakePlayer.clientInformation(), true));
+
 
         GameProfile gameProfile = fakePlayer.getGameProfile();
 
@@ -103,8 +113,9 @@ public class FakePlayer1214 {
         return fakePlayer;
     }
 
-    public static void spawnTablistOnly(List<Player> sendTo, String name, UUID uuid, String skinTexture, String skinSignature, int latency) {
+    public static void spawnTablistOnly(List<Player> sendTo, String name, net.kyori.adventure.text.Component tablistName, UUID uuid, String skinTexture, String skinSignature, int latency) {
         final Location loc = new Location(Bukkit.getWorlds().get(0), 0, 0, 0);
+
         final ServerPlayer fakePlayer = createServerPlayer(loc, name, uuid, 127, true, skinTexture, skinSignature);
 
         final GameProfile gameProfile = fakePlayer.getGameProfile();
@@ -120,24 +131,26 @@ public class FakePlayer1214 {
         final ClientboundPlayerInfoUpdatePacket updatePacket = new ClientboundPlayerInfoUpdatePacket(EnumSet.of(addPlayer), entry);
 
 
-
         for (Player player : sendTo) {
             ServerGamePacketListenerImpl connection = ((CraftPlayer) player).getHandle().connection;
             connection.send(updatePacket);
 
             connection.send(listPacket);
 
+            //connection.send(displayNamePacket);
+
+
             if (latency > 0)
                 connection.send(latencyPacket);
-
         }
+        fakePlayer.getBukkitEntity().getPlayer().playerListName(tablistName);
     }
 
-    public static void spawnTablistOnly(List<Player> sendTo, String name, String skinName, UUID uuid, int latency){
+    public static void spawnTablistOnly(List<Player> sendTo, String name, net.kyori.adventure.text.Component tablistName, String skinName, UUID uuid, int latency){
         UUID string = Bukkit.getOfflinePlayer(skinName).getUniqueId();
         String texture = FetchSkin1214.fetchSkinURL(string);
         String signature = FetchSkin1214.fetchSkinSignature(string);
-        spawnTablistOnly(sendTo, name, uuid, texture, signature, latency);
+        spawnTablistOnly(sendTo, name, tablistName, uuid, texture, signature, latency);
     }
 
     public static void removeTablistPacket(List<Player> sendTo, List<UUID> uuids) {
