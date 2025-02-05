@@ -7,17 +7,14 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.VariableString;
 import ch.njol.util.Kleenean;
-import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.block.data.BlockData;
-import org.bukkit.entity.Display;
-import org.bukkit.entity.TextDisplay;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import poa.packets.Metadata;
 import poa.poaskrewritev2.PoaSkRewritev2;
-import poa.util.Messages;
+import poa.util.Messages1214;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -199,7 +196,7 @@ public class EffRawMetadata extends Effect {
                                 metadata.setTextOpacity(Integer.parseInt(args[3]));
                             else {
                                 String join = String.join(" ", Arrays.copyOfRange(args, 2, args.length));
-                                join = Messages.essentialsToMinimessage(join);
+                                join = Messages1214.essentialsToMinimessage(join);
                                 metadata.setText(join);
                             }
 

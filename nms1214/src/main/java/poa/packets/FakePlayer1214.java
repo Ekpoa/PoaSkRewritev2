@@ -31,6 +31,7 @@ import org.bukkit.entity.Player;
 
 import poa.util.Components1214;
 import poa.util.FetchSkin1214;
+import poa.util.Messages1214;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
@@ -113,45 +114,55 @@ public class FakePlayer1214 {
         return fakePlayer;
     }
 
-    public static void spawnTablistOnly(List<Player> sendTo, String name, net.kyori.adventure.text.Component tablistName, UUID uuid, String skinTexture, String skinSignature, int latency) {
+    public static void spawnTablistOnly(List<Player> sendTo, String name, net.kyori.adventure.text.Component tablistName, UUID uuid, String skinTexture, String skinSignature, int latency, int tabPosition) {
         final Location loc = new Location(Bukkit.getWorlds().get(0), 0, 0, 0);
+
+
 
         final ServerPlayer fakePlayer = createServerPlayer(loc, name, uuid, 127, true, skinTexture, skinSignature);
 
         final GameProfile gameProfile = fakePlayer.getGameProfile();
 
+        fakePlayer.listOrder = tabPosition;
 
-        ClientboundPlayerInfoUpdatePacket.Entry entry = new ClientboundPlayerInfoUpdatePacket.Entry(fakePlayer.getUUID(), gameProfile, true, latency, GameType.DEFAULT_MODE, Component.empty(), true, 1, null);
-        ClientboundPlayerInfoUpdatePacket.Action addPlayer = ClientboundPlayerInfoUpdatePacket.Action.ADD_PLAYER;
+        ClientboundPlayerInfoUpdatePacket.Entry entry = new ClientboundPlayerInfoUpdatePacket.Entry(fakePlayer.getUUID(), gameProfile, true, latency, GameType.DEFAULT_MODE, Component.empty(), true, tabPosition, null);
 
-        final ClientboundPlayerInfoUpdatePacket listPacket = new ClientboundPlayerInfoUpdatePacket(EnumSet.of(ClientboundPlayerInfoUpdatePacket.Action.UPDATE_LISTED), entry);
+        final EnumSet<ClientboundPlayerInfoUpdatePacket.Action> enumSet = EnumSet.of(ClientboundPlayerInfoUpdatePacket.Action.UPDATE_LISTED,
+                ClientboundPlayerInfoUpdatePacket.Action.UPDATE_LATENCY,
+                ClientboundPlayerInfoUpdatePacket.Action.ADD_PLAYER,
+                ClientboundPlayerInfoUpdatePacket.Action.UPDATE_LIST_ORDER);
 
-        final ClientboundPlayerInfoUpdatePacket latencyPacket = new ClientboundPlayerInfoUpdatePacket(EnumSet.of(ClientboundPlayerInfoUpdatePacket.Action.UPDATE_LATENCY), entry);
 
-        final ClientboundPlayerInfoUpdatePacket updatePacket = new ClientboundPlayerInfoUpdatePacket(EnumSet.of(addPlayer), entry);
+
+
+        final ClientboundPlayerInfoUpdatePacket actionsPacket = new ClientboundPlayerInfoUpdatePacket(enumSet, entry);
 
 
         for (Player player : sendTo) {
             ServerGamePacketListenerImpl connection = ((CraftPlayer) player).getHandle().connection;
-            connection.send(updatePacket);
+            connection.send(actionsPacket);
 
-            connection.send(listPacket);
-
-            //connection.send(displayNamePacket);
-
-
-            if (latency > 0)
-                connection.send(latencyPacket);
         }
         fakePlayer.getBukkitEntity().getPlayer().playerListName(tablistName);
     }
 
-    public static void spawnTablistOnly(List<Player> sendTo, String name, net.kyori.adventure.text.Component tablistName, String skinName, UUID uuid, int latency){
+    public static void spawnTablistOnly(List<Player> sendTo, String name, net.kyori.adventure.text.Component tablistName, UUID uuid, String skinTexture, String skinSignature, int latency){
+        spawnTablistOnly(sendTo, name, tablistName, uuid, skinTexture, skinSignature, latency, -1);
+    }
+
+
+
+    public static void spawnTablistOnly(List<Player> sendTo, String name, net.kyori.adventure.text.Component tablistName, String skinName, UUID uuid, int latency, int tablistPosition){
         UUID string = Bukkit.getOfflinePlayer(skinName).getUniqueId();
         String texture = FetchSkin1214.fetchSkinURL(string);
         String signature = FetchSkin1214.fetchSkinSignature(string);
-        spawnTablistOnly(sendTo, name, tablistName, uuid, texture, signature, latency);
+        spawnTablistOnly(sendTo, name, tablistName, uuid, texture, signature, latency, tablistPosition);
     }
+
+    public static void spawnTablistOnly(List<Player> sendTo, String name, net.kyori.adventure.text.Component tablistName, String skinName, UUID uuid, int latency){
+        spawnTablistOnly(sendTo, name, tablistName, skinName, uuid, latency, -1);
+    }
+
 
     public static void removeTablistPacket(List<Player> sendTo, List<UUID> uuids) {
         final ClientboundPlayerInfoRemovePacket packet = new ClientboundPlayerInfoRemovePacket(uuids);
@@ -161,24 +172,24 @@ public class FakePlayer1214 {
     }
 
 
-    public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id, UUID uuid, int skinModel) {
+    public static Player spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id, UUID uuid, int skinModel) {
         UUID string = Bukkit.getOfflinePlayer(skinName).getUniqueId();
         String texture = FetchSkin1214.fetchSkinURL(string);
         String signature = FetchSkin1214.fetchSkinSignature(string);
 
-        spawnFakePlayer(sendTo, name, texture, signature, loc, listed, latency, id, uuid, skinModel);
+        return spawnFakePlayer(sendTo, name, texture, signature, loc, listed, latency, id, uuid, skinModel);
     }
 
-    public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id, UUID uuid) {
-        spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, id, uuid, 127);
+    public static Player spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id, UUID uuid) {
+        return spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, id, uuid, 127);
     }
 
-    public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id) {
-        spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, id, UUID.randomUUID());
+    public static Player spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id) {
+        return spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, id, UUID.randomUUID());
     }
 
-    public static void spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency) {
-        spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, ThreadLocalRandom.current().nextInt(99999, Integer.MAX_VALUE - 1));
+    public static Player spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency) {
+        return spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, ThreadLocalRandom.current().nextInt(99999, Integer.MAX_VALUE - 1));
     }
 
     @SneakyThrows

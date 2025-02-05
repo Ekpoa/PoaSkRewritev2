@@ -7,15 +7,12 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import poa.packets.FakePlayer;
-import poa.packets.SendPacket;
-import poa.packets.TeamPacket;
-import poa.util.Messages;
+import poa.util.Messages1214;
 
 import java.util.Arrays;
 import java.util.List;
@@ -63,7 +60,7 @@ public class EffFakeTablistPlayer extends Effect {
             signature = split.get(1);
         }
 
-        Component tablistName = MiniMessage.miniMessage().deserialize(Messages.essentialsToMinimessage(name));
+        Component tablistName = MiniMessage.miniMessage().deserialize(Messages1214.essentialsToMinimessage(name));
 
         name = "a";
 
