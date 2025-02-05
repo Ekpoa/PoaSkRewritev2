@@ -6,6 +6,7 @@ poa/packets/SendPacket1214.class
 poa/packets/FakeDeathAnimation1214.class
 poa/packets/AttributePacket1214.class
 poa/packets/packetListener/PacketInjector1214.class
+poa/util/Messages1214.class
 poa/util/GetPose1214.class
 poa/packets/ChangeVision1214.class
 poa/packets/SetPassengerPacket1214.class

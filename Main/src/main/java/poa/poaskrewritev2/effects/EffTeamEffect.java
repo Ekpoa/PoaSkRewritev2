@@ -72,7 +72,7 @@ public class EffTeamEffect extends Effect {
         String displayname = "";
         String visibility = "always";
         String collision = "always";
-        String chatColor = "";
+        String chatColor = "white";
         String prefix = "";
         String suffix = "";
 
