@@ -109,7 +109,10 @@ public class EffGlowEffect extends Effect {
                     GlowMap.getGlowMap().put(player, list);
                 }
 
-                if (!glow)
+                //if (!glow)
+
+
+
                     SendPacket.sendPacket(player, builtMetadata);
 
 //                if (entity instanceof Player p) //this is to update the glowing forcefully

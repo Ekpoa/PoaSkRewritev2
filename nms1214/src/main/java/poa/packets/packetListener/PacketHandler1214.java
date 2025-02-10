@@ -108,7 +108,6 @@ public class PacketHandler1214 extends ChannelDuplexHandler {
                     return;
                 }
 
-
                 if (target.isGlowing()) {
                     super.write(ctx, msg, promise);
                     return;
@@ -118,7 +117,6 @@ public class PacketHandler1214 extends ChannelDuplexHandler {
                 boolean glow = true;
 
                 List<Integer> ids = GlowMap1214.glowMap.get(player);
-
 
                 if (entityId != target.getEntityId()) {
                     super.write(ctx, msg, promise);
@@ -133,11 +131,6 @@ public class PacketHandler1214 extends ChannelDuplexHandler {
                     glow = false;
 
 
-
-
-
-
-
                 var dataValues = new ArrayList<>(metadata.packedItems());
                 if (glow && dataValues.stream()
                         .map(SynchedEntityData.DataValue::value)
@@ -149,7 +142,7 @@ public class PacketHandler1214 extends ChannelDuplexHandler {
                             0, EntityDataSerializers.BYTE, (byte) 0x40
                     ));
 
-                else if (glow) dataValues.removeIf(data ->
+                else if (!glow) dataValues.removeIf(data ->
                         data.value() instanceof Byte aByte && aByte == (byte) 0x40);
 
                 ClientboundSetEntityDataPacket newPacket = new ClientboundSetEntityDataPacket(entityId, dataValues);

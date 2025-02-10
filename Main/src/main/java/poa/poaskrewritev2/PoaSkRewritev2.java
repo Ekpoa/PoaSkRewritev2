@@ -8,6 +8,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import poa.poaskrewritev2.events.bukkitevents.KickEvent;
 import poa.poaskrewritev2.effects.entity.EffSetPlayerNameAndSkin;
 import poa.poaskrewritev2.events.bukkitevents.JoinLeave;
+import poa.poaskrewritev2.events.bukkitevents.PlayerLoadEntity;
 import poa.poaskrewritev2.expressions.ExprHostname;
 
 import java.io.IOException;
@@ -34,6 +35,7 @@ public final class PoaSkRewritev2 extends JavaPlugin {
         pm.registerEvents(new JoinLeave(), this);
         pm.registerEvents(new ExprHostname(), this);
         pm.registerEvents(new EffSetPlayerNameAndSkin(), this);
+        pm.registerEvents(new PlayerLoadEntity(), this);
 
         if(getConfig().getBoolean("PreventSelfInteractionKick"))
             pm.registerEvents(new KickEvent(), this);

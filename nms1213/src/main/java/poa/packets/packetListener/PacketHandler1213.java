@@ -144,7 +144,7 @@ public class PacketHandler1213 extends ChannelDuplexHandler {
                             0, EntityDataSerializers.BYTE, (byte) 0x40
                     ));
 
-                else if (glow) dataValues.removeIf(data ->
+                else if (!glow) dataValues.removeIf(data ->
                         data.value() instanceof Byte aByte && aByte == (byte) 0x40);
 
                 ClientboundSetEntityDataPacket newPacket = new ClientboundSetEntityDataPacket(entityId, dataValues);
