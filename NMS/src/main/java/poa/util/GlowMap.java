@@ -5,12 +5,13 @@ import poa.packets.packetListener.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class GlowMap {
 
 
 
-    public static Map<Player, List<Integer>> getGlowMap(){
+    public static ConcurrentHashMap<Player, List<Integer>> getGlowMap(){
         return switch (BukkitVersion.getBukkitVersion()){
             case "1214" -> GlowMap1214.getGlowMap();
             case "1213" -> GlowMap1213.getGlowMap();
@@ -22,6 +23,7 @@ public class GlowMap {
             default -> null;
         };
     }
+
 
 
 }

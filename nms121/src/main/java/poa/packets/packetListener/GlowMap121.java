@@ -6,12 +6,13 @@ import org.bukkit.entity.Player;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class GlowMap121 {
 
 
     @Getter
-    public static Map<Player, List<Integer>> glowMap = new HashMap<>();//player -> target    removal handled in login
+    public static ConcurrentHashMap<Player, List<Integer>> glowMap = new ConcurrentHashMap<>();//player -> target    removal handled in login
 
 
 }

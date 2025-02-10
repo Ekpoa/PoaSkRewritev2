@@ -14,6 +14,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import poa.packets.Metadata;
 import poa.poaskrewritev2.PoaSkRewritev2;
+import poa.util.Messages;
 import poa.util.Messages1214;
 
 import java.util.ArrayList;
@@ -80,7 +81,7 @@ public class EffRawMetadata extends Effect {
                         metadata.setNameVisible(Boolean.parseBoolean(args[2]));
                     else {
                         String name = String.join(" ", Arrays.copyOfRange(args, 1, args.length));
-                        metadata.setName(name);
+                        metadata.setName(Messages.essentialsToMinimessage(name));
                     }
                 }
 

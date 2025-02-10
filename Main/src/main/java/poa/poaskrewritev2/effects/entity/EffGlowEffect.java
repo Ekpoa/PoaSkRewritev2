@@ -26,7 +26,7 @@ import poa.util.GlowMap;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EffGlowEffect extends Effect{
+public class EffGlowEffect extends Effect {
 
     static {
         Skript.registerEffect(EffGlowEffect.class,
@@ -51,6 +51,8 @@ public class EffGlowEffect extends Effect{
         } else {
             players = (Expression<Player>) exprs[1];
         }
+
+
         return true;
     }
 
@@ -59,58 +61,61 @@ public class EffGlowEffect extends Effect{
     @SneakyThrows
     @Override
     protected void execute(Event event) {
+
         String chatColor = "white";
         if (this.color != null)
             chatColor = ((SkriptColor) color.getSingle(event)).asChatColor().name();
+
+        final boolean glow = pattern == 0;
 
         for (Entity entity : this.entities.getArray(event)) {
             String uuid = entity.getUniqueId().toString();
             if (entity instanceof Player player)
                 uuid = player.getName();
 
+            Metadata metadata = new Metadata(entity.getEntityId());
+            metadata.setPose(GetPose.getPoseString(entity));
+            metadata.setOnFire(entity.isVisualFire());
+
+            metadata.setGlow(glow);
+
+            final Object builtMetadata = metadata.build();
+
             for (Player player : players.getArray(event)) {
-                if (entity instanceof Player target) {
-                    if (this.color == null) {
-                        List<Integer> list = GlowMap.getGlowMap().get(player);
-                        if (list == null)
-                            list = new ArrayList<>();
-
-                        if (!list.isEmpty())
-                            list.remove((Integer) target.getEntityId());
-                        GlowMap.getGlowMap().put(player, list);
-
-                    } else {
-                        List<Integer> list = GlowMap.getGlowMap().get(player);
-                        if (list == null)
-                            list = new ArrayList<>();
-
-                        if (!list.contains(target.getEntityId()))
-                            list.add(target.getEntityId());
-
-                        list.add(target.getEntityId());
-                        GlowMap.getGlowMap().put(player, list);
-                    }
-
-
-                }
-
-                Metadata metadata = new Metadata(entity.getEntityId());
-                metadata.setPose(GetPose.getPoseString(entity));
-                metadata.setOnFire(entity.isVisualFire());
-                metadata.setGlow(pattern == 0);
-
                 if (entity instanceof LivingEntity li) {
                     metadata.setInvisible(li.isInvisible());
                     metadata.setGravity(li.hasGravity());
                 }
 
-                SendPacket.sendPacket(player, metadata.build());
                 SendPacket.sendPacket(player, TeamPacket.teamPacketForGlow(uuid, chatColor, List.of(uuid)));
+                if (glow) {
+                    SendPacket.sendPacket(player, builtMetadata);
+                }
 
-                if (entity instanceof Player p) //this is to update the glowing forcefully
-                    Bukkit.getScheduler().runTaskLater(PoaSkRewritev2.getINSTANCE(), () -> {
-                        p.setSilent(p.isSilent());
-                    }, 1L);
+
+                if (entity instanceof Player target) {
+                    List<Integer> list = GlowMap.getGlowMap().get(player);
+                    if (list == null)
+                        list = new ArrayList<>();
+                    if (!glow) {
+
+                        if (!list.isEmpty())
+                            list.remove((Integer) target.getEntityId());
+
+                    } else {
+                        if (!list.contains(target.getEntityId()))
+                            list.add(target.getEntityId());
+                    }
+                    GlowMap.getGlowMap().put(player, list);
+                }
+
+                if (!glow)
+                    SendPacket.sendPacket(player, builtMetadata);
+
+//                if (entity instanceof Player p) //this is to update the glowing forcefully
+//                    Bukkit.getScheduler().runTaskLater(PoaSkRewritev2.getINSTANCE(), () -> {
+//                        p.setSilent(p.isSilent());
+//                    }, 2L);
             }
         }
     }

@@ -33,8 +33,6 @@ public class TeamPacket1214 {
 
             playerTeam.setNameTagVisibility(Team.Visibility.valueOf(nameTagVisibility.toUpperCase()));
 
-
-
             playerTeam.setDisplayName(Components1214.nmsComponentActual(MiniMessage.miniMessage().deserialize(displayName)));
 
             Optional<ClientboundSetPlayerTeamPacket.Parameters> parameters = Optional.of(new ClientboundSetPlayerTeamPacket.Parameters(playerTeam));
@@ -55,5 +53,6 @@ public class TeamPacket1214 {
     public static Object teamPacketForBeam(Collection<String> entities, String color) {
         return teamPacket("noclipG", "", "never", "never", color, "", "", entities);
     }
+
 
 }

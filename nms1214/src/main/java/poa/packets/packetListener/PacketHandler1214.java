@@ -30,6 +30,7 @@ import poa.util.Components1214;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 
 
@@ -111,7 +112,6 @@ public class PacketHandler1214 extends ChannelDuplexHandler {
                 if (target.isGlowing()) {
                     super.write(ctx, msg, promise);
                     return;
-
                 }
 
 
@@ -125,13 +125,17 @@ public class PacketHandler1214 extends ChannelDuplexHandler {
                     return;
                 }
 
-
                 if (ids == null)
                     glow = false;
                 else if (ids.isEmpty())
                     glow = false;
                 else if (!ids.contains(entityId))
                     glow = false;
+
+
+
+
+
 
 
                 var dataValues = new ArrayList<>(metadata.packedItems());
