@@ -23,7 +23,7 @@ public class PlayerLoadEntity implements Listener {
 
         final List<Integer> ids = GlowMap.getGlowMap().get(player);
 
-        if(!ids.contains(target.getEntityId()))
+        if(ids == null || !ids.contains(target.getEntityId()))
             return;
 
         Bukkit.getScheduler().runTaskLater(PoaSkRewritev2.getINSTANCE(), () -> {
