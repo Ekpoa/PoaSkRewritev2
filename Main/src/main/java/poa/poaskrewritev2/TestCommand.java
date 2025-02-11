@@ -1,23 +1,31 @@
 package poa.poaskrewritev2;
 
-import net.kyori.adventure.text.minimessage.MiniMessage;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.World;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import poa.packets.*;
+import poa.blocks.SetFast1214;
 
-import java.util.List;
-import java.util.UUID;
+import java.util.HashSet;
+import java.util.Set;
 
 public class TestCommand implements CommandExecutor {
+
+
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
         if(sender instanceof Player player){
-        FakePlayer1204.spawnTablistOnly(List.of(player), args[0], MiniMessage.miniMessage().deserialize(args[1]), "notch", UUID.randomUUID(), Integer.parseInt(args[2]));
+
         }
         return false;
     }
+
+
+
 
 }

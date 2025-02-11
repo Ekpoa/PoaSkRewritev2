@@ -10,6 +10,7 @@ poa/util/Messages1214.class
 poa/util/GetPose1214.class
 poa/packets/ChangeVision1214.class
 poa/packets/SetPassengerPacket1214.class
+poa/blocks/SetFast1214.class
 poa/packets/AnimationPacket1214.class
 poa/util/GetBlockId1214.class
 poa/ChangeIP1214.class
