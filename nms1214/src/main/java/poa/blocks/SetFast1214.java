@@ -27,14 +27,12 @@ public class SetFast1214 {
         BlockState state = ((CraftBlockData) blockData).getState();
         World world = locations.iterator().next().getWorld();
 
-        // Group locations by chunk
         for (Location loc : locations) {
             LevelChunk chunk = getLevelChunk(loc.getChunk());
             chunkMap.computeIfAbsent(chunk, k -> new ArrayList<>())
                     .add(new BlockPos(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ()));
         }
 
-        // Apply all block updates within each chunk before refreshing
         for (Map.Entry<LevelChunk, List<BlockPos>> entry : chunkMap.entrySet()) {
             LevelChunk chunk = entry.getKey();
             List<BlockPos> blockPositions = entry.getValue();
@@ -43,7 +41,6 @@ public class SetFast1214 {
                 chunk.setBlockState(pos, state, false, false);
             }
 
-            // Refresh the chunk once after all changes
             world.refreshChunk(chunk.locX, chunk.locZ);
         }
     }
@@ -102,19 +99,19 @@ public class SetFast1214 {
 
     public static List<LevelChunk> getChunksBetween(Location loc1, Location loc2) {
         List<LevelChunk> chunks = new ArrayList<>();
-        Set<LevelChunk> chunkSet = new HashSet<>(); // To prevent duplicates
+        Set<LevelChunk> chunkSet = new HashSet<>();
 
         int minX = Math.min(loc1.getBlockX(), loc2.getBlockX()) >> 4;
         int maxX = Math.max(loc1.getBlockX(), loc2.getBlockX()) >> 4;
         int minZ = Math.min(loc1.getBlockZ(), loc2.getBlockZ()) >> 4;
         int maxZ = Math.max(loc1.getBlockZ(), loc2.getBlockZ()) >> 4;
 
-        World world = loc1.getWorld(); // Assumes both locations are in the same world
+        World world = loc1.getWorld();
 
         for (int x = minX; x <= maxX; x++) {
             for (int z = minZ; z <= maxZ; z++) {
                 LevelChunk chunk = getLevelChunk(world.getChunkAt(x, z));
-                if (chunkSet.add(chunk)) { // Ensures no duplicates
+                if (chunkSet.add(chunk)) {
                     chunks.add(chunk);
                 }
             }
