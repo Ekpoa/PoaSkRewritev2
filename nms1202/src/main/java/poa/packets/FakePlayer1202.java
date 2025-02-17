@@ -41,7 +41,7 @@ public class FakePlayer1202 {
 
         GameProfile gameProfile = fakePlayer.getGameProfile();
 
-        if (skinTexture != null || skinSignature == null) {
+        if (skinTexture != null && skinSignature != null) {
             gameProfile.getProperties().removeAll("textures");
             gameProfile.getProperties().put("textures", new Property("textures", skinTexture, skinSignature));
 

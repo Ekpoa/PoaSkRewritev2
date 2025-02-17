@@ -7,6 +7,7 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.VariableString;
 import ch.njol.util.Kleenean;
+import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.event.Event;
@@ -197,7 +198,7 @@ public class EffRawMetadata extends Effect {
                                 metadata.setTextOpacity(Integer.parseInt(args[3]));
                             else {
                                 String join = String.join(" ", Arrays.copyOfRange(args, 2, args.length));
-                                join = Messages1214.essentialsToMinimessage(join);
+                                join = Messages.essentialsToMinimessage(join);
                                 metadata.setText(join);
                             }
 

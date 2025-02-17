@@ -4,6 +4,7 @@ public class Messages {
     public static String essentialsToMinimessage(String string) {
 
         String x = string.replaceAll("§", "&");
+        x = x.replaceAll("&x&(.)&(.)&(.)&(.)&(.)&(.)", "<#$1$2$3$4$5$6>");
 
         x = x.replaceAll("&#([a-fA-F0-9]{6})", "<#$1><bold:false><underlined:false><strikethrough:false><italic:false><obfuscated:false>");
         x = x.replace("§", "&");
