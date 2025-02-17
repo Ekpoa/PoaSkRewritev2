@@ -27,6 +27,7 @@ import org.bukkit.plugin.PluginManager;
 import poa.packets.packetListener.events.*;
 import poa.util.Components1214;
 
+import java.awt.event.FocusEvent;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;

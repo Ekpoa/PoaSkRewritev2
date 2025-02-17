@@ -81,7 +81,7 @@ public class PacketHandler1202 extends ChannelDuplexHandler {
 
     static {
         try {
-            craftParticleClass = Class.forName("org.bukkit.craftbukkit.v1_20_R3.CraftParticle");
+            craftParticleClass = Class.forName("org.bukkit.craftbukkit.v1_20_R2.CraftParticle");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
