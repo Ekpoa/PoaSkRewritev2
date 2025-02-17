@@ -13,6 +13,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.bukkit.Color;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.craftbukkit.block.data.CraftBlockData;
+import org.joml.AxisAngle4f;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 import poa.util.Components1214;
@@ -229,6 +230,8 @@ public class Metadata1214 {
         dataList.add(new SynchedEntityData.DataValue<>(9, EntityDataSerializers.INT, duration));
     }
 
+
+
     @SneakyThrows
     public void setPosRotDuration(int duration){
         dataList.add(new SynchedEntityData.DataValue<>(10, EntityDataSerializers.INT, duration));
@@ -248,9 +251,23 @@ public class Metadata1214 {
     }
 
     @SneakyThrows
+    public void setRotationLeftWithAngle(float angle, float x, float y, float z){
+        final AxisAngle4f axisAngle4f = new AxisAngle4f(angle, x, y, z);
+        dataList.add(new SynchedEntityData.DataValue<>(13, EntityDataSerializers.QUATERNION, new Quaternionf(axisAngle4f)));
+    }
+
+
+
+    @SneakyThrows
     public void setRotationRight(double x, double y, double z, double w){
         dataList.add(new SynchedEntityData.DataValue<>(14, EntityDataSerializers.QUATERNION, new Quaternionf(x,y,z,w)));
     }
+    @SneakyThrows
+    public void setRotationRightWithAngle(float angle, float x, float y, float z){
+        final AxisAngle4f axisAngle4f = new AxisAngle4f(angle, x, y, z);;
+        dataList.add(new SynchedEntityData.DataValue<>(14, EntityDataSerializers.QUATERNION, new Quaternionf(axisAngle4f)));
+    }
+
 
     @SneakyThrows
     public void setBillboard(String string){

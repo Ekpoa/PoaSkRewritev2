@@ -82,8 +82,8 @@ public class FakePlayer1202 {
 
 
 
+    @SuppressWarnings("DataFlowIssue")
     public static ServerPlayer createServerPlayer(Location loc, String name, UUID uuid, int skinModel, boolean listed, String skinTexture, String skinSignature) {
-
         World world = Bukkit.getWorlds().get(0);
         MinecraftServer server = MinecraftServer.getServer();
         ServerLevel level = ((CraftWorld) world).getHandle();
@@ -95,7 +95,18 @@ public class FakePlayer1202 {
         fakePlayer.setRot(loc.getYaw(), loc.getPitch());
         fakePlayer.setYHeadRot(loc.getYaw());
 
-        fakePlayer.connection = new ServerGamePacketListenerImpl(MinecraftServer.getServer(), new Connection(PacketFlow.CLIENTBOUND), fakePlayer, new CommonListenerCookie(fakePlayer.getGameProfile(), 1, fakePlayer.clientInformation()));
+
+        final CraftPlayer real = (CraftPlayer) Bukkit.getOnlinePlayers().toArray()[0];
+
+        final ServerPlayer realhandle = real.getHandle();
+
+        final ServerGamePacketListenerImpl connection = realhandle.connection;
+
+
+        fakePlayer.connection = connection;
+
+        realhandle.connection = connection;
+
 
         GameProfile gameProfile = fakePlayer.getGameProfile();
 
