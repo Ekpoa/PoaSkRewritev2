@@ -1,4 +1,5 @@
 poa/packets/PosRotPacket1213.class
+poa/util/EntityFromID1213.class
 poa/packets/packetListener/PacketHandler1213.class
 poa/packets/Metadata1213.class
 poa/packets/packetListener/events/BlockUpdateEvent1213.class

@@ -10,6 +10,7 @@
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/packetListener/GlowMap1211.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/packetListener/events/ParticleEvent1211.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/SetEquipmentPacket1211.java
+/Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/util/EntityFromID1211.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/ChangeIP1211.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/packetListener/events/SystemChatPacketEvent1211.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/packetListener/PacketInjector1211.java

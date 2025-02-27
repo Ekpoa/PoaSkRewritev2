@@ -12,6 +12,7 @@ import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import poa.packets.FakePlayer;
+import poa.util.Messages;
 import poa.util.Messages1214;
 
 import java.util.Arrays;
@@ -60,7 +61,7 @@ public class EffFakeTablistPlayer extends Effect {
             signature = split.get(1);
         }
 
-        Component tablistName = MiniMessage.miniMessage().deserialize(Messages1214.essentialsToMinimessage(name));
+        Component tablistName = MiniMessage.miniMessage().deserialize(Messages.essentialsToMinimessage(name));
 
         name = "a";
 
