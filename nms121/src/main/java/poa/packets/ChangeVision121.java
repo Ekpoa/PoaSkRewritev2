@@ -32,7 +32,10 @@ public class ChangeVision121 {
             case "enderman" -> entity = new EnderMan(EntityType.ENDERMAN, ((CraftWorld) player.getWorld()).getHandle());
             case "cave_spider" ->
                     entity = new CaveSpider(EntityType.CAVE_SPIDER, ((CraftWorld) player.getWorld()).getHandle());
-            case "player" -> serverPlayer.connection.send(new ClientboundSetCameraPacket(serverPlayer));
+            case "player" -> {
+                serverPlayer.connection.send(new ClientboundSetCameraPacket(serverPlayer));
+                return;
+            }
         }
 
 
