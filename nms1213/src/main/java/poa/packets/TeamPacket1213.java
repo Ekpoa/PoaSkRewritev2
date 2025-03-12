@@ -15,7 +15,7 @@ import java.util.Optional;
 public class TeamPacket1213 {
 
 
-    public static Object teamPacket(String teamName, String displayName, String nameTagVisibility, String collision, String color, String prefix, String suffix, Collection<String> players) {
+    public static Object teamPacket(String teamName, String displayName, String nameTagVisibility, String collision, String color, String prefix, String suffix, boolean seeFriendly, Collection<String> players) {
         try {
             Class<ClientboundSetPlayerTeamPacket> clazz = ClientboundSetPlayerTeamPacket.class;
 
@@ -33,7 +33,7 @@ public class TeamPacket1213 {
 
             playerTeam.setNameTagVisibility(Team.Visibility.valueOf(nameTagVisibility.toUpperCase()));
 
-
+            playerTeam.setSeeFriendlyInvisibles(seeFriendly);
 
             playerTeam.setDisplayName(Components1213.nmsComponentActual(MiniMessage.miniMessage().deserialize(displayName)));
 
@@ -46,6 +46,10 @@ public class TeamPacket1213 {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static Object teamPacket(String teamName, String displayName, String nameTagVisibility, String collision, String color, String prefix, String suffix, Collection<String> players){
+        return teamPacket(teamName, displayName, nameTagVisibility, collision, color, prefix, suffix, false, players);
     }
 
     public static Object teamPacketForGlow(String teamName, String color, Collection<String> players) {
