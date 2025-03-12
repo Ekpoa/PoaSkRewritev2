@@ -50,7 +50,7 @@ public class EffGhost extends Effect {
         uuids.addAll(Arrays.stream(entities).map(Entity::getUniqueId).map(UUID::toString).toList());
         uuids.addAll(Arrays.stream(players).map(Player::getName).toList());
 
-        final Object packet = TeamPacket.teamPacket("poaskghost", "", "always", "always", "white", "", "", true, uuids);
+        final Object packet = TeamPacket.teamPacket(UUID.randomUUID().toString(), "", "always", "always", "white", "", "", true, uuids);
         for (Player player : players)
             SendPacket.sendPacket(player, packet);
 

@@ -25,7 +25,7 @@ public class EffTeamEffect extends Effect {
     static {
         Skript.registerEffect(EffTeamEffect.class,
                 "send team packet to %players% with name %string% [displayname %-string%] [nametag visibility %-string%] " +
-                        "[collision %-string%] [color %-color%] [prefix %-string%] [and] [suffix %-string%] with entity uuid %strings%");
+                        "[collision %-string%] [color %-color%] [prefix %-string%] [suffix %-string%] [and] [see friendly %-boolean%] with entity uuid %strings%");
     }
 
     private Expression<Player> player;
@@ -36,6 +36,7 @@ public class EffTeamEffect extends Effect {
     private Expression<Color> color;
     private Expression<String> prefix;
     private Expression<String> suffix;
+    private Expression<Boolean> seeFriendly;
     private Expression<String> uuid;
 
     @SuppressWarnings({"unchecked", "NullableProblems"})
@@ -49,11 +50,11 @@ public class EffTeamEffect extends Effect {
         color = (Expression<Color>) exprs[5];
         prefix = (Expression<String>) exprs[6];
         suffix = (Expression<String>) exprs[7];
-        uuid = (Expression<String>) exprs[8];
+        seeFriendly = (Expression<Boolean>) exprs[8];
+        uuid = (Expression<String>) exprs[9];
         return true;
     }
 
-    @SuppressWarnings("NullableProblems")
     @SneakyThrows
     @Override
     protected void execute(Event event) {
@@ -65,6 +66,7 @@ public class EffTeamEffect extends Effect {
         Expression<String> s4 = collision;
         Expression<String> s5 = prefix;
         Expression<String> s6 = suffix;
+        Expression<Boolean> s7 = seeFriendly;
         List<String> list = Arrays.stream(uuid.getArray(event)).toList();
 
         //String chatColor = ((SkriptColor) color).asChatColor().name();
@@ -75,6 +77,7 @@ public class EffTeamEffect extends Effect {
         String chatColor = "white";
         String prefix = "";
         String suffix = "";
+        boolean seeFriendly = true;
 
         if (s2 != null)
             displayname = s2.getSingle(event);
@@ -86,12 +89,14 @@ public class EffTeamEffect extends Effect {
             prefix = s5.getSingle(event);
         if (s6 != null)
             suffix = s6.getSingle(event);
+        if (s7 != null)
+            seeFriendly = s7.getSingle(event);
 
         if (color != null)
             chatColor = ((SkriptColor) color.getSingle(event)).asChatColor().name();
 
         for (Player p : player.getArray(event)) {
-            SendPacket.sendPacket(p, TeamPacket.teamPacket(s1, displayname, visibility, collision, chatColor, prefix, suffix, list));
+            SendPacket.sendPacket(p, TeamPacket.teamPacket(s1, displayname, visibility, collision, chatColor, prefix, suffix, seeFriendly, list));
         }
     }
 
