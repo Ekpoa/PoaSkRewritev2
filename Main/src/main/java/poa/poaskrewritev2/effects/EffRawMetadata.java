@@ -168,7 +168,7 @@ public class EffRawMetadata extends Effect {
                                 metadata.setInterpolationDelay(Integer.parseInt(args[3])); //args[2] = delay
                         case "transformation" ->
                                 metadata.setTransformationDuration(Integer.parseInt(args[3])); //args[2] = duration
-                        case "posrot" -> metadata.setPosRotDuration(Integer.parseInt(args[2]));
+                        case "teleportduration" -> metadata.setPosRotDuration(Integer.parseInt(args[2]));
                         case "translation" ->
                                 metadata.setTranslation(Float.parseFloat(args[2]), Float.parseFloat(args[3]), Float.parseFloat(args[4]));
                         case "scale" ->
