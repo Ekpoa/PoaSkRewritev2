@@ -20,10 +20,10 @@ public class PacketInjector1204 {
     Player player;
     String id;
 
-    public PacketInjector1204(Player player){
+    public PacketInjector1204(Player player, String id){
         this.craftPlayer = (CraftPlayer) player;
         this.player = player;
-        this.id = player.getName() + "-PoaSK-";
+        this.id = player.getName() + "-" + id + "-";
     }
 
 
@@ -31,6 +31,7 @@ public class PacketInjector1204 {
         Bukkit.getLogger().log(Level.INFO, "Injected " + player.getName());
         ChannelPipeline pipeline = getChannelPipeline((CraftPlayer) player);
         pipeline.addBefore("packet_handler", id, new PacketHandler1204(player));
+        System.out.println("Injected packet listener into " + this.player.getName() + " with id " + id);
     }
     private static ChannelPipeline getChannelPipeline(CraftPlayer player) {
         return player.getHandle().connection.connection.channel.pipeline();
@@ -40,7 +41,7 @@ public class PacketInjector1204 {
         if (this.craftPlayer.getHandle().connection.connection.channel.pipeline().get(id) != null) {
             Bukkit.getLogger().log(Level.INFO, "Uninjected " + player.getName());
             this.craftPlayer.getHandle().connection.connection.channel.pipeline().remove(id);
-            Bukkit.getLogger().log(Level.INFO, "Uninjected packet listener into " + this.player.getName());
+            System.out.println("Uninjected packet listener into " + this.player.getName() + " with id " + id);
         }
     }
 }

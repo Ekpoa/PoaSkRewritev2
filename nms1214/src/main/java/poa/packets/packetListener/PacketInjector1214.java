@@ -14,10 +14,10 @@ public class PacketInjector1214 {
     Player player;
     String id;
 
-    public PacketInjector1214(Player player){
+    public PacketInjector1214(Player player, String id){
         this.craftPlayer = (CraftPlayer) player;
         this.player = player;
-        this.id = player.getName() + "-PoaSK-";
+        this.id = player.getName() + "-" + id + "-";
     }
 
     public void inject(Player player) {

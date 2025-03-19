@@ -20,11 +20,11 @@ public class PacketInjector1202 {
     Player player;
     String id;
 
-    public PacketInjector1202(Player player, InetAddress address){
+    public PacketInjector1202(Player player, InetAddress address, String id){
         this.craftPlayer = (CraftPlayer) player;
         this.address = address;
         this.player = player;
-        this.id = player.getName() + "-PoaSK-";
+        this.id = player.getName() + "-" + id + "-";
     }
 
 
@@ -41,14 +41,14 @@ public class PacketInjector1202 {
         playerConnection.channel.pipeline().addBefore(
                 "packet_handler", id, new PacketHandler1202(player));
 
-        Bukkit.getLogger().log(Level.INFO, "Injected packet listener into " + this.player.getName());
+        System.out.println("Injected packet listener into " + this.player.getName());
 
     }
 
     public void uninjectPlayer() {
         if (this.craftPlayer.getHandle().connection.connection.channel.pipeline().get(id) != null) {
             this.craftPlayer.getHandle().connection.connection.channel.pipeline().remove(id);
-            Bukkit.getLogger().log(Level.INFO, "Uninjected packet listener into " + this.player.getName());
+            System.out.println("Uninjected packet listener into " + this.player.getName());
         }
     }
 }

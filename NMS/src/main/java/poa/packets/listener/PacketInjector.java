@@ -19,60 +19,58 @@ public class PacketInjector {
     private static final Map<Player, PacketInjector1202> playerPacketStuffMap1202 = new HashMap<>();
 
 
-    public static void inject(PlayerJoinEvent e) {
+    public static void inject(Player player, String id){
         switch (BukkitVersion.getBukkitVersion()) {
             case "1204" -> {
-                Player player = e.getPlayer();
-                PacketInjector1204 packetInjector = new PacketInjector1204(player);
+                PacketInjector1204 packetInjector = new PacketInjector1204(player, id);
                 packetInjector.inject(player);
                 playerPacketStuffMap1204.put(player, packetInjector);
             }
             case "1206" -> {
-                Player player = e.getPlayer();
-                PacketInjector1206 packetInjector = new PacketInjector1206(player);
+                PacketInjector1206 packetInjector = new PacketInjector1206(player, id);
                 packetInjector.inject(player);
                 playerPacketStuffMap1206.put(player, packetInjector);
             }
             case "121" -> {
-                Player player = e.getPlayer();
-                PacketInjector121 packetInjector = new PacketInjector121(player);
+                PacketInjector121 packetInjector = new PacketInjector121(player, id);
                 packetInjector.inject(player);
                 playerPacketStuffMap121.put(player, packetInjector);
             }
             case "1211" -> {
-                Player player = e.getPlayer();
-                PacketInjector1211 packetInjector = new PacketInjector1211(player);
+                PacketInjector1211 packetInjector = new PacketInjector1211(player, id);
                 packetInjector.inject(player);
                 playerPacketStuffMap1211.put(player, packetInjector);
             }
             case "1213" -> {
-                Player player = e.getPlayer();
-                PacketInjector1213 packetInjector = new PacketInjector1213(player);
+                PacketInjector1213 packetInjector = new PacketInjector1213(player, id);
                 packetInjector.inject(player);
                 playerPacketStuffMap1213.put(player, packetInjector);
             }
             case "1214" -> {
-                Player player = e.getPlayer();
-                PacketInjector1214 packetInjector = new PacketInjector1214(player);
+                PacketInjector1214 packetInjector = new PacketInjector1214(player, id);
                 packetInjector.inject(player);
                 playerPacketStuffMap1214.put(player, packetInjector);
             }
         }
     }
 
-    public static void inject(PlayerLoginEvent e) {
-        switch (BukkitVersion.getBukkitVersion()) {
+    public static void inject(PlayerLoginEvent e, String id){
+        switch (BukkitVersion.getBukkitVersion()){
             case "1202" -> {
-                Player player = e.getPlayer();
-                PacketInjector1202 packetInjector = new PacketInjector1202(player, e.getAddress());
+                final Player player = e.getPlayer();
+                PacketInjector1202 packetInjector = new PacketInjector1202(player, e.getAddress(), id);
                 packetInjector.injectPlayer();
                 playerPacketStuffMap1202.put(player, packetInjector);
             }
         }
     }
 
-    public static void unInject(Player player) {
-        switch (BukkitVersion.getBukkitVersion()) {
+    public static void unInject(Player player){
+        switch (BukkitVersion.getBukkitVersion()){
+            case "1214" -> {
+                playerPacketStuffMap1214.get(player).uninjectPlayer();
+                playerPacketStuffMap1214.remove(player);
+            }
             case "1213" -> {
                 playerPacketStuffMap1213.get(player).uninjectPlayer();
                 playerPacketStuffMap1213.remove(player);
@@ -96,10 +94,6 @@ public class PacketInjector {
             case "1202" -> {
                 playerPacketStuffMap1202.get(player).uninjectPlayer();
                 playerPacketStuffMap1202.remove(player);
-            }
-            case "1214" -> {
-                playerPacketStuffMap1214.get(player).uninjectPlayer();
-                playerPacketStuffMap1214.remove(player);
             }
         }
     }

@@ -14,44 +14,26 @@ public class PacketInjector121 {
     Player player;
     String id;
 
-    public PacketInjector121(Player player){
+    public PacketInjector121(Player player, String id){
         this.craftPlayer = (CraftPlayer) player;
         this.player = player;
-        this.id = player.getName() + "-PoaSK-";
+        this.id = player.getName() + "-" + id + "-";
     }
 
     public void inject(Player player) {
-        Bukkit.getLogger().log(Level.INFO, "Injected " + player.getName());
         ChannelPipeline pipeline = getChannelPipeline((CraftPlayer) player);
         pipeline.addBefore("packet_handler", id, new PacketHandler121(player));
+        System.out.println("Injected packet listener into " + this.player.getName() + " with id " + id);
     }
 
     private static ChannelPipeline getChannelPipeline(CraftPlayer player) {
-        Bukkit.getLogger().log(Level.INFO, "Got pipeline " + player.getName());
         return player.getHandle().connection.connection.channel.pipeline();
     }
 
-//    public void injectPlayer() {
-//        final ServerConnectionListener serverConnection = MinecraftServer.getServer().getConnection();
-//
-//        List<Connection> connections = serverConnection.getConnections();
-//
-//
-//        final Connection playerConnection = connections.stream()
-//                .filter(connection -> connection.getRemoteAddress() instanceof InetSocketAddress)
-//                .filter(connection -> ((InetSocketAddress) connection.getRemoteAddress()).getAddress() == address)
-//                .findAny().orElseThrow(IllegalArgumentException::new);
-//        playerConnection.channel.pipeline().addBefore(
-//                "packet_handler", id, new PacketHandler1206(this.player));
-//
-//        Bukkit.getLogger().log(Level.INFO, "Injected packet listener into " + this.player.getName());
-//
-//    }
-//
     public void uninjectPlayer() {
         if (this.craftPlayer.getHandle().connection.connection.channel.pipeline().get(id) != null) {
             this.craftPlayer.getHandle().connection.connection.channel.pipeline().remove(id);
-            Bukkit.getLogger().log(Level.INFO, "Uninjected packet listener into " + this.player.getName());
+            System.out.println("Uninjected packet listener into " + this.player.getName() + " with id " + id);
         }
     }
 }
