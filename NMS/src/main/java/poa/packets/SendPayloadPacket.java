@@ -30,7 +30,7 @@ public class SendPayloadPacket {
             case "1206" -> SendPayloadPacket1206.sendBrandPayload(player, brand);
             case "121" -> SendPayloadPacket121.sendBrandPayload(player, brand);
             case "1211" -> SendPayloadPacket1211.sendBrandPayload(player, brand);
-            case "1213" -> SendPayloadPacket1211.sendBrandPayload(player, brand);
+            case "1213" -> SendPayloadPacket1213.sendBrandPayload(player, brand);
             case "1214" -> SendPayloadPacket1214.sendBrandPayload(player, brand);
         }
     }

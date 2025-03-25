@@ -33,4 +33,5 @@ poa/packets/packetListener/events/SoundEvent1214.class
 poa/packets/packetListener/events/BlockUpdateEvent1214.class
 poa/packets/PosRotPacket1214.class
 poa/packets/packetListener/PacketHandler1214.class
+poa/packets/ItemCooldown1214.class
 poa/packets/HeadRotPacket1214.class

@@ -7,6 +7,7 @@
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/packetListener/events/PlayerChatPacketEvent1211.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/FakeDeathAnimation1211.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/AttributePacket1211.java
+/Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/ItemCooldown1211.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/packetListener/GlowMap1211.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/packetListener/events/ParticleEvent1211.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/SetEquipmentPacket1211.java
@@ -14,6 +15,7 @@
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/ChangeIP1211.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/packetListener/events/SystemChatPacketEvent1211.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/packetListener/PacketInjector1211.java
+/Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/blocks/SetFast1211.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/packetListener/events/PlayerInputEvent1211.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/packetListener/events/BlockUpdateEvent1211.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/Metadata1211.java

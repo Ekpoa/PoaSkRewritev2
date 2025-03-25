@@ -4,6 +4,7 @@ poa/packets/packetListener/PacketHandler1213.class
 poa/packets/Metadata1213.class
 poa/packets/packetListener/events/BlockUpdateEvent1213.class
 poa/util/GetBlockId1213.class
+poa/blocks/SetFast1213.class
 poa/packets/packetListener/events/ParticleEvent1213.class
 poa/packets/packetListener/GlowMap1213.class
 poa/util/RefreshPlayer1213.class
@@ -11,6 +12,7 @@ poa/packets/CameraPacket1213.class
 poa/packets/FakeEntity1213.class
 poa/packets/packetListener/events/SoundEvent1213.class
 poa/util/GetPose1213.class
+poa/packets/ItemCooldown1213.class
 poa/packets/packetListener/events/PlayerChatPacketEvent1213.class
 poa/packets/AttributePacket1213.class
 poa/packets/FakeDeathAnimation1213.class

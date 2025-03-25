@@ -79,8 +79,8 @@ public class EffFakeItem extends Effect {
                         return;
                     }
                     player.sendEquipmentChange(livingEntity, equipmentSlot, itemStack);
-                } else if (object instanceof Long) {
-                    SendPacket.sendPacket(player, SetEquipmentPacket.packet(((Long) object).intValue(), slot, itemStack));
+                } else if (object instanceof Long l) {
+                    SendPacket.sendPacket(player, SetEquipmentPacket.packet(l.intValue(), slot, itemStack));
                 }
         }
 

@@ -1,0 +1,34 @@
+package poa.blocks;
+
+import org.bukkit.Location;
+import org.bukkit.block.data.BlockData;
+import poa.util.BukkitVersion;
+
+public class SetFast {
+
+    public static void setFast(Location[] locations, BlockData blockData){
+        switch (BukkitVersion.getBukkitVersion()){
+            case "1202" -> SetFast1202.setFast(locations, blockData);
+            case "1204" -> SetFast1204.setFast(locations, blockData);
+            case "1206" -> SetFast1206.setFast(locations, blockData);
+            case "121" -> SetFast121.setFast(locations, blockData);
+            case "1211" -> SetFast1211.setFast(locations, blockData);
+            case "1213" -> SetFast1213.setFast(locations, blockData);
+            case "1214" -> SetFast1214.setFast(locations, blockData);
+        }
+    }
+
+    public static void setFaster(Location location, Location location2, BlockData blockData){
+        switch (BukkitVersion.getBukkitVersion()){
+            case "1202" -> SetFast1202.setFaster(location, location2, blockData);
+            case "1204" -> SetFast1204.setFaster(location, location2, blockData);
+            case "1206" -> SetFast1206.setFaster(location, location2, blockData);
+            case "121" -> SetFast121.setFaster(location, location2, blockData);
+            case "1211" -> SetFast1211.setFaster(location, location2, blockData);
+            case "1213" -> SetFast1213.setFaster(location, location2, blockData);
+            case "1214" -> SetFast1214.setFaster(location, location2, blockData);
+        }
+    }
+
+
+}

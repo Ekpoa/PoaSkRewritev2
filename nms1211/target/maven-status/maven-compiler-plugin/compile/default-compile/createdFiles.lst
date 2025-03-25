@@ -1,5 +1,6 @@
 poa/util/RefreshPlayer1211.class
 poa/packets/ChangeVision1211.class
+poa/blocks/SetFast1211.class
 poa/packets/packetListener/events/ParticleEvent1211.class
 poa/packets/CameraPacket1211.class
 poa/packets/SetPassengerPacket1211.class
@@ -21,6 +22,7 @@ poa/util/Components1211.class
 poa/packets/TeamPacket1211.class
 poa/packets/HeadRotPacket1211.class
 poa/packets/FakeEntity1211.class
+poa/packets/ItemCooldown1211.class
 poa/packets/AnimationPacket1211.class
 poa/util/EntityTypeFromString1211.class
 poa/packets/packetListener/GlowMap1211.class
