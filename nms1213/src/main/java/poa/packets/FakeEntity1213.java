@@ -24,7 +24,7 @@ public class FakeEntity1213 {
                 EntityTypeFromString1213.entityTypeFromString(type),
                 data,
                 new Vec3(0, 0, 0),
-                0
+                location.getYaw()
         );
 
     }

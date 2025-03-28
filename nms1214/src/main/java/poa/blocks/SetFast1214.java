@@ -75,6 +75,30 @@ public class SetFast1214 implements EventListener {
     }
 
 
+    public static void replaceFast(Location pos1, Location pos2, BlockData replace, BlockData replaceTo){
+        Map<LevelChunk, List<BlockPos>> chunkMap = getChunkBlockPositions(pos1, pos2);
+        BlockState state1 = ((CraftBlockData) replace).getState();
+        BlockState stateTo= ((CraftBlockData) replaceTo).getState();
+        World world = pos1.getWorld();
+
+        for (Map.Entry<LevelChunk, List<BlockPos>> entry : chunkMap.entrySet()) {
+            LevelChunk chunk = entry.getKey();
+            List<BlockPos> blockPositions = entry.getValue();
+
+            for (BlockPos pos : blockPositions) {
+                final BlockState blockState = chunk.getBlockState(pos);
+                if(blockState == state1)
+                    chunk.setBlockState(pos, stateTo, false, false);
+            }
+
+
+            world.refreshChunk(chunk.locX, chunk.locZ);
+        }
+
+
+    }
+
+
 
 
 

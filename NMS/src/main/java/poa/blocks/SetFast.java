@@ -30,5 +30,17 @@ public class SetFast {
         }
     }
 
+    public static void replaceFast(Location location, Location location2, BlockData from, BlockData to){
+        switch (BukkitVersion.getBukkitVersion()){
+            case "1202" -> SetFast1202.replaceFast(location, location2, from, to);
+            case "1204" -> SetFast1204.replaceFast(location, location2, from, to);
+            case "1206" -> SetFast1206.replaceFast(location, location2, from, to);
+            case "121" -> SetFast121.replaceFast(location, location2, from, to);
+            case "1211" -> SetFast1211.replaceFast(location, location2, from, to);
+            case "1213" -> SetFast1213.replaceFast(location, location2, from, to);
+            case "1214" -> SetFast1214.replaceFast(location, location2, from, to);
+        }
+    }
+
 
 }

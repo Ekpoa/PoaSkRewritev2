@@ -29,7 +29,7 @@ public class FakeEntity1204 {
                 entityTypeFromString(type),
                 data,
                 new Vec3(0, 0, 0),
-                0
+                location.getYaw()
         );
     }
     public static Object fakeEntityPacket(int id, Location location, String type, int data){
