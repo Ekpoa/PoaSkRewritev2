@@ -2,6 +2,8 @@
 #### Download: https://www.spigotmc.org/resources/poask-skript-addon.104512
 
 
+### If you need help or have issues, please join the Skunity Discord (https://discord.gg/TPw8SANGpu) and open a thread in #skript-help and ping me (@Poa)
+
 
 
 **INFO:**
