@@ -21,7 +21,7 @@ public class PacketInjector1214 {
     }
 
     public void inject(Player player) {
-        Bukkit.getLogger().log(Level.INFO, "Injected " + player.getName());
+        Bukkit.getLogger().log(Level.INFO, "Injected " + player.getName() + " for PoaSK");
         ChannelPipeline pipeline = getChannelPipeline((CraftPlayer) player);
         pipeline.addBefore("packet_handler", id, new PacketHandler1214(player));
     }

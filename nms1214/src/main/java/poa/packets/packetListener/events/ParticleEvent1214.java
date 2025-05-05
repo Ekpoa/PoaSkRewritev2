@@ -24,6 +24,9 @@ public class ParticleEvent1214 extends PlayerEvent implements Cancellable {
     int count;
 
     @Getter
+    String version = "1.21.4";
+
+    @Getter
     @Setter
     World world;
 

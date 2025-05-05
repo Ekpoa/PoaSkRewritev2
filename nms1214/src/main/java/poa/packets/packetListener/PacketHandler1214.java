@@ -55,6 +55,7 @@ public class PacketHandler1214 extends ChannelDuplexHandler {
                 return;
             }
 
+
         } catch (Exception e) {
             e.printStackTrace();
             super.channelRead(ctx, msg);
@@ -266,34 +267,35 @@ public class PacketHandler1214 extends ChannelDuplexHandler {
                 }
             }
             else if(packet instanceof ClientboundSoundPacket soundPacket){
-                final SoundEvent1214 soundEvent1211 = new SoundEvent1214(player, true);
-                soundEvent1211.setX(soundPacket.getX());
-                soundEvent1211.setY(soundPacket.getY());
-                soundEvent1211.setZ(soundPacket.getZ());
-                soundEvent1211.setVolume(soundPacket.getVolume());
-                soundEvent1211.setPitch(soundPacket.getPitch());
-                soundEvent1211.setSeed(soundPacket.getSeed());
-                soundEvent1211.setId(soundPacket.getSound().value().location().toString());;
-                soundEvent1211.setSource(soundPacket.getSource().getName());
-                pluginManager.callEvent(soundEvent1211);
+                final SoundEvent1214 soundEvent1214 = new SoundEvent1214(player, true);
+                soundEvent1214.setX(soundPacket.getX());
+                soundEvent1214.setY(soundPacket.getY());
+                soundEvent1214.setZ(soundPacket.getZ());
+                soundEvent1214.setVolume(soundPacket.getVolume());
+                soundEvent1214.setPitch(soundPacket.getPitch());
+                soundEvent1214.setSeed(soundPacket.getSeed());
+                soundEvent1214.setId(soundPacket.getSound().value().location().toString());;
+                soundEvent1214.setSource(soundPacket.getSource().getName());
+                pluginManager.callEvent(soundEvent1214);
 
-                if(soundEvent1211.isCancelled())
+                if(soundEvent1214.isCancelled())
                     return;
 
             }
             else if(packet instanceof ClientboundSoundEntityPacket soundPacket){
-                final SoundEvent1214 soundEvent1211 = new SoundEvent1214(player, true);
-                soundEvent1211.setEntity(true);
-                soundEvent1211.setVolume(soundPacket.getVolume());
-                soundEvent1211.setPitch(soundPacket.getPitch());
-                soundEvent1211.setSeed(soundPacket.getSeed());
-                soundEvent1211.setId(soundPacket.getSound().value().location().toString());
-                soundEvent1211.setSource(soundPacket.getSource().getName());
-                pluginManager.callEvent(soundEvent1211);
+                final SoundEvent1214 soundEvent1214 = new SoundEvent1214(player, true);
+                soundEvent1214.setEntity(true);
+                soundEvent1214.setVolume(soundPacket.getVolume());
+                soundEvent1214.setPitch(soundPacket.getPitch());
+                soundEvent1214.setSeed(soundPacket.getSeed());
+                soundEvent1214.setId(soundPacket.getSound().value().location().toString());
+                soundEvent1214.setSource(soundPacket.getSource().getName());
+                pluginManager.callEvent(soundEvent1214);
 
-                if(soundEvent1211.isCancelled())
+                if(soundEvent1214.isCancelled())
                     return;
             }
+
 
             super.write(ctx, msg, promise);
         } catch (Exception e) {

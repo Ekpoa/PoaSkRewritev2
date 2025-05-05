@@ -10,7 +10,6 @@ import org.bukkit.entity.Entity;
 import poa.poaskrewritev2.events.eventvalues.RegisterChat;
 import poa.poaskrewritev2.util.types.UUIDType;
 
-@SuppressWarnings("UnstableApiUsage")
 public class SkriptEvents extends SimpleEvent {
 
     static {
