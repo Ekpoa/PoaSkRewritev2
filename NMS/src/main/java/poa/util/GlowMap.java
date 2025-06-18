@@ -14,6 +14,7 @@ public class GlowMap {
 
     public static ConcurrentHashMap<Player, List<Integer>> getGlowMap(){
         return switch (BukkitVersion.getBukkitVersion()){
+            case "1215" -> GlowMap1215.getGlowMap();
             case "1214" -> GlowMap1214.getGlowMap();
             case "1213" -> GlowMap1213.getGlowMap();
             case "1211" -> GlowMap1211.getGlowMap();

@@ -14,7 +14,8 @@ public class ChangeIP {
             case "121" -> ChangeIP121.changeIp(player, ip, port);
             case "1211" -> ChangeIP1211.changeIp(player, ip, port);
             case "1213" -> ChangeIP1213.changeIp(player, ip, port);
-            case "1214" -> ChangeIP1213.changeIp(player, ip, port);
+            case "1214" -> ChangeIP1214.changeIp(player, ip, port);
+            case "1215" -> ChangeIP1215.changeIp(player, ip, port);
         }
 
     }
