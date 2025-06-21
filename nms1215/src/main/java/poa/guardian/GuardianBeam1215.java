@@ -9,6 +9,7 @@ import org.bukkit.craftbukkit.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Vector;
+import org.checkerframework.framework.qual.PostconditionAnnotation;
 import poa.packets.FakeEntity1215;
 import poa.packets.Metadata1215;
 import poa.packets.TeamPacket1215;
@@ -71,6 +72,7 @@ public class GuardianBeam1215 {
      //   dataMap.put(this.beamID, this);
     }
 
+
     public void runCheckAndShow(CraftPlayer player) {
         final UUID uuid = player.getUniqueId();
         if (player.getWorld() != this.guardianLoc.getWorld()) {
@@ -79,7 +81,7 @@ public class GuardianBeam1215 {
         }
 
         final Location playerLocation = player.getLocation();
-        if (playerLocation.distanceSquared(guardianLoc) > 3600 || playerLocation.distanceSquared(batLoc) > 3600) { //60 blocks
+        if (playerLocation.distanceSquared(guardianLoc) > 22500 || playerLocation.distanceSquared(batLoc) > 22500) { //150 blocks
             currentlySeeing.remove(uuid);
             return;
         }

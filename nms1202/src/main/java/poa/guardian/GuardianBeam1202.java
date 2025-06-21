@@ -82,7 +82,7 @@ public class GuardianBeam1202 {
         }
 
         final Location playerLocation = player.getLocation();
-        if (playerLocation.distanceSquared(guardianLoc) > 3600 || playerLocation.distanceSquared(batLoc) > 3600) { //60 blocks
+        if (playerLocation.distanceSquared(guardianLoc) > 22500 || playerLocation.distanceSquared(batLoc) > 22500) { //150 blocks
             currentlySeeing.remove(uuid);
             return;
         }

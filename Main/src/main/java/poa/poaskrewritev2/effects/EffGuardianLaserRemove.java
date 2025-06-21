@@ -29,7 +29,10 @@ public class EffGuardianLaserRemove extends Effect {
     protected void execute(Event e) {
         String laserID = id.getSingle(e);
 
-        GuardianBeam.getBeam(laserID).destroy();
+        final GuardianBeam beam = GuardianBeam.getBeam(laserID);
+        if(beam == null)
+            return;
+        beam.destroy();
     }
 
     @SuppressWarnings("DataFlowIssue")
