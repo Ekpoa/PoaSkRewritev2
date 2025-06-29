@@ -1,12 +1,14 @@
 package poa.poaskrewritev2.effects;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.hooks.regions.WorldGuardHook;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.util.Color;
 import ch.njol.skript.util.SkriptColor;
 import ch.njol.util.Kleenean;
+import ch.njol.yggdrasil.YggdrasilSerializable;
 import lombok.SneakyThrows;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -78,6 +80,7 @@ public class EffTeamEffect extends Effect {
         String prefix = "";
         String suffix = "";
         boolean seeFriendly = true;
+
 
         if (s2 != null)
             displayname = s2.getSingle(event);
