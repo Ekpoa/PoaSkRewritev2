@@ -11,13 +11,14 @@
         <module name="PoaSK" />
         <module name="nms1214" />
         <module name="nms1206" />
+        <module name="nms1217" />
         <module name="nms1216" />
-        <module name="NMS" />
-        <module name="nms121" />
         <module name="nms1211" />
-        <module name="Main" />
         <module name="nms1202" />
         <module name="nms1213" />
+        <module name="NMS" />
+        <module name="nms121" />
+        <module name="Main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

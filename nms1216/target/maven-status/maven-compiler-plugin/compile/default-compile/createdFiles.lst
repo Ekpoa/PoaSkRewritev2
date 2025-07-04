@@ -1,9 +1,12 @@
 poa/ChangeIP1216.class
 poa/packets/SendPacket1216.class
 poa/packets/CameraPacket1216.class
+poa/util/RefreshPlayer1216.class
+poa/packets/TeleportPacket1216.class
 poa/packets/packetListener/events/SoundEvent1216.class
 poa/packets/FakePlayer1216.class
 poa/packets/ChangeVision1216.class
+poa/packets/SetEquipmentPacket1216.class
 poa/packets/AttributePacket1216.class
 poa/packets/SendPayloadPacket1216.class
 poa/packets/packetListener/events/ParticleEvent1216.class
