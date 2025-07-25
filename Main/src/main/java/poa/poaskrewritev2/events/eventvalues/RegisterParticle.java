@@ -255,6 +255,108 @@ public class RegisterParticle {
                     }
                 }, EventValues.TIME_NOW);
             }
+            case "1215" -> {
+                EventValues.registerEventValue(ParticleEvent1215.class, Particle.class, new Getter<>() {
+                    @Override
+                    public Particle get(ParticleEvent1215 event) {
+                        return event.getParticle();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(ParticleEvent1215.class, Integer.class, new Getter<>() {
+                    @Override
+                    public Integer get(ParticleEvent1215 event) {
+                        return event.getCount();
+                    }
+                }, EventValues.TIME_NOW);
+
+                EventValues.registerEventValue(ParticleEvent1215.class, Float.class, new Getter<>() {
+                    @Override
+                    public Float get(ParticleEvent1215 event) {
+                        return event.getMaxSpeed();
+                    }
+                }, EventValues.TIME_NOW);
+
+                EventValues.registerEventValue(ParticleEvent1215.class, Vector.class, new Getter<>() {
+                    @Override
+                    public Vector get(ParticleEvent1215 event) {
+                        return event.getOffset();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(ParticleEvent1215.class, Location.class, new Getter<>() {
+                    @Override
+                    public Location get(ParticleEvent1215 event) {
+                        return event.getLocation();
+                    }
+                }, EventValues.TIME_NOW);
+            }
+            case "1216" -> {
+                EventValues.registerEventValue(ParticleEvent1216.class, Particle.class, new Getter<>() {
+                    @Override
+                    public Particle get(ParticleEvent1216 event) {
+                        return event.getParticle();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(ParticleEvent1216.class, Integer.class, new Getter<>() {
+                    @Override
+                    public Integer get(ParticleEvent1216 event) {
+                        return event.getCount();
+                    }
+                }, EventValues.TIME_NOW);
+
+                EventValues.registerEventValue(ParticleEvent1216.class, Float.class, new Getter<>() {
+                    @Override
+                    public Float get(ParticleEvent1216 event) {
+                        return event.getMaxSpeed();
+                    }
+                }, EventValues.TIME_NOW);
+
+                EventValues.registerEventValue(ParticleEvent1216.class, Vector.class, new Getter<>() {
+                    @Override
+                    public Vector get(ParticleEvent1216 event) {
+                        return event.getOffset();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(ParticleEvent1216.class, Location.class, new Getter<>() {
+                    @Override
+                    public Location get(ParticleEvent1216 event) {
+                        return event.getLocation();
+                    }
+                }, EventValues.TIME_NOW);
+            }
+            case "1217" -> {
+                EventValues.registerEventValue(ParticleEvent1217.class, Particle.class, new Getter<>() {
+                    @Override
+                    public Particle get(ParticleEvent1217 event) {
+                        return event.getParticle();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(ParticleEvent1217.class, Integer.class, new Getter<>() {
+                    @Override
+                    public Integer get(ParticleEvent1217 event) {
+                        return event.getCount();
+                    }
+                }, EventValues.TIME_NOW);
+
+                EventValues.registerEventValue(ParticleEvent1217.class, Float.class, new Getter<>() {
+                    @Override
+                    public Float get(ParticleEvent1217 event) {
+                        return event.getMaxSpeed();
+                    }
+                }, EventValues.TIME_NOW);
+
+                EventValues.registerEventValue(ParticleEvent1217.class, Vector.class, new Getter<>() {
+                    @Override
+                    public Vector get(ParticleEvent1217 event) {
+                        return event.getOffset();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(ParticleEvent1217.class, Location.class, new Getter<>() {
+                    @Override
+                    public Location get(ParticleEvent1217 event) {
+                        return event.getLocation();
+                    }
+                }, EventValues.TIME_NOW);
+            }
         }
     }
 }

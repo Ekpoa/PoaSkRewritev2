@@ -21,6 +21,9 @@ public class SkParticleEvent extends SkriptEvent {
             case "1211" -> Skript.registerEvent("particle send", SkParticleEvent.class, ParticleEvent1211.class, "particle send");
             case "1213" -> Skript.registerEvent("particle send", SkParticleEvent.class, ParticleEvent1213.class, "particle send");
             case "1214" -> Skript.registerEvent("particle send", SkParticleEvent.class, ParticleEvent1214.class, "particle send");
+            case "1215" -> Skript.registerEvent("particle send", SkParticleEvent.class, ParticleEvent1215.class, "particle send");
+            case "1216" -> Skript.registerEvent("particle send", SkParticleEvent.class, ParticleEvent1216.class, "particle send");
+            case "1217" -> Skript.registerEvent("particle send", SkParticleEvent.class, ParticleEvent1217.class, "particle send");
         }
         RegisterParticle.registerValues();
     }

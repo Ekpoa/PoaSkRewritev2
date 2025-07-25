@@ -195,6 +195,84 @@ public class RegisterBlockUpdate {
                     }
                 }, EventValues.TIME_NOW);
             }
+            case "1215" -> {
+                EventValues.registerEventValue(BlockUpdateEvent1215.class, Location.class, new Getter<>() {
+                    @Override
+                    public Location get(BlockUpdateEvent1215 event) {
+                        return event.getLocation().toCenterLocation();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(BlockUpdateEvent1215.class, Material.class, new Getter<>() {
+                    @Override
+                    public Material get(BlockUpdateEvent1215 event) {
+                        return event.getMaterial();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(BlockUpdateEvent1215.class, BlockData.class, new Getter<>() {
+                    @Override
+                    public BlockData get(BlockUpdateEvent1215 event) {
+                        return event.getBlockData();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(BlockUpdateEvent1215.class, Block.class, new Getter<>() {
+                    @Override
+                    public Block get(BlockUpdateEvent1215 event) {
+                        return event.getOriginalBlock();
+                    }
+                }, EventValues.TIME_NOW);
+            }
+            case "1216" -> {
+                EventValues.registerEventValue(BlockUpdateEvent1216.class, Location.class, new Getter<>() {
+                    @Override
+                    public Location get(BlockUpdateEvent1216 event) {
+                        return event.getLocation().toCenterLocation();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(BlockUpdateEvent1216.class, Material.class, new Getter<>() {
+                    @Override
+                    public Material get(BlockUpdateEvent1216 event) {
+                        return event.getMaterial();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(BlockUpdateEvent1216.class, BlockData.class, new Getter<>() {
+                    @Override
+                    public BlockData get(BlockUpdateEvent1216 event) {
+                        return event.getBlockData();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(BlockUpdateEvent1216.class, Block.class, new Getter<>() {
+                    @Override
+                    public Block get(BlockUpdateEvent1216 event) {
+                        return event.getOriginalBlock();
+                    }
+                }, EventValues.TIME_NOW);
+            }
+            case "1217" -> {
+                EventValues.registerEventValue(BlockUpdateEvent1217.class, Location.class, new Getter<>() {
+                    @Override
+                    public Location get(BlockUpdateEvent1217 event) {
+                        return event.getLocation().toCenterLocation();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(BlockUpdateEvent1217.class, Material.class, new Getter<>() {
+                    @Override
+                    public Material get(BlockUpdateEvent1217 event) {
+                        return event.getMaterial();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(BlockUpdateEvent1217.class, BlockData.class, new Getter<>() {
+                    @Override
+                    public BlockData get(BlockUpdateEvent1217 event) {
+                        return event.getBlockData();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(BlockUpdateEvent1217.class, Block.class, new Getter<>() {
+                    @Override
+                    public Block get(BlockUpdateEvent1217 event) {
+                        return event.getOriginalBlock();
+                    }
+                }, EventValues.TIME_NOW);
+            }
         }
     }
 }
