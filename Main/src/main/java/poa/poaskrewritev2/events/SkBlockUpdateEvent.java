@@ -24,6 +24,7 @@ public class SkBlockUpdateEvent extends SkriptEvent {
             case "1215" -> Skript.registerEvent("Block Change Packet", SkBlockUpdateEvent.class, BlockUpdateEvent1215.class, "block change packet");
             case "1216" -> Skript.registerEvent("Block Change Packet", SkBlockUpdateEvent.class, BlockUpdateEvent1216.class, "block change packet");
             case "1217" -> Skript.registerEvent("Block Change Packet", SkBlockUpdateEvent.class, BlockUpdateEvent1217.class, "block change packet");
+            case "1218" -> Skript.registerEvent("Block Change Packet", SkBlockUpdateEvent.class, BlockUpdateEvent1218.class, "block change packet");
         }
         RegisterBlockUpdate.registerValues();
     }

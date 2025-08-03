@@ -82,6 +82,10 @@
             <groupId>poa</groupId>
             <artifactId>nms1217</artifactId>
         </dependency>
+        <dependency>
+            <groupId>poa</groupId>
+            <artifactId>nms1218</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

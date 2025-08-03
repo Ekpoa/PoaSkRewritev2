@@ -12,6 +12,7 @@ import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import poa.packets.FakePlayer;
+import poa.util.BukkitVersion;
 import poa.util.Messages;
 import poa.util.Messages1214;
 
@@ -23,12 +24,13 @@ public class EffFakeTablistPlayer extends Effect {
    // !add player named "&bHello there you sexy thing" to tablist with skin named "Ekpoa" for me with uuid (random uuid)
     static {
         Skript.registerEffect(EffFakeTablistPlayer.class,
-                "add [player] [named] %string% to tablist [with skin named %-string%] [with latency %-number%] for %players% [with] uuid %string%");
+                "add [player] [named] %string% to tablist [with skin named %-string%] [with latency %-number%] [with username %-string%] for %players% [with] uuid %string%");
     }
 
     private Expression<String> name;
     private Expression<String> skinName;
     private Expression<Number> latency;
+    private Expression<String> username;
     private Expression<Player> players;
     private Expression<String> uuid;
 
@@ -38,17 +40,18 @@ public class EffFakeTablistPlayer extends Effect {
         name = (Expression<String>) exprs[0];
         skinName = (Expression<String>) exprs[1];
         latency = (Expression<Number>) exprs[2];
-        players = (Expression<Player>) exprs[3];
-        uuid = (Expression<String>) exprs[4];
+        username = (Expression<String>) exprs[3];
+        players = (Expression<Player>) exprs[4];
+        uuid = (Expression<String>) exprs[5];
         return true;
     }
 
     @SuppressWarnings("NullableProblems")
     @Override
     protected void execute(Event event) {
-        String name = this.name.getSingle(event);
 
         String skinName = this.skinName.getSingle(event);
+
 
         String texture = null;
         String signature = null;
@@ -61,10 +64,13 @@ public class EffFakeTablistPlayer extends Effect {
             signature = split.get(1);
         }
 
-        Component tablistName = MiniMessage.miniMessage().deserialize(Messages.essentialsToMinimessage(name));
+        String username = "a";
 
-        name = "a";
+        if(this.username != null)
+            username = this.username.getSingle(event);
 
+
+        Component tablistName = MiniMessage.miniMessage().deserialize(Messages.essentialsToMinimessage(this.name.getSingle(event)));
 
 
         UUID uuid = UUID.fromString(this.uuid.getSingle(event));
@@ -77,9 +83,9 @@ public class EffFakeTablistPlayer extends Effect {
 
         final List<Player> playerList = Arrays.stream(players.getArray(event)).toList();
         if (texture == null)
-            FakePlayer.spawnTablistOnly(playerList, name, tablistName, skinName, uuid, latency);
+            FakePlayer.spawnTablistOnly(playerList, username, tablistName, skinName, uuid, latency);
         else
-            FakePlayer.spawnTablistOnly(playerList, name, tablistName,  uuid, texture, signature, latency);
+            FakePlayer.spawnTablistOnly(playerList, username, tablistName,  uuid, texture, signature, latency);
 
     }
 

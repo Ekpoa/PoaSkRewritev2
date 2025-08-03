@@ -24,6 +24,7 @@ public class FakePlayer {
             case "1215" -> FakePlayer1215.spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, id, uuid);
             case "1216" -> FakePlayer1216.spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, id, uuid);
             case "1217" -> FakePlayer1217.spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, id, uuid);
+            case "1218" -> FakePlayer1218.spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, id, uuid);
         }
     }
 
@@ -68,6 +69,7 @@ public class FakePlayer {
             case "1215" -> FakePlayer1215.removeFakePlayerPacket(sendTo, uuids, ids);
             case "1216" -> FakePlayer1216.removeFakePlayerPacket(sendTo, uuids, ids);
             case "1217" -> FakePlayer1217.removeFakePlayerPacket(sendTo, uuids, ids);
+            case "1218" -> FakePlayer1218.removeFakePlayerPacket(sendTo, uuids, ids);
         }
     }
 
@@ -84,6 +86,17 @@ public class FakePlayer {
             case "1215" -> FakePlayer1215.spawnTablistOnly(sendTo, name, tablistName, uuid, skinTexture, skinSignature, latency);
             case "1216" -> FakePlayer1216.spawnTablistOnly(sendTo, name, tablistName, uuid, skinTexture, skinSignature, latency);
             case "1217" -> FakePlayer1217.spawnTablistOnly(sendTo, name, tablistName, uuid, skinTexture, skinSignature, latency);
+            case "1218" -> FakePlayer1218.spawnTablistOnly(sendTo, name, tablistName, uuid, skinTexture, skinSignature, latency);
+        }
+    }
+
+    public static void spawnTablistOnly(List<Player> sendTo, String name, Component tablistName, UUID uuid, String skinTexture, String skinSignature, int latency, int position) {
+        switch (BukkitVersion.getBukkitVersion()) {
+            case "1214" -> FakePlayer1214.spawnTablistOnly(sendTo, name, tablistName, uuid, skinTexture, skinSignature, latency, position);
+            case "1215" -> FakePlayer1215.spawnTablistOnly(sendTo, name, tablistName, uuid, skinTexture, skinSignature, latency, position);
+            case "1216" -> FakePlayer1216.spawnTablistOnly(sendTo, name, tablistName, uuid, skinTexture, skinSignature, latency, position);
+            case "1217" -> FakePlayer1217.spawnTablistOnly(sendTo, name, tablistName, uuid, skinTexture, skinSignature, latency, position);
+            case "1218" -> FakePlayer1218.spawnTablistOnly(sendTo, name, tablistName, uuid, skinTexture, skinSignature, latency, position);
         }
     }
 
@@ -99,6 +112,17 @@ public class FakePlayer {
             case "1215" -> FakePlayer1215.spawnTablistOnly(sendTo, name, tablistName, skinName, uuid, latency);
             case "1216" -> FakePlayer1216.spawnTablistOnly(sendTo, name, tablistName, skinName, uuid, latency);
             case "1217" -> FakePlayer1217.spawnTablistOnly(sendTo, name, tablistName, skinName, uuid, latency);
+            case "1218" -> FakePlayer1218.spawnTablistOnly(sendTo, name, tablistName, skinName, uuid, latency);
+        }
+    }
+
+    public static void spawnTablistOnly(List<Player> sendTo, String name, Component tablistName, String skinName, UUID uuid, int latency, int position) {
+        switch (BukkitVersion.getBukkitVersion()) {
+            case "1214" -> FakePlayer1214.spawnTablistOnly(sendTo, name, tablistName, skinName, uuid, latency, position);
+            case "1215" -> FakePlayer1215.spawnTablistOnly(sendTo, name, tablistName, skinName, uuid, latency, position);
+            case "1216" -> FakePlayer1216.spawnTablistOnly(sendTo, name, tablistName, skinName, uuid, latency, position);
+            case "1217" -> FakePlayer1217.spawnTablistOnly(sendTo, name, tablistName, skinName, uuid, latency, position);
+            case "1218" -> FakePlayer1218.spawnTablistOnly(sendTo, name, tablistName, skinName, uuid, latency, position);
         }
     }
 
@@ -115,6 +139,7 @@ public class FakePlayer {
             case "1215" -> FakePlayer1215.removeTablistPacket(sendTo, uuids);
             case "1216" -> FakePlayer1216.removeTablistPacket(sendTo, uuids);
             case "1217" -> FakePlayer1217.removeTablistPacket(sendTo, uuids);
+            case "1218" -> FakePlayer1218.removeTablistPacket(sendTo, uuids);
         }
     }
 

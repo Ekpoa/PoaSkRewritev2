@@ -47,7 +47,7 @@ public class FakePlayer1215 {
 
         final com.mojang.authlib.GameProfile gameProfile = fakePlayer.getGameProfile();
 
-        ClientboundPlayerInfoUpdatePacket.Entry entry = new ClientboundPlayerInfoUpdatePacket.Entry(fakePlayer.getUUID(), gameProfile, listed, latency, GameType.DEFAULT_MODE, Component.empty(), true, 1, null);
+        ClientboundPlayerInfoUpdatePacket.Entry entry = new ClientboundPlayerInfoUpdatePacket.Entry(fakePlayer.getUUID(), gameProfile, listed, latency, GameType.DEFAULT_MODE, Component.empty(), true, 0, null);
         ClientboundPlayerInfoUpdatePacket.Action addPlayer = ClientboundPlayerInfoUpdatePacket.Action.ADD_PLAYER;
         final ClientboundPlayerInfoUpdatePacket updatePacket = new ClientboundPlayerInfoUpdatePacket(EnumSet.of(addPlayer), entry);
 
@@ -159,7 +159,7 @@ public class FakePlayer1215 {
     }
 
     public static void spawnTablistOnly(List<Player> sendTo, String name, net.kyori.adventure.text.Component tablistName, String skinName, UUID uuid, int latency){
-        spawnTablistOnly(sendTo, name, tablistName, skinName, uuid, latency, -1);
+        spawnTablistOnly(sendTo, name, tablistName, skinName, uuid, latency, 0);
     }
 
 

@@ -19,6 +19,7 @@ public class CameraPacket {
             case "1215" -> CameraPacket1215.cameraPacket(id);
             case "1216" -> CameraPacket1216.cameraPacket(id);
             case "1217" -> CameraPacket1217.cameraPacket(id);
+            case "1218" -> CameraPacket1218.cameraPacket(id);
             default -> null;
         };
     }

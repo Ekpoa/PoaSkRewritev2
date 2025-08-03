@@ -17,6 +17,7 @@ public class ChangeVision {
             case "1215" -> ChangeVision1215.changeVision(player, entity);
             case "1216" -> ChangeVision1216.changeVision(player, entity);
             case "1217" -> ChangeVision1217.changeVision(player, entity);
+            case "1218" -> ChangeVision1218.changeVision(player, entity);
         }
     }
 

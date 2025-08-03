@@ -18,6 +18,7 @@ public class StartAutoSpinAttack {
             case "1215" -> StartAutoSpinAttack1215.startSpinAttack(player, ticks);
             case "1216" -> StartAutoSpinAttack1216.startSpinAttack(player, ticks);
             case "1217" -> StartAutoSpinAttack1217.startSpinAttack(player, ticks);
+            case "1218" -> StartAutoSpinAttack1218.startSpinAttack(player, ticks);
         }
     }
 

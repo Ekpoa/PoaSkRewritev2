@@ -16,6 +16,7 @@ public class FakeDeathAnimation {
             case "1215" -> FakeDeathAnimation1215.packet(id);
             case "1216" -> FakeDeathAnimation1216.packet(id);
             case "1217" -> FakeDeathAnimation1217.packet(id);
+            case "1218" -> FakeDeathAnimation1218.packet(id);
             default -> null;
         };
     }
