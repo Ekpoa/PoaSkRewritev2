@@ -7,6 +7,7 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.util.LiteralUtils;
 import ch.njol.util.Kleenean;
 import lombok.SneakyThrows;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
@@ -38,8 +39,9 @@ public class EffSendPacket extends Effect {
     @Override
     protected void execute(Event event) {
         Object packet = this.packet.getSingle(event);
-        if (packet instanceof Metadata metadata)
+        if (packet instanceof Metadata metadata) {
             packet = metadata.build();
+        }
 
 
         for (Player player : this.players.getArray(event))
