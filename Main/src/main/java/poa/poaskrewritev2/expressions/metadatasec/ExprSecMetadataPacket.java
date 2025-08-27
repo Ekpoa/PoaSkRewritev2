@@ -27,42 +27,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
-/**
- * Usage:
- * set {_m} to new metadata packet with id {_id}:
- *   glowing: true
- *   name: "&aHello"
- *   name visible: true
- *   pose: STANDING
- *   health: 20
- *   air: 300
- *
- *   # ArmorStand bits
- *   stand small: false
- *   stand arms: true
- *   stand nobaseplate: true
- *   stand marker: false
- *   stand head: vector(0, 25, 0)
- *   stand left arm: vector(-10, 0, 0)
- *
- *   # Display
- *   display item: diamond
- *   display block: stone as block
- *   display translation: vector(0, 1, 0)
- *   display scale: vector(2, 2, 2)
- *   display rotation left: 0, 0, 0, 1
- *   display rotation right: 0, 0, 0, 1
- *   display billboard: center    # unquoted works
- *   display brightness: 15, 15
- *   display background color: rgb(0, 0, 0)
- *   display background alpha: 128
- *   display text: "&cHello"
- *   display text opacity: 255
- *   display glow: rgb(255, 128, 64)
- *
- *   interaction width: 1.5
- *   interaction height: 2
- */
 public class ExprSecMetadataPacket extends SectionExpression<Metadata> {
 
     private static final EntryValidator VALIDATOR;
@@ -107,10 +71,11 @@ public class ExprSecMetadataPacket extends SectionExpression<Metadata> {
                 // Quaternions: 4 numbers (typed)
                 .addEntryData(new ExpressionEntryData<>("display rotation left", null, true, Number.class))
                 .addEntryData(new ExpressionEntryData<>("display rotation right", null, true, Number.class))
-                // Billboard as TEXT (Object -> String), we map keywords ourselves so unquoted works
+                // Billboard as text (Object -> String), mapped to keywords; allows unquoted 'center'
                 .addEntryData(new ExpressionEntryData<>("display billboard", null, true, Object.class))
-                // Brightness: 2 ints in one Number expr
-                .addEntryData(new ExpressionEntryData<>("display brightness", null, true, Number.class))
+                // Brightness: now TWO typed entries
+                .addEntryData(new ExpressionEntryData<>("display brightness block", null, true, Number.class))
+                .addEntryData(new ExpressionEntryData<>("display brightness sky", null, true, Number.class))
                 .addEntryData(new ExpressionEntryData<>("display view", null, true, Number.class))
                 .addEntryData(new ExpressionEntryData<>("display shadow radius", null, true, Number.class))
                 .addEntryData(new ExpressionEntryData<>("display shadow strength", null, true, Number.class))
@@ -160,8 +125,8 @@ public class ExprSecMetadataPacket extends SectionExpression<Metadata> {
 
     private Expression<Vector> displayTranslationExpr, displayScaleExpr;
     private Expression<Number> displayRotationLeftExpr, displayRotationRightExpr; // 4 numbers each
-    private Expression<String> displayBillboardExpr; // mapped keywords
-    private Expression<Number> displayBrightnessExpr; // 2 ints
+    private Expression<String> displayBillboardExpr; // mapped keywords (handles quotes/UnparsedLiteral)
+    private Expression<Number> displayBrightnessBlockExpr, displayBrightnessSkyExpr; // NEW
     private Expression<Color>  displayBackgroundColorExpr, displayGlowColorExpr; // Skript Color
     private Expression<Number> displayBackgroundAlphaExpr;
     private Expression<String> displayTextExpr;
@@ -222,7 +187,10 @@ public class ExprSecMetadataPacket extends SectionExpression<Metadata> {
 
             displayBillboardExpr        = toStringExpr((Expression<?>) c.getOptional("display billboard", false));
 
-            displayBrightnessExpr       = (Expression<Number>)    c.getOptional("display brightness", false);
+            // NEW brightness pair
+            displayBrightnessBlockExpr  = (Expression<Number>)    c.getOptional("display brightness block", false);
+            displayBrightnessSkyExpr    = (Expression<Number>)    c.getOptional("display brightness sky", false);
+
             displayViewExpr             = (Expression<Number>)    c.getOptional("display view", false);
             displayShadowRadiusExpr     = (Expression<Number>)    c.getOptional("display shadow radius", false);
             displayShadowStrengthExpr   = (Expression<Number>)    c.getOptional("display shadow strength", false);
@@ -303,7 +271,7 @@ public class ExprSecMetadataPacket extends SectionExpression<Metadata> {
         quat(displayRotationLeftExpr,  e, meta::setRotationLeft);
         quat(displayRotationRightExpr, e, meta::setRotationRight);
 
-        // billboard keywords (unquoted support)
+        // billboard (supports unquoted/quoted keywords)
         String bbRaw = stringify(displayBillboardExpr, e);
         String bb = normalizeKeyword(bbRaw);
         if (bb != null && !bb.isEmpty()) {
@@ -316,7 +284,12 @@ public class ExprSecMetadataPacket extends SectionExpression<Metadata> {
             }
         }
 
-        ints2(displayBrightnessExpr, e, (a, b2) -> meta.setBrightness(clamp(a, 0, 15), clamp(b2, 0, 15)));
+        // NEW typed brightness pair
+        Integer blockB = numOrNull(displayBrightnessBlockExpr, e);
+        Integer skyB   = numOrNull(displayBrightnessSkyExpr, e);
+        if (blockB != null && skyB != null) {
+            meta.setBrightness(clamp(blockB, 0, 15), clamp(skyB, 0, 15));
+        }
 
         num(displayViewExpr,           e, v -> meta.setViewRange(Math.max(0f, v.floatValue())));
         num(displayShadowRadiusExpr,   e, v -> meta.setShadowRadius(Math.max(0f, v.floatValue())));
@@ -364,6 +337,16 @@ public class ExprSecMetadataPacket extends SectionExpression<Metadata> {
         return new SimpleLiteral<>(fallback, false);
     }
 
+    private static String normalizeKeyword(String s) {
+        if (s == null) return null;
+        String t = s.trim();
+        if (t.length() >= 2 &&
+                ((t.startsWith("\"") && t.endsWith("\"")) || (t.startsWith("'") && t.endsWith("'")))) {
+            t = t.substring(1, t.length() - 1).trim();
+        }
+        return t.toLowerCase(Locale.ROOT);
+    }
+
     private static <T> T val(Expression<T> expr, Event e) { return expr == null ? null : expr.getSingle(e); }
 
     private static String stringify(Expression<String> expr, Event e) {
@@ -391,7 +374,6 @@ public class ExprSecMetadataPacket extends SectionExpression<Metadata> {
 
     private interface Vec3 { void apply(float x, float y, float z); }
     private interface Quat { void apply(float x, float y, float z, float w); }
-    private interface Int2 { void apply(int a, int b); }
 
     private static void vec3(Expression<Vector> expr, Event e, Vec3 fn) {
         if (expr == null) return;
@@ -408,27 +390,6 @@ public class ExprSecMetadataPacket extends SectionExpression<Metadata> {
         if (x == null || y == null || z == null || w == null) return;
         fn.apply(x.floatValue(), y.floatValue(), z.floatValue(), w.floatValue());
     }
-
-    private static void ints2(Expression<Number> expr, Event e, Int2 fn) {
-        if (expr == null) return;
-        Number[] arr = expr.getArray(e);
-        if (arr.length < 2) return;
-        Number a = arr[0], b = arr[1];
-        if (a == null || b == null) return;
-        fn.apply(a.intValue(), b.intValue());
-    }
-
-    private static String normalizeKeyword(String s) {
-        if (s == null) return null;
-        String t = s.trim();
-        // strip single/double quotes if present
-        if ((t.length() >= 2) &&
-                ((t.startsWith("\"") && t.endsWith("\"")) || (t.startsWith("'") && t.endsWith("'")))) {
-            t = t.substring(1, t.length() - 1).trim();
-        }
-        return t.toLowerCase(java.util.Locale.ROOT);
-    }
-
 
     @Override public boolean isSingle() { return true; }
     @Override public Class<? extends Metadata> getReturnType() { return Metadata.class; }
