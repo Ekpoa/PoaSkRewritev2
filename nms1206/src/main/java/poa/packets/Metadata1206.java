@@ -323,22 +323,43 @@ public class Metadata1206 {
         dataList.add(new SynchedEntityData.DataValue<>(26, EntityDataSerializers.BYTE, (byte) opacity));
 
     }
-    public void index27(boolean hasShadow, boolean seeThru, boolean defaultBackgroundColor){
-        dataList.add(new SynchedEntityData.DataValue<>(27, EntityDataSerializers.BYTE, index27asByte(hasShadow, seeThru, defaultBackgroundColor)));
+    private boolean shadow = false;
+    private boolean seeThrough = false;
+    private boolean defaultBackground = false;
+    private int alignment = 0; // 0=center, 1=left, 2=right
+
+    public void setShadow(boolean shadow) {
+        this.shadow = shadow;
+        updateIndex27();
     }
 
-    private static byte index27asByte(boolean hasShadow, boolean seeThru, boolean defaultBackgroundColor) {
-        byte b = 0;
-        if (hasShadow)
-            b = 0x01;
-        if (seeThru)
-            b = (byte) (b + 0x02);
-        if (defaultBackgroundColor)
-            b = (byte) (b + 0x04);
-//        if (alignment)
-//            b = (byte) (b + 0x08);
+    public void setSeeThrough(boolean seeThrough) {
+        this.seeThrough = seeThrough;
+        updateIndex27();
+    }
 
-        return b;
+    public void setDefaultBackground(boolean defaultBackground) {
+        this.defaultBackground = defaultBackground;
+        updateIndex27();
+    }
+
+    public void setAlignment(String align) {
+        switch (align.toLowerCase()) {
+            case "left"  -> this.alignment = 1;
+            case "right" -> this.alignment = 2;
+            default -> this.alignment = 0;
+        }
+        updateIndex27();
+    }
+
+    private void updateIndex27() {
+        byte flags = 0;
+        if (shadow) flags |= 0x01;
+        if (seeThrough) flags |= 0x02;
+        if (defaultBackground) flags |= 0x04;
+        flags |= (alignment & 0x03) << 3;
+
+        dataList.add(new SynchedEntityData.DataValue<>(27, EntityDataSerializers.BYTE, flags));
     }
 
 

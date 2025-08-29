@@ -203,8 +203,7 @@ public class EffRawMetadata extends Effect {
                             }
 
                         }
-                        case "index27" ->
-                                metadata.index27(Boolean.parseBoolean(args[2]), Boolean.parseBoolean(args[3]), Boolean.parseBoolean(args[4]));
+
                         case "glow" -> {
                             final int r = Integer.parseInt(args[3]);
                             final int g = Integer.parseInt(args[4]);

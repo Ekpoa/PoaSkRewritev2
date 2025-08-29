@@ -90,6 +90,11 @@ public class ExprSecMetadataPacket extends SectionExpression<Metadata> {
                 .addEntryData(new ExpressionEntryData<>("display text opacity", null, true, Number.class))
                 // Glow color as Skript Color (we convert to RGB int)
                 .addEntryData(new ExpressionEntryData<>("display glow", null, true, Color.class))
+                .addEntryData(new ExpressionEntryData<>("display defaultbackground", null, true, Boolean.class))
+                .addEntryData(new ExpressionEntryData<>("display seethrough", null, true, Boolean.class))
+                .addEntryData(new ExpressionEntryData<>("display shadow", null, true, Boolean.class))
+                .addEntryData(new ExpressionEntryData<>("display alignment", null, true, String.class))
+
 
                 // ===== Interaction =====
                 .addEntryData(new ExpressionEntryData<>("interaction width", null, true, Number.class))
@@ -130,6 +135,10 @@ public class ExprSecMetadataPacket extends SectionExpression<Metadata> {
     private Expression<Color>  displayBackgroundColorExpr, displayGlowColorExpr; // Skript Color
     private Expression<Number> displayBackgroundAlphaExpr;
     private Expression<String> displayTextExpr;
+    private Expression<String> displayAlignmentExpr;
+    private Expression<Boolean> displayHasShadowExpr;
+    private Expression<Boolean> displayIsSeeThroughExpr;
+    private Expression<Boolean> displayIsDefaultBackgroundExpr;
 
     // Interaction
     private Expression<Number> interactionWidthExpr, interactionHeightExpr;
@@ -206,6 +215,13 @@ public class ExprSecMetadataPacket extends SectionExpression<Metadata> {
 
             displayGlowColorExpr        = (Expression<Color>)     c.getOptional("display glow", false);
 
+            displayAlignmentExpr        = (Expression<String>)     c.getOptional("display alignment", false);
+            displayIsDefaultBackgroundExpr        = (Expression<Boolean>)     c.getOptional("display defaultbackground", false);
+            displayHasShadowExpr        = (Expression<Boolean>)     c.getOptional("display shadow", false);
+            displayIsSeeThroughExpr        = (Expression<Boolean>)     c.getOptional("display seethrough", false);
+
+
+
             // Interaction
             interactionWidthExpr        = (Expression<Number>)    c.getOptional("interaction width", false);
             interactionHeightExpr       = (Expression<Number>)    c.getOptional("interaction height", false);
@@ -271,7 +287,9 @@ public class ExprSecMetadataPacket extends SectionExpression<Metadata> {
         quat(displayRotationLeftExpr,  e, meta::setRotationLeft);
         quat(displayRotationRightExpr, e, meta::setRotationRight);
 
-        // billboard (supports unquoted/quoted keywords)
+        // bill
+        //
+        // board (supports unquoted/quoted keywords)
         String bbRaw = stringify(displayBillboardExpr, e);
         String bb = normalizeKeyword(bbRaw);
         if (bb != null && !bb.isEmpty()) {
@@ -281,6 +299,21 @@ public class ExprSecMetadataPacket extends SectionExpression<Metadata> {
                 case "vertical"                    -> meta.setBillboard("vertical");
                 case "horizontal"                  -> meta.setBillboard("horizontal");
                 default -> Skript.warning("Unknown billboard mode: " + bbRaw + " (expected center/fixed/vertical/horizontal)");
+            }
+        }
+
+        set(meta::setHasShadow,   val(displayHasShadowExpr, e));
+        set(meta::setSeeThrough,   val(displayIsSeeThroughExpr, e));
+        set(meta::setHasDefaultBackground,   val(displayIsDefaultBackgroundExpr, e));
+
+        String alignRaw = stringify(displayAlignmentExpr, e);
+        String align = normalizeKeyword(alignRaw);
+        if (align != null && !align.isEmpty()) {
+            switch (align) {
+                case "center", "centre", "centred" -> meta.setAlignment("center");
+                case "left"                       -> meta.setAlignment("left");
+                case "right"                    -> meta.setAlignment("right");
+                default -> Skript.warning("Unknown alignment mode: " + bbRaw + " (expected center/left/right)");
             }
         }
 

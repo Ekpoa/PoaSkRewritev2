@@ -745,19 +745,70 @@ public class Metadata {
         }
     }
 
-    public void index27(boolean hasShadow, boolean seeThru, boolean defaultBackgroundColor) {
+    
+    
+    public void setHasShadow(boolean hasShadow) {
         switch (BukkitVersion.getBukkitVersion()) {
-            case "1202" -> metadata1202.index27(hasShadow, seeThru, defaultBackgroundColor);
-            case "1204" -> metadata1204.index27(hasShadow, seeThru, defaultBackgroundColor);
-            case "1206" -> metadata1206.index27(hasShadow, seeThru, defaultBackgroundColor);
-            case "121" -> metadata121.index27(hasShadow, seeThru, defaultBackgroundColor);
-            case "1211" -> metadata1211.index27(hasShadow, seeThru, defaultBackgroundColor);
-            case "1213" -> metadata1213.index27(hasShadow, seeThru, defaultBackgroundColor);
-            case "1214" -> metadata1214.index27(hasShadow, seeThru, defaultBackgroundColor);
-            case "1215" -> metadata1215.index27(hasShadow, seeThru, defaultBackgroundColor);
-            case "1216" -> metadata1216.index27(hasShadow, seeThru, defaultBackgroundColor);
-            case "1217" -> metadata1217.index27(hasShadow, seeThru, defaultBackgroundColor);
-            case "1218" -> metadata1218.index27(hasShadow, seeThru, defaultBackgroundColor);
+            case "1202" -> metadata1202.setShadow(hasShadow);
+            case "1204" -> metadata1204.setShadow(hasShadow);
+            case "1206" -> metadata1206.setShadow(hasShadow);
+            case "121" -> metadata121.setShadow(hasShadow);
+            case "1211" -> metadata1211.setShadow(hasShadow);
+            case "1213" -> metadata1213.setShadow(hasShadow);
+            case "1214" -> metadata1214.setShadow(hasShadow);
+            case "1215" -> metadata1215.setShadow(hasShadow);
+            case "1216" -> metadata1216.setShadow(hasShadow);
+            case "1217" -> metadata1217.setShadow(hasShadow);
+            case "1218" -> metadata1218.setShadow(hasShadow);
+        }
+    }
+
+
+    public void setSeeThrough(boolean seeThrough) {
+        switch (BukkitVersion.getBukkitVersion()) {
+            case "1202" -> metadata1202.setSeeThrough(seeThrough);
+            case "1204" -> metadata1204.setSeeThrough(seeThrough);
+            case "1206" -> metadata1206.setSeeThrough(seeThrough);
+            case "121" -> metadata121.setSeeThrough(seeThrough);
+            case "1211" -> metadata1211.setSeeThrough(seeThrough);
+            case "1213" -> metadata1213.setSeeThrough(seeThrough);
+            case "1214" -> metadata1214.setSeeThrough(seeThrough);
+            case "1215" -> metadata1215.setSeeThrough(seeThrough);
+            case "1216" -> metadata1216.setSeeThrough(seeThrough);
+            case "1217" -> metadata1217.setSeeThrough(seeThrough);
+            case "1218" -> metadata1218.setSeeThrough(seeThrough);
+        }
+    }
+
+    public void setHasDefaultBackground(boolean hasDefaultBackground) {
+        switch (BukkitVersion.getBukkitVersion()) {
+            case "1202" -> metadata1202.setDefaultBackground(hasDefaultBackground);
+            case "1204" -> metadata1204.setDefaultBackground(hasDefaultBackground);
+            case "1206" -> metadata1206.setDefaultBackground(hasDefaultBackground);
+            case "121" -> metadata121.setDefaultBackground(hasDefaultBackground);
+            case "1211" -> metadata1211.setDefaultBackground(hasDefaultBackground);
+            case "1213" -> metadata1213.setDefaultBackground(hasDefaultBackground);
+            case "1214" -> metadata1214.setDefaultBackground(hasDefaultBackground);
+            case "1215" -> metadata1215.setDefaultBackground(hasDefaultBackground);
+            case "1216" -> metadata1216.setDefaultBackground(hasDefaultBackground);
+            case "1217" -> metadata1217.setDefaultBackground(hasDefaultBackground);
+            case "1218" -> metadata1218.setDefaultBackground(hasDefaultBackground);
+        }
+    }
+
+    public void setAlignment(String alignment) {
+        switch (BukkitVersion.getBukkitVersion()) {
+            case "1202" -> metadata1202.setAlignment(alignment);
+            case "1204" -> metadata1204.setAlignment(alignment);
+            case "1206" -> metadata1206.setAlignment(alignment);
+            case "121" -> metadata121.setAlignment(alignment);
+            case "1211" -> metadata1211.setAlignment(alignment);
+            case "1213" -> metadata1213.setAlignment(alignment);
+            case "1214" -> metadata1214.setAlignment(alignment);
+            case "1215" -> metadata1215.setAlignment(alignment);
+            case "1216" -> metadata1216.setAlignment(alignment);
+            case "1217" -> metadata1217.setAlignment(alignment);
+            case "1218" -> metadata1218.setAlignment(alignment);
         }
     }
 
