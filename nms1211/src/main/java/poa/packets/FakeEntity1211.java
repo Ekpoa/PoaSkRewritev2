@@ -14,6 +14,20 @@ import java.util.UUID;
 public class FakeEntity1211 {
 
     public static Object fakeEntityPacket(int id, Location location, String type, UUID uuid, int data) {
+        if(List.of("text_display", "block_display", "item_display").contains(type.toLowerCase())){
+            return new ClientboundAddEntityPacket(id,
+                    uuid,
+                    location.getX(),
+                    location.getY(),
+                    location.getZ(),
+                    location.getPitch(),
+                    location.getYaw(),
+                    EntityTypeFromString1211.entityTypeFromString(type),
+                    data,
+                    new Vec3(0, 0, 0),
+                    location.getYaw()
+            );
+        }
         return new ClientboundAddEntityPacket(id,
                 uuid,
                 location.getX(),

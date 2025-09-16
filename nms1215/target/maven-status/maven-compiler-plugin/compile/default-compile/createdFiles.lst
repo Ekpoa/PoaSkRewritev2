@@ -4,6 +4,7 @@ poa/packets/Metadata1215.class
 poa/util/Components1215.class
 poa/packets/TeamPacket1215.class
 poa/util/FetchSkin1215.class
+poa/blocks/Biomes1215$ChunkWork.class
 poa/util/EntityFromID1215.class
 poa/packets/AnimationPacket1215.class
 poa/packets/packetListener/GlowMap1215.class
@@ -20,6 +21,7 @@ poa/packets/PosRotPacket1215.class
 poa/packets/packetListener/PacketInjector1215.class
 poa/packets/SetEquipmentPacket1215.class
 poa/StartAutoSpinAttack1215.class
+poa/blocks/Biomes1215.class
 poa/packets/SendPayloadPacket1215.class
 poa/packets/FakePlayer1215.class
 poa/util/Messages1215.class

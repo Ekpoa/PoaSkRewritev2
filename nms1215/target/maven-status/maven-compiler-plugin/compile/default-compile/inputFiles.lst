@@ -32,6 +32,7 @@
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1215/src/main/java/poa/packets/ItemCooldown1215.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1215/src/main/java/poa/packets/AnimationPacket1215.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1215/src/main/java/poa/packets/packetListener/events/ParticleEvent1215.java
+/Users/alex/Documents/Plugins/PoaSkRewrite/nms1215/src/main/java/poa/blocks/Biomes1215.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1215/src/main/java/poa/packets/packetListener/GlowMap1215.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1215/src/main/java/poa/util/GetBlockId1215.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1215/src/main/java/poa/util/FetchSkin1215.java

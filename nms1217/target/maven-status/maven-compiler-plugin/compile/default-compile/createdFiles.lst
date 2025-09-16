@@ -20,6 +20,7 @@ poa/packets/ChangeVision1217.class
 poa/util/RefreshPlayer1217.class
 poa/packets/SetPassengerPacket1217.class
 poa/blocks/SetFast1217.class
+poa/blocks/Biomes1217.class
 poa/packets/packetListener/events/BlockUpdateEvent1217.class
 poa/packets/SendPacket1217.class
 poa/packets/PosRotPacket1217.class
@@ -32,6 +33,7 @@ poa/packets/packetListener/PacketInjector1217.class
 poa/packets/FakeDeathAnimation1217.class
 poa/packets/FakeEntity1217.class
 poa/packets/packetListener/events/SoundEvent1217.class
+poa/blocks/Biomes1217$ChunkWork.class
 poa/packets/packetListener/events/ParticleEvent1217.class
 poa/packets/AttributePacket1217.class
 poa/packets/CameraPacket1217.class

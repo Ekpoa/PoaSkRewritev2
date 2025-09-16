@@ -19,7 +19,9 @@ poa/packets/FakeDeathAnimation1213.class
 poa/packets/HeadRotPacket1213.class
 poa/packets/SendPayloadPacket1213.class
 poa/StartAutoSpinAttack1213.class
+poa/blocks/Biomes1213$ChunkWork.class
 poa/packets/packetListener/PacketInjector1213.class
+poa/blocks/Biomes1213.class
 poa/packets/SendPacket1213.class
 poa/ChangeIP1213.class
 poa/util/FetchSkin1213.class

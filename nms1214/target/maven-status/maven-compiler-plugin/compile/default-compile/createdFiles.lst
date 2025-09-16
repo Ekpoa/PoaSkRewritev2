@@ -5,6 +5,7 @@ poa/StartAutoSpinAttack1214.class
 poa/packets/SendPacket1214.class
 poa/packets/FakeDeathAnimation1214.class
 poa/packets/AttributePacket1214.class
+poa/blocks/Biomes1214.class
 poa/packets/packetListener/PacketInjector1214.class
 poa/util/Messages1214.class
 poa/util/GetPose1214.class
@@ -25,6 +26,7 @@ poa/util/EntityTypeFromString1214.class
 poa/packets/FakeEntity1214.class
 poa/packets/Metadata1214.class
 poa/util/EntityFromID1214.class
+poa/blocks/Biomes1214$ChunkWork.class
 poa/packets/packetListener/GlowMap1214.class
 poa/packets/CameraPacket1214.class
 poa/util/RefreshPlayer1214.class

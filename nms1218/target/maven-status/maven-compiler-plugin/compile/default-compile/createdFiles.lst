@@ -5,10 +5,12 @@ poa/packets/packetListener/events/ParticleEvent1218.class
 poa/packets/CameraPacket1218.class
 poa/packets/PosRotPacket1218.class
 poa/util/EntityFromID1218.class
+poa/blocks/Biomes1218.class
 poa/blocks/SetFast1218.class
 poa/StartAutoSpinAttack1218.class
 poa/packets/FakeEntity1218.class
 poa/packets/Metadata1218.class
+poa/blocks/Biomes1218$ChunkWork.class
 poa/packets/packetListener/PacketHandler1218.class
 poa/packets/ItemCooldown1218.class
 poa/util/RefreshPlayer1218.class

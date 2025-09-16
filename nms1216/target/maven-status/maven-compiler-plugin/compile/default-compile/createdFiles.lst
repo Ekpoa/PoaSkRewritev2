@@ -17,6 +17,7 @@ poa/packets/FakeDeathAnimation1216.class
 poa/util/GetBlockId1216.class
 poa/util/Components1216.class
 poa/packets/AnimationPacket1216.class
+poa/blocks/Biomes1216$ChunkWork.class
 poa/util/EntityTypeFromString1216.class
 poa/packets/Metadata1216.class
 poa/packets/FakeEntity1216.class
@@ -34,4 +35,5 @@ poa/packets/packetListener/events/BlockUpdateEvent1216.class
 poa/packets/packetListener/events/PlayerChatPacketEvent1216.class
 poa/packets/SetPassengerPacket1216.class
 poa/StartAutoSpinAttack1216.class
+poa/blocks/Biomes1216.class
 poa/util/Messages1216.class
