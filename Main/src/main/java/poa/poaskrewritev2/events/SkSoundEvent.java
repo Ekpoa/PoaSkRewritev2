@@ -14,15 +14,15 @@ public class SkSoundEvent extends SkriptEvent {
 
     static {
         switch (BukkitVersion.getBukkitVersion()){
-            case "1206" -> Skript.registerEvent("Sound Event", SkSoundEvent.class, SoundEvent1206.class, "sound event");
-            case "121" -> Skript.registerEvent("Sound Event", SkSoundEvent.class, SoundEvent121.class, "sound event");
-            case "1211" -> Skript.registerEvent("Sound Event", SkSoundEvent.class, SoundEvent1211.class, "sound event");
-            case "1213" -> Skript.registerEvent("Sound Event", SkSoundEvent.class, SoundEvent1213.class, "sound event");
-            case "1214" -> Skript.registerEvent("Sound Event", SkSoundEvent.class, SoundEvent1214.class, "sound event");
-            case "1215" -> Skript.registerEvent("Sound Event", SkSoundEvent.class, SoundEvent1215.class, "sound event");
-            case "1216" -> Skript.registerEvent("Sound Event", SkSoundEvent.class, SoundEvent1216.class, "sound event");
-            case "1217" -> Skript.registerEvent("Sound Event", SkSoundEvent.class, SoundEvent1217.class, "sound event");
-            case "1218" -> Skript.registerEvent("Sound Event", SkSoundEvent.class, SoundEvent1218.class, "sound event");
+            case "1206" -> Skript.registerEvent("Sound Event", SkSoundEvent.class, SoundEvent1206.class, "sound packet");
+            case "121" -> Skript.registerEvent("Sound Event", SkSoundEvent.class, SoundEvent121.class, "sound packet");
+            case "1211" -> Skript.registerEvent("Sound Event", SkSoundEvent.class, SoundEvent1211.class, "sound packet");
+            case "1213" -> Skript.registerEvent("Sound Event", SkSoundEvent.class, SoundEvent1213.class, "sound packet");
+            case "1214" -> Skript.registerEvent("Sound Event", SkSoundEvent.class, SoundEvent1214.class, "sound packet");
+            case "1215" -> Skript.registerEvent("Sound Event", SkSoundEvent.class, SoundEvent1215.class, "sound packet");
+            case "1216" -> Skript.registerEvent("Sound Event", SkSoundEvent.class, SoundEvent1216.class, "sound packet");
+            case "1217" -> Skript.registerEvent("Sound Event", SkSoundEvent.class, SoundEvent1217.class, "sound packet");
+            case "1218" -> Skript.registerEvent("Sound Event", SkSoundEvent.class, SoundEvent1218.class, "sound packet");
         }
         RegisterBlockUpdate.registerValues();
     }
