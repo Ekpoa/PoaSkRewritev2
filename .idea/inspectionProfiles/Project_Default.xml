@@ -7,5 +7,6 @@
     <inspection_tool class="ExtractMethodRecommender" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="maxParameters" value="1" />
     </inspection_tool>
+    <inspection_tool class="MarkedForRemoval" enabled="false" level="ERROR" enabled_by_default="false" />
   </profile>
 </component>

@@ -18,6 +18,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.craftbukkit.CraftParticle;
 import org.bukkit.craftbukkit.block.data.CraftBlockData;
@@ -52,7 +53,25 @@ public class PacketHandler1215 extends ChannelDuplexHandler {
                 super.channelRead(ctx, msg);
                 return;
             }
+            if(packet instanceof ServerboundPlayerActionPacket actionPacket){
+                final BlockPos pos = actionPacket.getPos();
+                final ServerboundPlayerActionPacket.Action action = actionPacket.getAction();
+                final PlayerActionEvent1215 event = new PlayerActionEvent1215(player, true);
 
+
+                final Location location = new Location(player.getWorld(), pos.getX(), pos.getY(), pos.getZ());
+                event.setLocation(location);
+                event.setSequence(actionPacket.getSequence());
+                event.setBlock(location.getBlock());
+                event.setAction(action);
+                event.setActionString(action.toString());
+
+                Bukkit.getPluginManager().callEvent(event);
+
+                if(event.isCancelled())
+                    return;
+
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

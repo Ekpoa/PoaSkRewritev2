@@ -23,6 +23,7 @@ poa/util/Components1214.class
 poa/packets/TeamPacket1214.class
 poa/packets/packetListener/events/SystemChatPacketEvent1214.class
 poa/util/EntityTypeFromString1214.class
+poa/packets/packetListener/events/PlayerActionEvent1214.class
 poa/packets/FakeEntity1214.class
 poa/packets/Metadata1214.class
 poa/util/EntityFromID1214.class

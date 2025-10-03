@@ -21,6 +21,7 @@
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/Metadata1211.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/TeleportPacket1211.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/CameraPacket1211.java
+/Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/packetListener/events/PlayerActionEvent1211.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/TeamPacket1211.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/packetListener/events/SoundEvent1211.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/FakeEntity1211.java

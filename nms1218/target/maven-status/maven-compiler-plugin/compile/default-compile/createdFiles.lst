@@ -28,6 +28,7 @@ poa/util/Messages1218.class
 poa/packets/FakePlayer1218.class
 poa/packets/SendPacket1218.class
 poa/util/EntityTypeFromString1218.class
+poa/packets/packetListener/events/PlayerActionEvent1218.class
 poa/ChangeIP1218.class
 poa/packets/packetListener/events/PlayerChatPacketEvent1218.class
 poa/packets/AnimationPacket1218.class
