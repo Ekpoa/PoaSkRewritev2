@@ -62,10 +62,14 @@ public class EffSpawnFakePlayer extends Effect {
 
         if(skinName != null && skinName.length() > 16){
             skinName = skinName.replaceAll(" ", "");
-            List<String> split = Arrays.stream(skinName.split(",")).toList();
+            if(skinName.contains(",")) {
+                List<String> split = Arrays.stream(skinName.split(",")).toList();
 
-            texture = split.get(0);
-            signature = split.get(1);
+                texture = split.get(0);
+                signature = split.get(1);
+            }
+            else
+                texture = skinName;
         }
 
         boolean listed = false;

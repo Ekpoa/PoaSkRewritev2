@@ -33,6 +33,7 @@ import poa.util.Components1214;
 import poa.util.FetchSkin1214;
 import poa.util.Messages1214;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
@@ -75,7 +76,7 @@ public class FakePlayer1214 {
 
             connection.send(spawnPacket);
 
-            if (skinTexture != null || skinSignature == null)
+            if (skinTexture != null)
                 connection.send(entityDataPacket);
 
         }
@@ -107,7 +108,13 @@ public class FakePlayer1214 {
 
         GameProfile gameProfile = fakePlayer.getGameProfile();
 
-        if (skinTexture != null || skinSignature == null) {
+        if (skinSignature == null) {
+            Map<String, String> signed = fromMineskin(skinTexture); // accepts base64 texture
+            skinTexture = signed.get("texture");
+            skinSignature = signed.get("signature");
+        }
+
+        if (skinTexture != null && skinSignature != null) {
             gameProfile.getProperties().removeAll("textures");
             gameProfile.getProperties().put("textures", new Property("textures", skinTexture, skinSignature));
         }
@@ -117,8 +124,6 @@ public class FakePlayer1214 {
 
     public static void spawnTablistOnly(List<Player> sendTo, String name, net.kyori.adventure.text.Component tablistName, UUID uuid, String skinTexture, String skinSignature, int latency, int tabPosition) {
         final Location loc = new Location(Bukkit.getWorlds().get(0), 0, 0, 0);
-
-
 
         final ServerPlayer fakePlayer = createServerPlayer(loc, name, uuid, 127, true, skinTexture, skinSignature);
 
@@ -201,5 +206,57 @@ public class FakePlayer1214 {
             SendPacket1214.sendPacket(p, FakeEntity1214.removeFakeEntityPacket(ids));
         }
     }
+
+
+    private static final Map<String, String> texturesToSignatures = new HashMap<>();
+
+    @SneakyThrows
+    public static Map<String, String> fromMineskin(String base64Texture) {
+        Map<String, String> result = new HashMap<>();
+
+        if(texturesToSignatures.containsKey(base64Texture)){
+            result.put(base64Texture, texturesToSignatures.get(base64Texture));
+            return result;
+        }
+
+        // Decode the base64 texture to extract the internal URL
+        String decoded = new String(Base64.getDecoder().decode(base64Texture), java.nio.charset.StandardCharsets.UTF_8);
+        org.json.JSONObject json = new org.json.JSONObject(decoded);
+        String textureUrl = json.getJSONObject("textures").getJSONObject("SKIN").getString("url");
+
+        // Send to Mineskin API
+        String payload = "{\"variant\":\"classic\",\"visibility\":0,\"url\":\"" + textureUrl + "\"}";
+        java.net.URL apiUrl = new java.net.URL("https://api.mineskin.org/generate/url");
+        java.net.HttpURLConnection connection = (java.net.HttpURLConnection) apiUrl.openConnection();
+        connection.setRequestMethod("POST");
+        connection.setRequestProperty("Content-Type", "application/json");
+        connection.setDoOutput(true);
+        connection.setConnectTimeout(10000);
+        connection.setReadTimeout(20000);
+
+        try (java.io.OutputStream os = connection.getOutputStream()) {
+            os.write(payload.getBytes(java.nio.charset.StandardCharsets.UTF_8));
+        }
+
+        int code = connection.getResponseCode();
+        String response = new String(
+                (code == 200 ? connection.getInputStream() : connection.getErrorStream())
+                        .readAllBytes(),
+                java.nio.charset.StandardCharsets.UTF_8
+        );
+
+        if (code != 200)
+            throw new IOException("Mineskin API returned HTTP " + code + ": " + response);
+
+        org.json.JSONObject textureJson = new org.json.JSONObject(response)
+                .getJSONObject("data").getJSONObject("texture");
+
+
+        result.put("texture", textureJson.getString("value"));
+        result.put("signature", textureJson.getString("signature"));
+        return result;
+    }
+
+
 
 }
