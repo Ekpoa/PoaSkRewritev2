@@ -18,6 +18,7 @@ poa/ChangeIP1214.class
 poa/util/FetchSkin1214.class
 poa/guardian/GuardianBeam1214.class
 poa/packets/FakePlayer1214.class
+poa/util/PoaPlugin1214.class
 poa/packets/SetEquipmentPacket1214.class
 poa/util/Components1214.class
 poa/packets/TeamPacket1214.class

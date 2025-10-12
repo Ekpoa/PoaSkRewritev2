@@ -1,5 +1,6 @@
 poa/packets/packetListener/events/SystemChatPacketEvent1215.class
 poa/util/EntityTypeFromString1215.class
+poa/util/PoaPlugin1215.class
 poa/packets/Metadata1215.class
 poa/util/Components1215.class
 poa/packets/TeamPacket1215.class

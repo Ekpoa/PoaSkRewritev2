@@ -25,6 +25,7 @@ poa/packets/FakeEntity1216.class
 poa/packets/packetListener/GlowMap1216.class
 poa/packets/packetListener/events/SystemChatPacketEvent1216.class
 poa/util/FetchSkin1216.class
+poa/util/PoaPlugin1216.class
 poa/packets/packetListener/PacketHandler1216.class
 poa/packets/HeadRotPacket1216.class
 poa/packets/TeamPacket1216.class

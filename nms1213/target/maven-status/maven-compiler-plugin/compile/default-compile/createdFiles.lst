@@ -30,6 +30,7 @@ poa/util/Components1213.class
 poa/packets/TeamPacket1213.class
 poa/packets/SetPassengerPacket1213.class
 poa/packets/ChangeVision1213.class
+poa/util/PoaPlugin1213.class
 poa/packets/TeleportPacket1213.class
 poa/packets/SetEquipmentPacket1213.class
 poa/util/EntityTypeFromString1213.class

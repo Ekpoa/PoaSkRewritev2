@@ -1,1 +1,2 @@
 PreventSelfInteractionKick: true # if you send a camera packet and try to click on yourself, you get kicked. Setting this to TRUE will prevent that kick
+SaveSkinCacheToDisk: false

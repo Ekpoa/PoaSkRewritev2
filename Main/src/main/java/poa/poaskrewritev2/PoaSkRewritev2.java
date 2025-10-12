@@ -10,6 +10,7 @@ import poa.poaskrewritev2.effects.entity.EffSetPlayerNameAndSkin;
 import poa.poaskrewritev2.events.bukkitevents.JoinLeave;
 import poa.poaskrewritev2.events.bukkitevents.PlayerLoadEntity;
 import poa.poaskrewritev2.expressions.ExprHostname;
+import poa.util.PoaPlugin;
 
 import java.io.IOException;
 
@@ -40,6 +41,8 @@ public final class PoaSkRewritev2 extends JavaPlugin {
         if(getConfig().getBoolean("PreventSelfInteractionKick"))
             pm.registerEvents(new KickEvent(), this);
 
+
+        PoaPlugin.setPlugin(this);
 
         try {
             skriptAddon.loadClasses("poa.poaskrewritev2", "expressions", "effects", "effects.entity", "effects.packets", "effects.fun", "events", "expressions.metadatasec");

@@ -6,6 +6,7 @@
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1215/src/main/java/poa/packets/Metadata1215.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1215/src/main/java/poa/util/RefreshPlayer1215.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1215/src/main/java/poa/util/Messages1215.java
+/Users/alex/Documents/Plugins/PoaSkRewrite/nms1215/src/main/java/poa/util/PoaPlugin1215.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1215/src/main/java/poa/packets/packetListener/events/BlockUpdateEvent1215.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1215/src/main/java/poa/packets/SetEquipmentPacket1215.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1215/src/main/java/poa/util/EntityTypeFromString1215.java

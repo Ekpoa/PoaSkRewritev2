@@ -10,6 +10,7 @@ poa/packets/TeleportPacket1217.class
 poa/util/Messages1217.class
 poa/StartAutoSpinAttack1217.class
 poa/util/GetPose1217.class
+poa/util/PoaPlugin1217.class
 poa/packets/SetEquipmentPacket1217.class
 poa/packets/FakePlayer1217.class
 poa/util/EntityTypeFromString1217.class

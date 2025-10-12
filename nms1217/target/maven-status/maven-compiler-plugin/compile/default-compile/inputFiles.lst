@@ -34,6 +34,7 @@
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1217/src/main/java/poa/packets/ItemCooldown1217.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1217/src/main/java/poa/packets/SendPayloadPacket1217.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1217/src/main/java/poa/packets/HeadRotPacket1217.java
+/Users/alex/Documents/Plugins/PoaSkRewrite/nms1217/src/main/java/poa/util/PoaPlugin1217.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1217/src/main/java/poa/packets/SetPassengerPacket1217.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1217/src/main/java/poa/packets/SendPacket1217.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1217/src/main/java/poa/packets/packetListener/events/SystemChatPacketEvent1217.java

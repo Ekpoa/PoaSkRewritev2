@@ -24,6 +24,7 @@ poa/packets/TeamPacket1211.class
 poa/packets/HeadRotPacket1211.class
 poa/packets/FakeEntity1211.class
 poa/packets/ItemCooldown1211.class
+poa/util/PoaPlugin1211.class
 poa/packets/AnimationPacket1211.class
 poa/util/EntityTypeFromString1211.class
 poa/packets/packetListener/GlowMap1211.class

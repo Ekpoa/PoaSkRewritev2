@@ -37,4 +37,5 @@ poa/util/Components1218.class
 poa/packets/TeamPacket1218.class
 poa/packets/TeleportPacket1218.class
 poa/guardian/GuardianBeam1218.class
+poa/util/PoaPlugin1218.class
 poa/util/FetchSkin1218.class
