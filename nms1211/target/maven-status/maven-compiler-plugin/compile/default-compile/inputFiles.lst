@@ -35,5 +35,6 @@
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/packetListener/PacketHandler1211.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/FakePlayer1211.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/AnimationPacket1211.java
+/Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/FakeTablist1211.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/util/PoaPlugin1211.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/PosRotPacket1211.java

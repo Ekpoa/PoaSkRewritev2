@@ -11,6 +11,7 @@ poa/packets/AttributePacket1216.class
 poa/packets/SendPayloadPacket1216.class
 poa/packets/packetListener/events/ParticleEvent1216.class
 poa/packets/packetListener/events/PlayerActionEvent1216.class
+poa/packets/FakeTablist1216.class
 poa/blocks/SetFast1216.class
 poa/util/EntityFromID1216.class
 poa/packets/packetListener/PacketInjector1216.class

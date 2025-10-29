@@ -34,6 +34,7 @@
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1214/src/main/java/poa/packets/CameraPacket1214.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1214/src/main/java/poa/packets/SetPassengerPacket1214.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1214/src/main/java/poa/packets/FakePlayer1214.java
+/Users/alex/Documents/Plugins/PoaSkRewrite/nms1214/src/main/java/poa/packets/FakeTablist1214.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1214/src/main/java/poa/util/Components1214.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1214/src/main/java/poa/packets/TeleportPacket1214.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1214/src/main/java/poa/packets/Metadata1214.java

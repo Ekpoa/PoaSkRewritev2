@@ -22,6 +22,7 @@ poa/util/PoaPlugin1214.class
 poa/packets/SetEquipmentPacket1214.class
 poa/util/Components1214.class
 poa/packets/TeamPacket1214.class
+poa/packets/FakeTablist1214.class
 poa/packets/packetListener/events/SystemChatPacketEvent1214.class
 poa/util/EntityTypeFromString1214.class
 poa/packets/packetListener/events/PlayerActionEvent1214.class

@@ -35,6 +35,7 @@
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms12110/src/main/java/poa/util/Messages12110.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms12110/src/main/java/poa/util/GetBlockId12110.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms12110/src/main/java/poa/packets/packetListener/events/ParticleEvent12110.java
+/Users/alex/Documents/Plugins/PoaSkRewrite/nms12110/src/main/java/poa/packets/FakeTablist12110.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms12110/src/main/java/poa/packets/packetListener/PacketInjector12110.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms12110/src/main/java/poa/packets/AttributePacket12110.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms12110/src/main/java/poa/packets/SendPacket12110.java

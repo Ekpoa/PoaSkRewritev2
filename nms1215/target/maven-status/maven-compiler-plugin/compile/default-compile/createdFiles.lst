@@ -36,6 +36,7 @@ poa/packets/ChangeVision1215.class
 poa/packets/FakeDeathAnimation1215.class
 poa/blocks/SetFast1215.class
 poa/util/GetBlockId1215.class
+poa/packets/FakeTablist1215.class
 poa/ChangeIP1215.class
 poa/packets/packetListener/events/PlayerActionEvent1215.class
 poa/packets/SendPacket1215.class

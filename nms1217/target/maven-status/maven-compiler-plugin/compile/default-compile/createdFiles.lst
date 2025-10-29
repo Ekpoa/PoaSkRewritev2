@@ -28,6 +28,7 @@ poa/packets/SendPacket1217.class
 poa/packets/PosRotPacket1217.class
 poa/ChangeIP1217.class
 poa/util/EntityFromID1217.class
+poa/packets/FakeTablist1217.class
 poa/packets/packetListener/PacketHandler1217.class
 poa/packets/SendPayloadPacket1217.class
 poa/packets/ItemCooldown1217.class

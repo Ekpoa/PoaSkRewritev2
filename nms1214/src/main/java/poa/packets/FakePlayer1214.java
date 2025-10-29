@@ -155,54 +155,8 @@ public class FakePlayer1214 {
         return fakePlayer;
     }
 
-    public static void spawnTablistOnly(List<Player> sendTo, String name, net.kyori.adventure.text.Component tablistName, UUID uuid, String skinTexture, String skinSignature, int latency, int tabPosition) {
-        final Location loc = new Location(Bukkit.getWorlds().get(0), 0, 0, 0);
-
-        final ServerPlayer fakePlayer = createServerPlayer(sendTo, 9999, loc, name, uuid, 127, true, skinTexture, skinSignature);
-
-        final GameProfile gameProfile = fakePlayer.getGameProfile();
-
-        fakePlayer.listOrder = tabPosition;
-
-        ClientboundPlayerInfoUpdatePacket.Entry entry = new ClientboundPlayerInfoUpdatePacket.Entry(fakePlayer.getUUID(), gameProfile, true, latency, GameType.DEFAULT_MODE, Component.empty(), true, tabPosition, null);
-
-        final EnumSet<ClientboundPlayerInfoUpdatePacket.Action> enumSet = EnumSet.of(ClientboundPlayerInfoUpdatePacket.Action.UPDATE_LISTED, ClientboundPlayerInfoUpdatePacket.Action.UPDATE_LATENCY, ClientboundPlayerInfoUpdatePacket.Action.ADD_PLAYER, ClientboundPlayerInfoUpdatePacket.Action.UPDATE_LIST_ORDER);
 
 
-        final ClientboundPlayerInfoUpdatePacket actionsPacket = new ClientboundPlayerInfoUpdatePacket(enumSet, entry);
-
-
-        for (Player player : sendTo) {
-            ServerGamePacketListenerImpl connection = ((CraftPlayer) player).getHandle().connection;
-            connection.send(actionsPacket);
-
-        }
-        fakePlayer.getBukkitEntity().getPlayer().playerListName(tablistName);
-    }
-
-    public static void spawnTablistOnly(List<Player> sendTo, String name, net.kyori.adventure.text.Component tablistName, UUID uuid, String skinTexture, String skinSignature, int latency) {
-        spawnTablistOnly(sendTo, name, tablistName, uuid, skinTexture, skinSignature, latency, 0);
-    }
-
-
-    public static void spawnTablistOnly(List<Player> sendTo, String name, net.kyori.adventure.text.Component tablistName, String skinName, UUID uuid, int latency, int tablistPosition) {
-        UUID string = Bukkit.getOfflinePlayer(skinName).getUniqueId();
-        String texture = FetchSkin1214.fetchSkinURL(string);
-        String signature = FetchSkin1214.fetchSkinSignature(string);
-        spawnTablistOnly(sendTo, name, tablistName, uuid, texture, signature, latency, tablistPosition);
-    }
-
-    public static void spawnTablistOnly(List<Player> sendTo, String name, net.kyori.adventure.text.Component tablistName, String skinName, UUID uuid, int latency) {
-        spawnTablistOnly(sendTo, name, tablistName, skinName, uuid, latency, 0);
-    }
-
-
-    public static void removeTablistPacket(List<Player> sendTo, List<UUID> uuids) {
-        final ClientboundPlayerInfoRemovePacket packet = new ClientboundPlayerInfoRemovePacket(uuids);
-        for (Player p : sendTo) {
-            SendPacket1214.sendPacket(p, packet);
-        }
-    }
 
 
     public static Player spawnFakePlayer(List<Player> sendTo, String name, String skinName, Location loc, boolean listed, int latency, int id, UUID uuid, int skinModel) {

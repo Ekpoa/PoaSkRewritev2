@@ -5,6 +5,7 @@ poa/packets/packetListener/events/ParticleEvent1218.class
 poa/packets/CameraPacket1218.class
 poa/packets/PosRotPacket1218.class
 poa/util/EntityFromID1218.class
+poa/packets/FakeTablist1218.class
 poa/blocks/Biomes1218.class
 poa/blocks/SetFast1218.class
 poa/StartAutoSpinAttack1218.class

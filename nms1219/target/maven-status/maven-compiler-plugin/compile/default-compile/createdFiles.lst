@@ -22,6 +22,7 @@ poa/util/PoaPlugin1219.class
 poa/packets/packetListener/PacketInjector1219.class
 poa/packets/packetListener/events/PlayerActionEvent1219.class
 poa/packets/SendPayloadPacket1219.class
+poa/packets/FakeTablist1219.class
 poa/packets/ChangeVision1219.class
 poa/packets/SendPacket1219.class
 poa/guardian/GuardianBeam1219.class

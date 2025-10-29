@@ -10,6 +10,7 @@ import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import poa.packets.FakePlayer;
+import poa.packets.FakeTablist;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,7 +45,7 @@ public class EffRemoveFakeTablistPlayer extends Effect {
             uuids.add(UUID.fromString(s));
         }
 
-        FakePlayer.removeTablistOnly(Arrays.stream(players.getArray(event)).toList(), uuids);
+        FakeTablist.removeTablistOnly(Arrays.stream(players.getArray(event)).toList(), uuids);
     }
 
     @Override

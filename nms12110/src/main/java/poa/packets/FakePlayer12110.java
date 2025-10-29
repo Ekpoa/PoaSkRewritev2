@@ -170,6 +170,7 @@ public class FakePlayer12110 {
 
         final ServerPlayer fakePlayer = createServerPlayer(sendTo, 9999, loc, name, uuid, 127, true, skinTexture, skinSignature);
 
+
         final GameProfile gameProfile = fakePlayer.getGameProfile();
 
         fakePlayer.listOrder = tabPosition;

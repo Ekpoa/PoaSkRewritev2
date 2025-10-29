@@ -12,6 +12,7 @@ import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import poa.packets.FakePlayer;
+import poa.packets.FakeTablist;
 import poa.util.BukkitVersion;
 import poa.util.Messages;
 import poa.util.Messages1214;
@@ -21,7 +22,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class EffFakeTablistPlayer extends Effect {
-   // !add player named "&bHello there you sexy thing" to tablist with skin named "Ekpoa" for me with uuid (random uuid)
+    // !add player named "&bHello there you sexy thing" to tablist with skin named "Ekpoa" for me with uuid (random uuid)
     static {
         Skript.registerEffect(EffFakeTablistPlayer.class,
                 "add [player] [named] %string% to tablist [with skin named %-string%] [with latency %-number%] [with username %-string%] for %players% [with] uuid %string%");
@@ -53,20 +54,9 @@ public class EffFakeTablistPlayer extends Effect {
         String skinName = this.skinName.getSingle(event);
 
 
-        String texture = null;
-        String signature = null;
-
-        if (skinName != null && skinName.length() > 16) {
-            skinName = skinName.replaceAll(" ", "");
-            List<String> split = Arrays.stream(skinName.split(",")).toList();
-
-            texture = split.get(0);
-            signature = split.get(1);
-        }
-
         String username = "a";
 
-        if(this.username != null)
+        if (this.username != null)
             username = this.username.getSingle(event);
 
 
@@ -82,10 +72,7 @@ public class EffFakeTablistPlayer extends Effect {
 
 
         final List<Player> playerList = Arrays.stream(players.getArray(event)).toList();
-        if (texture == null)
-            FakePlayer.spawnTablistOnly(playerList, username, tablistName, skinName, uuid, latency);
-        else
-            FakePlayer.spawnTablistOnly(playerList, username, tablistName,  uuid, texture, signature, latency);
+        FakeTablist.spawnTablistOnly(playerList, username, tablistName, skinName, uuid, latency);
 
     }
 

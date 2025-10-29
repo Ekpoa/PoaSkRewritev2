@@ -19,6 +19,7 @@
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1219/src/main/java/poa/packets/SendPacket1219.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1219/src/main/java/poa/packets/TeleportPacket1219.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1219/src/main/java/poa/packets/CameraPacket1219.java
+/Users/alex/Documents/Plugins/PoaSkRewrite/nms1219/src/main/java/poa/packets/FakeTablist1219.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1219/src/main/java/poa/packets/Metadata1219.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1219/src/main/java/poa/packets/FakePlayer1219.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1219/src/main/java/poa/blocks/SetFast1219.java

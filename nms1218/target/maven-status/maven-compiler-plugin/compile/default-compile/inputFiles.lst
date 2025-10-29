@@ -22,6 +22,7 @@
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1218/src/main/java/poa/packets/SendPayloadPacket1218.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1218/src/main/java/poa/packets/packetListener/PacketInjector1218.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1218/src/main/java/poa/packets/AnimationPacket1218.java
+/Users/alex/Documents/Plugins/PoaSkRewrite/nms1218/src/main/java/poa/packets/FakeTablist1218.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1218/src/main/java/poa/packets/FakeDeathAnimation1218.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1218/src/main/java/poa/packets/Metadata1218.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1218/src/main/java/poa/packets/SetEquipmentPacket1218.java

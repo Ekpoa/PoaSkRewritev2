@@ -34,6 +34,7 @@
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1216/src/main/java/poa/util/Components1216.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1216/src/main/java/poa/packets/packetListener/events/ParticleEvent1216.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1216/src/main/java/poa/util/EntityFromID1216.java
+/Users/alex/Documents/Plugins/PoaSkRewrite/nms1216/src/main/java/poa/packets/FakeTablist1216.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1216/src/main/java/poa/packets/SendPayloadPacket1216.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1216/src/main/java/poa/util/RefreshPlayer1216.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1216/src/main/java/poa/packets/TeleportPacket1216.java

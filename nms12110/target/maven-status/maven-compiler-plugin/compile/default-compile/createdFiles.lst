@@ -8,6 +8,7 @@ poa/packets/HeadRotPacket12110.class
 poa/util/PoaPlugin12110.class
 poa/packets/Metadata12110.class
 poa/util/GetPose12110.class
+poa/packets/FakeTablist12110.class
 poa/packets/AttributePacket12110.class
 poa/util/EntityFromID12110.class
 poa/packets/packetListener/PacketHandler12110.class

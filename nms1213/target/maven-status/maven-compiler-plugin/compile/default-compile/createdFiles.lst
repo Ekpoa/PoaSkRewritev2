@@ -3,6 +3,7 @@ poa/util/EntityFromID1213.class
 poa/packets/packetListener/PacketHandler1213.class
 poa/packets/packetListener/events/PlayerActionEvent1213.class
 poa/packets/Metadata1213.class
+poa/packets/FakeTablist1213.class
 poa/packets/packetListener/events/BlockUpdateEvent1213.class
 poa/util/GetBlockId1213.class
 poa/blocks/SetFast1213.class
