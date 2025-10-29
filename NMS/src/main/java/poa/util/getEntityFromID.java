@@ -18,6 +18,8 @@ public class getEntityFromID {
             case "1216" -> EntityFromID1216.getEntityFromId(id);
             case "1217" -> EntityFromID1217.getEntityFromId(id);
             case "1218" -> EntityFromID1218.getEntityFromId(id);
+            case "1219" -> EntityFromID1219.getEntityFromId(id);
+            case "12110" -> EntityFromID12110.getEntityFromId(id);
             default -> null;
         };
     }

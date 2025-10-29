@@ -20,6 +20,8 @@ public class PosRotPacket {
             case "1216" -> PosRotPacket1216.posPacket(id, deltaX, deltaY, deltaZ);
             case "1217" -> PosRotPacket1217.posPacket(id, deltaX, deltaY, deltaZ);
             case "1218" -> PosRotPacket1218.posPacket(id, deltaX, deltaY, deltaZ);
+            case "1219" -> PosRotPacket1219.posPacket(id, deltaX, deltaY, deltaZ);
+            case "12110" -> PosRotPacket12110.posPacket(id, deltaX, deltaY, deltaZ);
             default -> null;
         };
     }
@@ -38,6 +40,8 @@ public class PosRotPacket {
             case "1216" -> PosRotPacket1216.rotPacket(id, yaw, pitch);
             case "1217" -> PosRotPacket1217.rotPacket(id, yaw, pitch);
             case "1218" -> PosRotPacket1218.rotPacket(id, yaw, pitch);
+            case "1219" -> PosRotPacket1219.rotPacket(id, yaw, pitch);
+            case "12110" -> PosRotPacket12110.rotPacket(id, yaw, pitch);
             default -> null;
         };
     }

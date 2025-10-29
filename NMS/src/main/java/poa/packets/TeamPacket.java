@@ -23,6 +23,8 @@ public class TeamPacket {
             case "1216" -> TeamPacket1216.teamPacket(teamName, displayName, nameTagVisibility, collision, color, prefix, suffix, seeFriendly, players);
             case "1217" -> TeamPacket1217.teamPacket(teamName, displayName, nameTagVisibility, collision, color, prefix, suffix, seeFriendly, players);
             case "1218" -> TeamPacket1218.teamPacket(teamName, displayName, nameTagVisibility, collision, color, prefix, suffix, seeFriendly, players);
+            case "1219" -> TeamPacket1219.teamPacket(teamName, displayName, nameTagVisibility, collision, color, prefix, suffix, seeFriendly, players);
+            case "12110" -> TeamPacket12110.teamPacket(teamName, displayName, nameTagVisibility, collision, color, prefix, suffix, seeFriendly, players);
             default -> null;
         };
     }

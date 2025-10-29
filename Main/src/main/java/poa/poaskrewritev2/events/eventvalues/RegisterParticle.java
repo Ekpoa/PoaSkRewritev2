@@ -391,6 +391,76 @@ public class RegisterParticle {
                     }
                 }, EventValues.TIME_NOW);
             }
+            case "1219" -> {
+                EventValues.registerEventValue(ParticleEvent1219.class, Particle.class, new Getter<>() {
+                    @Override
+                    public Particle get(ParticleEvent1219 event) {
+                        return event.getParticle();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(ParticleEvent1219.class, Integer.class, new Getter<>() {
+                    @Override
+                    public Integer get(ParticleEvent1219 event) {
+                        return event.getCount();
+                    }
+                }, EventValues.TIME_NOW);
+
+                EventValues.registerEventValue(ParticleEvent1219.class, Float.class, new Getter<>() {
+                    @Override
+                    public Float get(ParticleEvent1219 event) {
+                        return event.getMaxSpeed();
+                    }
+                }, EventValues.TIME_NOW);
+
+                EventValues.registerEventValue(ParticleEvent1219.class, Vector.class, new Getter<>() {
+                    @Override
+                    public Vector get(ParticleEvent1219 event) {
+                        return event.getOffset();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(ParticleEvent1219.class, Location.class, new Getter<>() {
+                    @Override
+                    public Location get(ParticleEvent1219 event) {
+                        return event.getLocation();
+                    }
+                }, EventValues.TIME_NOW);
+            }
+
+            case "12110" -> {
+                EventValues.registerEventValue(ParticleEvent12110.class, Particle.class, new Getter<>() {
+                    @Override
+                    public Particle get(ParticleEvent12110 event) {
+                        return event.getParticle();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(ParticleEvent12110.class, Integer.class, new Getter<>() {
+                    @Override
+                    public Integer get(ParticleEvent12110 event) {
+                        return event.getCount();
+                    }
+                }, EventValues.TIME_NOW);
+
+                EventValues.registerEventValue(ParticleEvent12110.class, Float.class, new Getter<>() {
+                    @Override
+                    public Float get(ParticleEvent12110 event) {
+                        return event.getMaxSpeed();
+                    }
+                }, EventValues.TIME_NOW);
+
+                EventValues.registerEventValue(ParticleEvent12110.class, Vector.class, new Getter<>() {
+                    @Override
+                    public Vector get(ParticleEvent12110 event) {
+                        return event.getOffset();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(ParticleEvent12110.class, Location.class, new Getter<>() {
+                    @Override
+                    public Location get(ParticleEvent12110 event) {
+                        return event.getLocation();
+                    }
+                }, EventValues.TIME_NOW);
+            }
+
         }
     }
 }

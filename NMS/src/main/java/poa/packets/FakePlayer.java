@@ -26,6 +26,8 @@ public class FakePlayer {
             case "1216" -> FakePlayer1216.spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, id, uuid);
             case "1217" -> FakePlayer1217.spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, id, uuid);
             case "1218" -> FakePlayer1218.spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, id, uuid);
+            case "1219" -> FakePlayer1219.spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, id, uuid);
+            case "12110" -> FakePlayer12110.spawnFakePlayer(sendTo, name, skinName, loc, listed, latency, id, uuid);
         }
     }
 
@@ -77,6 +79,8 @@ public class FakePlayer {
             case "1216" -> FakePlayer1216.removeFakePlayerPacket(sendTo, uuids, ids);
             case "1217" -> FakePlayer1217.removeFakePlayerPacket(sendTo, uuids, ids);
             case "1218" -> FakePlayer1218.removeFakePlayerPacket(sendTo, uuids, ids);
+            case "1219" -> FakePlayer1219.removeFakePlayerPacket(sendTo, uuids, ids);
+            case "12110" -> FakePlayer12110.removeFakePlayerPacket(sendTo, uuids, ids);
         }
     }
 
@@ -94,6 +98,8 @@ public class FakePlayer {
             case "1216" -> FakePlayer1216.spawnTablistOnly(sendTo, name, tablistName, uuid, skinTexture, skinSignature, latency);
             case "1217" -> FakePlayer1217.spawnTablistOnly(sendTo, name, tablistName, uuid, skinTexture, skinSignature, latency);
             case "1218" -> FakePlayer1218.spawnTablistOnly(sendTo, name, tablistName, uuid, skinTexture, skinSignature, latency);
+            case "1219" -> FakePlayer1219.spawnTablistOnly(sendTo, name, tablistName, uuid, skinTexture, skinSignature, latency);
+            case "12110" -> FakePlayer12110.spawnTablistOnly(sendTo, name, tablistName, uuid, skinTexture, skinSignature, latency);
         }
     }
 
@@ -104,6 +110,8 @@ public class FakePlayer {
             case "1216" -> FakePlayer1216.spawnTablistOnly(sendTo, name, tablistName, uuid, skinTexture, skinSignature, latency, position);
             case "1217" -> FakePlayer1217.spawnTablistOnly(sendTo, name, tablistName, uuid, skinTexture, skinSignature, latency, position);
             case "1218" -> FakePlayer1218.spawnTablistOnly(sendTo, name, tablistName, uuid, skinTexture, skinSignature, latency, position);
+            case "1219" -> FakePlayer1219.spawnTablistOnly(sendTo, name, tablistName, uuid, skinTexture, skinSignature, latency, position);
+            case "12110" -> FakePlayer12110.spawnTablistOnly(sendTo, name, tablistName, uuid, skinTexture, skinSignature, latency, position);
         }
     }
 
@@ -120,6 +128,8 @@ public class FakePlayer {
             case "1216" -> FakePlayer1216.spawnTablistOnly(sendTo, name, tablistName, skinName, uuid, latency);
             case "1217" -> FakePlayer1217.spawnTablistOnly(sendTo, name, tablistName, skinName, uuid, latency);
             case "1218" -> FakePlayer1218.spawnTablistOnly(sendTo, name, tablistName, skinName, uuid, latency);
+            case "1219" -> FakePlayer1219.spawnTablistOnly(sendTo, name, tablistName, skinName, uuid, latency);
+            case "12110" -> FakePlayer12110.spawnTablistOnly(sendTo, name, tablistName, skinName, uuid, latency);
         }
     }
 
@@ -130,6 +140,8 @@ public class FakePlayer {
             case "1216" -> FakePlayer1216.spawnTablistOnly(sendTo, name, tablistName, skinName, uuid, latency, position);
             case "1217" -> FakePlayer1217.spawnTablistOnly(sendTo, name, tablistName, skinName, uuid, latency, position);
             case "1218" -> FakePlayer1218.spawnTablistOnly(sendTo, name, tablistName, skinName, uuid, latency, position);
+            case "1219" -> FakePlayer1219.spawnTablistOnly(sendTo, name, tablistName, skinName, uuid, latency, position);
+            case "12110" -> FakePlayer12110.spawnTablistOnly(sendTo, name, tablistName, skinName, uuid, latency, position);
         }
     }
 
@@ -147,6 +159,8 @@ public class FakePlayer {
             case "1216" -> FakePlayer1216.removeTablistPacket(sendTo, uuids);
             case "1217" -> FakePlayer1217.removeTablistPacket(sendTo, uuids);
             case "1218" -> FakePlayer1218.removeTablistPacket(sendTo, uuids);
+            case "1219" -> FakePlayer1219.removeTablistPacket(sendTo, uuids);
+            case "12110" -> FakePlayer12110.removeTablistPacket(sendTo, uuids);
         }
     }
 

@@ -98,6 +98,7 @@
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20231013</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>poa</groupId>
@@ -133,6 +134,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
 
     </dependencies>
 </project>

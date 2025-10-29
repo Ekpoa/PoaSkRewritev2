@@ -11,6 +11,8 @@ import java.util.Map;
 
 public class PacketInjector {
 
+    private static final Map<Player, PacketInjector12110> playerPacketStuffMap12110 = new HashMap<>();
+    private static final Map<Player, PacketInjector1219> playerPacketStuffMap1219 = new HashMap<>();
     private static final Map<Player, PacketInjector1218> playerPacketStuffMap1218 = new HashMap<>();
     private static final Map<Player, PacketInjector1217> playerPacketStuffMap1217 = new HashMap<>();
     private static final Map<Player, PacketInjector1216> playerPacketStuffMap1216 = new HashMap<>();
@@ -76,6 +78,16 @@ public class PacketInjector {
                 packetInjector.inject(player);
                 playerPacketStuffMap1218.put(player, packetInjector);
             }
+            case "1219" -> {
+                PacketInjector1219 packetInjector = new PacketInjector1219(player, id);
+                packetInjector.inject(player);
+                playerPacketStuffMap1219.put(player, packetInjector);
+            }
+            case "12110" -> {
+                PacketInjector12110 packetInjector = new PacketInjector12110(player, id);
+                packetInjector.inject(player);
+                playerPacketStuffMap12110.put(player, packetInjector);
+            }
         }
     }
 
@@ -92,6 +104,14 @@ public class PacketInjector {
 
     public static void unInject(Player player){
         switch (BukkitVersion.getBukkitVersion()){
+            case "12110" -> {
+                playerPacketStuffMap12110.get(player).uninjectPlayer();
+                playerPacketStuffMap12110.remove(player);
+            }
+            case "1219" -> {
+                playerPacketStuffMap1219.get(player).uninjectPlayer();
+                playerPacketStuffMap1219.remove(player);
+            }
             case "1218" -> {
                 playerPacketStuffMap1218.get(player).uninjectPlayer();
                 playerPacketStuffMap1218.remove(player);

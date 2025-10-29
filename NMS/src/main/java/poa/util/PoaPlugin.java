@@ -14,6 +14,8 @@ public class PoaPlugin {
              case "1216" -> PoaPlugin1216.setPlugin(plugin);
              case "1217" -> PoaPlugin1217.setPlugin(plugin);
              case "1218" -> PoaPlugin1218.setPlugin(plugin);
+             case "1219" -> PoaPlugin1219.setPlugin(plugin);
+             case "12110" -> PoaPlugin12110.setPlugin(plugin);
         }
     }
 

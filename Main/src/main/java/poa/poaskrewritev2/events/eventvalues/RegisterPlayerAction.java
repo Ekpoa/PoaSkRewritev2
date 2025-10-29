@@ -14,7 +14,6 @@ public class RegisterPlayerAction {
     @SuppressWarnings("removal")
     public static void registerValues(){
         switch (BukkitVersion.getBukkitVersion()) {
-
             case "121" -> {
                 EventValues.registerEventValue(PlayerActionEvent121.class, Location.class, new Getter<>() {
                     @Override
@@ -230,6 +229,60 @@ public class RegisterPlayerAction {
                     }
                 }, EventValues.TIME_NOW);
             }
+            case "1219" -> {
+                EventValues.registerEventValue(PlayerActionEvent1219.class, Location.class, new Getter<>() {
+                    @Override
+                    public Location get(PlayerActionEvent1219 event) {
+                        return event.getLocation();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(PlayerActionEvent1219.class, Integer.class, new Getter<>() {
+                    @Override
+                    public Integer get(PlayerActionEvent1219 event) {
+                        return event.getSequence();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(PlayerActionEvent1219.class, String.class, new Getter<>() {
+                    @Override
+                    public String get(PlayerActionEvent1219 event) {
+                        return event.getActionString();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(PlayerActionEvent1219.class, Block.class, new Getter<>() {
+                    @Override
+                    public Block get(PlayerActionEvent1219 event) {
+                        return event.getBlock();
+                    }
+                }, EventValues.TIME_NOW);
+            }
+
+            case "12110" -> {
+                EventValues.registerEventValue(PlayerActionEvent12110.class, Location.class, new Getter<>() {
+                    @Override
+                    public Location get(PlayerActionEvent12110 event) {
+                        return event.getLocation();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(PlayerActionEvent12110.class, Integer.class, new Getter<>() {
+                    @Override
+                    public Integer get(PlayerActionEvent12110 event) {
+                        return event.getSequence();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(PlayerActionEvent12110.class, String.class, new Getter<>() {
+                    @Override
+                    public String get(PlayerActionEvent12110 event) {
+                        return event.getActionString();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(PlayerActionEvent12110.class, Block.class, new Getter<>() {
+                    @Override
+                    public Block get(PlayerActionEvent12110 event) {
+                        return event.getBlock();
+                    }
+                }, EventValues.TIME_NOW);
+            }
+
         }
 
     }

@@ -60,10 +60,6 @@
         </dependency>
         <dependency>
             <groupId>poa</groupId>
-            <artifactId>nms1214</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>poa</groupId>
             <artifactId>nms1211</artifactId>
         </dependency>
         <dependency>
@@ -85,6 +81,14 @@
         <dependency>
             <groupId>poa</groupId>
             <artifactId>nms1218</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>poa</groupId>
+            <artifactId>nms1219</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>poa</groupId>
+            <artifactId>nms12110</artifactId>
         </dependency>
     </dependencies>
 

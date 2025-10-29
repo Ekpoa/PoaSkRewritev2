@@ -17,6 +17,8 @@ public class TeleportPacket {
             case "1216" -> TeleportPacket1216.teleportPacket(id, x, y, z, yaw, pitch, onGround);
             case "1217" -> TeleportPacket1217.teleportPacket(id, x, y, z, yaw, pitch, onGround);
             case "1218" -> TeleportPacket1218.teleportPacket(id, x, y, z, yaw, pitch, onGround);
+            case "1219" -> TeleportPacket1219.teleportPacket(id, x, y, z, yaw, pitch, onGround);
+            case "12110" -> TeleportPacket12110.teleportPacket(id, x, y, z, yaw, pitch, onGround);
             default -> null;
         };
     }

@@ -7,7 +7,6 @@ import ch.njol.skript.lang.SkriptParser;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 import poa.packets.packetListener.events.*;
-import poa.poaskrewritev2.events.eventvalues.RegisterBlockUpdate;
 import poa.poaskrewritev2.events.eventvalues.RegisterPlayerAction;
 import poa.util.BukkitVersion;
 
@@ -23,7 +22,8 @@ public class SkPayerActionEvent extends SkriptEvent {
             case "1216" -> Skript.registerEvent("Player Action", SkPayerActionEvent.class, PlayerActionEvent1216.class, "player action packet");
             case "1217" -> Skript.registerEvent("Player Action", SkPayerActionEvent.class, PlayerActionEvent1217.class, "player action packet");
             case "1218" -> Skript.registerEvent("Player Action", SkPayerActionEvent.class, PlayerActionEvent1218.class, "player action packet");
-
+            case "1219" -> Skript.registerEvent("Player Action", SkPayerActionEvent.class, PlayerActionEvent1219.class, "player action packet");
+            case "12110" -> Skript.registerEvent("Player Action", SkPayerActionEvent.class, PlayerActionEvent12110.class, "player action packet");
         }
         RegisterPlayerAction.registerValues();
     }

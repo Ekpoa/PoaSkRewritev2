@@ -18,6 +18,8 @@ public class RefreshPlayer {
             case "1216" -> RefreshPlayer1216.refreshPlayer(player);
             case "1217" -> RefreshPlayer1217.refreshPlayer(player);
             case "1218" -> RefreshPlayer1218.refreshPlayer(player);
+            case "1219" -> RefreshPlayer1219.refreshPlayer(player);
+            case "12110" -> RefreshPlayer12110.refreshPlayer(player);
         }
     }
 
