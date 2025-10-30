@@ -1,6 +1,8 @@
 package poa.packets;
 
 
+import com.destroystokyo.paper.profile.PlayerProfile;
+import com.destroystokyo.paper.profile.ProfileProperty;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import io.papermc.paper.util.KeepAlive;
@@ -102,62 +104,62 @@ public class FakePlayer1219 {
     }
 
 
-    public static ServerPlayer createServerPlayer(List<Player> sendTo, int id, Location loc, String name, UUID uuid, int skinModel, boolean listed, String skinTexture, String skinSignature) {
+    @SneakyThrows
+    public static ServerPlayer createServerPlayer(
+            List<Player> sendTo,
+            int id,
+            Location loc,
+            String name,
+            UUID uuid,
+            int skinModel,
+            boolean listed,
+            String skinTexture,
+            String skinSignature) {
+
         boolean isCached = texturesToSignatures.containsKey(skinTexture);
+        UUID randomUUID = isCached ? uuid : UUID.randomUUID();
 
-        UUID randomUUID;
-
-        if (!isCached)
-            randomUUID = UUID.randomUUID();
-        else {
-            randomUUID = uuid;
-        }
         World world = Bukkit.getWorlds().get(0);
         MinecraftServer server = MinecraftServer.getServer();
         ServerLevel level = ((CraftWorld) world).getHandle();
-        ClientInformation clientInformation = new ClientInformation("en_us", 2, ChatVisiblity.FULL, false, skinModel, HumanoidArm.RIGHT, true, listed, ParticleStatus.ALL);
 
-        ServerPlayer fakePlayer;
+        ClientInformation clientInformation = new ClientInformation(
+                "en_us", 2, ChatVisiblity.FULL, false,
+                skinModel, HumanoidArm.RIGHT, true, listed, ParticleStatus.ALL
+        );
 
-        if (!isCached)
-            fakePlayer = new ServerPlayer(server, level, new GameProfile(randomUUID, name), clientInformation);
-        else
-            fakePlayer = new ServerPlayer(server, level, new GameProfile(uuid, name), clientInformation);
-
+        ServerPlayer fakePlayer = new ServerPlayer(server, level, new GameProfile(randomUUID, name), clientInformation);
         fakePlayer.setPos(new Vec3(loc.getX(), loc.getY(), loc.getZ()));
         fakePlayer.setRot(loc.getYaw(), loc.getPitch());
         fakePlayer.setYHeadRot(loc.getYaw());
 
 
-        fakePlayer.connection = new ServerGamePacketListenerImpl(MinecraftServer.getServer(), new Connection(PacketFlow.CLIENTBOUND), fakePlayer, new CommonListenerCookie(fakePlayer.getGameProfile(), 1, fakePlayer.clientInformation(), true, "vanilla", Set.of(), new KeepAlive()));
+        CraftPlayer bukkitFake = fakePlayer.getBukkitEntity();
+        if (bukkitFake != null) {
+            PlayerProfile profile = Bukkit.createProfile(uuid, name);
 
+            if (skinSignature == null) {
+                fromMineskin(skinTexture).thenAccept(signed -> {
+                    String newTexture = signed.get("texture");
+                    String newSignature = signed.get("signature");
 
-        GameProfile gameProfile = fakePlayer.getGameProfile();
+                    if (newTexture != null && newSignature != null) {
+                        profile.setProperty(new ProfileProperty("textures", newTexture, newSignature));
+                        bukkitFake.setPlayerProfile(profile);
+                    }
 
-        final String[] sig = {skinSignature};
-        if (skinSignature == null) {
-            fromMineskin(skinTexture).thenAccept(signed -> {
-                String newTexture = signed.get("texture");
-                sig[0] = signed.get("signature");
-
-                if (skinTexture != null && sig[0] != null) {
-                    gameProfile.getProperties().removeAll("textures");
-                    gameProfile.getProperties().put("textures", new Property("textures", newTexture, sig[0]));
-                }
-
-                if (!isCached) {
-                    removeFakePlayerPacket(sendTo, List.of(randomUUID), List.of(id));
-
-                    Bukkit.getScheduler().runTaskLater(PoaPlugin1219.getPlugin(), () -> {
-                        spawnFakePlayer(sendTo, name, newTexture, sig[0], loc, listed, 0, id, uuid, skinModel);
-
-                    }, 4L);
-                }
-            });
-        }
-        else {
-            gameProfile.getProperties().removeAll("textures");
-            gameProfile.getProperties().put("textures", new Property("textures", skinTexture, skinSignature));
+                    if (!isCached) {
+                        removeFakePlayerPacket(sendTo, List.of(randomUUID), List.of(id));
+                        Bukkit.getScheduler().runTaskLater(PoaPlugin1219.getPlugin(), () ->
+                                        spawnFakePlayer(sendTo, name, newTexture, newSignature, loc, listed, 0, id, uuid, skinModel),
+                                4L
+                        );
+                    }
+                });
+            } else {
+                profile.setProperty(new ProfileProperty("textures", skinTexture, skinSignature));
+                bukkitFake.setPlayerProfile(profile);
+            }
         }
 
         return fakePlayer;

@@ -1,5 +1,7 @@
 package poa.packets;
 
+import com.destroystokyo.paper.profile.PlayerProfile;
+import com.destroystokyo.paper.profile.ProfileProperty;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import net.minecraft.network.chat.Component;
@@ -15,6 +17,7 @@ import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.player.ChatVisiblity;
 import net.minecraft.world.level.GameType;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.CraftWorld;
 import org.bukkit.craftbukkit.entity.CraftPlayer;
@@ -29,17 +32,7 @@ public class FakeTablist12110 {
 
     private static final Map<UUID, GameProfile> activeTabProfiles = new HashMap<>();
 
-    /**
-     * Spawns a fake player in the tablist with the given info.
-     *
-     * @param sendTo   Viewers to send packets to
-     * @param name     Internal name of fake player
-     * @param username Display name in tablist
-     * @param skinName Name of the player to copy skin from
-     * @param uuid     Unique UUID for fake player
-     * @param latency  Ping value in tablist
-     * @param skinModel 0 = classic, 1 = slim (Alex)
-     */
+
     public static void addTabPlayer(List<Player> sendTo, String name, net.kyori.adventure.text.Component username, String skinName, UUID uuid, int latency, int skinModel) {
         Bukkit.getScheduler().runTaskAsynchronously(PoaPlugin12110.getPlugin(), () -> {
             try {
@@ -61,9 +54,6 @@ public class FakeTablist12110 {
         });
     }
 
-    /**
-     * Internal: builds and sends the ADD_PLAYER tablist packet.
-     */
     private static void spawnTabEntry(List<Player> sendTo, String name, net.kyori.adventure.text.Component username, UUID uuid,
                                       String skinTexture, String skinSignature, int latency, int skinModel) {
 
@@ -98,10 +88,7 @@ public class FakeTablist12110 {
         fakePlayer.getBukkitEntity().getPlayer().playerListName(username);
     }
 
-    /**
-     * Builds a ServerPlayer instance configured similarly to your FakePlayer1214 method,
-     * but without world spawning.
-     */
+
     private static ServerPlayer createServerPlayer(String name, UUID uuid, int skinModel, String skinTexture, String skinSignature) {
         World world = Bukkit.getWorlds().get(0);
         MinecraftServer server = MinecraftServer.getServer();
@@ -119,23 +106,31 @@ public class FakeTablist12110 {
                 ParticleStatus.ALL
         );
 
+        // --- create fake player (NMS) ---
         ServerPlayer fakePlayer = new ServerPlayer(server, level, new GameProfile(uuid, name), clientInfo);
 
-        // Give a default position so packets don't break
-        fakePlayer.setPos(0, world.getSpawnLocation().getY(), 0);
+        // set a default position to avoid NPEs or zero-height crashes
+        Location spawn = world.getSpawnLocation();
+        fakePlayer.setPos(spawn.getX(), spawn.getY(), spawn.getZ());
         fakePlayer.setRot(0, 0);
         fakePlayer.setYHeadRot(0);
 
-        GameProfile gameProfile = fakePlayer.getGameProfile();
-        gameProfile.getProperties().removeAll("textures");
-        gameProfile.getProperties().put("textures", new Property("textures", skinTexture, skinSignature));
+        // --- safely apply skin using Bukkit bridge ---
+        CraftPlayer bukkitFake = fakePlayer.getBukkitEntity();
+        if (bukkitFake != null) {
+            PlayerProfile profile = Bukkit.createProfile(uuid, name);
+
+            if (skinTexture != null && skinSignature != null) {
+                profile.setProperty(new ProfileProperty("textures", skinTexture, skinSignature));
+                bukkitFake.setPlayerProfile(profile);
+            }
+        }
 
         return fakePlayer;
     }
 
-    /**
-     * Removes a fake player from the tablist for all given viewers.
-     */
+
+
     public static void removeTabPlayer(List<Player> sendTo, UUID uuid) {
         GameProfile profile = activeTabProfiles.remove(uuid);
         if (profile == null) return;
@@ -173,9 +168,7 @@ public class FakeTablist12110 {
         }, 3L);
     }
 
-    /**
-     * Removes all fake tablist entries that were spawned via this class.
-     */
+
     public static void clearAll(List<Player> sendTo) {
         List<UUID> all = new ArrayList<>(activeTabProfiles.keySet());
         for (UUID uuid : all) {

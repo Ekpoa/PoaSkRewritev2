@@ -1,5 +1,7 @@
 package poa.packets;
 
+import com.destroystokyo.paper.profile.PlayerProfile;
+import com.destroystokyo.paper.profile.ProfileProperty;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import net.minecraft.network.chat.Component;
@@ -15,6 +17,7 @@ import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.player.ChatVisiblity;
 import net.minecraft.world.level.GameType;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.CraftWorld;
 import org.bukkit.craftbukkit.entity.CraftPlayer;
@@ -119,19 +122,29 @@ public class FakeTablist1219 {
                 ParticleStatus.ALL
         );
 
+        // --- create fake player (NMS) ---
         ServerPlayer fakePlayer = new ServerPlayer(server, level, new GameProfile(uuid, name), clientInfo);
 
-        // Give a default position so packets don't break
-        fakePlayer.setPos(0, world.getSpawnLocation().getY(), 0);
+        // set a default position to avoid NPEs or zero-height crashes
+        Location spawn = world.getSpawnLocation();
+        fakePlayer.setPos(spawn.getX(), spawn.getY(), spawn.getZ());
         fakePlayer.setRot(0, 0);
         fakePlayer.setYHeadRot(0);
 
-        GameProfile gameProfile = fakePlayer.getGameProfile();
-        gameProfile.getProperties().removeAll("textures");
-        gameProfile.getProperties().put("textures", new Property("textures", skinTexture, skinSignature));
+        // --- safely apply skin using Bukkit bridge ---
+        CraftPlayer bukkitFake = fakePlayer.getBukkitEntity();
+        if (bukkitFake != null) {
+            PlayerProfile profile = Bukkit.createProfile(uuid, name);
+
+            if (skinTexture != null && skinSignature != null) {
+                profile.setProperty(new ProfileProperty("textures", skinTexture, skinSignature));
+                bukkitFake.setPlayerProfile(profile);
+            }
+        }
 
         return fakePlayer;
     }
+
 
     /**
      * Removes a fake player from the tablist for all given viewers.

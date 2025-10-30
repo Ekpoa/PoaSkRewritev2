@@ -3,6 +3,7 @@ package poa.poaskrewritev2;
 import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
 import lombok.Getter;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import poa.poaskrewritev2.events.bukkitevents.KickEvent;
@@ -25,6 +26,7 @@ public final class PoaSkRewritev2 extends JavaPlugin {
 
         saveDefaultConfig();
 
+
         getCommand("poasktest").setExecutor(new TestCommand());
 
 
@@ -38,8 +40,12 @@ public final class PoaSkRewritev2 extends JavaPlugin {
         pm.registerEvents(new EffSetPlayerNameAndSkin(), this);
         pm.registerEvents(new PlayerLoadEntity(), this);
 
-        if(getConfig().getBoolean("PreventSelfInteractionKick"))
+        final FileConfiguration config = getConfig();
+        if(config.getBoolean("PreventSelfInteractionKick"))
             pm.registerEvents(new KickEvent(), this);
+
+        if(!config.isSet("SaveSkinCacheToDisk"))
+            config.set("SaveSkinCacheToDisk", true);
 
 
         PoaPlugin.setPlugin(this);
