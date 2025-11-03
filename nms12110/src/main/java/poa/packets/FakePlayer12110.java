@@ -195,7 +195,7 @@ public class FakePlayer12110 {
         }
     }
 
-    private static final Map<String, Map<String, String>> texturesToSignatures = new HashMap<>();
+    public static final Map<String, Map<String, String>> texturesToSignatures = new HashMap<>();
     private static boolean CACHE_TO_DISK = false;
 
     private static File cacheFile;

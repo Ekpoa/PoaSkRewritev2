@@ -52,15 +52,16 @@ public class EffFakeTablistPlayer extends Effect {
     protected void execute(Event event) {
 
         String skinName = this.skinName.getSingle(event);
+        String name = this.name.getSingle(event);
 
 
-        String username = "a";
+        Component username = Component.text(name);
 
         if (this.username != null)
-            username = this.username.getSingle(event);
+            username = MiniMessage.miniMessage().deserialize(Messages.essentialsToMinimessage(this.username.getSingle(event)));
 
 
-        Component tablistName = MiniMessage.miniMessage().deserialize(Messages.essentialsToMinimessage(this.name.getSingle(event)));
+
 
 
         UUID uuid = UUID.fromString(this.uuid.getSingle(event));
@@ -72,7 +73,7 @@ public class EffFakeTablistPlayer extends Effect {
 
 
         final List<Player> playerList = Arrays.stream(players.getArray(event)).toList();
-        FakeTablist.spawnTablistOnly(playerList, username, tablistName, skinName, uuid, latency);
+        FakeTablist.spawnTablistOnly(playerList, name, username, skinName, uuid, latency);
 
     }
 

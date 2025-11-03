@@ -32,36 +32,59 @@ public class FakeTablist1219 {
 
     private static final Map<UUID, GameProfile> activeTabProfiles = new HashMap<>();
 
-    /**
-     * Spawns a fake player in the tablist with the given info.
-     *
-     * @param sendTo   Viewers to send packets to
-     * @param name     Internal name of fake player
-     * @param username Display name in tablist
-     * @param skinName Name of the player to copy skin from
-     * @param uuid     Unique UUID for fake player
-     * @param latency  Ping value in tablist
-     * @param skinModel 0 = classic, 1 = slim (Alex)
-     */
+    private static void addTabPlayer(List<Player> sendTo, String name, net.kyori.adventure.text.Component username, String texture, String signature, UUID uuid, int latency, int skinModel) {
+        Bukkit.getScheduler().runTaskAsynchronously(PoaPlugin1219.getPlugin(), () -> {
+            Bukkit.getScheduler().runTask(PoaPlugin1219.getPlugin(), () ->
+                    spawnTabEntry(sendTo, name, username, uuid, texture, signature, latency, skinModel)
+            );
+
+        });
+    }
+
     public static void addTabPlayer(List<Player> sendTo, String name, net.kyori.adventure.text.Component username, String skinName, UUID uuid, int latency, int skinModel) {
         Bukkit.getScheduler().runTaskAsynchronously(PoaPlugin1219.getPlugin(), () -> {
-            try {
-                UUID skinUUID = Bukkit.getOfflinePlayer(skinName).getUniqueId();
-                String texture = FetchSkin1219.fetchSkinURL(skinUUID);
-                String signature = FetchSkin1219.fetchSkinSignature(skinUUID);
-
-                if (texture == null || signature == null) {
-                    Bukkit.getLogger().log(Level.WARNING, "Failed to fetch skin for " + skinName);
+            if (skinName.length() > 16) {
+                if (!isValidBase64(name)) {
+                    Bukkit.getLogger().log(Level.WARNING, name + " is not greater than 16 chars and does not match a base64 encode. Use texture or shorter name. Name is designed for sorting. Username is what shows");
                     return;
                 }
 
-                Bukkit.getScheduler().runTask(PoaPlugin1219.getPlugin(), () ->
-                        spawnTabEntry(sendTo, name, username, uuid, texture, signature, latency, skinModel)
-                );
-            } catch (Exception e) {
-                Bukkit.getLogger().log(Level.SEVERE, "Error while fetching skin for " + skinName, e);
+                FakePlayer1219.fromMineskin(skinName).thenAccept(map -> {
+                    String newTexture = map.get("texture");
+                    String newSignature = map.get("signature");
+
+                    Bukkit.getScheduler().runTask(PoaPlugin1219.getPlugin(), () ->
+                            spawnTabEntry(sendTo, name, username, uuid, newTexture, newSignature, latency, skinModel)
+                    );
+                });
+                return;
             }
+
+
+            UUID skinUUID = Bukkit.getOfflinePlayer(skinName).getUniqueId();
+            String texture = FetchSkin1219.fetchSkinURL(skinUUID);
+            String signature = FetchSkin1219.fetchSkinSignature(skinUUID);
+            if (texture == null || signature == null) {
+                Bukkit.getLogger().log(Level.WARNING, "Failed to fetch skin for " + skinName);
+                return;
+            }
+            addTabPlayer(sendTo, name, username, texture, signature, uuid, latency, skinModel);
         });
+    }
+
+
+    private static boolean isValidBase64(String input) {
+        if (input == null || input.isEmpty()) return false;
+
+        // Quick sanity check for allowed characters (Base64 + padding)
+        if (!input.matches("^[A-Za-z0-9+/=\\r\\n]+$")) return false;
+
+        try {
+            Base64.getDecoder().decode(input);
+            return true;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     /**
@@ -90,7 +113,8 @@ public class FakeTablist1219 {
         EnumSet<ClientboundPlayerInfoUpdatePacket.Action> actions = EnumSet.of(
                 ClientboundPlayerInfoUpdatePacket.Action.ADD_PLAYER,
                 ClientboundPlayerInfoUpdatePacket.Action.UPDATE_LISTED,
-                ClientboundPlayerInfoUpdatePacket.Action.UPDATE_LATENCY
+                ClientboundPlayerInfoUpdatePacket.Action.UPDATE_LATENCY,
+                ClientboundPlayerInfoUpdatePacket.Action.UPDATE_DISPLAY_NAME
         );
 
         ClientboundPlayerInfoUpdatePacket packet = new ClientboundPlayerInfoUpdatePacket(actions, entry);

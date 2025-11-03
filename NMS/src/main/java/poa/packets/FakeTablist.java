@@ -27,17 +27,17 @@ public class FakeTablist {
         }
     }
 
-    public static void spawnTablistOnly(List<Player> sendTo, String name, Component tablistName, String skinName, UUID uuid, int latency, int position) {
-        switch (BukkitVersion.getBukkitVersion()) {
-            case "1214" -> FakeTablist1214.addTabPlayer(sendTo, name, tablistName, skinName, uuid, latency, position);
-            case "1215" -> FakeTablist1215.addTabPlayer(sendTo, name, tablistName, skinName, uuid, latency, position);
-            case "1216" -> FakeTablist1216.addTabPlayer(sendTo, name, tablistName, skinName, uuid, latency, position);
-            case "1217" -> FakeTablist1217.addTabPlayer(sendTo, name, tablistName, skinName, uuid, latency, position);
-            case "1218" -> FakeTablist1218.addTabPlayer(sendTo, name, tablistName, skinName, uuid, latency, position);
-            case "1219" -> FakeTablist1219.addTabPlayer(sendTo, name, tablistName, skinName, uuid, latency, position);
-            case "12110" -> FakeTablist12110.addTabPlayer(sendTo, name, tablistName, skinName, uuid, latency, position);
-        }
-    }
+//    public static void spawnTablistOnly(List<Player> sendTo, String name, Component tablistName, String texture, String signature, UUID uuid, int latency) {
+//        switch (BukkitVersion.getBukkitVersion()) {
+//           // case "1214" -> FakeTablist1214.addTabPlayer(sendTo, name, tablistName, texture, signature, uuid, latency, 127);
+////            case "1215" -> FakeTablist1215.addTabPlayer(sendTo, name, tablistName, skinName, uuid, latency, position);
+////            case "1216" -> FakeTablist1216.addTabPlayer(sendTo, name, tablistName, skinName, uuid, latency, position);
+////            case "1217" -> FakeTablist1217.addTabPlayer(sendTo, name, tablistName, skinName, uuid, latency, position);
+////            case "1218" -> FakeTablist1218.addTabPlayer(sendTo, name, tablistName, skinName, uuid, latency, position);
+////            case "1219" -> FakeTablist1219.addTabPlayer(sendTo, name, tablistName, skinName, uuid, latency, position);
+//            case "12110" -> FakeTablist12110.addTabPlayer(sendTo, name, tablistName, texture, signature, uuid, latency, 127);
+//        }
+//    }
 
 
     public static void removeTablistOnly(List<Player> sendTo, List<UUID> uuids) {
