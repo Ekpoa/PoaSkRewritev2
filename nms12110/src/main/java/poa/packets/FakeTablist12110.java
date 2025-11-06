@@ -47,8 +47,8 @@ public class FakeTablist12110 {
     public static void addTabPlayer(List<Player> sendTo, String name, net.kyori.adventure.text.Component username, String skinName, UUID uuid, int latency, int skinModel) {
         Bukkit.getScheduler().runTaskAsynchronously(PoaPlugin12110.getPlugin(), () -> {
             if (skinName.length() > 16) {
-                if (!isValidBase64(name)) {
-                    Bukkit.getLogger().log(Level.WARNING, name + " is not greater than 16 chars and does not match a base64 encode. Use texture or shorter name. Name is designed for sorting. Username is what shows");
+                if (!isValidBase64(skinName)) {
+                    Bukkit.getLogger().log(Level.WARNING, skinName + " is not greater than 16 chars and does not match a base64 encode. Use texture or shorter name. Name is designed for sorting. Username is what shows");
                     return;
                 }
 

@@ -19,6 +19,7 @@ import org.bukkit.World;
 import org.bukkit.craftbukkit.CraftWorld;
 import org.bukkit.craftbukkit.entity.CraftPlayer;
 import org.bukkit.entity.Player;
+import poa.util.Components1217;
 import poa.util.FetchSkin1217;
 import poa.util.PoaPlugin1217;
 
@@ -41,8 +42,8 @@ public class FakeTablist1217 {
     public static void addTabPlayer(List<Player> sendTo, String name, net.kyori.adventure.text.Component username, String skinName, UUID uuid, int latency, int skinModel) {
         Bukkit.getScheduler().runTaskAsynchronously(PoaPlugin1217.getPlugin(), () -> {
             if (skinName.length() > 16) {
-                if (!isValidBase64(name)) {
-                    Bukkit.getLogger().log(Level.WARNING, name + " is not greater than 16 chars and does not match a base64 encode. Use texture or shorter name. Name is designed for sorting. Username is what shows");
+                if (!isValidBase64(skinName)) {
+                    Bukkit.getLogger().log(Level.WARNING, skinName + " is not greater than 16 chars and does not match a base64 encode. Use texture or shorter name. Name is designed for sorting. Username is what shows");
                     return;
                 }
 
@@ -97,7 +98,7 @@ public class FakeTablist1217 {
                 true,
                 latency,
                 GameType.DEFAULT_MODE,
-                Component.empty(),
+                Components1217.nmsComponentActual(username),
                 true,
                 0,
                 null
