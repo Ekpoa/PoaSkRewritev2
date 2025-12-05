@@ -22,6 +22,7 @@ poa/util/RefreshPlayer12110.class
 poa/blocks/SetFast12110.class
 poa/packets/FakePlayer12110.class
 poa/blocks/Biomes12110$ChunkWork.class
+poa/packets/packetListener/events/AllPacketEvent12110.class
 poa/packets/packetListener/events/SystemChatPacketEvent12110.class
 poa/util/Components12110.class
 poa/packets/SendPayloadPacket12110.class

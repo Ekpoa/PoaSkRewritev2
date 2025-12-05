@@ -18,6 +18,7 @@ poa/ChangeIP1211.class
 poa/packets/packetListener/PacketInjector1211.class
 poa/util/GetBlockId1211.class
 poa/packets/SendPayloadPacket1211.class
+poa/packets/packetListener/events/AllPacketEvent1211.class
 poa/util/FetchSkin1211.class
 poa/packets/AttributePacket1211.class
 poa/util/Components1211.class

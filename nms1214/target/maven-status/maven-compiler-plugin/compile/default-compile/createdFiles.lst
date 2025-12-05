@@ -33,6 +33,7 @@ poa/blocks/Biomes1214$ChunkWork.class
 poa/packets/packetListener/GlowMap1214.class
 poa/packets/CameraPacket1214.class
 poa/util/RefreshPlayer1214.class
+poa/packets/packetListener/events/AllPacketEvent1214.class
 poa/packets/packetListener/events/ParticleEvent1214.class
 poa/packets/packetListener/events/SoundEvent1214.class
 poa/packets/packetListener/events/BlockUpdateEvent1214.class

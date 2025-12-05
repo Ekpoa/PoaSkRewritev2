@@ -38,6 +38,7 @@ public class PacketHandler121 extends ChannelDuplexHandler {
 
     Player player;
 
+    private static final boolean allPackets = true;
 
     public PacketHandler121(Player player) {
         this.player = player;
@@ -51,6 +52,16 @@ public class PacketHandler121 extends ChannelDuplexHandler {
                 super.channelRead(ctx, msg);
                 return;
             }
+
+            if(allPackets) {
+                final AllPacketEvent121 allPacketEvent = new AllPacketEvent121(player, true);
+                allPacketEvent.setPacket(packet);
+                allPacketEvent.setClientbound(false);
+                pluginManager.callEvent(allPacketEvent);
+                if (allPacketEvent.isCancelled())
+                    return;
+            }
+
 
             if(packet instanceof ServerboundPlayerActionPacket actionPacket){
                 final BlockPos pos = actionPacket.getPos();
@@ -120,6 +131,14 @@ public class PacketHandler121 extends ChannelDuplexHandler {
             if (!(msg instanceof Packet<?> packet)) {
                 super.write(ctx, msg, promise);
                 return;
+            }
+
+            if(allPackets && !(packet instanceof ClientboundSystemChatPacket)) {
+                final AllPacketEvent121 allPacketEvent = new AllPacketEvent121(player, true);
+                allPacketEvent.setPacket(packet);
+                pluginManager.callEvent(allPacketEvent);
+                if (allPacketEvent.isCancelled())
+                    return;
             }
 
 

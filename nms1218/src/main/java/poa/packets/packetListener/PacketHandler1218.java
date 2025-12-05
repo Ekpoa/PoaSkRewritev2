@@ -27,6 +27,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import poa.packets.packetListener.events.*;
 import poa.util.Components1218;
+import poa.util.PoaPlugin1218;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -40,6 +41,8 @@ public class PacketHandler1218 extends ChannelDuplexHandler {
 
     Player player;
 
+    private static final boolean allPackets = PoaPlugin1218.getPlugin().getConfig().getBoolean("AllPacketEvent");
+
 
     public PacketHandler1218(Player player) {
         this.player = player;
@@ -52,6 +55,15 @@ public class PacketHandler1218 extends ChannelDuplexHandler {
             if (!(msg instanceof Packet<?> packet)) {
                 super.channelRead(ctx, msg);
                 return;
+            }
+
+            if(allPackets) {
+                final AllPacketEvent1218 allPacketEvent = new AllPacketEvent1218(player, true);
+                allPacketEvent.setPacket(packet);
+                allPacketEvent.setClientbound(false);
+                pluginManager.callEvent(allPacketEvent);
+                if (allPacketEvent.isCancelled())
+                    return;
             }
 
             if(packet instanceof ServerboundPlayerActionPacket actionPacket){
@@ -110,6 +122,13 @@ public class PacketHandler1218 extends ChannelDuplexHandler {
                 return;
             }
 
+            if(allPackets && !(packet instanceof ClientboundSystemChatPacket)) {
+                final AllPacketEvent1218 allPacketEvent = new AllPacketEvent1218(player, true);
+                allPacketEvent.setPacket(packet);
+                pluginManager.callEvent(allPacketEvent);
+                if (allPacketEvent.isCancelled())
+                    return;
+            }
 
             if (packet instanceof ClientboundSetEntityDataPacket metadata) {
                 ServerPlayer serverPlayer = ((CraftPlayer) player).getHandle();

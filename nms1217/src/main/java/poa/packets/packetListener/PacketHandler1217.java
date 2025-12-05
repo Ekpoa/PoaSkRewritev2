@@ -27,6 +27,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import poa.packets.packetListener.events.*;
 import poa.util.Components1217;
+import poa.util.PoaPlugin1217;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -39,6 +40,9 @@ public class PacketHandler1217 extends ChannelDuplexHandler {
     //private List<ClientboundSystemChatPacket> list = new ArrayList<>();
 
     Player player;
+
+    private static final boolean allPackets = PoaPlugin1217.getPlugin().getConfig().getBoolean("AllPacketEvent");
+
 
 
     public PacketHandler1217(Player player) {
@@ -53,6 +57,16 @@ public class PacketHandler1217 extends ChannelDuplexHandler {
                 super.channelRead(ctx, msg);
                 return;
             }
+
+            if(allPackets) {
+                final AllPacketEvent1217 allPacketEvent = new AllPacketEvent1217(player, true);
+                allPacketEvent.setPacket(packet);
+                allPacketEvent.setClientbound(false);
+                pluginManager.callEvent(allPacketEvent);
+                if (allPacketEvent.isCancelled())
+                    return;
+            }
+
             if(packet instanceof ServerboundPlayerActionPacket actionPacket){
                 final BlockPos pos = actionPacket.getPos();
                 final ServerboundPlayerActionPacket.Action action = actionPacket.getAction();
@@ -109,6 +123,13 @@ public class PacketHandler1217 extends ChannelDuplexHandler {
                 return;
             }
 
+            if(allPackets && !(packet instanceof ClientboundSystemChatPacket)) {
+                final AllPacketEvent1217 allPacketEvent = new AllPacketEvent1217(player, true);
+                allPacketEvent.setPacket(packet);
+                pluginManager.callEvent(allPacketEvent);
+                if (allPacketEvent.isCancelled())
+                    return;
+            }
 
             if (packet instanceof ClientboundSetEntityDataPacket metadata) {
                 ServerPlayer serverPlayer = ((CraftPlayer) player).getHandle();

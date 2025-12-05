@@ -3,6 +3,7 @@ package poa.poaskrewritev2;
 import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
 import lombok.Getter;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -14,6 +15,8 @@ import poa.poaskrewritev2.expressions.ExprHostname;
 import poa.util.PoaPlugin;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.logging.Level;
 
 public final class PoaSkRewritev2 extends JavaPlugin {
 
@@ -46,6 +49,16 @@ public final class PoaSkRewritev2 extends JavaPlugin {
 
         if(!config.isSet("SaveSkinCacheToDisk"))
             config.set("SaveSkinCacheToDisk", true);
+        if(!config.isSet("AllPacketEvent"))
+            config.set("AllPacketEvent", false);
+
+        saveConfig();
+
+        if(List.of("12110").contains(Bukkit.getVersion()))
+            getLogger().log(Level.INFO, "If you see a [HorriblePlayerLoginEventHack] ignore this, this is for a version that you are not");
+
+
+
 
 
         PoaPlugin.setPlugin(this);

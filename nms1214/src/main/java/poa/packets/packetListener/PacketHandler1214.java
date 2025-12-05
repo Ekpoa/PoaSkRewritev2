@@ -27,6 +27,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import poa.packets.packetListener.events.*;
 import poa.util.Components1214;
+import poa.util.PoaPlugin1214;
 
 import java.awt.event.FocusEvent;
 import java.lang.reflect.Method;
@@ -42,6 +43,8 @@ public class PacketHandler1214 extends ChannelDuplexHandler {
 
     Player player;
 
+    private static final boolean allPackets = PoaPlugin1214.getPlugin().getConfig().getBoolean("AllPacketEvent");
+
 
     public PacketHandler1214(Player player) {
         this.player = player;
@@ -54,6 +57,14 @@ public class PacketHandler1214 extends ChannelDuplexHandler {
             if (!(msg instanceof Packet<?> packet)) {
                 super.channelRead(ctx, msg);
                 return;
+            }
+            if(allPackets) {
+                final AllPacketEvent1214 allPacketEvent = new AllPacketEvent1214(player, true);
+                allPacketEvent.setPacket(packet);
+                allPacketEvent.setClientbound(false);
+                pluginManager.callEvent(allPacketEvent);
+                if (allPacketEvent.isCancelled())
+                    return;
             }
 
             if(packet instanceof ServerboundPlayerActionPacket actionPacket){
@@ -110,6 +121,14 @@ public class PacketHandler1214 extends ChannelDuplexHandler {
             if (!(msg instanceof Packet<?> packet)) {
                 super.write(ctx, msg, promise);
                 return;
+            }
+
+            if(allPackets && !(packet instanceof ClientboundSystemChatPacket)) {
+                final AllPacketEvent1214 allPacketEvent = new AllPacketEvent1214(player, true);
+                allPacketEvent.setPacket(packet);
+                pluginManager.callEvent(allPacketEvent);
+                if (allPacketEvent.isCancelled())
+                    return;
             }
 
 

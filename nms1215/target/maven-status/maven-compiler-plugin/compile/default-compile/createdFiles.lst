@@ -18,6 +18,7 @@ poa/packets/HeadRotPacket1215.class
 poa/util/GetPose1215.class
 poa/packets/ItemCooldown1215.class
 poa/packets/packetListener/PacketHandler1215.class
+poa/packets/packetListener/events/AllPacketEvent1215.class
 poa/packets/PosRotPacket1215.class
 poa/packets/packetListener/PacketInjector1215.class
 poa/packets/SetEquipmentPacket1215.class

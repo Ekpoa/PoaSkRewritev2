@@ -5,6 +5,7 @@ poa/packets/HeadRotPacket1217.class
 poa/util/Components1217.class
 poa/util/GetBlockId1217.class
 poa/packets/Metadata1217.class
+poa/packets/packetListener/events/AllPacketEvent1217.class
 poa/packets/packetListener/events/PlayerActionEvent1217.class
 poa/packets/TeleportPacket1217.class
 poa/util/Messages1217.class

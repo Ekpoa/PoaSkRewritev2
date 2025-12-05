@@ -9,6 +9,7 @@
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1217/src/main/java/poa/util/EntityFromID1217.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1217/src/main/java/poa/packets/AnimationPacket1217.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1217/src/main/java/poa/packets/packetListener/events/PlayerChatPacketEvent1217.java
+/Users/alex/Documents/Plugins/PoaSkRewrite/nms1217/src/main/java/poa/packets/packetListener/events/AllPacketEvent1217.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1217/src/main/java/poa/packets/packetListener/events/BlockUpdateEvent1217.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1217/src/main/java/poa/packets/packetListener/GlowMap1217.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1217/src/main/java/poa/blocks/Biomes1217.java
