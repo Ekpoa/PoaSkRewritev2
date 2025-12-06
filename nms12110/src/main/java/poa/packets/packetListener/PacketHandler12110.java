@@ -251,19 +251,22 @@ public class PacketHandler12110 extends ChannelDuplexHandler {
                 if (particleEvent.isCancelled())
                     return;
             } else if (packet instanceof ClientboundSystemChatPacket chatPacket) {
-                final Component component = Components12110.componentActual(chatPacket.content());
+                try {
+
+                    final Component component = Components12110.componentActual(chatPacket.content());
 
 
-                final SystemChatPacketEvent12110 chatPacketEvent1206 = new SystemChatPacketEvent12110(player, true);
+                    final SystemChatPacketEvent12110 chatPacketEvent1206 = new SystemChatPacketEvent12110(player, true);
 
-                chatPacketEvent1206.setOverlay(chatPacket.overlay());
+                    chatPacketEvent1206.setOverlay(chatPacket.overlay());
 
-                chatPacketEvent1206.setString(MiniMessage.miniMessage().serialize(component));
+                    chatPacketEvent1206.setString(MiniMessage.miniMessage().serialize(component));
 
-                pluginManager.callEvent(chatPacketEvent1206);
+                    pluginManager.callEvent(chatPacketEvent1206);
 
-                if (chatPacketEvent1206.isCancelled())
-                    return;
+                    if (chatPacketEvent1206.isCancelled())
+                        return;
+                }catch (Exception ignored){}
             } else if (packet instanceof ClientboundPlayerChatPacket chatPacket) {
                 String message;
                 if (chatPacket.unsignedContent() != null)
