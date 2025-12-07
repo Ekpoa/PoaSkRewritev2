@@ -7,6 +7,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelPromise;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.network.protocol.Packet;
@@ -17,6 +18,9 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.scores.PlayerTeam;
+import net.minecraft.world.scores.Scoreboard;
+import net.minecraft.world.scores.Team;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Particle;
@@ -30,8 +34,7 @@ import poa.util.Components12110;
 import poa.util.PoaPlugin12110;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Level;
 
 
@@ -40,6 +43,8 @@ public class PacketHandler12110 extends ChannelDuplexHandler {
     //private List<ClientboundSystemChatPacket> list = new ArrayList<>();
 
     private static final boolean allPackets = PoaPlugin12110.getPlugin().getConfig().getBoolean("AllPacketEvent");
+
+
 
     Player player;
 
@@ -129,6 +134,7 @@ public class PacketHandler12110 extends ChannelDuplexHandler {
                 if (allPacketEvent.isCancelled())
                     return;
             }
+
 
 
 

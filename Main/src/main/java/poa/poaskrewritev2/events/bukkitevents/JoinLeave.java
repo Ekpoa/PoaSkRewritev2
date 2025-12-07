@@ -8,14 +8,18 @@ import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import poa.packets.listener.PacketInjector;
 import poa.poaskrewritev2.PoaSkRewritev2;
+import poa.poaskrewritev2.hooks.Tab;
 import poa.util.BukkitVersion;
 import poa.util.GlowMap;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 
 public class JoinLeave implements Listener {
+
+    private static final boolean disableTabTeams = PoaSkRewritev2.getINSTANCE().getConfig().getBoolean("DisableTabTeamHandling");
 
     @EventHandler
     public void connect(PlayerLoginEvent e) {
@@ -26,8 +30,11 @@ public class JoinLeave implements Listener {
 
     @EventHandler
     public void join(PlayerJoinEvent e) {
+        final Player player = e.getPlayer();
+        if(disableTabTeams)
+            Tab.removeListener(player);
         switch (BukkitVersion.getBukkitVersion()) {
-            case "1204", "1206", "121", "1211", "1213", "1214", "1215", "1216", "1217", "1218","1219", "12110" -> PacketInjector.inject(e.getPlayer(), "PoaSk");
+            case "1204", "1206", "121", "1211", "1213", "1214", "1215", "1216", "1217", "1218","1219", "12110" -> PacketInjector.inject(player, "PoaSk");
         }
     }
 
@@ -45,6 +52,7 @@ public class JoinLeave implements Listener {
         glowMap.entrySet().removeIf(entry -> entry.getValue().contains(player.getEntityId()));
 
         PacketInjector.unInject(player);
+
     }
 
 }

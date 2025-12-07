@@ -13,18 +13,20 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
-import org.bukkit.event.Listener;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import poa.util.GetPose;
 import poa.packets.Metadata;
 import poa.packets.SendPacket;
 import poa.packets.TeamPacket;
 import poa.poaskrewritev2.PoaSkRewritev2;
+import poa.poaskrewritev2.hooks.Tab;
+import poa.util.GetPose;
 import poa.util.GlowMap;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class EffGlowEffect extends Effect {
 
@@ -87,33 +89,36 @@ public class EffGlowEffect extends Effect {
                     metadata.setGravity(li.hasGravity());
                 }
 
-                SendPacket.sendPacket(player, TeamPacket.teamPacketForGlow(uuid, chatColor, List.of(uuid)));
+                SendPacket.sendPacket(player, TeamPacket.teamPacketForGlow("PoaSK-" + uuid, chatColor, List.of(uuid)));
+
+
                 if (glow) {
                     SendPacket.sendPacket(player, builtMetadata);
                 }
 
 
                 if (entity instanceof Player target) {
-                    List<Integer> list = GlowMap.getGlowMap().get(player);
-                    if (list == null)
-                        list = new ArrayList<>();
-                    if (!glow) {
+                    List<Integer> glowMap = GlowMap.getGlowMap().get(player);
+                    if (glowMap == null)
+                        glowMap = new ArrayList<>();
 
-                        if (!list.isEmpty())
-                            list.remove((Integer) target.getEntityId());
+
+                    if (!glow) {
+                        if (!glowMap.isEmpty())
+                            glowMap.remove((Integer) target.getEntityId());
+
 
                     } else {
-                        if (!list.contains(target.getEntityId()))
-                            list.add(target.getEntityId());
+                        if (!glowMap.contains(target.getEntityId()))
+                            glowMap.add(target.getEntityId());
                     }
-                    GlowMap.getGlowMap().put(player, list);
+                    GlowMap.getGlowMap().put(player, glowMap);
                 }
 
                 //if (!glow)
 
 
-
-                    SendPacket.sendPacket(player, builtMetadata);
+                SendPacket.sendPacket(player, builtMetadata);
 
 //                if (entity instanceof Player p) //this is to update the glowing forcefully
 //                    Bukkit.getScheduler().runTaskLater(PoaSkRewritev2.getINSTANCE(), () -> {

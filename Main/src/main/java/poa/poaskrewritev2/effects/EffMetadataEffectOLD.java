@@ -24,11 +24,11 @@ import java.util.UUID;
 import java.util.logging.Level;
 
 
-public class EffMetadataEffect extends Effect implements Listener {
+public class EffMetadataEffectOLD extends Effect implements Listener {
 
     static {
         if (Skript.isRunningMinecraft(1, 19, 3)) {
-            Skript.registerEffect(EffMetadataEffect.class,
+            Skript.registerEffect(EffMetadataEffectOLD.class,
                     "send metadata packet with (entity id %-number%|1:uuid %-string%) [on fire %-boolean%][,] " +
                             "[invisible %-boolean%][,] [glowing %-boolean%][,] [name %-string%][,] [name visible %-boolean%][,] " +
                             "[silent %-boolean%][,] [has gravity %-boolean%][,] [pose %-string%] to %players%");

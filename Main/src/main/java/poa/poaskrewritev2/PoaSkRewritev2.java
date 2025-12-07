@@ -23,6 +23,7 @@ public final class PoaSkRewritev2 extends JavaPlugin {
     @Getter
     public static PoaSkRewritev2 INSTANCE;
 
+
     @Override
     public void onEnable() {
         INSTANCE = this;
@@ -51,12 +52,13 @@ public final class PoaSkRewritev2 extends JavaPlugin {
             config.set("SaveSkinCacheToDisk", true);
         if(!config.isSet("AllPacketEvent"))
             config.set("AllPacketEvent", false);
+        if(!config.isSet("DisableTabTeamHandling"))
+            config.set("DisableTabTeamHandling", false);
 
         saveConfig();
 
         if(List.of("12110").contains(Bukkit.getVersion()))
             getLogger().log(Level.INFO, "If you see a [HorriblePlayerLoginEventHack] ignore this, this is for a version that you are not");
-
 
 
 

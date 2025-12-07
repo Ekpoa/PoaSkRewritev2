@@ -7,7 +7,6 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.VariableString;
 import ch.njol.util.Kleenean;
-import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.event.Event;
@@ -16,17 +15,16 @@ import org.jetbrains.annotations.Nullable;
 import poa.packets.Metadata;
 import poa.poaskrewritev2.PoaSkRewritev2;
 import poa.util.Messages;
-import poa.util.Messages1214;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 
-public class EffRawMetadata extends Effect {
+public class EffRawMetadataOLD extends Effect {
 
     static {
-        Skript.registerEffect(EffRawMetadata.class, "add data from %string% [(with %-itemtype/blockdata%)] to [packet] %object%");
+        Skript.registerEffect(EffRawMetadataOLD.class, "add data from %string% [(with %-itemtype/blockdata%)] to [packet] %object%");
     }
 
     private Expression<String> input;
