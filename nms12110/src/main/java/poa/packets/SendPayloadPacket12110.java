@@ -11,15 +11,15 @@ import org.bukkit.entity.Player;
 
 public class SendPayloadPacket12110 {
 
-//    public static void sendGameTestMarker(Player player, Location location, String text, Color color, int durationMs) {
-//        BlockPos pos = ((CraftBlock) location.getBlock()).getPosition();
-//
-//        ClientboundGameTestHighlightPosPacket marker = new ClientboundGameTestHighlightPosPacket(pos, color.asARGB(), text, durationMs);
-//
-//
-//        SendPacket12110.sendPacket(player, new ClientboundCustomPayloadPacket(marker));
-//
-//    }
+    public static void sendGameTestMarker(Player player, Location location, String text, Color color, int durationMs) {
+        BlockPos pos = ((CraftBlock) location.getBlock()).getPosition();
+
+        ClientboundGameTestHighlightPosPacket marker = new ClientboundGameTestHighlightPosPacket(pos, pos);
+
+
+        SendPacket12110.sendPacket(player, marker);
+
+    }
 
     public static void sendBrandPayload(Player player, String brand){
         SendPacket12110.sendPacket(player, new ClientboundCustomPayloadPacket(new BrandPayload(brand)));
