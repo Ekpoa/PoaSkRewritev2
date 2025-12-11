@@ -3,9 +3,14 @@ package poa.packets;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.protocol.game.ClientboundSetPlayerTeamPacket;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.ServerScoreboard;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.scores.PlayerTeam;
 import net.minecraft.world.scores.Scoreboard;
 import net.minecraft.world.scores.Team;
+import org.bukkit.Bukkit;
+import org.bukkit.craftbukkit.CraftServer;
 import poa.util.Components12110;
 
 import java.lang.reflect.Constructor;
@@ -23,7 +28,17 @@ public class TeamPacket12110 {
 
             constructor.setAccessible(true);
 
-            PlayerTeam playerTeam = new PlayerTeam(new Scoreboard(), teamName);
+            CraftServer craftServer = (CraftServer) Bukkit.getServer();
+            ServerLevel nmsLevel = craftServer.getServer().overworld();
+            Scoreboard scoreboard = nmsLevel.getScoreboard();
+            PlayerTeam playerTeam = null;
+            if (scoreboard.getTeamNames().contains(teamName))
+                playerTeam = scoreboard.getPlayerTeam(teamName);
+
+            if (playerTeam == null) {
+                playerTeam = new PlayerTeam(scoreboard, teamName);
+                scoreboard.addPlayerTeam(teamName);
+            }
 
             playerTeam.setColor(ChatFormatting.valueOf(color.toUpperCase()));
             playerTeam.setPlayerPrefix(Components12110.nmsComponentActual(MiniMessage.miniMessage().deserialize(prefix)));
@@ -37,18 +52,20 @@ public class TeamPacket12110 {
 
             playerTeam.setDisplayName(Components12110.nmsComponentActual(MiniMessage.miniMessage().deserialize(displayName)));
 
-            Optional<ClientboundSetPlayerTeamPacket.Parameters> parameters = Optional.of(new ClientboundSetPlayerTeamPacket.Parameters(playerTeam));
+            playerTeam.getPlayers().addAll(players);
 
+            return ClientboundSetPlayerTeamPacket.createAddOrModifyPacket(playerTeam, true);
 
-            return constructor.newInstance(teamName, 0, parameters, players);
-        }
-        catch (Exception e){
+            //Optional<ClientboundSetPlayerTeamPacket.Parameters> parameters = Optional.of(new ClientboundSetPlayerTeamPacket.Parameters(playerTeam));
+
+            //return constructor.newInstance(teamName, 0, parameters, players);
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public static Object teamPacket(String teamName, String displayName, String nameTagVisibility, String collision, String color, String prefix, String suffix, Collection<String> players){
+    public static Object teamPacket(String teamName, String displayName, String nameTagVisibility, String collision, String color, String prefix, String suffix, Collection<String> players) {
         return teamPacket(teamName, displayName, nameTagVisibility, collision, color, prefix, suffix, false, players);
     }
 

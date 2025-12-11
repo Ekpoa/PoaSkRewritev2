@@ -409,10 +409,14 @@ public class Metadata12110 {
 
 
     @SneakyThrows
-    public Object build(){
-        return new ClientboundSetEntityDataPacket(id, dataList);
-    }
+    public Object build() {
+        List<SynchedEntityData.DataValue<?>> copy = new ArrayList<>(dataList);
+        ClientboundSetEntityDataPacket packet = new ClientboundSetEntityDataPacket(id, copy);
 
+        dataList = null;
+
+        return packet;
+    }
 
 
 }

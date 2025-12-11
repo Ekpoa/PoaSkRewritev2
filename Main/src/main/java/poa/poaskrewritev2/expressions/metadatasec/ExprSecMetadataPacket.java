@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
-public class ExprSecMetadataPacket extends SectionExpression<Metadata> {
+public class ExprSecMetadataPacket extends SectionExpression<Object> {
 
     private static final EntryValidator VALIDATOR;
     static {
@@ -104,7 +104,7 @@ public class ExprSecMetadataPacket extends SectionExpression<Metadata> {
 
         Skript.registerExpression(
                 ExprSecMetadataPacket.class,
-                Metadata.class,
+                Object.class,
                 ExpressionType.SIMPLE,
                 "new metadata packet with id %number%"
         );
@@ -231,7 +231,7 @@ public class ExprSecMetadataPacket extends SectionExpression<Metadata> {
     }
 
     @Override
-    protected Metadata[] get(Event e) {
+    protected Object[] get(Event e) {
         Number id = val(idExpr, e);
         if (id == null) return new Metadata[0];
 
@@ -355,7 +355,7 @@ public class ExprSecMetadataPacket extends SectionExpression<Metadata> {
         num(interactionWidthExpr,  e, v -> meta.setInteractionWidth(Math.max(0f, v.floatValue())));
         num(interactionHeightExpr, e, v -> meta.setInteractionHeight(Math.max(0f, v.floatValue())));
 
-        return new Metadata[]{meta};
+        return new Object[]{meta.build()};
     }
 
     // ---------- helpers ----------

@@ -1,5 +1,6 @@
 package poa.poaskrewritev2.events.bukkitevents;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -31,8 +32,10 @@ public class JoinLeave implements Listener {
     @EventHandler
     public void join(PlayerJoinEvent e) {
         final Player player = e.getPlayer();
-        if(disableTabTeams)
-            Tab.removeListener(player);
+        if(disableTabTeams) {
+            Bukkit.getScheduler().runTaskLater(PoaSkRewritev2.getINSTANCE(), () -> Tab.removeListener(player), 2L);
+
+        }
         switch (BukkitVersion.getBukkitVersion()) {
             case "1204", "1206", "121", "1211", "1213", "1214", "1215", "1216", "1217", "1218","1219", "12110" -> PacketInjector.inject(player, "PoaSk");
         }
