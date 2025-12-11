@@ -27,6 +27,7 @@
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1215/src/main/java/poa/packets/HeadRotPacket1215.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1215/src/main/java/poa/packets/FakePlayer1215.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1215/src/main/java/poa/util/EntityFromID1215.java
+/Users/alex/Documents/Plugins/PoaSkRewrite/nms1215/src/main/java/poa/packets/packetListener/events/ChunkDataPacketEvent1215.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1215/src/main/java/poa/packets/ChangeVision1215.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1215/src/main/java/poa/StartAutoSpinAttack1215.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1215/src/main/java/poa/packets/FakeDeathAnimation1215.java

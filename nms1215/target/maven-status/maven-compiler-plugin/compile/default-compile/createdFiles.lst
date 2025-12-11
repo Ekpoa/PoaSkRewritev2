@@ -13,6 +13,7 @@ poa/guardian/GuardianBeam1215.class
 poa/packets/FakeEntity1215.class
 poa/packets/packetListener/events/SoundEvent1215.class
 poa/packets/packetListener/events/BlockUpdateEvent1215.class
+poa/packets/packetListener/events/ChunkDataPacketEvent1215.class
 poa/packets/SetPassengerPacket1215.class
 poa/packets/HeadRotPacket1215.class
 poa/util/GetPose1215.class
@@ -30,6 +31,7 @@ poa/util/Messages1215.class
 poa/packets/packetListener/events/PlayerChatPacketEvent1215.class
 poa/util/RefreshPlayer1215.class
 poa/packets/TeleportPacket1215.class
+poa/packets/packetListener/events/ChunkDataPacketEvent1215$FakeBlock.class
 poa/packets/AttributePacket1215.class
 poa/packets/packetListener/events/ParticleEvent1215.class
 poa/packets/CameraPacket1215.class

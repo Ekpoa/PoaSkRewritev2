@@ -17,6 +17,7 @@
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms12110/src/main/java/poa/packets/Metadata12110.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms12110/src/main/java/poa/packets/TeleportPacket12110.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms12110/src/main/java/poa/packets/PosRotPacket12110.java
+/Users/alex/Documents/Plugins/PoaSkRewrite/nms12110/src/main/java/poa/packets/packetListener/events/ChunkDataPacketEvent12110.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms12110/src/main/java/poa/packets/AnimationPacket12110.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms12110/src/main/java/poa/util/EntityFromID12110.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms12110/src/main/java/poa/packets/packetListener/events/SystemChatPacketEvent12110.java

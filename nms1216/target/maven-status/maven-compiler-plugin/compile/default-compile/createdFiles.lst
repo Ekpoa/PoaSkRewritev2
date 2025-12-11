@@ -24,6 +24,7 @@ poa/blocks/Biomes1216$ChunkWork.class
 poa/util/EntityTypeFromString1216.class
 poa/packets/Metadata1216.class
 poa/packets/FakeEntity1216.class
+poa/packets/packetListener/events/ChunkDataPacketEvent1216.class
 poa/packets/packetListener/GlowMap1216.class
 poa/packets/packetListener/events/SystemChatPacketEvent1216.class
 poa/util/FetchSkin1216.class
@@ -35,6 +36,7 @@ poa/util/GetPose1216.class
 poa/packets/ItemCooldown1216.class
 poa/packets/PosRotPacket1216.class
 poa/guardian/GuardianBeam1216.class
+poa/packets/packetListener/events/ChunkDataPacketEvent1216$FakeBlock.class
 poa/packets/packetListener/events/BlockUpdateEvent1216.class
 poa/packets/packetListener/events/PlayerChatPacketEvent1216.class
 poa/packets/SetPassengerPacket1216.class

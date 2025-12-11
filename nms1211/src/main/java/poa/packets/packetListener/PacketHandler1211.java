@@ -359,8 +359,40 @@ public class PacketHandler1211 extends ChannelDuplexHandler {
                 if(soundEvent1211.isCancelled())
                     return;
             }
-            
 
+            else if (packet instanceof ClientboundLevelChunkWithLightPacket chunkPacket) {
+                final int chunkX = chunkPacket.getX();
+                final int chunkZ = chunkPacket.getZ();
+
+                ChunkDataPacketEvent1211 event =
+                        new ChunkDataPacketEvent1211(player, true, chunkX, chunkZ);
+
+                pluginManager.callEvent(event);
+
+                if (event.isCancelled()) {
+                    return;
+                }
+
+                super.write(ctx, msg, promise);
+
+                if (event.getFakeBlocks().isEmpty()) {
+                    return;
+                }
+
+                for (ChunkDataPacketEvent1211.FakeBlock fb : event.getFakeBlocks()) {
+
+                    BlockPos pos = new BlockPos(fb.x(), fb.y(), fb.z());
+                    net.minecraft.world.level.block.state.BlockState nmsState =
+                            ((CraftBlockData) fb.blockData()).getState();
+
+                    ClientboundBlockUpdatePacket fakePacket =
+                            new ClientboundBlockUpdatePacket(pos, nmsState);
+
+                    super.write(ctx, fakePacket, ctx.voidPromise());
+                }
+
+                return;
+            }
 
             super.write(ctx, msg, promise);
         } catch (Exception e) {

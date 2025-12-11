@@ -24,6 +24,7 @@
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1217/src/main/java/poa/util/GetPose1217.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1217/src/main/java/poa/packets/AttributePacket1217.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1217/src/main/java/poa/util/FetchSkin1217.java
+/Users/alex/Documents/Plugins/PoaSkRewrite/nms1217/src/main/java/poa/packets/packetListener/events/ChunkDataPacketEvent1217.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1217/src/main/java/poa/util/RefreshPlayer1217.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1217/src/main/java/poa/packets/packetListener/PacketHandler1217.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1217/src/main/java/poa/packets/ChangeVision1217.java

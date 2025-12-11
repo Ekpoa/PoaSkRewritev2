@@ -14,6 +14,7 @@ poa/util/RefreshPlayer1213.class
 poa/packets/CameraPacket1213.class
 poa/packets/FakeEntity1213.class
 poa/packets/packetListener/events/SoundEvent1213.class
+poa/packets/packetListener/events/ChunkDataPacketEvent1213.class
 poa/util/GetPose1213.class
 poa/packets/ItemCooldown1213.class
 poa/packets/packetListener/events/PlayerChatPacketEvent1213.class
@@ -33,6 +34,7 @@ poa/packets/TeamPacket1213.class
 poa/packets/SetPassengerPacket1213.class
 poa/packets/ChangeVision1213.class
 poa/util/PoaPlugin1213.class
+poa/packets/packetListener/events/ChunkDataPacketEvent1213$FakeBlock.class
 poa/packets/TeleportPacket1213.class
 poa/packets/SetEquipmentPacket1213.class
 poa/util/EntityTypeFromString1213.class

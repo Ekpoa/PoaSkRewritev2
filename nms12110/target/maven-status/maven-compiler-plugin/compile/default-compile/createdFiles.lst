@@ -1,5 +1,6 @@
 poa/util/GetBlockId12110.class
 poa/packets/packetListener/PacketInjector12110.class
+poa/packets/packetListener/events/ChunkDataPacketEvent12110$FakeBlock.class
 poa/util/EntityTypeFromString12110.class
 poa/packets/packetListener/events/BlockUpdateEvent12110.class
 poa/util/FetchSkin12110.class
@@ -19,6 +20,7 @@ poa/packets/SendPacket12110.class
 poa/packets/FakeDeathAnimation12110.class
 poa/packets/packetListener/events/PlayerActionEvent12110.class
 poa/util/RefreshPlayer12110.class
+poa/packets/packetListener/events/ChunkDataPacketEvent12110.class
 poa/blocks/SetFast12110.class
 poa/packets/FakePlayer12110.class
 poa/blocks/Biomes12110$ChunkWork.class

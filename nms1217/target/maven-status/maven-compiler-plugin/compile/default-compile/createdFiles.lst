@@ -1,4 +1,5 @@
 poa/packets/packetListener/GlowMap1217.class
+poa/packets/packetListener/events/ChunkDataPacketEvent1217$FakeBlock.class
 poa/util/FetchSkin1217.class
 poa/packets/TeamPacket1217.class
 poa/packets/HeadRotPacket1217.class
@@ -37,6 +38,7 @@ poa/packets/packetListener/PacketInjector1217.class
 poa/packets/FakeDeathAnimation1217.class
 poa/packets/FakeEntity1217.class
 poa/packets/packetListener/events/SoundEvent1217.class
+poa/packets/packetListener/events/ChunkDataPacketEvent1217.class
 poa/blocks/Biomes1217$ChunkWork.class
 poa/packets/packetListener/events/ParticleEvent1217.class
 poa/packets/AttributePacket1217.class

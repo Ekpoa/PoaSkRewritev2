@@ -18,6 +18,7 @@
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/packetListener/PacketInjector1211.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/blocks/SetFast1211.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/packetListener/events/PlayerInputEvent1211.java
+/Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/packetListener/ChunkDataPacketEvent1211.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/packetListener/events/BlockUpdateEvent1211.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/Metadata1211.java
 /Users/alex/Documents/Plugins/PoaSkRewrite/nms1211/src/main/java/poa/packets/TeleportPacket1211.java

@@ -12,6 +12,7 @@ poa/packets/TeleportPacket1211.class
 poa/packets/FakeTablist1211.class
 poa/packets/packetListener/events/PlayerActionEvent1211.class
 poa/util/EntityFromID1211.class
+poa/packets/packetListener/ChunkDataPacketEvent1211$FakeBlock.class
 poa/packets/FakeDeathAnimation1211.class
 poa/packets/SendPacket1211.class
 poa/ChangeIP1211.class
@@ -36,6 +37,7 @@ poa/packets/packetListener/PacketHandler1211.class
 poa/packets/packetListener/events/PlayerChatPacketEvent1211.class
 poa/util/GetPose1211.class
 poa/packets/PosRotPacket1211.class
+poa/packets/packetListener/ChunkDataPacketEvent1211.class
 poa/packets/packetListener/events/BlockUpdateEvent1211.class
 poa/packets/Metadata1211.class
 poa/StartAutoSpinAttack1211.class

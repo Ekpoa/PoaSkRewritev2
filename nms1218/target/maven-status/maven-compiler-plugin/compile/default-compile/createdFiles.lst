@@ -18,10 +18,12 @@ poa/packets/ItemCooldown1218.class
 poa/util/RefreshPlayer1218.class
 poa/packets/packetListener/GlowMap1218.class
 poa/packets/HeadRotPacket1218.class
+poa/packets/packetListener/events/ChunkDataPacketEvent1218.class
 poa/packets/AttributePacket1218.class
 poa/util/GetBlockId1218.class
 poa/util/GetPose1218.class
 poa/packets/FakeDeathAnimation1218.class
+poa/packets/packetListener/events/ChunkDataPacketEvent1218$FakeBlock.class
 poa/packets/SendPayloadPacket1218.class
 poa/packets/packetListener/events/SystemChatPacketEvent1218.class
 poa/packets/packetListener/PacketInjector1218.class
