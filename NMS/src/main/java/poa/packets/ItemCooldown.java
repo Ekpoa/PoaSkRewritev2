@@ -21,6 +21,7 @@ public class ItemCooldown {
             case "1218" -> ItemCooldown1218.itemCooldown(item, ticks);
             case "1219" -> ItemCooldown1219.itemCooldown(item, ticks);
             case "12110" -> ItemCooldown12110.itemCooldown(item, ticks);
+            case "12111" -> ItemCooldown12111.itemCooldown(item, ticks);
             default -> null;
         };
 

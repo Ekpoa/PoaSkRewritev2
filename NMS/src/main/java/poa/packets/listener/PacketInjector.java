@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PacketInjector {
-
+    private static final Map<Player, PacketInjector12111> playerPacketStuffMap12111 = new HashMap<>();
     private static final Map<Player, PacketInjector12110> playerPacketStuffMap12110 = new HashMap<>();
     private static final Map<Player, PacketInjector1219> playerPacketStuffMap1219 = new HashMap<>();
     private static final Map<Player, PacketInjector1218> playerPacketStuffMap1218 = new HashMap<>();
@@ -88,6 +88,11 @@ public class PacketInjector {
                 packetInjector.inject(player);
                 playerPacketStuffMap12110.put(player, packetInjector);
             }
+            case "12111" -> {
+                PacketInjector12111 packetInjector = new PacketInjector12111(player, id);
+                packetInjector.inject(player);
+                playerPacketStuffMap12111.put(player, packetInjector);
+            }
         }
     }
 
@@ -104,6 +109,10 @@ public class PacketInjector {
 
     public static void unInject(Player player){
         switch (BukkitVersion.getBukkitVersion()){
+            case "12111" -> {
+                playerPacketStuffMap12111.get(player).uninjectPlayer();
+                playerPacketStuffMap12111.remove(player);
+            }
             case "12110" -> {
                 playerPacketStuffMap12110.get(player).uninjectPlayer();
                 playerPacketStuffMap12110.remove(player);

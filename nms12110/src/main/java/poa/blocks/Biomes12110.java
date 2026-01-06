@@ -65,12 +65,11 @@ public class Biomes12110 {
 
                     List<PalettedContainer<Holder<Biome>>> copies = new ArrayList<>(sections.length);
 
-                    for (int si = 0; si < sections.length; si++) {
-                        LevelChunkSection sec = sections[si];
+                    for (LevelChunkSection sec : sections) {
                         PalettedContainer<Holder<Biome>> copy;
                         if (sec != null) {
                             PalettedContainerRO<Holder<Biome>> ro = sec.getBiomes();
-                            copy = (ro != null) ? ro.copy() : newEmptyBiomeContainer(TARGET);
+                            copy = ro.copy();
                         } else {
                             copy = newEmptyBiomeContainer(TARGET);
                         }

@@ -24,6 +24,7 @@ public class SendPayloadPacket {
             case "1217" -> SendPayloadPacket1217.sendGameTestMarker(player, location, text, color, durationMs);
             case "1218" -> SendPayloadPacket1218.sendGameTestMarker(player, location, text, color, durationMs);
             case "12110" -> SendPayloadPacket12110.sendGameTestMarker(player, location, text, color, durationMs);
+            case "12111" -> SendPayloadPacket12111.sendGameTestMarker(player, location, text, color, durationMs);
         }
     }
 
@@ -42,6 +43,7 @@ public class SendPayloadPacket {
             case "1218" -> SendPayloadPacket1218.sendBrandPayload(player, brand);
             case "1219" -> SendPayloadPacket1219.sendBrandPayload(player, brand);
             case "12110" -> SendPayloadPacket12110.sendBrandPayload(player, brand);
+            case "12111" -> SendPayloadPacket12111.sendBrandPayload(player, brand);
         }
     }
 

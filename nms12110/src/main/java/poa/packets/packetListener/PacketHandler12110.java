@@ -179,7 +179,7 @@ public class PacketHandler12110 extends ChannelDuplexHandler {
                     glow = false;
 
 
-                var dataValues = new ArrayList<>(metadata.packedItems());
+                final ArrayList<SynchedEntityData.DataValue<?>> dataValues = new ArrayList<>(metadata.packedItems());
                 if (glow && dataValues.stream()
                         .map(SynchedEntityData.DataValue::value)
                         .filter(Byte.class::isInstance)

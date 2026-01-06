@@ -352,6 +352,32 @@ public class RegisterBlockUpdate {
                     }
                 }, EventValues.TIME_NOW);
             }
+            case "12111" -> {
+                EventValues.registerEventValue(BlockUpdateEvent12111.class, Location.class, new Getter<>() {
+                    @Override
+                    public Location get(BlockUpdateEvent12111 event) {
+                        return event.getLocation().toCenterLocation();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(BlockUpdateEvent12111.class, Material.class, new Getter<>() {
+                    @Override
+                    public Material get(BlockUpdateEvent12111 event) {
+                        return event.getMaterial();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(BlockUpdateEvent12111.class, BlockData.class, new Getter<>() {
+                    @Override
+                    public BlockData get(BlockUpdateEvent12111 event) {
+                        return event.getBlockData();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(BlockUpdateEvent12111.class, Block.class, new Getter<>() {
+                    @Override
+                    public Block get(BlockUpdateEvent12111 event) {
+                        return event.getOriginalBlock();
+                    }
+                }, EventValues.TIME_NOW);
+            }
 
         }
     }

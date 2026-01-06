@@ -1,9 +1,19 @@
 package poa.packets;
 
+import ca.spottedleaf.moonrise.patches.chunk_system.level.entity.EntityLookup;
 import io.netty.buffer.Unpooled;
 import lombok.SneakyThrows;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.game.ClientboundEntityEventPacket;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.dedicated.DedicatedServer;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.EntityType;
+import org.bukkit.Bukkit;
+import org.bukkit.Server;
+import org.bukkit.World;
+import org.bukkit.craftbukkit.CraftServer;
+import org.bukkit.craftbukkit.CraftWorld;
 
 import java.lang.reflect.Constructor;
 

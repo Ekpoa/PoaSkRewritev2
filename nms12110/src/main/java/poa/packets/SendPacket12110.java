@@ -7,6 +7,5 @@ import org.bukkit.entity.Player;
 public class SendPacket12110 {
     public static void sendPacket(Player player, Object packet){
         ((CraftPlayer) player).getHandle().connection.send((Packet<?>) packet);
-
     }
 }

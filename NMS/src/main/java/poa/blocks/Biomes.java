@@ -20,6 +20,7 @@ public class Biomes {
             case "1218" -> Biomes1218.sendBiomeBetweenAsync(plugin, players, loc1, loc2, biome);
             case "1219" -> Biomes1219.sendBiomeBetweenAsync(plugin, players, loc1, loc2, biome);
             case "12110" -> Biomes12110.sendBiomeBetweenAsync(plugin, players, loc1, loc2, biome);
+            case "12111" -> Biomes12111.sendBiomeBetweenAsync(plugin, players, loc1, loc2, biome);
             default -> plugin.getLogger().log(Level.WARNING, "Fake biomes is only for 1.21.3 +");
         }
     }

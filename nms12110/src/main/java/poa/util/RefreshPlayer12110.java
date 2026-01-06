@@ -21,7 +21,7 @@ import java.util.Map;
 public class RefreshPlayer12110 {
     public static void refreshPlayer(Player player) {
         ServerPlayer serverPlayer = ((CraftPlayer) player).getHandle();
-        ServerLevel serverLevel = (ServerLevel) serverPlayer.level();
+        ServerLevel serverLevel = serverPlayer.level();
         serverPlayer.connection.send(new ClientboundRespawnPacket(serverPlayer.createCommonSpawnInfo(serverLevel), ClientboundRespawnPacket.KEEP_ALL_DATA));
         final Location location = player.getLocation();
         serverPlayer.connection.teleport(location.x(), location.y(), location.z(), location.getPitch(), location.getYaw());
@@ -46,7 +46,7 @@ public class RefreshPlayer12110 {
 
 
         serverPlayer.onUpdateAbilities();
-        final MinecraftServer server = (MinecraftServer) Bukkit.getServer();
+        final MinecraftServer server = MinecraftServer.getServer();
         if(server == null)
             throw new RuntimeException("Server null for player");
 

@@ -90,6 +90,10 @@
             <groupId>poa</groupId>
             <artifactId>nms12110</artifactId>
         </dependency>
+        <dependency>
+            <groupId>poa</groupId>
+            <artifactId>nms12111</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

@@ -37,7 +37,7 @@ public class JoinLeave implements Listener {
 
         }
         switch (BukkitVersion.getBukkitVersion()) {
-            case "1204", "1206", "121", "1211", "1213", "1214", "1215", "1216", "1217", "1218","1219", "12110" -> PacketInjector.inject(player, "PoaSk");
+            case "1204", "1206", "121", "1211", "1213", "1214", "1215", "1216", "1217", "1218","1219", "12110", "12111" -> PacketInjector.inject(player, "PoaSk");
         }
     }
 

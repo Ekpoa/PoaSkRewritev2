@@ -37,6 +37,8 @@ public class SkAllPacketEvent extends SkriptEvent {
                     Skript.registerEvent("every packet", SkAllPacketEvent.class, AllPacketEvent1218.class, "every packet");
             case "12110" ->
                     Skript.registerEvent("every packet", SkAllPacketEvent.class, AllPacketEvent12110.class, "every packet");
+            case "12111" ->
+                    Skript.registerEvent("every packet", SkAllPacketEvent.class, AllPacketEvent12111.class, "every packet");
 
         }
         RegisterAllPacket.registerValues();

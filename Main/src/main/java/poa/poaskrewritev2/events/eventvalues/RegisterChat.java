@@ -500,6 +500,43 @@ public class RegisterChat {
                 }, EventValues.TIME_NOW);
             }
 
+            case "12111" -> {
+                Skript.registerEvent("System Chat Packet", SimpleEvent.class, SystemChatPacketEvent12111.class,
+                        "system chat packet");
+
+                EventValues.registerEventValue(SystemChatPacketEvent12111.class, String.class, new Getter<>() {
+                    @Override
+                    public String get(SystemChatPacketEvent12111 event) {
+                        return event.getString();
+                    }
+                }, EventValues.TIME_NOW);
+
+                EventValues.registerEventValue(SystemChatPacketEvent12111.class, Boolean.class, new Getter<>() {
+                    @Override
+                    public Boolean get(SystemChatPacketEvent12111 event) {
+                        return event.isOverlay();
+                    }
+                }, EventValues.TIME_NOW);
+
+                // Player
+                Skript.registerEvent("Player Chat Packet", SimpleEvent.class, PlayerChatPacketEvent12111.class,
+                        "player chat packet");
+
+                EventValues.registerEventValue(PlayerChatPacketEvent12111.class, String.class, new Getter<>() {
+                    @Override
+                    public String get(PlayerChatPacketEvent12111 event) {
+                        return event.getString();
+                    }
+                }, EventValues.TIME_NOW);
+
+                EventValues.registerEventValue(PlayerChatPacketEvent12111.class, UUID.class, new Getter<>() {
+                    @Override
+                    public UUID get(PlayerChatPacketEvent12111 event) {
+                        return event.getSender();
+                    }
+                }, EventValues.TIME_NOW);
+            }
+
         }
     }
 }

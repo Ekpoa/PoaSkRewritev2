@@ -22,12 +22,6 @@ public class TeamPacket12110 {
 
     public static Object teamPacket(String teamName, String displayName, String nameTagVisibility, String collision, String color, String prefix, String suffix, boolean seeFriendly, Collection<String> players) {
         try {
-            Class<ClientboundSetPlayerTeamPacket> clazz = ClientboundSetPlayerTeamPacket.class;
-
-            Constructor<ClientboundSetPlayerTeamPacket> constructor = clazz.getDeclaredConstructor(String.class, int.class, Optional.class, Collection.class);
-
-            constructor.setAccessible(true);
-
             CraftServer craftServer = (CraftServer) Bukkit.getServer();
             ServerLevel nmsLevel = craftServer.getServer().overworld();
             Scoreboard scoreboard = nmsLevel.getScoreboard();
@@ -56,9 +50,7 @@ public class TeamPacket12110 {
 
             return ClientboundSetPlayerTeamPacket.createAddOrModifyPacket(playerTeam, true);
 
-            //Optional<ClientboundSetPlayerTeamPacket.Parameters> parameters = Optional.of(new ClientboundSetPlayerTeamPacket.Parameters(playerTeam));
 
-            //return constructor.newInstance(teamName, 0, parameters, players);
         } catch (Exception e) {
             e.printStackTrace();
         }

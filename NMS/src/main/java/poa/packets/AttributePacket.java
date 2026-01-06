@@ -20,6 +20,7 @@ public class AttributePacket {
             case "1218" -> AttributePacket1218.packet(id, attribute, value);
             case "1219" -> AttributePacket1219.packet(id, attribute, value);
             case "12110" -> AttributePacket12110.packet(id, attribute, value);
+            case "12111" -> AttributePacket12111.packet(id, attribute, value);
             default -> null;
         };
     }
@@ -39,6 +40,7 @@ public class AttributePacket {
             case "1218" -> AttributePacket1218.packet(id, attribute, value);
             case "1219" -> AttributePacket1219.packet(id, attribute, value);
             case "12110" -> AttributePacket12110.packet(id, attribute, value);
+            case "12111" -> AttributePacket12111.packet(id, attribute, value);
             default -> null;
         };
     }
