@@ -84,11 +84,6 @@ public class EffGlowEffect extends Effect {
             final Object builtMetadata = metadata.build();
 
             for (Player player : players.getArray(event)) {
-                if (entity instanceof LivingEntity li) {
-                    metadata.setInvisible(li.isInvisible());
-                    metadata.setGravity(li.hasGravity());
-                }
-
                 SendPacket.sendPacket(player, TeamPacket.teamPacketForGlow("PoaSK-" + uuid, chatColor, List.of(uuid)));
 
 

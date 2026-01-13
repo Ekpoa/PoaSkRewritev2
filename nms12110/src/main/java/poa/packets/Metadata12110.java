@@ -39,7 +39,7 @@ public class Metadata12110 {
         return entityMetadata.build();
     }
 
-    List<SynchedEntityData.DataValue<?>> dataList = new ArrayList<>();
+    List<SynchedEntityData.DataValue<?>> dataList;
     int id;
 
 
@@ -50,6 +50,7 @@ public class Metadata12110 {
 
     public Metadata12110(int id) {
         this.id = id;
+        this.dataList = new ArrayList<>();
     }
 
     public void setOnFire(boolean onFire) {
