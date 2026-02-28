@@ -2,19 +2,20 @@ package poa.packets;
 
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
+import lombok.Getter;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.network.protocol.game.ClientboundRemoveEntitiesPacket;
 import net.minecraft.world.phys.Vec3;
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
 import poa.util.EntityTypeFromString12111;
 
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class FakeEntity12111 {
 
     public static Object fakeEntityPacket(int id, Location location, String type, UUID uuid, int data) {
-        if(List.of("text_display", "block_display", "item_display").contains(type.toLowerCase())){
+        if (List.of("text_display", "block_display", "item_display").contains(type.toLowerCase())) {
             return new ClientboundAddEntityPacket(id,
                     uuid,
                     location.getX(),
@@ -42,18 +43,18 @@ public class FakeEntity12111 {
         );
 
     }
-    public static Object fakeEntityPacket(int id, Location location, String type, int data){
+
+    public static Object fakeEntityPacket(int id, Location location, String type, int data) {
         return fakeEntityPacket(id, location, type, UUID.randomUUID(), data);
     }
 
-    public static Object fakeEntityPacket(int id, Location location, String type, UUID uuid){
+    public static Object fakeEntityPacket(int id, Location location, String type, UUID uuid) {
         return fakeEntityPacket(id, location, type, uuid, 0);
     }
 
-    public static Object fakeEntityPacket(int id, Location location, String type){
+    public static Object fakeEntityPacket(int id, Location location, String type) {
         return fakeEntityPacket(id, location, type, 0);
     }
-
 
 
 //    @SneakyThrows
@@ -70,12 +71,13 @@ public class FakeEntity12111 {
 //    }
 
 
-
-    public static Object removeFakeEntityPacket(List<Integer> idList){
+    public static Object removeFakeEntityPacket(List<Integer> idList) {
         IntList intList = new IntArrayList();
         intList.addAll(idList);
 
         return new ClientboundRemoveEntitiesPacket(intList);
     }
+
+
 
 }

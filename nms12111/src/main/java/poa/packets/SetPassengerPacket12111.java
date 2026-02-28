@@ -17,6 +17,7 @@ public class SetPassengerPacket12111 {
 
         Class<ClientboundSetPassengersPacket> clazz = ClientboundSetPassengersPacket.class;
 
+
         Constructor<ClientboundSetPassengersPacket> declaredConstructor = clazz.getDeclaredConstructor(FriendlyByteBuf.class);
         declaredConstructor.setAccessible(true);
 
