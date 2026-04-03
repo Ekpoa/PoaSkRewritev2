@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Main.iml" filepath="$PROJECT_DIR$/Main.iml" />
       <module fileurl="file://$PROJECT_DIR$/NMS/NMS.iml" filepath="$PROJECT_DIR$/NMS/NMS.iml" />
       <module fileurl="file://$PROJECT_DIR$/Main/PoaSK.iml" filepath="$PROJECT_DIR$/Main/PoaSK.iml" />
       <module fileurl="file://$PROJECT_DIR$/nms1202/nms1202.iml" filepath="$PROJECT_DIR$/nms1202/nms1202.iml" />

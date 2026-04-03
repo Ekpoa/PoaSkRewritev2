@@ -68,6 +68,8 @@ public class FakePlayer {
                     FakePlayer1219.spawnFakePlayer(sendTo, name, texture, signature, loc, listed, latency, id, uuid, skinModel);
             case "12110" ->
                     FakePlayer12110.spawnFakePlayer(sendTo, name, texture, signature, loc, listed, latency, id, uuid, skinModel);
+            case "12111" ->
+                    FakePlayer12111.spawnFakePlayer(sendTo, name, texture, signature, loc, listed, latency, id, uuid, skinModel);
         }
     }
 
