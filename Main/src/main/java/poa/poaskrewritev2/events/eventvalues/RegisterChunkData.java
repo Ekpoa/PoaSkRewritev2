@@ -85,6 +85,14 @@ public class RegisterChunkData {
                     }
                 }, EventValues.TIME_NOW);
             }
+            case "2612" -> {
+                EventValues.registerEventValue(ChunkDataPacketEvent2612.class, Chunk.class, new Getter<>() {
+                    @Override
+                    public Chunk get(ChunkDataPacketEvent2612 event) {
+                        return event.getWorld().getChunkAt(event.getChunkX(), event.getChunkZ());
+                    }
+                }, EventValues.TIME_NOW);
+            }
         }
 
     }

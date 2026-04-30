@@ -26,8 +26,8 @@ public class SkSoundEvent extends SkriptEvent {
             case "1219" -> Skript.registerEvent("Sound Event", SkSoundEvent.class, SoundEvent1219.class, "sound packet");
             case "12110" -> Skript.registerEvent("Sound Event", SkSoundEvent.class, SoundEvent12110.class, "sound packet");
             case "12111" -> Skript.registerEvent("Sound Event", SkSoundEvent.class, SoundEvent12111.class, "sound packet");
+            case "2612" -> Skript.registerEvent("Sound Event", SkSoundEvent.class, SoundEvent2612.class, "sound packet");
         }
-        RegisterBlockUpdate.registerValues();
     }
 
     @Override

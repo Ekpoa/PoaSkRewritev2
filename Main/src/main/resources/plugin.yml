@@ -1,14 +1,15 @@
 name: PoaSk
 authors: [Ekpoa]
 website: https://github.com/Ekpoa/PoaSkRewritev2
-version: '4.16.10'
+version: '4.16.11 - beta'
 main: poa.poaskrewritev2.PoaSkRewritev2
 api-version: '1.20'
 depend:
-    - Skriptt
+    - Skript
 
 softdepend:
     - TAB
 commands:
   poasktest:
     permission: poa.poasktest
+  poaskdebug:

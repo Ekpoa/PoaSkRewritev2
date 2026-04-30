@@ -14,7 +14,6 @@ import org.bukkit.util.Vector;
 import org.jetbrains.annotations.NotNull;
 import org.joml.AxisAngle4f;
 import org.joml.Quaternionf;
-;
 import poa.packets.*;
 
 import java.util.*;

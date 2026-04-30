@@ -32,7 +32,7 @@ public final class PoaSkRewritev2 extends JavaPlugin {
 
 
         getCommand("poasktest").setExecutor(new TestCommand());
-
+        getCommand("poaskdebug").setExecutor(new DebugCMD());
 
 
         SkriptAddon skriptAddon = Skript.registerAddon(this);

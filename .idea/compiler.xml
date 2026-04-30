@@ -6,8 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Main" />
+      </profile>
+      <profile name="Annotation profile for PoaSkRewritev2" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
+        </processorPath>
         <module name="nms1204" />
         <module name="nms1215" />
+        <module name="nms2612" />
         <module name="PoaSK" />
         <module name="nms1214" />
         <module name="nms1206" />
@@ -22,7 +32,6 @@
         <module name="nms12110" />
         <module name="NMS" />
         <module name="nms121" />
-        <module name="Main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

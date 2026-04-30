@@ -18,7 +18,6 @@ import java.util.logging.Level;
 public class EffFakeBlockPacketForChunk extends Effect {
 
     static {
-        PoaSkRewritev2.getINSTANCE().getLogger().log(Level.WARNING, "asdadasdad");
         Skript.registerEffect(
                 EffFakeBlockPacketForChunk.class,
                 "fake block packet at %location% to %blockdata%"

@@ -24,6 +24,7 @@ public class SetEquipmentPacket {
             case "1219" -> SetEquipmentPacket1219.packet(id, slot, item);
             case "12110" -> SetEquipmentPacket12110.packet(id, slot, item);
             case "12111" -> SetEquipmentPacket12111.packet(id, slot, item);
+            case "2612" -> SetEquipmentPacket2612.packet(id, slot, item);
             default -> null;
         };
 

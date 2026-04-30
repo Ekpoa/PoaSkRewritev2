@@ -160,6 +160,20 @@ public class RegisterAllPacket {
                     }
                 }, EventValues.TIME_NOW);
             }
+            case "2612" -> {
+                EventValues.registerEventValue(AllPacketEvent2612.class, Boolean.class, new Getter<>() {
+                    @Override
+                    public Boolean get(AllPacketEvent2612 event) {
+                        return event.isClientbound();
+                    }
+                }, EventValues.TIME_NOW);
+                EventValues.registerEventValue(AllPacketEvent2612.class, Object.class, new Getter<>() {
+                    @Override
+                    public Object get(AllPacketEvent2612 event) {
+                        return event.getPacket();
+                    }
+                }, EventValues.TIME_NOW);
+            }
 
         }
     }

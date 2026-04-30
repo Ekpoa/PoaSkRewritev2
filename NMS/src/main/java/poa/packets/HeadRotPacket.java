@@ -24,6 +24,7 @@ public class HeadRotPacket {
             case "1219" -> HeadRotPacket1219.packet(id, yRot);
             case "12110" -> HeadRotPacket12110.packet(id, yRot);
             case "12111" -> HeadRotPacket12111.packet(id, yRot);
+            case "2612" -> HeadRotPacket2612.packet(id, yRot);
             default -> null;
         };
 
