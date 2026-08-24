@@ -12,6 +12,7 @@ import poa.poaskrewritev2.effects.entity.EffSetPlayerNameAndSkin;
 import poa.poaskrewritev2.events.bukkitevents.JoinLeave;
 import poa.poaskrewritev2.events.bukkitevents.PlayerLoadEntity;
 import poa.poaskrewritev2.expressions.ExprHostname;
+import poa.poaskrewritev2.util.ConsoleLogInjector;
 import poa.util.PoaPlugin;
 
 import java.io.IOException;
@@ -70,10 +71,16 @@ public final class PoaSkRewritev2 extends JavaPlugin {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        try {
+            ConsoleLogInjector.inject();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        ConsoleLogInjector.uninject();
     }
 }
