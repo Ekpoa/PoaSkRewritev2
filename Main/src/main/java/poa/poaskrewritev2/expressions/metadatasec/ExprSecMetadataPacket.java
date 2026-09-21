@@ -337,7 +337,7 @@ public class ExprSecMetadataPacket extends SectionExpression<Object> {
         if (bg != null) {
             int r = bg.getRed(), g = bg.getGreen(), b3 = bg.getBlue();
             int a = (alphaOverride != null) ? clamp(alphaOverride, 0, 255) : clamp(bg.getAlpha(), 0, 255);
-            meta.setBackground(r, g, b3, a);
+            meta.setBackground(a, r, g, b3);
         }
 
         String txt = stringify(displayTextExpr, e);
