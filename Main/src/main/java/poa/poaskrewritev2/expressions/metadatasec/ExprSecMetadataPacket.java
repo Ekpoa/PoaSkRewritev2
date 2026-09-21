@@ -341,7 +341,7 @@ public class ExprSecMetadataPacket extends SectionExpression<Object> {
         }
 
         String txt = stringify(displayTextExpr, e);
-        if (txt != null && !txt.isEmpty()) meta.setText(Messages.essentialsToMinimessage(txt));
+        if (txt != null) meta.setText(Messages.essentialsToMinimessage(txt));
         num(displayTextOpacityExpr, e, v -> meta.setTextOpacity(clamp(v.intValue(), 0, 255)));
 
         // Glow via Skript Color
@@ -384,7 +384,7 @@ public class ExprSecMetadataPacket extends SectionExpression<Object> {
 
     private static String stringify(Expression<String> expr, Event e) {
         if (expr == null) return null;
-        if (expr instanceof VariableString vs) return vs.toUnformattedString(e).trim();
+        if (expr instanceof VariableString vs) return vs.toUnformattedString(e);
         String s = expr.getSingle(e);
         return s;
     }
